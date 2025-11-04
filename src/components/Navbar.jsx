@@ -46,7 +46,14 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
           <img
             src="/logo.png"
             alt="PrimeDev Studios"
-            className="h-10 w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 rounded-2xl object-cover shadow-lg border border-violet-500/30 bg-slate-950"
+            className="
+              shrink-0 aspect-square object-contain
+              h-12 w-12           /* ↑ 48px mobile */
+              md:h-14 md:w-14     /* ↑ 56px tablette */
+              lg:h-30 lg:w-30     /* ↑ 64px desktop */
+              xl:h-22 xl:w-22     /* ↑ 80px grands écrans */
+              rounded-2xl shadow-lg border border-violet-500/30 bg-slate-950
+            "
           />
           <span className="font-semibold text-xs md:text-sm lg:text-lg leading-tight text-left">
             PrimeDev Studios
@@ -71,10 +78,6 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
               </button>
             );
           })}
-
-          <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-400/40 text-emerald-100 text-xs">
-            {lang === "fr" ? "Disponible" : "Available"}
-          </span>
 
           <button
             onClick={toggleLang}
