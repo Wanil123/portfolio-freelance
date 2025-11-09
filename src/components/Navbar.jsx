@@ -119,9 +119,6 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
           })}
 
           <div className="px-6 py-3 flex items-center justify-between gap-3">
-            <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-400/40 text-emerald-100 text-xs">
-            </span>
-
             <button
               onClick={toggleLang}
               className="flex items-center gap-1 px-3 py-1 rounded-full bg-slate-900/40 border border-slate-700/60 text-slate-100 text-xs"
