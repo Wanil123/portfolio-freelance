@@ -25,7 +25,7 @@ const Contact = () => {
           </p>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3">
             {lang === "fr"
-              ? "On vous répond en moins de 48 h."
+              ? "On vous répond en moins de 24 h."
               : "We answer in less than 24h."}
           </h2>
           <p className="text-slate-300 max-w-2xl mx-auto text-sm md:text-base">

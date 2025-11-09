@@ -120,7 +120,6 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
 
           <div className="px-6 py-3 flex items-center justify-between gap-3">
             <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-400/40 text-emerald-100 text-xs">
-              {lang === "fr" ? "Dispo en freelance" : "Available for freelance"}
             </span>
 
             <button
