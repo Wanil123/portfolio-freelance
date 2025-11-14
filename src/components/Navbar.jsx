@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 const links = [
   { id: "home", en: "Home", fr: "Accueil" },
   { id: "services", en: "Services", fr: "Services" },
-  { id: "process", en: "Process", fr: "Process" },
+  { id: "process", en: "Process", fr: "Processus" },
   { id: "skills", en: "Skills", fr: "Compétences" },
   { id: "projects", en: "Projects", fr: "Projets" },
   { id: "contact", en: "Contact", fr: "Contact" },

@@ -1,7 +1,8 @@
 // src/components/Projects.jsx
 import { useTranslation } from "react-i18next";
 import { projects } from "../data/projects.js";
-import { Check, ExternalLink } from "lucide-react";
+import { Check, ExternalLink, Sparkles, Code2, GitBranch, Rocket } from "lucide-react";
+import { Reveal } from "./ui/Reveal";
 
 const Projects = () => {
   const { i18n } = useTranslation();
@@ -13,35 +14,52 @@ const Projects = () => {
     .filter(Boolean);
 
   return (
-    <section id="projects" className="py-16">
-      <div className="max-w-6xl mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-10 max-w-3xl mx-auto">
-          <p className="text-sm uppercase tracking-wide text-violet-200 mb-2">
-            {lang === "fr" ? "Projets livrés" : "Delivered projects"}
-          </p>
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            {lang === "fr"
-              ? "Exemples de réalisations professionnelles"
-              : "Examples of professional work"}
-          </h2>
-          <p className="text-slate-300 text-sm md:text-base">
-            {lang === "fr"
-              ? "Applications web, e-commerce, plateformes Laravel et portails Odoo. Tous les projets ci-dessous ont été pensés pour être déployés, documentés et utilisables par un client."
-              : "Web apps, e-commerce, Laravel platforms and Odoo portals. All projects below were built to be deployed, documented and usable by a client."}
-          </p>
-        </div>
+    <section id="projects" className="py-20 md:py-24 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900/20 to-slate-950 -z-10" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-violet-900/10 via-transparent to-transparent -z-10" />
 
-        {/* Cards */}
-        <div className="space-y-10">
-          {sortedProjects.map((p) => {
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+        
+        {/* Header */}
+        <Reveal className="text-center mb-12 md:mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-400/30 text-violet-200 text-xs md:text-sm font-medium mb-4">
+            <Rocket size={14} />
+            <span>{lang === "fr" ? "Portfolio" : "Portfolio"}</span>
+          </div>
+          
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+            {lang === "fr" ? (
+              <>
+                Projets{" "}
+                <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  livrés
+                </span>
+              </>
+            ) : (
+              <>
+                Delivered{" "}
+                <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  projects
+                </span>
+              </>
+            )}
+          </h2>
+          
+          <p className="text-slate-300 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+            {lang === "fr"
+              ? "Sites web, applications et intégrations déployés en production. Chaque projet est conçu pour être maintenable et évolutif."
+              : "Websites, applications and integrations deployed in production. Every project is built to be maintainable and scalable."}
+          </p>
+        </Reveal>
+
+        {/* Projects Grid */}
+        <div className="space-y-8 md:space-y-12">
+          {sortedProjects.map((p, index) => {
             const title = typeof p.title === "string" ? p.title : p.title[lang];
-            const subtitle =
-              typeof p.subtitle === "string" ? p.subtitle : p.subtitle[lang];
+            const subtitle = typeof p.subtitle === "string" ? p.subtitle : p.subtitle[lang];
             const description =
-              typeof p.description === "string"
-                ? p.description
-                : p.description[lang];
+              typeof p.description === "string" ? p.description : p.description[lang];
             const features = Array.isArray(p.features)
               ? p.features
               : p.features?.[lang] || [];
@@ -49,116 +67,203 @@ const Projects = () => {
             const imgSrc = p.image || (p.images && p.images[0]);
 
             return (
-              <div
-                key={p.id}
-                className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-900/40 border border-slate-800 rounded-2xl p-4 md:p-6"
-              >
-                {/* LEFT */}
-                <div className="flex flex-col h-full">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs px-3 py-1 rounded-full bg-violet-500/10 text-violet-100 border border-violet-400/30">
-                      {subtitle}
-                    </span>
-                    {p.context?.[lang] && (
-                      <span className="text-xs px-3 py-1 rounded-full bg-slate-900/60 text-slate-200 border border-slate-700/50">
-                        {p.context[lang]}
-                      </span>
-                    )}
-                  </div>
+              <Reveal key={p.id} delay={index * 0.1}>
+                <div className="group relative">
+                  {/* Glow effect */}
+                  <div className="pointer-events-none absolute -inset-1 opacity-0 group-hover:opacity-100 bg-gradient-to-r from-violet-500/20 to-purple-500/20 rounded-2xl blur-xl transition-opacity duration-500" />
+                  
+                  <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-2xl p-6 md:p-8 hover:border-violet-400/50 transition-all duration-300 overflow-hidden">
+                    
+                    {/* Content Side */}
+                    <div className={`flex flex-col h-full ${index % 2 === 1 ? "lg:order-2" : ""}`}>
+                      
+                      {/* Tags */}
+                      <div className="flex flex-wrap items-center gap-2 mb-4">
+                        <span className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full bg-gradient-to-r from-violet-500/10 to-purple-500/10 text-violet-100 border border-violet-400/30 font-medium">
+                          <Sparkles size={12} />
+                          {subtitle}
+                        </span>
+                        {p.context?.[lang] && (
+                          <span className="text-xs px-3 py-1.5 rounded-full bg-slate-800/50 text-slate-300 border border-slate-700/50">
+                            {p.context[lang]}
+                          </span>
+                        )}
+                      </div>
 
-                  <h3 className="text-xl font-semibold text-white mb-2 flex items-center gap-2">
-                    <span>{p.icon || "💻"}</span>
-                    {title}
-                  </h3>
+                      {/* Title */}
+                      <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 flex items-center gap-3">
+                        <span className="text-3xl">{p.icon || "💻"}</span>
+                        <span>{title}</span>
+                      </h3>
 
-                  <p className="text-slate-200 mb-3 text-sm md:text-base">
-                    {description}
-                  </p>
+                      {/* Description */}
+                      <p className="text-slate-300 mb-6 text-base leading-relaxed">
+                        {description}
+                      </p>
 
-                  <p className="text-sm text-slate-300 mb-2">
-                    {lang === "fr"
-                      ? "Fonctionnalités principales :"
-                      : "Key features:"}
-                  </p>
-                  <ul className="space-y-1 mb-4">
-                    {features.slice(0, 5).map((feat) => (
-                      <li
-                        key={feat}
-                        className="flex items-start gap-2 text-sm text-slate-200"
-                      >
-                        <Check size={14} className="text-emerald-400 mt-1" />
-                        <span>{feat}</span>
-                      </li>
-                    ))}
-                  </ul>
+                      {/* Features */}
+                      <div className="mb-6">
+                        <p className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-3">
+                          {lang === "fr" ? "Fonctionnalités clés" : "Key features"}
+                        </p>
+                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          {features.slice(0, 6).map((feat, idx) => (
+                            <li
+                              key={idx}
+                              className="flex items-start gap-2 text-sm text-slate-200"
+                            >
+                              <Check
+                                size={16}
+                                className="text-emerald-400 flex-shrink-0 mt-0.5"
+                              />
+                              <span>{feat}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
-                  {/* tech badges */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {tech.map((t) => (
-                      <span
-                        key={t}
-                        className="px-2 py-1 bg-slate-800 text-xs text-slate-100 rounded-full"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
+                      {/* Tech Stack */}
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {tech.map((t, idx) => (
+                          <span
+                            key={idx}
+                            className="px-3 py-1.5 bg-slate-800/50 border border-slate-700/50 hover:border-violet-500/30 text-xs text-slate-100 rounded-lg transition-colors"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
 
-                  {/* link / private */}
-                  {p.link && p.link !== "#" ? (
-                    <a
-                      href={p.link}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-1 text-violet-200 hover:text-violet-100 text-sm"
-                    >
-                      {lang === "fr" ? "Voir la démo en ligne" : "View live demo"}{" "}
-                      <ExternalLink size={14} />
-                    </a>
-                  ) : (
-                    <p className="text-xs text-slate-500">
-                      {lang === "fr"
-                        ? "Projet en environnement privé / client (accès sur demande)."
-                        : "Private / client environment (access on request)."}
-                    </p>
-                  )}
-                </div>
-
-                {/* RIGHT */}
-                <div className="bg-slate-950/20 rounded-xl border border-slate-800 flex items-center justify-center min-h-48">
-                  {imgSrc ? (
-                    <img
-                      src={imgSrc}
-                      alt={title}
-                      loading="lazy"
-                      className="rounded-lg border border-slate-700/70 shadow-md max-h-48 md:max-h-64 object-cover"
-                    />
-                  ) : (
-                    <div className="text-slate-500 text-sm text-center p-6">
-                      {lang === "fr"
-                        ? "Capture d’écran à venir"
-                        : "Screenshot / mockup placeholder"}
+                      {/* CTA / Status */}
+                      <div className="mt-auto pt-4 border-t border-slate-800/50">
+                        {p.link && p.link !== "#" ? (
+                          <a
+                            href={p.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group/link inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white text-sm font-semibold shadow-lg shadow-violet-500/20 hover:shadow-violet-500/40 transition-all"
+                          >
+                            {lang === "fr" ? "Voir le projet" : "View project"}
+                            <ExternalLink
+                              size={16}
+                              className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform"
+                            />
+                          </a>
+                        ) : (
+                          <div className="flex items-center gap-2 text-xs text-slate-500">
+                            <Code2 size={14} />
+                            <span>
+                              {lang === "fr"
+                                ? "Projet client privé · Accès sur demande"
+                                : "Private client project · Access on request"}
+                            </span>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  )}
+
+                    {/* Image Side */}
+                    <div className={`relative ${index % 2 === 1 ? "lg:order-1" : ""}`}>
+                      <div className="relative h-full min-h-[300px] lg:min-h-[400px] bg-slate-950/40 rounded-xl border border-slate-800/50 overflow-hidden group-hover:border-violet-500/30 transition-colors">
+                        {imgSrc ? (
+                          <>
+                            {/* Image overlay gradient */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent z-10" />
+                            <img
+                              src={imgSrc}
+                              alt={title}
+                              loading="lazy"
+                              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                            />
+                            {/* Hover overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-violet-500/20 via-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20" />
+                          </>
+                        ) : (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="text-center p-6">
+                              <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-slate-800/50 border border-slate-700/50 mb-4">
+                                <Code2 size={32} className="text-slate-500" />
+                              </div>
+                              <p className="text-slate-500 text-sm">
+                                {lang === "fr"
+                                  ? "Capture d'écran à venir"
+                                  : "Screenshot coming soon"}
+                              </p>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </Reveal>
             );
           })}
         </div>
 
-        {/* Bandeau de crédibilité */}
-        <div className="mt-10 bg-slate-950/40 border border-slate-800 rounded-2xl p-5 text-sm text-slate-200 flex flex-col md:flex-row gap-3 md:justify-between">
-          <p>
-            {lang === "fr"
-              ? "Tous les projets sont livrés avec code versionné (Git) et documentation rapide."
-              : "All projects are delivered with versioned code (Git) and quick documentation."}
-          </p>
-          <p>
-            {lang === "fr"
-              ? "Déploiement possible sur Netlify, VPS ou environnement du client."
-              : "Deployment available on Netlify, VPS or client environment."}
-          </p>
-        </div>
+        {/* Bottom Info Banner */}
+        <Reveal delay={0.3}>
+          <div className="mt-12 relative">
+            {/* Glow background */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-violet-500/20 to-purple-500/20 rounded-2xl blur-2xl opacity-50" />
+            
+            <div className="relative bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                {/* Git versioning */}
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-violet-400 to-purple-500 bg-opacity-10 border border-violet-500/30 flex-shrink-0">
+                    <GitBranch size={22} className="text-violet-400" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-semibold mb-1">
+                      {lang === "fr" ? "Code versionné" : "Versioned code"}
+                    </h4>
+                    <p className="text-sm text-slate-400">
+                      {lang === "fr"
+                        ? "Tous les projets livrés avec Git et documentation"
+                        : "All projects delivered with Git and documentation"}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Deployment */}
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400 to-green-500 bg-opacity-10 border border-emerald-500/30 flex-shrink-0">
+                    <Rocket size={22} className="text-emerald-400" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-semibold mb-1">
+                      {lang === "fr" ? "Déploiement inclus" : "Deployment included"}
+                    </h4>
+                    <p className="text-sm text-slate-400">
+                      {lang === "fr"
+                        ? "Netlify, VPS ou environnement client"
+                        : "Netlify, VPS or client environment"}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Support */}
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 bg-opacity-10 border border-cyan-500/30 flex-shrink-0">
+                    <Sparkles size={22} className="text-cyan-400" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-semibold mb-1">
+                      {lang === "fr" ? "Support 30 jours" : "30-day support"}
+                    </h4>
+                    <p className="text-sm text-slate-400">
+                      {lang === "fr"
+                        ? "Assistance post-lancement garantie"
+                        : "Post-launch assistance guaranteed"}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

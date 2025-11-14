@@ -1,10 +1,23 @@
 // src/components/Process.jsx
 import { useTranslation } from "react-i18next";
+import {
+  Sparkles,
+  ArrowRight,
+  CheckCircle2,
+  Lightbulb,
+  Palette,
+  Code,
+  ShoppingCart,
+  Settings,
+} from "lucide-react";
+import { Reveal } from "./ui/Reveal";
 
 const steps = [
   {
     id: "01",
     key: "discovery",
+    icon: Lightbulb,
+    color: "from-cyan-400 to-blue-500",
     fr: {
       title: "Découverte & objectifs",
       desc: "Nous clarifions votre activité, votre marché, votre public (FR/EN) et surtout ce que le site doit accomplir : vendre, présenter, générer des contacts ou automatiser.",
@@ -17,9 +30,11 @@ const steps = [
   {
     id: "02",
     key: "plan",
+    icon: CheckCircle2,
+    color: "from-emerald-400 to-green-500",
     fr: {
       title: "Plan de projet & devis",
-      desc: "Structure du site ou de l’application, fonctionnalités, technologies (React, Vue, Laravel, WordPress), délais et budget. Tout est formalisé, sans surprise.",
+      desc: "Structure du site ou de l'application, fonctionnalités, technologies (React, Vue, Laravel, WordPress), délais et budget. Tout est formalisé, sans surprise.",
     },
     en: {
       title: "Project plan & estimate",
@@ -29,6 +44,8 @@ const steps = [
   {
     id: "03",
     key: "design",
+    icon: Palette,
+    color: "from-pink-400 to-rose-500",
     fr: {
       title: "UX/UI & contenu",
       desc: "Maquettes Figma/XD selon votre identité visuelle, variantes sombre/clair, sections services/projets, SEO de base. Validation avant développement.",
@@ -41,6 +58,8 @@ const steps = [
   {
     id: "04",
     key: "build",
+    icon: Code,
+    color: "from-violet-400 to-purple-500",
     fr: {
       title: "Développement du site / app",
       desc: "Intégration soignée en React/Vue ou WordPress, animations, responsive, formulaires de contact, bilingue FR/EN. Code versionné et propre.",
@@ -53,6 +72,8 @@ const steps = [
   {
     id: "05",
     key: "ecom",
+    icon: ShoppingCart,
+    color: "from-orange-400 to-amber-500",
     fr: {
       title: "E-commerce & intégrations",
       desc: "Boutique en ligne (WooCommerce / Laravel), paiement (Stripe), connexion à vos outils (CRM, API, automatisations e-mail). Conçu pour convertir.",
@@ -65,6 +86,8 @@ const steps = [
   {
     id: "06",
     key: "odoo",
+    icon: Settings,
+    color: "from-indigo-400 to-blue-500",
     fr: {
       title: "Odoo / ERP & maintenance",
       desc: "Pour les entreprises qui souhaitent aller plus loin : portails clients bilingues, modules Odoo 17 sur mesure, accompagnement et mises à jour.",
@@ -81,8 +104,10 @@ const included = {
     "Contrat / mandat clair",
     "Suivi par e-mail / WhatsApp",
     "Code livré et versionné (Git)",
-    "Possibilité de site bilingue FR/EN",
+    "Site bilingue FR/EN disponible",
     "Déploiement (Netlify, VPS, hébergeur client)",
+    "Formation administration incluse",
+    "Support 30 jours post-lancement",
   ],
   en: [
     "Clear contract / SoW",
@@ -90,134 +115,240 @@ const included = {
     "Code on Git / handover",
     "Bilingual site FR/EN available",
     "Deployment (Netlify, VPS, client hosting)",
+    "Admin training included",
+    "30-day post-launch support",
   ],
 };
 
-const Process = ({ id = "process" }) => {
+const Process = ({ id = "process", scrollToSection }) => {
   const { i18n } = useTranslation();
   const lang = i18n.language?.startsWith("en") ? "en" : "fr";
 
+  const handleQuoteClick = () => {
+    if (scrollToSection) {
+      scrollToSection("contact");
+    } else {
+      const el = document.getElementById("contact");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  };
+
   return (
-    <section id={id} className="py-16 md:py-20 bg-slate-950/10">
-      <div className="container mx-auto px-4 lg:px-12">
+    <section id={id} className="py-20 md:py-24 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900/30 to-slate-950 -z-10" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-violet-900/10 via-transparent to-transparent -z-10" />
+
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
-          <div>
-            <p className="text-sm tracking-[0.25em] uppercase text-violet-200/70">
-              {lang === "fr" ? "Processus de réalisation" : "Delivery process"}
-            </p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white mt-2">
-              {lang === "fr"
-                ? "Notre façon de livrer votre projet web"
-                : "How we deliver your web project"}
-            </h2>
-            <p className="text-slate-300 mt-4 max-w-2xl leading-relaxed text-sm md:text-base">
-              {lang === "fr"
-                ? "Pensé pour les PME, agences et entrepreneurs qui souhaitent un site ou une application modernes, rapides, multilingues — avec la possibilité d’ajouter de l’Odoo par la suite."
-                : "Built for SMBs, agencies and entrepreneurs who want a modern, fast, multilingual site — with the option to add Odoo later."}
-            </p>
+        <Reveal className="text-center mb-12 md:mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-400/30 text-violet-200 text-xs md:text-sm font-medium mb-4">
+            <Sparkles size={14} />
+            <span>
+              {lang === "fr" ? "Processus de livraison" : "Delivery process"}
+            </span>
           </div>
 
-          <div className="bg-slate-900/50 border border-slate-700/60 rounded-2xl px-5 py-4 max-w-sm">
-            <p className="text-xs uppercase tracking-wide text-slate-200/70 mb-2">
-              {lang === "fr" ? "Prestations les plus demandées" : "Most requested"}
-            </p>
-            <p className="text-slate-100 text-sm">
-              {lang === "fr"
-                ? "Sites vitrines, landing pages, e-commerce, intégrations API, WordPress, React/Vue, puis Odoo."
-                : "Marketing sites, landing pages, e-commerce, API integrations, WordPress, React/Vue, then Odoo."}
-            </p>
-          </div>
-        </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+            {lang === "fr" ? (
+              <>
+                De l'idée au{" "}
+                <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  lancement
+                </span>
+              </>
+            ) : (
+              <>
+                From idea to{" "}
+                <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  launch
+                </span>
+              </>
+            )}
+          </h2>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-          {/* Col 1 : 1-2-3 */}
-          <div className="space-y-6">
-            {steps.slice(0, 3).map((step) => {
-              const content = step[lang];
-              return (
-                <div
-                  key={step.key}
-                  className="rounded-2xl bg-slate-900/40 border border-slate-800/70 p-4 md:p-6 hover:border-violet-400/80 hover:-translate-y-1 transition-all duration-200"
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-violet-500/10 border border-violet-400/50 flex items-center justify-center text-violet-100 font-semibold">
-                      {step.id}
+          <p className="text-slate-300 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+            {lang === "fr"
+              ? "Un processus structuré et transparent pour livrer votre projet web dans les temps, sans surprise."
+              : "A structured, transparent process to deliver your web project on time, with no surprises."}
+          </p>
+        </Reveal>
+
+        {/* Steps Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {steps.map((step, index) => {
+            const content = step[lang];
+            const Icon = step.icon;
+
+            return (
+              <Reveal key={step.key} delay={index * 0.08}>
+                <div className="group relative h-full">
+                  {/* Glow effect on hover */}
+                  <div className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 bg-gradient-to-br from-violet-500/20 via-purple-500/10 to-transparent rounded-2xl blur-xl transition-opacity duration-500" />
+
+                  <div className="relative h-full bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-2xl p-6 hover:border-violet-400/50 transition-all duration-300 overflow-hidden">
+                    {/* Header with icon and number */}
+                    <div className="flex items-start gap-4 mb-4">
+                      <div
+                        className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${step.color} bg-opacity-10 border border-white/10 flex-shrink-0 group-hover:scale-110 transition-transform`}
+                      >
+                        <Icon
+                          size={20}
+                          className={`bg-gradient-to-br ${step.color} bg-clip-text text-transparent`}
+                        />
+                      </div>
+
+                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-violet-500/10 border border-violet-400/30 text-violet-200 text-sm font-bold flex-shrink-0">
+                        {step.id}
+                      </div>
                     </div>
-                    <h3 className="text-lg font-semibold text-white leading-tight">
+
+                    <h3 className="text-lg md:text-xl font-bold text-white mb-3 leading-tight">
                       {content.title}
                     </h3>
+
+                    <p className="text-sm text-slate-300 leading-relaxed">
+                      {content.desc}
+                    </p>
+
+                    <div
+                      className={`mt-4 h-1 w-12 rounded-full bg-gradient-to-r ${step.color} opacity-50 group-hover:opacity-100 group-hover:w-20 transition-all`}
+                    />
                   </div>
-                  <p className="text-sm text-slate-300 leading-relaxed">
-                    {content.desc}
-                  </p>
                 </div>
-              );
-            })}
-          </div>
-
-          {/* Col 2 : 4-5-6 */}
-          <div className="space-y-6">
-            {steps.slice(3, 6).map((step) => {
-              const content = step[lang];
-              return (
-                <div
-                  key={step.key}
-                  className="rounded-2xl bg-slate-900/40 border border-slate-800/70 p-4 md:p-6 hover:border-violet-400/80 hover:-translate-y-1 transition-all duration-200"
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-violet-500/10 border border-violet-400/50 flex items-center justify-center text-violet-100 font-semibold">
-                      {step.id}
-                    </div>
-                    <h3 className="text-lg font-semibold text-white leading-tight">
-                      {content.title}
-                    </h3>
-                  </div>
-                  <p className="text-sm text-slate-300 leading-relaxed">
-                    {content.desc}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Col 3 : bloc agence */}
-          <div className="rounded-2xl bg-gradient-to-b from-violet-600/15 to-slate-900/60 border border-violet-500/40 p-6 flex flex-col justify-between gap-6">
-            <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-violet-100/90 mb-2">
-                {lang === "fr" ? "Toujours inclus" : "Always included"}
-              </p>
-              <h3 className="text-2xl font-semibold text-white mb-4">
-                {lang === "fr"
-                  ? "Qualité agence, livrables clairs"
-                  : "Agency-level, clear deliverables"}
-              </h3>
-              <ul className="space-y-3">
-                {included[lang].map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <span className="mt-1 w-1.5 h-1.5 rounded-full bg-violet-300/90" />
-                    <span className="text-slate-100 text-sm">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="bg-slate-950/30 border border-violet-500/30 rounded-xl p-4">
-              <p className="text-slate-100 text-sm mb-3">
-                {lang === "fr"
-                  ? "Expliquez-nous votre projet (site, application, e-commerce ou intégration) et nous revenons vers vous rapidement."
-                  : "Tell us about your project (site, app, e-commerce or integration) and we’ll get back to you quickly."}
-              </p>
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-violet-500 text-white text-sm font-medium hover:bg-violet-400 transition"
-              >
-                {lang === "fr" ? "Parler à PrimeDev" : "Talk to PrimeDev"}
-              </a>
-            </div>
-          </div>
+              </Reveal>
+            );
+          })}
         </div>
+
+        {/* Bottom Section - What's Included + CTA */}
+        <Reveal delay={0.3}>
+          <div className="relative">
+            <div className="absolute -inset-1 bg-gradient-to-r from-violet-500/20 to-purple-500/20 rounded-2xl blur-2xl opacity-50" />
+
+            <div className="relative bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {/* Left - Included */}
+                <div className="lg:col-span-2 space-y-6">
+                  <div>
+                    <div className="flex items-center gap-2 mb-4">
+                      <CheckCircle2 size={24} className="text-emerald-400" />
+                      <h3 className="text-xl md:text-2xl font-bold text-white">
+                        {lang === "fr"
+                          ? "Toujours inclus dans chaque projet"
+                          : "Always included in every project"}
+                      </h3>
+                    </div>
+                    <p className="text-sm text-slate-400 mb-6">
+                      {lang === "fr"
+                        ? "Qualité professionnelle garantie, peu importe le forfait choisi."
+                        : "Professional quality guaranteed, regardless of the package you choose."}
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {included[lang].map((item, idx) => (
+                      <div
+                        key={idx}
+                        className="flex items-start gap-3 p-3 rounded-lg bg-slate-800/30 border border-slate-700/30 hover:border-violet-500/30 hover:bg-slate-800/50 transition-all"
+                      >
+                        <CheckCircle2
+                          size={18}
+                          className="text-emerald-400 flex-shrink-0 mt-0.5"
+                        />
+                        <span className="text-sm text-slate-200">
+                          {item}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right - CTA Card */}
+                <div className="relative">
+                  <div className="sticky top-8 space-y-4">
+                    <div className="p-6 rounded-xl bg-gradient-to-br from-violet-500/10 to-purple-500/10 border border-violet-500/30">
+                      <h4 className="text-lg font-bold text-white mb-3">
+                        {lang === "fr"
+                          ? "Prêt à démarrer ?"
+                          : "Ready to start?"}
+                      </h4>
+                      <p className="text-sm text-slate-300 mb-4">
+                        {lang === "fr"
+                          ? "Parlez-nous de votre projet et recevez une estimation détaillée sous 48h."
+                          : "Tell us about your project and receive a detailed estimate within 48 hours."}
+                      </p>
+                      <button
+                        onClick={handleQuoteClick}
+                        className="group w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white text-sm font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all"
+                      >
+                        {lang === "fr"
+                          ? "Demander une soumission"
+                          : "Request a quote"}
+                        <ArrowRight
+                          size={16}
+                          className="group-hover:translate-x-1 transition-transform"
+                        />
+                      </button>
+                    </div>
+
+                    {/* Trust badge */}
+                    <div className="p-4 rounded-xl bg-slate-800/30 border border-slate-700/30">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="flex -space-x-2">
+                          <div className="h-8 w-8 rounded-full bg-gradient-to-br from-violet-400 to-purple-500 flex items-center justify-center text-xs font-bold text-white border-2 border-slate-950">
+                            R
+                          </div>
+                          <div className="h-8 w-8 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-xs font-bold text-white border-2 border-slate-950">
+                            V
+                          </div>
+                          <div className="h-8 w-8 rounded-full bg-gradient-to-br from-orange-400 to-amber-500 flex items-center justify-center text-xs font-bold text-white border-2 border-slate-950">
+                            L
+                          </div>
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold text-white">
+                            {lang === "fr"
+                              ? "Stack moderne"
+                              : "Modern stack"}
+                          </p>
+                          <p className="text-xs text-slate-400">
+                            React · Vue · Laravel
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Timeline */}
+        <Reveal delay={0.4}>
+          <div className="mt-12 text-center">
+            <p className="text-sm text-slate-400">
+              {lang === "fr" ? (
+                <>
+                  <span className="text-violet-400 font-semibold">
+                    Délai moyen :
+                  </span>{" "}
+                  2 à 8 semaines selon la complexité du projet
+                </>
+              ) : (
+                <>
+                  <span className="text-violet-400 font-semibold">
+                    Average timeline:
+                  </span>{" "}
+                  2 to 8 weeks depending on project complexity
+                </>
+              )}
+            </p>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
