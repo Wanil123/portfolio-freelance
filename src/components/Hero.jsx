@@ -56,16 +56,18 @@ const Hero = ({ scrollToSection }) => {
           <div className="space-y-6 md:space-y-8">
             
             {/* Status Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-violet-500/10 to-purple-500/10 border border-violet-400/30 backdrop-blur-sm">
-              <div className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-violet-500/10 to-purple-500/10 border border-violet-400/30 backdrop-blur-sm">
+                <div className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </div>
+                <span>
+                {lang === "fr"
+                  ? "Disponible en freelance"
+                  : "Available for Freelance"}
+              </span>
               </div>
-              <span>
-              {lang === "fr"
-                ? "Disponible en freelance partout dans le monde"
-                : "Available for Freelance Worldwide"}
-            </span>
             </div>
 
             {/* Main Heading */}
@@ -73,21 +75,23 @@ const Hero = ({ scrollToSection }) => {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white mb-4">
                 {lang === "fr" ? (
                   <>
-                    Votre site web,{" "}
+                    Votre site web qui{" "}
                     <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                      livré proprement
+                      convertit
                     </span>
+                    , livré en 2-4 semaines
                   </>
                 ) : (
                   <>
-                    Your website,{" "}
+                    Your website that{" "}
                     <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                      done right
+                      converts
                     </span>
+                    , delivered in 2-4 weeks
                   </>
                 )}
               </h1>
-              
+
               <p className="text-lg md:text-xl text-slate-300 leading-relaxed max-w-xl">
                 {lang === "fr"
                   ? "Développeur full-stack spécialisé en sites vitrines, e-commerce et applications sur mesure. Code propre, design moderne, livraison rapide."
@@ -134,16 +138,16 @@ const Hero = ({ scrollToSection }) => {
             </div>
 
             {/* Highlights */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-slate-800/50">
+            <div className="flex flex-wrap sm:grid sm:grid-cols-3 gap-2 sm:gap-3 pt-4 border-t border-slate-800/50">
               {highlights.map((item, idx) => {
                 const Icon = item.icon;
                 return (
                   <div
                     key={idx}
-                    className="flex items-center gap-2 text-slate-300 text-xs md:text-sm"
+                    className="flex items-center gap-1.5 md:gap-2 text-slate-300 text-[11px] md:text-sm px-2.5 py-1.5 sm:p-0 rounded-lg sm:rounded-none bg-slate-800/30 sm:bg-transparent border border-slate-700/30 sm:border-0"
                   >
-                    <Icon size={16} className={item.color} />
-                    <span>{item.text}</span>
+                    <Icon size={14} className={`${item.color} flex-shrink-0`} />
+                    <span className="whitespace-nowrap">{item.text}</span>
                   </div>
                 );
               })}

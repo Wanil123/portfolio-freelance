@@ -41,7 +41,8 @@ export const projects = [
     },
     link: "https://luxe-mode.netlify.app",
     icon: "🛍️",
-    image: "/images/e-commerce.jpg",
+    // Unsplash: Modern fashion e-commerce aesthetic - clothing rack with stylish items
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop&q=75&fm=webp",
   },
   {
     id: 2,
@@ -81,9 +82,10 @@ export const projects = [
         "Design responsive optimisé pour tous appareils",
       ],
     },
-    link: "https://your-weather-ap.netlify.app",
+    link: "https://your-weather-ap.netlify.app/",
     icon: "🌤️",
-    image: "/images/meteo.jpg",
+    // Unsplash: Weather app aesthetic - dramatic sky with clouds and sun
+    image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=600&h=400&fit=crop&q=75&fm=webp",
   },
   {
     id: 3,
@@ -97,8 +99,8 @@ export const projects = [
       fr: "Plateforme full-stack",
     },
     context: {
-      en: "Team project",
-      fr: "Projet d'équipe",
+      en: "Event platform",
+      fr: "Plateforme événementielle",
     },
     description: {
       en: "Comprehensive event management system with user authentication, role-based access control, booking functionality, admin dashboard, and interactive venue mapping for a film festival.",
@@ -125,7 +127,8 @@ export const projects = [
     },
     link: "https://projet-web2-e4.cpsw-fcsei.com/",
     icon: "🎬",
-    image: "/images/film_festival.jpg",
+    // Unsplash: Film festival - audience watching movie with colorful screen light
+    image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600&h=400&fit=crop&q=75&fm=webp",
   },
   {
     id: 4,
@@ -167,6 +170,7 @@ export const projects = [
     },
     link: "#",
     icon: "🧩",
-    image: "/images/odoo.jpg",
+    // Unsplash: ERP/Business software aesthetic - modern office dashboard setup
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop&q=75&fm=webp",
   },
 ];

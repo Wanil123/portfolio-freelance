@@ -267,16 +267,16 @@ const Footer = () => {
               </div>
 
               {/* Badges */}
-              <div className="flex items-center gap-2 text-[11px]">
-                <span className="px-2.5 py-1.5 rounded-lg bg-slate-800/40 border border-slate-700/40 text-violet-400/80 font-medium hover:border-violet-500/50 transition-colors cursor-default">
+              <div className="flex flex-wrap items-center justify-center md:justify-end gap-1.5 md:gap-2 text-[10px] md:text-[11px]">
+                <span className="px-2 md:px-2.5 py-1 md:py-1.5 rounded-lg bg-slate-800/40 border border-slate-700/40 text-violet-400/80 font-medium hover:border-violet-500/50 transition-colors cursor-default">
                   {lang === "fr" ? "Code propre" : "Clean code"}
                 </span>
-                <span className="text-slate-600">·</span>
-                <span className="px-2.5 py-1.5 rounded-lg bg-slate-800/40 border border-slate-700/40 text-violet-400/80 font-medium hover:border-violet-500/50 transition-colors cursor-default">
+                <span className="text-slate-600 hidden md:inline">·</span>
+                <span className="px-2 md:px-2.5 py-1 md:py-1.5 rounded-lg bg-slate-800/40 border border-slate-700/40 text-violet-400/80 font-medium hover:border-violet-500/50 transition-colors cursor-default">
                   {lang === "fr" ? "Livraison rapide" : "Fast delivery"}
                 </span>
-                <span className="text-slate-600">·</span>
-                <span className="px-2.5 py-1.5 rounded-lg bg-slate-800/40 border border-slate-700/40 text-violet-400/80 font-medium hover:border-violet-500/50 transition-colors cursor-default">
+                <span className="text-slate-600 hidden md:inline">·</span>
+                <span className="px-2 md:px-2.5 py-1 md:py-1.5 rounded-lg bg-slate-800/40 border border-slate-700/40 text-violet-400/80 font-medium hover:border-violet-500/50 transition-colors cursor-default">
                   FR/EN
                 </span>
               </div>

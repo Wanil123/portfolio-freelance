@@ -258,6 +258,11 @@ const OffersSection = ({ scrollToSection }) => {
 
                       {/* Price + Timeline */}
                       <div className="mb-6 p-4 rounded-xl bg-slate-800/30 border border-slate-700/30">
+                        <div className="flex items-baseline gap-2 mb-1">
+                          <span className="text-xs text-slate-500 uppercase tracking-wider">
+                            {lang === "fr" ? "À partir de" : "Starting at"}
+                          </span>
+                        </div>
                         <div className="flex items-baseline gap-2 mb-2">
                           <span className="text-3xl font-bold text-white">
                             {offer.price}
@@ -269,14 +274,26 @@ const OffersSection = ({ scrollToSection }) => {
                               </span>
                             )}
                         </div>
-                        <div className="flex items-center gap-2 text-xs text-slate-400">
-                          <div
-                            className={`h-1.5 w-1.5 rounded-full bg-gradient-to-r ${offer.color}`}
-                          />
-                          <span>
-                            {lang === "fr" ? "Livraison" : "Delivery"}:{" "}
-                            {offer.timeline}
-                          </span>
+                        <div className="space-y-1.5">
+                          <div className="flex items-center gap-2 text-xs text-slate-400">
+                            <div
+                              className={`h-1.5 w-1.5 rounded-full bg-gradient-to-r ${offer.color}`}
+                            />
+                            <span>
+                              {lang === "fr" ? "Livraison" : "Delivery"}:{" "}
+                              {offer.timeline}
+                            </span>
+                          </div>
+                          {offer.price !== "Sur devis" && offer.price !== "On quote" && (
+                            <div className="flex items-center gap-2 text-xs text-emerald-400">
+                              <div className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                              <span>
+                                {lang === "fr"
+                                  ? "Paiement en 2-3 versements possible"
+                                  : "Payment in 2-3 installments available"}
+                              </span>
+                            </div>
+                          )}
                         </div>
                       </div>
 
@@ -299,21 +316,21 @@ const OffersSection = ({ scrollToSection }) => {
                       </ul>
 
                       {/* CTA Buttons */}
-                      <div className="flex flex-col sm:flex-row gap-3">
+                      <div className="flex flex-col gap-3">
                         <button
                           onClick={handleContactClick}
-                          className={`group/btn flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-xl ${
+                          className={`group/btn w-full flex items-center justify-center gap-2 px-4 md:px-5 py-2.5 md:py-3 rounded-xl ${
                             offer.popular
                               ? "bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40"
                               : "bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-violet-500/50 text-white"
-                          } text-sm font-semibold transition-all`}
+                          } text-xs md:text-sm font-semibold transition-all`}
                           type="button"
                         >
                           {lang === "fr"
                             ? "Obtenir un devis"
                             : "Get quote"}
                           <ArrowRight
-                            size={16}
+                            size={14}
                             className="group-hover/btn:translate-x-1 transition-transform"
                           />
                         </button>

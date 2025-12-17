@@ -14,19 +14,13 @@ import {
 } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
 
-const SkillBar = ({ name, level, color = "from-violet-500 to-purple-500" }) => (
-  <div className="group mb-4">
-    <div className="flex justify-between text-sm mb-2 text-slate-100">
-      <span className="font-medium">{name}</span>
-      <span className="text-slate-400 font-semibold">{level}%</span>
-    </div>
-    <div className="h-2.5 bg-slate-800/50 rounded-full overflow-hidden border border-slate-700/30">
-      <div
-        className={`h-full bg-gradient-to-r ${color} transition-all duration-1000 ease-out rounded-full shadow-lg`}
-        style={{ width: `${level}%` }}
-      />
-    </div>
-  </div>
+// Composant Badge pour les technologies
+const TechBadge = ({ name, color }) => (
+  <span
+    className={`inline-flex px-2 md:px-3 py-1 md:py-1.5 rounded-lg bg-gradient-to-r ${color} bg-opacity-10 border border-white/10 text-white text-[10px] md:text-xs font-medium hover:scale-105 transition-transform cursor-default`}
+  >
+    {name}
+  </span>
 );
 
 export default function Skills() {
@@ -46,11 +40,12 @@ export default function Skills() {
         ? "Sites vitrines, dashboards, portails clients avec design soigné."
         : "Landing pages, dashboards, client portals with polished design.",
       skills: [
-        { name: "HTML5 / CSS3", level: 96, color: "from-orange-400 to-red-500" },
-        { name: "JavaScript (ES6+)", level: 92, color: "from-yellow-400 to-orange-500" },
-        { name: "React", level: 86, color: "from-cyan-400 to-blue-500" },
-        { name: "Vue.js 3", level: 88, color: "from-green-400 to-emerald-500" },
-        { name: "Tailwind / Bootstrap", level: 94, color: "from-sky-400 to-cyan-500" },
+        { name: "HTML5 / CSS3", color: "from-orange-400 to-red-500" },
+        { name: "JavaScript (ES6+)", color: "from-yellow-400 to-orange-500" },
+        { name: "React", color: "from-cyan-400 to-blue-500" },
+        { name: "Vue.js 3", color: "from-green-400 to-emerald-500" },
+        { name: "Tailwind CSS", color: "from-sky-400 to-cyan-500" },
+        { name: "Bootstrap", color: "from-purple-400 to-violet-500" },
       ],
     },
     {
@@ -65,11 +60,12 @@ export default function Skills() {
         ? "Applications internes, SaaS, intégrations et connecteurs API."
         : "Internal apps, SaaS platforms, API integrations and connectors.",
       skills: [
-        { name: "PHP / Laravel", level: 90, color: "from-red-400 to-orange-500" },
-        { name: "Python", level: 82, color: "from-yellow-400 to-amber-500" },
-        { name: "REST / JSON APIs", level: 85, color: "from-blue-400 to-indigo-500" },
-        { name: "MySQL / PostgreSQL", level: 84, color: "from-blue-400 to-cyan-500" },
-        { name: lang === "fr" ? "Auth & rôles" : "Auth & roles", level: 80, color: "from-purple-400 to-violet-500" },
+        { name: "PHP / Laravel", color: "from-red-400 to-orange-500" },
+        { name: "Python", color: "from-yellow-400 to-amber-500" },
+        { name: "REST APIs", color: "from-blue-400 to-indigo-500" },
+        { name: "MySQL", color: "from-blue-400 to-cyan-500" },
+        { name: "PostgreSQL", color: "from-slate-400 to-blue-500" },
+        { name: lang === "fr" ? "Auth & Rôles" : "Auth & Roles", color: "from-purple-400 to-violet-500" },
       ],
     },
     {
@@ -84,11 +80,12 @@ export default function Skills() {
         ? "WordPress, sites headless et déploiements optimisés pour la visibilité."
         : "WordPress, headless sites and optimized deployments for visibility.",
       skills: [
-        { name: "WordPress", level: 78, color: "from-slate-400 to-slate-600" },
-        { name: lang === "fr" ? "Headless (React)" : "Headless (React)", level: 80, color: "from-cyan-400 to-blue-500" },
-        { name: "i18n (FR/EN)", level: 90, color: "from-violet-400 to-purple-500" },
-        { name: lang === "fr" ? "SEO technique" : "Technical SEO", level: 75, color: "from-green-400 to-emerald-500" },
-        { name: "Git / CI/CD", level: 88, color: "from-orange-400 to-amber-500" },
+        { name: "WordPress", color: "from-slate-400 to-slate-600" },
+        { name: "Headless CMS", color: "from-cyan-400 to-blue-500" },
+        { name: "i18n (FR/EN)", color: "from-violet-400 to-purple-500" },
+        { name: "SEO", color: "from-green-400 to-emerald-500" },
+        { name: "Git / GitHub", color: "from-orange-400 to-amber-500" },
+        { name: "Netlify / Vercel", color: "from-teal-400 to-cyan-500" },
       ],
     },
     {
@@ -103,11 +100,12 @@ export default function Skills() {
         ? "Modules Odoo 17, portails clients, connexions ERP ↔ site web."
         : "Odoo 17 modules, customer portals, ERP ↔ website connections.",
       skills: [
-        { name: lang === "fr" ? "Odoo 17 (modules, portails)" : "Odoo 17 (modules, portals)", level: 85, color: "from-purple-400 to-violet-500" },
-        { name: lang === "fr" ? "Odoo ↔ APIs externes" : "Odoo ↔ External APIs", level: 80, color: "from-indigo-400 to-purple-500" },
-        { name: "QWeb / OWL", level: 78, color: "from-violet-400 to-purple-500" },
-        { name: lang === "fr" ? "PDF personnalisés" : "Custom PDFs", level: 82, color: "from-red-400 to-orange-500" },
-        { name: lang === "fr" ? "Déploiement Odoo" : "Odoo deployment", level: 72, color: "from-blue-400 to-cyan-500" },
+        { name: "Odoo 17", color: "from-purple-400 to-violet-500" },
+        { name: lang === "fr" ? "Modules custom" : "Custom modules", color: "from-indigo-400 to-purple-500" },
+        { name: lang === "fr" ? "Portails clients" : "Client portals", color: "from-cyan-400 to-blue-500" },
+        { name: "QWeb / OWL", color: "from-violet-400 to-purple-500" },
+        { name: "PDF", color: "from-red-400 to-orange-500" },
+        { name: "API Odoo", color: "from-blue-400 to-cyan-500" },
       ],
     },
   ];
@@ -146,14 +144,14 @@ export default function Skills() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-violet-900/10 via-transparent to-transparent -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-        
+
         {/* Header */}
         <Reveal className="text-center mb-12 md:mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-400/30 text-violet-200 text-xs md:text-sm font-medium mb-4">
             <TrendingUp size={14} />
             <span>{lang === "fr" ? "Expertise technique" : "Technical expertise"}</span>
           </div>
-          
+
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             {lang === "fr" ? (
               <>
@@ -172,7 +170,7 @@ export default function Skills() {
               </>
             )}
           </h2>
-          
+
           <p className="text-slate-300 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             {lang === "fr"
               ? "Technologies front-end, back-end et ERP pour créer des solutions web complètes et performantes, livrées en bilingue."
@@ -184,15 +182,15 @@ export default function Skills() {
         <div className="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-2 mb-12">
           {skillCategories.map((category, index) => {
             const Icon = category.icon;
-            
+
             return (
               <Reveal key={category.title} delay={index * 0.1}>
                 <div className="group relative h-full">
                   {/* Glow effect */}
                   <div className={`pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 bg-gradient-to-br ${category.color} opacity-20 rounded-2xl blur-xl transition-opacity duration-500`} />
-                  
+
                   <div className="relative h-full bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-2xl p-6 md:p-8 hover:border-violet-400/50 transition-all duration-300">
-                    
+
                     {/* Header */}
                     <div className="flex items-start gap-4 mb-6">
                       <div className={`flex h-14 w-14 items-center justify-center rounded-xl ${category.bgColor} border ${category.borderColor} flex-shrink-0 group-hover:scale-110 transition-transform`}>
@@ -211,13 +209,12 @@ export default function Skills() {
                       </div>
                     </div>
 
-                    {/* Skills bars */}
-                    <div className="space-y-1">
+                    {/* Skills as badges */}
+                    <div className="flex flex-wrap gap-2">
                       {category.skills.map((skill, idx) => (
-                        <SkillBar
+                        <TechBadge
                           key={idx}
                           name={skill.name}
-                          level={skill.level}
                           color={skill.color}
                         />
                       ))}
@@ -237,9 +234,9 @@ export default function Skills() {
           <div className="relative">
             {/* Glow background */}
             <div className="absolute -inset-1 bg-gradient-to-r from-violet-500/20 to-purple-500/20 rounded-2xl blur-2xl opacity-50" />
-            
+
             <div className="relative bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
-              
+
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-400/30 text-violet-200 text-xs md:text-sm font-medium mb-3">
                   <Sparkles size={14} />

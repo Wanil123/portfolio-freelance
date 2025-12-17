@@ -82,7 +82,7 @@ const Services = ({ scrollToSection }) => {
           
           <p className="text-slate-300 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             {lang === "fr"
-              ? "De la conception au déploiement, ont crée des sites web modernes et performants qui transforment votre présence digitale."
+              ? "De la conception au déploiement, on crée des sites web modernes et performants qui transforment votre présence digitale."
               : "From design to deployment, we create modern, high-performance websites that transform your digital presence."}
           </p>
         </Reveal>

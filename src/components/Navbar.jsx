@@ -46,14 +46,9 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
           <img
             src="/logo.png"
             alt="PrimeDev Studios"
-            className="
-              shrink-0 aspect-square object-contain
-              h-12 w-12           /* ↑ 48px mobile */
-              md:h-14 md:w-14     /* ↑ 56px tablette */
-              lg:h-30 lg:w-30     /* ↑ 64px desktop */
-              xl:h-22 xl:w-22     /* ↑ 80px grands écrans */
-              rounded-2xl shadow-lg border border-violet-500/30 bg-slate-950
-            "
+            width="56"
+            height="56"
+            className="shrink-0 aspect-square object-contain h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 rounded-2xl shadow-lg border border-violet-500/30 bg-slate-950"
           />
           <span className="font-semibold text-xs md:text-sm lg:text-lg leading-tight text-left">
             PrimeDev Studios
