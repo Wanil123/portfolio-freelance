@@ -31,26 +31,32 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out will-change-[background-color,border-color] ${
         isScrolled
-          ? "bg-slate-950/80 backdrop-blur border-b border-slate-800"
-          : "bg-transparent"
+          ? "bg-slate-950/90 backdrop-blur-md border-b border-slate-800"
+          : "bg-transparent border-b border-transparent"
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 py-2.5 md:py-3 flex items-center justify-between">
         {/* LOGO */}
         <button
           onClick={() => handleNavClick("home")}
-          className="flex items-center gap-3 text-white"
+          className="group flex items-center gap-3"
         >
-          <img
-            src="/logo.png"
-            alt="PrimeDev Studios"
-            width="56"
-            height="56"
-            className="shrink-0 aspect-square object-contain h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 rounded-2xl shadow-lg border border-violet-500/30 bg-slate-950"
-          />
-          <span className="font-semibold text-xs md:text-sm lg:text-lg leading-tight text-left">
+          {/* Logo avec glow effect */}
+          <div className="relative flex-shrink-0">
+            {/* Glow background */}
+            <div className="absolute -inset-2 bg-gradient-to-r from-violet-500/50 to-purple-500/50 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <img
+              src="/logo.png"
+              alt="PrimeDev Studios"
+              style={{ width: '56px', height: '56px', minWidth: '56px', minHeight: '56px' }}
+              className="relative rounded-2xl shadow-xl border-2 border-violet-500/50 group-hover:border-violet-400/80 group-hover:scale-105 transition-all duration-300"
+            />
+          </div>
+
+          {/* Texte sur une ligne */}
+          <span className="font-bold text-base md:text-lg bg-gradient-to-r from-white via-violet-100 to-white bg-clip-text text-transparent group-hover:from-violet-200 group-hover:via-white group-hover:to-violet-200 transition-all duration-300 whitespace-nowrap">
             PrimeDev Studios
           </span>
         </button>
