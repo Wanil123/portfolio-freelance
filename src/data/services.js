@@ -83,6 +83,86 @@ export const services = [
   },
   {
     id: 3,
+    key: "redesign",
+    title: {
+      en: "Website Redesign",
+      fr: "Refonte de site",
+    },
+    price: {
+      en: "from $2,500 CAD",
+      fr: "à partir de 2 500 $ CAD",
+    },
+    icon: "🔄",
+    timeline: {
+      en: "2–3 weeks",
+      fr: "2 à 3 semaines",
+    },
+    features: {
+      en: [
+        "Complete visual refresh",
+        "Modern UI/UX design",
+        "Mobile optimization",
+        "Performance improvements",
+        "Content migration",
+        "SEO preservation",
+      ],
+      fr: [
+        "Refonte visuelle complète",
+        "Design UI/UX moderne",
+        "Optimisation mobile",
+        "Amélioration des performances",
+        "Migration du contenu",
+        "Préservation du SEO",
+      ],
+    },
+    idealFor: {
+      en: "Outdated sites, rebranding, modernization projects",
+      fr: "Sites désuets, rebranding, projets de modernisation",
+    },
+    featured: false,
+  },
+  {
+    id: 4,
+    key: "seo",
+    title: {
+      en: "SEO & Optimization",
+      fr: "SEO & Référencement",
+    },
+    price: {
+      en: "from $800/month CAD",
+      fr: "à partir de 800 $/mois CAD",
+    },
+    icon: "📈",
+    timeline: {
+      en: "3–6 months",
+      fr: "3 à 6 mois",
+    },
+    features: {
+      en: [
+        "Technical SEO audit",
+        "Keyword research & strategy",
+        "On-page optimization",
+        "Google Business Profile",
+        "Monthly performance reports",
+        "Competitor analysis",
+      ],
+      fr: [
+        "Audit SEO technique",
+        "Recherche de mots-clés & stratégie",
+        "Optimisation on-page",
+        "Profil Google Business",
+        "Rapports de performance mensuels",
+        "Analyse de la concurrence",
+      ],
+    },
+    idealFor: {
+      en: "Businesses wanting to rank higher on Google",
+      fr: "Entreprises voulant mieux se positionner sur Google",
+    },
+    featured: false,
+  },
+  {
+    id: 5,
     key: "landing-page",
     title: {
       en: "Landing Page",
@@ -122,15 +202,15 @@ export const services = [
     featured: false,
   },
   {
-    id: 4,
+    id: 6,
     key: "maintenance",
     title: {
       en: "Maintenance & Support",
       fr: "Maintenance & support",
     },
     price: {
-      en: "$60–85/hr CAD",
-      fr: "60–85 $/h CAD",
+      en: "$75–100/hr CAD",
+      fr: "75–100 $/h CAD",
     },
     icon: "🛠️",
     timeline: {
