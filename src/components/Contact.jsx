@@ -107,9 +107,9 @@ const Contact = () => {
 
     // Check if we're on Netlify (production) or local dev
     const isNetlify = window.location.hostname.includes('netlify.app') ||
-                      window.location.hostname.includes('prime-dev') ||
-                      window.location.hostname === 'primedevstudios.com' ||
-                      window.location.hostname === 'www.primedevstudios.com';
+                      window.location.hostname.includes('prime-dev-studios') ||
+                      window.location.hostname === 'prime-dev-studios.com' ||
+                      window.location.hostname === 'www.prime-dev-studios.com';
 
     try {
       if (isNetlify) {
