@@ -278,14 +278,16 @@ const Contact = () => {
 
                   {/* Budget */}
                   <div>
-                    <label className="flex items-center gap-2 text-sm text-slate-300 mb-2 font-medium">
+                    <label htmlFor="budget-select" className="flex items-center gap-2 text-sm text-slate-300 mb-2 font-medium">
                       <DollarSign size={14} className="text-violet-400" />
                       {lang === "fr" ? "Budget estimé" : "Estimated budget"}
                     </label>
                     <select
+                      id="budget-select"
                       name="budget"
                       value={formData.budget}
                       onChange={handleInputChange}
+                      aria-label={lang === "fr" ? "Budget estimé" : "Estimated budget"}
                       className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-white focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all appearance-none cursor-pointer"
                     >
                       <option value="" className="bg-slate-900">

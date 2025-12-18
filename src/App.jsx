@@ -96,9 +96,10 @@ function App() {
         isScrolled={isScrolled}
       />
 
-      <Hero scrollToSection={scrollToSection} />
+      <main>
+        <Hero scrollToSection={scrollToSection} />
 
-      <Suspense fallback={<SectionLoader />}>
+        <Suspense fallback={<SectionLoader />}>
         {/* Section "Ils nous font confiance" avec métriques */}
         <TrustedBy />
 
@@ -132,6 +133,7 @@ function App() {
         <ScrollToTopButton />
         <WhatsAppButton />
       </Suspense>
+      </main>
     </div>
   );
 }

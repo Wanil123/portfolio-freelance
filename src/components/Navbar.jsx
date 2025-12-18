@@ -50,7 +50,9 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
             <img
               src="/logo.png"
               alt="PrimeDev Studios"
-              style={{ width: '56px', height: '56px', minWidth: '56px', minHeight: '56px' }}
+              width={56}
+              height={56}
+              style={{ width: '56px', height: '56px', minWidth: '56px', minHeight: '56px', objectFit: 'contain' }}
               className="relative rounded-2xl shadow-xl border-2 border-violet-500/50 group-hover:border-violet-400/80 group-hover:scale-105 transition-all duration-300"
             />
           </div>
