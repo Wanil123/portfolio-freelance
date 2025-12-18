@@ -13,6 +13,7 @@ const OffersSection = lazy(() => import("./components/OffersSection.jsx"));
 const Skills = lazy(() => import("./components/Skills.jsx"));
 const Projects = lazy(() => import("./components/Projects.jsx"));
 const FAQ = lazy(() => import("./components/FAQ.jsx"));
+const Blog = lazy(() => import("./components/Blog.jsx"));
 const Contact = lazy(() => import("./components/Contact.jsx"));
 const About = lazy(() => import("./components/About.jsx"));
 const Footer = lazy(() => import("./components/Footer.jsx"));
@@ -50,6 +51,7 @@ function App() {
           "skills",
           "projects",
           "faq",
+          "blog",
           "contact",
           "about",
         ];
@@ -122,6 +124,9 @@ function App() {
 
           {/* FAQ */}
           <FAQ />
+
+          {/* Blog / Resources */}
+          <Blog />
 
           {/* Contact Form */}
           <Contact />
