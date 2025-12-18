@@ -2,10 +2,10 @@
 import { useState, useEffect, lazy, Suspense } from "react";
 import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
+import CustomCursor from "./components/CustomCursor.jsx";
 
 // Lazy load components that are below the fold for better initial load performance
 const TrustedBy = lazy(() => import("./components/TrustedBy.jsx"));
-const WhyIndependent = lazy(() => import("./components/WhyIndependent.jsx"));
 const Services = lazy(() => import("./components/Services.jsx"));
 const Testimonials = lazy(() => import("./components/Testimonials.jsx"));
 const Process = lazy(() => import("./components/Process.jsx"));
@@ -13,8 +13,6 @@ const OffersSection = lazy(() => import("./components/OffersSection.jsx"));
 const Skills = lazy(() => import("./components/Skills.jsx"));
 const Projects = lazy(() => import("./components/Projects.jsx"));
 const FAQ = lazy(() => import("./components/FAQ.jsx"));
-const CaseStudies = lazy(() => import("./components/CaseStudies.jsx"));
-const Blog = lazy(() => import("./components/Blog.jsx"));
 const Contact = lazy(() => import("./components/Contact.jsx"));
 const About = lazy(() => import("./components/About.jsx"));
 const Footer = lazy(() => import("./components/Footer.jsx"));
@@ -51,9 +49,7 @@ function App() {
           "process",
           "skills",
           "projects",
-          "case-studies",
           "faq",
-          "blog",
           "contact",
           "about",
         ];
@@ -90,6 +86,9 @@ function App() {
 
   return (
     <div className="min-h-screen">
+      {/* Custom Cursor - Desktop only */}
+      <CustomCursor />
+
       <Navbar
         activeSection={activeSection}
         scrollToSection={scrollToSection}
@@ -100,39 +99,43 @@ function App() {
         <Hero scrollToSection={scrollToSection} />
 
         <Suspense fallback={<SectionLoader />}>
-        {/* Section "Ils nous font confiance" avec métriques */}
-        <TrustedBy />
+          {/* Trust section */}
+          <TrustedBy />
 
-        <WhyIndependent />
+          {/* Services */}
+          <Services scrollToSection={scrollToSection} />
 
-        <Services scrollToSection={scrollToSection} />
+          {/* Guarantees & Current Projects */}
+          <Testimonials />
 
-        {/* Section Témoignages clients */}
-        <Testimonials />
+          {/* Pricing Packages */}
+          <OffersSection scrollToSection={scrollToSection} />
 
-        {/* Section Forfaits / Pricing */}
-        <OffersSection scrollToSection={scrollToSection} />
+          {/* Work Process */}
+          <Process scrollToSection={scrollToSection} />
 
-        <Process scrollToSection={scrollToSection} />
+          {/* Tech Stack */}
+          <Skills />
 
-        <Skills />
-        <Projects />
+          {/* Portfolio */}
+          <Projects />
 
-        {/* Section Études de cas détaillées */}
-        <CaseStudies />
+          {/* FAQ */}
+          <FAQ />
 
-        {/* Section FAQ */}
-        <FAQ />
+          {/* Contact Form */}
+          <Contact />
 
-        {/* Section Blog */}
-        <Blog />
+          {/* About */}
+          <About />
 
-        <Contact />
-        <About />
-        <Footer />
-        <ScrollToTopButton />
-        <WhatsAppButton />
-      </Suspense>
+          {/* Footer */}
+          <Footer />
+
+          {/* Floating Buttons */}
+          <ScrollToTopButton />
+          <WhatsAppButton />
+        </Suspense>
       </main>
     </div>
   );

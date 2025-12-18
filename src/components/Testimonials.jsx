@@ -1,100 +1,80 @@
 // src/components/Testimonials.jsx
 import { useTranslation } from "react-i18next";
-import { Star, Quote, Building2, Sparkles } from "lucide-react";
+import { Sparkles, Shield, Clock, Code2, Zap, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
 
 const Testimonials = () => {
   const { i18n } = useTranslation();
   const lang = i18n.language?.startsWith("fr") ? "fr" : "en";
 
-  const testimonials = [
+  const guarantees = [
     {
-      id: 1,
-      name: "Marie-Claire Dubois",
-      role: lang === "fr" ? "Fondatrice" : "Founder",
-      company: "BoutiqueMode QC",
-      industry: lang === "fr" ? "E-commerce Mode" : "Fashion E-commerce",
-      avatar: "MC",
-      rating: 5,
-      text: {
-        fr: "Wanil a livré notre boutique en ligne en seulement 3 semaines. Le site est rapide, beau et nos ventes ont augmenté de 40% le premier mois. Communication excellente tout au long du projet.",
-        en: "Wanil delivered our online store in just 3 weeks. The site is fast, beautiful and our sales increased by 40% in the first month. Excellent communication throughout the project.",
-      },
-      result: {
-        fr: "+40% de ventes",
-        en: "+40% sales",
-      },
-      color: "from-pink-400 to-rose-500",
-    },
-    {
-      id: 2,
-      name: "Jean-François Tremblay",
-      role: lang === "fr" ? "Directeur TI" : "IT Director",
-      company: "Groupe Industriel MTL",
-      industry: lang === "fr" ? "Manufacturier" : "Manufacturing",
-      avatar: "JF",
-      rating: 5,
-      text: {
-        fr: "L'intégration Odoo 17 était complexe mais Wanil a su créer des portails clients bilingues parfaitement adaptés à nos besoins. Le support post-lancement était impeccable.",
-        en: "The Odoo 17 integration was complex but Wanil created bilingual customer portals perfectly suited to our needs. Post-launch support was impeccable.",
-      },
-      result: {
-        fr: "Portail livré en 4 sem.",
-        en: "Portal delivered in 4 wks",
-      },
-      color: "from-violet-400 to-purple-500",
-    },
-    {
-      id: 3,
-      name: "Sophie Lavoie",
-      role: lang === "fr" ? "Propriétaire" : "Owner",
-      company: "Clinique Santé Plus",
-      industry: lang === "fr" ? "Santé & Bien-être" : "Health & Wellness",
-      avatar: "SL",
-      rating: 5,
-      text: {
-        fr: "Notre ancien site datait de 2018. Wanil l'a complètement modernisé avec un design professionnel et un système de réservation en ligne. Nos patients adorent!",
-        en: "Our old site was from 2018. Wanil completely modernized it with a professional design and online booking system. Our patients love it!",
-      },
-      result: {
-        fr: "+65% réservations en ligne",
-        en: "+65% online bookings",
-      },
+      icon: Shield,
       color: "from-emerald-400 to-green-500",
+      bgColor: "bg-emerald-500/10",
+      title: {
+        fr: "Satisfaction garantie",
+        en: "Satisfaction guaranteed"
+      },
+      description: {
+        fr: "Si le résultat ne correspond pas au cahier des charges, corrections illimitées jusqu'à votre satisfaction complète.",
+        en: "If the result doesn't match the specs, unlimited revisions until you're completely satisfied."
+      }
     },
     {
-      id: 4,
-      name: "Alexandre Chen",
-      role: "CEO",
-      company: "TechStart Inc.",
-      industry: lang === "fr" ? "Startup SaaS" : "SaaS Startup",
-      avatar: "AC",
-      rating: 5,
-      text: {
-        fr: "On avait besoin d'un MVP rapide pour lever des fonds. Wanil a compris notre vision et livré une application fonctionnelle en 5 semaines. Investisseurs impressionnés!",
-        en: "We needed a fast MVP to raise funds. Wanil understood our vision and delivered a working application in 5 weeks. Investors were impressed!",
+      icon: Clock,
+      color: "from-violet-400 to-purple-500",
+      bgColor: "bg-violet-500/10",
+      title: {
+        fr: "Livraison à temps",
+        en: "On-time delivery"
       },
-      result: {
-        fr: "MVP en 5 semaines",
-        en: "MVP in 5 weeks",
-      },
+      description: {
+        fr: "Délais respectés ou 10% de remise. Chaque projet inclut un calendrier précis avec jalons clairs.",
+        en: "Deadlines met or 10% discount. Each project includes a precise timeline with clear milestones."
+      }
+    },
+    {
+      icon: Code2,
       color: "from-cyan-400 to-blue-500",
+      bgColor: "bg-cyan-500/10",
+      title: {
+        fr: "Code source inclus",
+        en: "Source code included"
+      },
+      description: {
+        fr: "Vous êtes propriétaire de votre code. Repository Git, documentation et formation inclus.",
+        en: "You own your code. Git repository, documentation and training included."
+      }
+    },
+    {
+      icon: Zap,
+      color: "from-amber-400 to-orange-500",
+      bgColor: "bg-amber-500/10",
+      title: {
+        fr: "Support 30 jours",
+        en: "30-day support"
+      },
+      description: {
+        fr: "Après la livraison, support gratuit pour corrections de bugs et ajustements mineurs.",
+        en: "After delivery, free support for bug fixes and minor adjustments."
+      }
     },
   ];
 
-  const stats = [
+  const currentProjects = [
     {
-      value: "15+",
-      label: lang === "fr" ? "Projets livrés" : "Projects delivered",
+      status: lang === "fr" ? "En développement" : "In development",
+      type: lang === "fr" ? "Site e-commerce" : "E-commerce site",
+      industry: lang === "fr" ? "Mode & accessoires" : "Fashion & accessories",
+      color: "from-pink-400 to-rose-500"
     },
     {
-      value: "100%",
-      label: lang === "fr" ? "Clients satisfaits" : "Satisfied clients",
-    },
-    {
-      value: "4.9/5",
-      label: lang === "fr" ? "Note moyenne" : "Average rating",
-    },
+      status: lang === "fr" ? "En développement" : "In development",
+      type: lang === "fr" ? "Site vitrine" : "Business website",
+      industry: lang === "fr" ? "Services professionnels" : "Professional services",
+      color: "from-violet-400 to-purple-500"
+    }
   ];
 
   return (
@@ -108,22 +88,22 @@ const Testimonials = () => {
         <Reveal className="text-center mb-12 md:mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-400/30 text-violet-200 text-xs md:text-sm font-medium mb-4">
             <Sparkles size={14} />
-            <span>{lang === "fr" ? "Témoignages clients" : "Client testimonials"}</span>
+            <span>{lang === "fr" ? "Notre engagement" : "Our commitment"}</span>
           </div>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             {lang === "fr" ? (
               <>
-                Ce que disent{" "}
+                Qualité{" "}
                 <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  nos clients
+                  garantie
                 </span>
               </>
             ) : (
               <>
-                What our{" "}
+                Quality{" "}
                 <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  clients say
+                  guaranteed
                 </span>
               </>
             )}
@@ -131,106 +111,106 @@ const Testimonials = () => {
 
           <p className="text-slate-300 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             {lang === "fr"
-              ? "Des projets livrés avec succès, des clients satisfaits. Découvrez leurs expériences."
-              : "Successfully delivered projects, satisfied clients. Discover their experiences."}
+              ? "Nouveau studio, standards professionnels. Voici nos engagements pour chaque projet."
+              : "New studio, professional standards. Here are our commitments for every project."}
           </p>
         </Reveal>
 
-        {/* Stats Row */}
-        <Reveal delay={0.1}>
-          <div className="flex flex-wrap justify-center gap-8 md:gap-16 mb-12 md:mb-16">
-            {stats.map((stat, idx) => (
-              <div key={idx} className="text-center">
-                <p className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent mb-1">
-                  {stat.value}
-                </p>
-                <p className="text-sm text-slate-400">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </Reveal>
+        {/* Guarantees Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          {guarantees.map((guarantee, index) => {
+            const Icon = guarantee.icon;
+            return (
+              <Reveal key={index} delay={index * 0.1}>
+                <div className="group relative h-full">
+                  {/* Hover glow */}
+                  <div className={`pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 bg-gradient-to-br ${guarantee.color} opacity-20 rounded-2xl blur-xl transition-opacity duration-500`} />
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {testimonials.map((testimonial, index) => (
-            <Reveal key={testimonial.id} delay={index * 0.1}>
-              <div className="group relative h-full">
-                {/* Hover glow */}
-                <div className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 bg-gradient-to-br from-violet-500/20 via-purple-500/10 to-transparent rounded-2xl blur-xl transition-opacity duration-500" />
-
-                <div className="relative h-full bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-2xl p-6 md:p-8 hover:border-violet-400/50 transition-all duration-300 flex flex-col">
-                  {/* Quote icon */}
-                  <div className="absolute top-6 right-6 opacity-10">
-                    <Quote size={48} className="text-violet-400" />
-                  </div>
-
-                  {/* Header */}
-                  <div className="flex items-start gap-4 mb-4 relative z-10">
-                    {/* Avatar */}
-                    <div className={`flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br ${testimonial.color} text-white font-bold text-lg flex-shrink-0`}>
-                      {testimonial.avatar}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="text-white font-semibold text-lg truncate">
-                        {testimonial.name}
-                      </h4>
-                      <p className="text-sm text-slate-400">
-                        {testimonial.role}, {testimonial.company}
-                      </p>
-                      <div className="flex items-center gap-1.5 mt-1">
-                        <Building2 size={12} className="text-slate-500" />
-                        <span className="text-xs text-slate-500">{testimonial.industry}</span>
+                  <div className="relative h-full bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-2xl p-6 md:p-8 hover:border-violet-400/50 transition-all duration-300">
+                    <div className="flex items-start gap-4">
+                      <div className={`flex h-14 w-14 items-center justify-center rounded-xl ${guarantee.bgColor} border border-white/10 flex-shrink-0 group-hover:scale-110 transition-transform`}>
+                        <Icon size={24} className={`bg-gradient-to-br ${guarantee.color} bg-clip-text text-transparent`} />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold text-white mb-2">
+                          {guarantee.title[lang]}
+                        </h3>
+                        <p className="text-sm text-slate-400 leading-relaxed">
+                          {guarantee.description[lang]}
+                        </p>
                       </div>
                     </div>
                   </div>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
 
-                  {/* Rating */}
-                  <div className="flex items-center gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} size={16} className="text-amber-400 fill-amber-400" />
-                    ))}
-                  </div>
+        {/* Current Projects Section */}
+        <Reveal delay={0.3}>
+          <div className="relative">
+            <div className="absolute -inset-1 bg-gradient-to-r from-violet-500/20 to-purple-500/20 rounded-2xl blur-2xl opacity-50" />
 
-                  {/* Testimonial text */}
-                  <p className="text-slate-300 text-sm md:text-base leading-relaxed flex-1 mb-4">
-                    "{testimonial.text[lang]}"
-                  </p>
-
-                  {/* Result badge */}
-                  <div className="mt-auto pt-4 border-t border-slate-800/50">
-                    <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r ${testimonial.color} bg-opacity-10 border border-white/10`}>
-                      <span className="text-xs font-semibold text-white">
-                        {testimonial.result[lang]}
-                      </span>
+            <div className="relative bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="relative flex h-3 w-3">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
                     </div>
+                    <span className="text-emerald-400 text-sm font-medium">
+                      {lang === "fr" ? "Projets en cours" : "Current projects"}
+                    </span>
                   </div>
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                    {lang === "fr"
+                      ? "2 clients nous font confiance actuellement"
+                      : "2 clients currently trust us"}
+                  </h3>
+                  <p className="text-slate-400 text-sm">
+                    {lang === "fr"
+                      ? "Nouveau studio, premiers clients. Résultats bientôt disponibles."
+                      : "New studio, first clients. Results coming soon."}
+                  </p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3">
+                  {currentProjects.map((project, idx) => (
+                    <div
+                      key={idx}
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-800/30 border border-slate-700/30"
+                    >
+                      <div className={`flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br ${project.color} bg-opacity-20 border border-white/10`}>
+                        <CheckCircle2 size={18} className="text-white" />
+                      </div>
+                      <div>
+                        <p className="text-white text-sm font-medium">{project.type}</p>
+                        <p className="text-xs text-slate-500">{project.industry}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </Reveal>
-          ))}
-        </div>
+            </div>
+          </div>
+        </Reveal>
 
         {/* Bottom CTA */}
         <Reveal delay={0.4}>
           <div className="mt-12 text-center">
             <p className="text-slate-400 text-sm mb-4">
               {lang === "fr"
-                ? "Rejoignez nos clients satisfaits"
-                : "Join our satisfied clients"}
+                ? "Devenez notre prochain client satisfait"
+                : "Become our next satisfied client"}
             </p>
             <a
               href="#contact"
               className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all"
             >
-              {lang === "fr" ? "Démarrer mon projet" : "Start my project"}
-              <svg
-                className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+              {lang === "fr" ? "Obtenir un devis gratuit" : "Get a free quote"}
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
         </Reveal>

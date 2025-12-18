@@ -1,224 +1,144 @@
 // src/components/Hero.jsx
-import { Globe2, CheckCircle2, Sparkles, ArrowRight, Code2, Zap } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 const Hero = ({ scrollToSection }) => {
   const { i18n } = useTranslation();
   const lang = i18n.language?.startsWith("fr") ? "fr" : "en";
-
-  const techBadges = {
-    frontend: [
-      { name: "React", color: "from-cyan-400 to-blue-500" },
-      { name: "Vue.js", color: "from-green-400 to-emerald-500" },
-    ],
-    backend: [
-      { name: "Laravel", color: "from-red-400 to-orange-500" },
-      { name: "Odoo 17", color: "from-purple-400 to-violet-500" },
-      { name: "Python", color: "from-yellow-400 to-amber-500" },
-      { name: "WordPress", color: "from-sky-400 to-cyan-500" },
-    ],
-  };
-
-  const highlights = [
-    {
-      icon: CheckCircle2,
-      text: lang === "fr" ? "Livraison en 2-4 semaines" : "2-4 weeks delivery",
-      color: "text-emerald-400"
-    },
-    {
-      icon: Zap,
-      text: lang === "fr" ? "Support bilingue FR/EN" : "Bilingual support FR/EN",
-      color: "text-violet-400"
-    },
-    {
-      icon: Globe2,
-      text: lang === "fr" ? "Remote Canada • Europe • International" : "Remote Canada • Europe • International",
-      color: "text-cyan-400"
-    },
-  ];
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   return (
     <section
       id="home"
-      className="relative pt-24 md:pt-28 lg:pt-36 pb-16 md:pb-20 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Animated Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900/50 to-slate-950 -z-10" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-violet-900/20 via-slate-950 to-slate-950 -z-10" />
-      
-      {/* Animated Grid Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f15_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f15_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] -z-10" />
+      {/* Animated Background */}
+      <div className="absolute inset-0 bg-slate-950 -z-20" />
 
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center">
-          
-          {/* LEFT - Main Content */}
-          <div className="space-y-6 md:space-y-8">
-            
-            {/* Status Badge */}
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-violet-500/10 to-purple-500/10 border border-violet-400/30 backdrop-blur-sm">
-                <div className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                </div>
-                <span>
-                {lang === "fr"
-                  ? "Disponible en freelance"
-                  : "Available for Freelance"}
-              </span>
-              </div>
-            </div>
+      {/* Gradient Orbs - Animated (smaller on mobile for performance) */}
+      <div className="absolute top-1/4 left-1/4 w-48 h-48 md:w-96 md:h-96 bg-violet-500/30 rounded-full blur-[64px] md:blur-[128px] animate-pulse-slow -z-10" />
+      <div className="absolute bottom-1/4 right-1/4 w-40 h-40 md:w-80 md:h-80 bg-purple-500/20 rounded-full blur-[50px] md:blur-[100px] animate-pulse-slow animation-delay-2000 -z-10" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-indigo-500/10 rounded-full blur-[75px] md:blur-[150px] -z-10" />
 
-            {/* Main Heading */}
-            <div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white mb-4">
-                {lang === "fr" ? (
-                  <>
-                    Votre site web qui{" "}
-                    <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                      convertit
-                    </span>
-                    , livré en 2-4 semaines
-                  </>
-                ) : (
-                  <>
-                    Your website that{" "}
-                    <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                      converts
-                    </span>
-                    , delivered in 2-4 weeks
-                  </>
-                )}
-              </h1>
+      {/* Subtle Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f08_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f08_1px,transparent_1px)] bg-[size:4rem_4rem] -z-10" />
 
-              <p className="text-lg md:text-xl text-slate-300 leading-relaxed max-w-xl">
-                {lang === "fr"
-                  ? "Développeur full-stack spécialisé en sites vitrines, e-commerce et applications sur mesure. Code propre, design moderne, livraison rapide."
-                  : "Full-stack developer specializing in landing pages, e-commerce and custom web apps. Clean code, modern design, fast delivery."}
-              </p>
-            </div>
+      {/* Main Content */}
+      <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8 text-center pt-20 pb-16">
 
-            {/* Tech Stack Pills */}
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="text-xs text-slate-500 font-medium uppercase tracking-wider">
-                {lang === "fr" ? "Stack" : "Stack"}:
-              </span>
-              {[...techBadges.frontend, ...techBadges.backend].map((tech, idx) => (
-                <span
-                  key={idx}
-                  className={`px-3 py-1.5 rounded-lg bg-gradient-to-r ${tech.color} bg-opacity-10 border border-white/10 text-white text-xs font-medium backdrop-blur-sm hover:scale-105 transition-transform cursor-default`}
-                >
-                  {tech.name}
-                </span>
-              ))}
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2">
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="group relative px-6 md:px-8 py-3 md:py-3.5 bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white font-semibold rounded-xl shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all text-sm md:text-base"
-              >
-                <span className="flex items-center justify-center gap-2">
-                  {lang === "fr" ? "Démarrer un projet" : "Start a project"}
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </span>
-              </button>
-              
-              <button
-                onClick={() => scrollToSection("projects")}
-                className="group px-6 md:px-8 py-3 md:py-3.5 bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-slate-600 text-white font-semibold rounded-xl backdrop-blur-sm transition-all text-sm md:text-base"
-              >
-                <span className="flex items-center justify-center gap-2">
-                  {lang === "fr" ? "Voir mes projets" : "View projects"}
-                  <Code2 size={18} className="group-hover:rotate-12 transition-transform" />
-                </span>
-              </button>
-            </div>
-
-            {/* Highlights */}
-            <div className="flex flex-wrap sm:grid sm:grid-cols-3 gap-2 sm:gap-3 pt-4 border-t border-slate-800/50">
-              {highlights.map((item, idx) => {
-                const Icon = item.icon;
-                return (
-                  <div
-                    key={idx}
-                    className="flex items-center gap-1.5 md:gap-2 text-slate-300 text-[11px] md:text-sm px-2.5 py-1.5 sm:p-0 rounded-lg sm:rounded-none bg-slate-800/30 sm:bg-transparent border border-slate-700/30 sm:border-0"
-                  >
-                    <Icon size={14} className={`${item.color} flex-shrink-0`} />
-                    <span className="whitespace-nowrap">{item.text}</span>
-                  </div>
-                );
-              })}
-            </div>
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-400/30 backdrop-blur-sm mb-8 animate-fade-in">
+          <div className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </div>
+          <span className="text-violet-200 text-sm font-medium">
+            {lang === "fr" ? "Disponible pour nouveaux projets" : "Available for new projects"}
+          </span>
+        </div>
 
-          {/* RIGHT - Feature Card */}
-          <div className="relative">
-            {/* Glow Effect */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-violet-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-50" />
-            
-            <div className="relative bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
-              
-              {/* Header */}
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-lg md:text-xl font-bold text-white flex items-center gap-2">
-                  <Sparkles size={20} className="text-violet-400" />
-                  {lang === "fr" ? "Services offerts" : "Services offered"}
-                </h3>
-              </div>
+        {/* Main Headline */}
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-white mb-6 animate-fade-in-up">
+          {lang === "fr" ? (
+            <>
+              Sites web qui{" "}
+              <span className="relative">
+                <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  convertissent
+                </span>
+                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 8" fill="none">
+                  <path d="M1 5.5C47 2 153 2 199 5.5" stroke="url(#gradient)" strokeWidth="3" strokeLinecap="round"/>
+                  <defs>
+                    <linearGradient id="gradient" x1="0" y1="0" x2="200" y2="0">
+                      <stop stopColor="#a78bfa"/>
+                      <stop offset="0.5" stopColor="#c084fc"/>
+                      <stop offset="1" stopColor="#f472b6"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </span>
+            </>
+          ) : (
+            <>
+              Websites that{" "}
+              <span className="relative">
+                <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  convert
+                </span>
+                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 8" fill="none">
+                  <path d="M1 5.5C47 2 153 2 199 5.5" stroke="url(#gradient2)" strokeWidth="3" strokeLinecap="round"/>
+                  <defs>
+                    <linearGradient id="gradient2" x1="0" y1="0" x2="200" y2="0">
+                      <stop stopColor="#a78bfa"/>
+                      <stop offset="0.5" stopColor="#c084fc"/>
+                      <stop offset="1" stopColor="#f472b6"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </span>
+            </>
+          )}
+        </h1>
 
-              {/* Services List */}
-              <div className="space-y-4">
-                {[
-                  {
-                    title: lang === "fr" ? "Sites vitrines" : "Landing pages",
-                    desc: lang === "fr" ? "Modernes, rapides, optimisés SEO" : "Modern, fast, SEO-optimized",
-                    icon: "🎨"
-                  },
-                  {
-                    title: lang === "fr" ? "E-commerce" : "E-commerce",
-                    desc: lang === "fr" ? "Boutiques en ligne complètes" : "Complete online stores",
-                    icon: "🛍️"
-                  },
-                  {
-                    title: lang === "fr" ? "Applications web" : "Web apps",
-                    desc: lang === "fr" ? "Dashboards, portails, SaaS" : "Dashboards, portals, SaaS",
-                    icon: "⚡"
-                  },
-                  {
-                    title: lang === "fr" ? "Intégrations Odoo" : "Odoo integrations",
-                    desc: lang === "fr" ? "Modules custom, portails, API" : "Custom modules, portals, API",
-                    icon: "🔧"
-                  },
-                ].map((service, idx) => (
-                  <div
-                    key={idx}
-                    className="group flex items-start gap-4 p-4 rounded-xl bg-slate-800/30 border border-slate-700/30 hover:border-violet-500/30 hover:bg-slate-800/50 transition-all cursor-default"
-                  >
-                    <span className="text-2xl">{service.icon}</span>
-                    <div>
-                      <h4 className="font-semibold text-white text-sm md:text-base mb-1">
-                        {service.title}
-                      </h4>
-                      <p className="text-xs md:text-sm text-slate-400">
-                        {service.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+        {/* Subtitle */}
+        <p className="text-lg md:text-xl lg:text-2xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up animation-delay-200">
+          {lang === "fr"
+            ? "Studio web spécialisé en sites vitrines et e-commerce. Design moderne, code propre, livraison rapide."
+            : "Web studio specialized in business websites and e-commerce. Modern design, clean code, fast delivery."}
+        </p>
 
-              {/* Bottom CTA */}
-              <div className="mt-6 pt-6 border-t border-slate-800/50">
-                <p className="text-xs text-slate-400 text-center">
-                  {lang === "fr"
-                    ? "Forfaits clés en main disponibles · Consultation gratuite"
-                    : "Turnkey packages available · Free consultation"}
-                </p>
-              </div>
+        {/* Single Primary CTA */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up animation-delay-400">
+          <button
+            onClick={() => scrollToSection("contact")}
+            className="group relative px-8 py-4 bg-gradient-to-r from-violet-500 to-purple-500 text-white font-semibold rounded-xl shadow-2xl shadow-violet-500/25 hover:shadow-violet-500/40 transition-all duration-300 hover:scale-105 active:scale-95 overflow-hidden"
+          >
+            {/* Shine effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+            <span className="relative flex items-center gap-2">
+              {lang === "fr" ? "Démarrer mon projet" : "Start my project"}
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            </span>
+          </button>
+
+          <button
+            onClick={() => scrollToSection("projects")}
+            className="group flex items-center gap-2 px-6 py-4 text-slate-300 hover:text-white font-medium transition-colors active:scale-95"
+          >
+            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-800/50 border border-slate-700 group-hover:border-violet-500/50 group-hover:bg-slate-800 transition-all">
+              <Play size={16} className="text-violet-400 ml-0.5" />
             </div>
+            <span>{lang === "fr" ? "Voir les projets" : "View projects"}</span>
+          </button>
+        </div>
+
+        {/* Trust Indicators */}
+        <div className="mt-16 flex flex-wrap items-center justify-center gap-6 md:gap-10 animate-fade-in-up animation-delay-600">
+          <div className="flex items-center gap-2 text-slate-400 text-sm">
+            <svg className="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            <span>{lang === "fr" ? "Livraison 2-4 sem." : "2-4 weeks delivery"}</span>
+          </div>
+          <div className="flex items-center gap-2 text-slate-400 text-sm">
+            <svg className="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            <span>{lang === "fr" ? "Bilingue FR/EN" : "Bilingual FR/EN"}</span>
+          </div>
+          <div className="flex items-center gap-2 text-slate-400 text-sm">
+            <svg className="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            <span>{lang === "fr" ? "Support 30 jours" : "30-day support"}</span>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 rounded-full border-2 border-slate-600 flex items-start justify-center p-1">
+            <div className="w-1.5 h-2.5 bg-violet-400 rounded-full animate-scroll-down" />
           </div>
         </div>
       </div>

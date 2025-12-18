@@ -323,7 +323,7 @@ const OffersSection = ({ scrollToSection }) => {
                             offer.popular
                               ? "bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40"
                               : "bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-violet-500/50 text-white"
-                          } text-xs md:text-sm font-semibold transition-all`}
+                          } text-xs md:text-sm font-semibold transition-all active:scale-95`}
                           type="button"
                         >
                           {lang === "fr"
