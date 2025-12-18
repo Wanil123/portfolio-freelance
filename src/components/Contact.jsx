@@ -105,53 +105,29 @@ const Contact = () => {
     setIsSubmitting(true);
     setFormStatus(null);
 
-    // Check if we're on Netlify (production) or local dev
-    const isNetlify = window.location.hostname.includes('netlify.app') ||
-                      window.location.hostname.includes('prime-dev-studios') ||
-                      window.location.hostname === 'prime-dev-studios.com' ||
-                      window.location.hostname === 'www.prime-dev-studios.com';
-
     try {
-      if (isNetlify) {
-        // Use Netlify Forms in production
-        const response = await fetch("/", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams({
-            "form-name": "contact",
-            ...formData,
-          }).toString(),
-        });
+      // Use FormSubmit.co - sends directly to your email
+      const response = await fetch("https://formsubmit.co/ajax/info@prime-dev-studios.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          budget: formData.budget || "Non spécifié",
+          message: formData.message,
+          _subject: `🚀 Nouveau message de ${formData.name} - PrimeDev Studios`,
+          _template: "table",
+        }),
+      });
 
-        if (response.ok) {
-          setFormStatus("success");
-          setFormData({ name: "", email: "", budget: "", message: "" });
-        } else {
-          throw new Error("Netlify form submission failed");
-        }
+      if (response.ok) {
+        setFormStatus("success");
+        setFormData({ name: "", email: "", budget: "", message: "" });
       } else {
-        // Use FormSubmit.co as fallback for local dev and other environments
-        const response = await fetch("https://formsubmit.co/ajax/info@prime-dev-studios.com", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            budget: formData.budget || "Non spécifié",
-            message: formData.message,
-            _subject: `Nouveau message de ${formData.name} - PrimeDev Studios`,
-          }),
-        });
-
-        if (response.ok) {
-          setFormStatus("success");
-          setFormData({ name: "", email: "", budget: "", message: "" });
-        } else {
-          throw new Error("FormSubmit submission failed");
-        }
+        throw new Error("Form submission failed");
       }
     } catch (error) {
       console.error("Form submission error:", error);
