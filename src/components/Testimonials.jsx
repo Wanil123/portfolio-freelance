@@ -62,13 +62,16 @@ const Testimonials = () => {
     },
   ];
 
-  const currentProjects = [
+  const completedProjects = [
     {
-      status: lang === "fr" ? "En développement" : "In development",
+      status: lang === "fr" ? "Livré" : "Delivered",
       type: lang === "fr" ? "Site e-commerce" : "E-commerce site",
-      industry: lang === "fr" ? "Mode & accessoires" : "Fashion & accessories",
-      color: "from-pink-400 to-rose-500"
-    },
+      industry: "LamIPict — Montréal",
+      color: "from-emerald-400 to-green-500"
+    }
+  ];
+
+  const currentProjects = [
     {
       status: lang === "fr" ? "En développement" : "In development",
       type: lang === "fr" ? "Site vitrine" : "Business website",
@@ -147,7 +150,7 @@ const Testimonials = () => {
           })}
         </div>
 
-        {/* Current Projects Section */}
+        {/* Projects Status Section */}
         <Reveal delay={0.3}>
           <div className="relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-violet-500/20 to-purple-500/20 rounded-2xl blur-2xl opacity-50" />
@@ -161,29 +164,45 @@ const Testimonials = () => {
                       <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
                     </div>
                     <span className="text-emerald-400 text-sm font-medium">
-                      {lang === "fr" ? "Projets en cours" : "Current projects"}
+                      {lang === "fr" ? "Activité récente" : "Recent activity"}
                     </span>
                   </div>
                   <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
                     {lang === "fr"
-                      ? "2 clients nous font confiance actuellement"
-                      : "2 clients currently trust us"}
+                      ? "1 projet livré, 1 en cours"
+                      : "1 project delivered, 1 in progress"}
                   </h3>
                   <p className="text-slate-400 text-sm">
                     {lang === "fr"
-                      ? "Nouveau studio, premiers clients. Résultats bientôt disponibles."
-                      : "New studio, first clients. Results coming soon."}
+                      ? "Des clients satisfaits à Montréal et ailleurs."
+                      : "Satisfied clients in Montreal and beyond."}
                   </p>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-3">
+                  {/* Completed project */}
+                  {completedProjects.map((project, idx) => (
+                    <div
+                      key={`completed-${idx}`}
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30"
+                    >
+                      <div className={`flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br ${project.color} border border-white/10`}>
+                        <CheckCircle2 size={18} className="text-white" />
+                      </div>
+                      <div>
+                        <p className="text-white text-sm font-medium">{project.type}</p>
+                        <p className="text-xs text-emerald-400">{project.industry}</p>
+                      </div>
+                    </div>
+                  ))}
+                  {/* Current project */}
                   {currentProjects.map((project, idx) => (
                     <div
-                      key={idx}
+                      key={`current-${idx}`}
                       className="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-800/30 border border-slate-700/30"
                     >
-                      <div className={`flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br ${project.color} bg-opacity-20 border border-white/10`}>
-                        <CheckCircle2 size={18} className="text-white" />
+                      <div className={`flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br ${project.color} border border-white/10`}>
+                        <Clock size={18} className="text-white" />
                       </div>
                       <div>
                         <p className="text-white text-sm font-medium">{project.type}</p>
