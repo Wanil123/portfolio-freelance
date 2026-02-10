@@ -12,14 +12,14 @@
     <link rel="icon" href="/favicon.ico" />
 
     <!-- SEO DE BASE -->
-    <title>PrimeDev Studios | Agence Web Montréal | Sites React, Vue, E-commerce & Odoo</title>
+    <title>PrimeDev Studios | Développeur Web Freelance Montréal | React, Laravel, Odoo 17</title>
     <meta
       name="description"
-      content="Agence web à Montréal spécialisée en sites vitrines, e-commerce et applications sur mesure avec React, Vue.js, Laravel et Odoo 17. Livraison en 2-4 semaines, support bilingue FR/EN. Note 5.0/5 sur Google. Consultation gratuite!"
+      content="Développeur web freelance à Montréal. Sites vitrines, boutiques e-commerce et applications sur mesure avec React, Laravel, Tailwind CSS et Odoo 17. Livraison en 2-4 semaines, bilingue FR/EN."
     />
     <meta
       name="keywords"
-      content="agence web montréal, développeur web montréal, site web québec, e-commerce, Odoo 17, React, Vue.js, Laravel, WordPress, développeur freelance, création site web, application web sur mesure"
+      content="développeur web montréal, développeur freelance montréal, site web québec, e-commerce, Odoo 17, React, Laravel, Tailwind CSS, création site web, application web sur mesure, développeur full-stack montréal"
     />
     <meta name="robots" content="index,follow" />
     <meta name="author" content="PrimeDev Studios - Wanil Parfait" />
@@ -27,13 +27,18 @@
     <meta name="geo.placename" content="Montréal" />
     <link rel="canonical" href="https://www.prime-dev-studios.com/" />
 
+    <!-- HREFLANG - Multilingual support -->
+    <link rel="alternate" hreflang="fr" href="https://www.prime-dev-studios.com/" />
+    <link rel="alternate" hreflang="en" href="https://www.prime-dev-studios.com/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.prime-dev-studios.com/" />
+
     <!-- OPEN GRAPH -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.prime-dev-studios.com/" />
-    <meta property="og:title" content="PrimeDev Studios | Agence Web Montréal | Sites & Apps React/Vue" />
+    <meta property="og:title" content="PrimeDev Studios | Développeur Web Freelance Montréal" />
     <meta
       property="og:description"
-      content="Agence web à Montréal spécialisée en sites vitrines, e-commerce et applications sur mesure. React, Vue.js, Laravel, Odoo 17. Livraison en 2-4 semaines. Note 5.0/5 Google. Consultation gratuite!"
+      content="Développeur web freelance à Montréal. Sites vitrines, e-commerce et applications sur mesure. React, Laravel, Tailwind CSS, Odoo 17. Livraison en 2-4 semaines, bilingue FR/EN."
     />
     <meta property="og:image" content="https://www.prime-dev-studios.com/og-cover.png" />
     <meta property="og:image:width" content="1200" />
@@ -44,14 +49,14 @@
 
     <!-- TWITTER -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="PrimeDev Studios | Agence Web Montréal" />
+    <meta name="twitter:title" content="PrimeDev Studios | Développeur Web Freelance Montréal" />
     <meta
       name="twitter:description"
-      content="Sites vitrines, e-commerce et apps sur mesure. React, Vue.js, Laravel, Odoo 17. Livraison rapide. Note 5.0/5 Google!"
+      content="Sites vitrines, e-commerce et apps sur mesure. React, Laravel, Odoo 17. Livraison rapide, bilingue FR/EN."
     />
     <meta name="twitter:image" content="https://www.prime-dev-studios.com/og-cover.png" />
 
-    <!-- JSON-LD ORGANIZATION with AggregateRating -->
+    <!-- JSON-LD ProfessionalService -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -60,8 +65,13 @@
         "url": "https://www.prime-dev-studios.com/",
         "logo": "https://www.prime-dev-studios.com/logo.png",
         "image": "https://www.prime-dev-studios.com/og-cover.png",
-        "description": "Agence web à Montréal spécialisée en sites vitrines, e-commerce et applications sur mesure avec React, Vue.js, Laravel et Odoo 17.",
+        "description": "Développeur web freelance à Montréal spécialisé en sites vitrines, e-commerce et applications sur mesure avec React, Laravel, Tailwind CSS et Odoo 17.",
         "priceRange": "$$",
+        "founder": {
+          "@type": "Person",
+          "name": "Wanil Parfait",
+          "jobTitle": "Développeur full-stack"
+        },
         "sameAs": [
           "https://www.linkedin.com/in/wanil-parfait-b26889108/",
           "https://github.com/wanilparfait"
@@ -87,7 +97,7 @@
             "name": "France"
           }
         ],
-        "serviceType": ["Web Development", "E-commerce", "Odoo ERP", "React Development", "Vue.js Development"],
+        "serviceType": ["Web Development", "E-commerce", "Odoo 17 ERP", "React Development", "Laravel Development"],
         "contactPoint": [
           {
             "@type": "ContactPoint",
@@ -96,14 +106,57 @@
             "telephone": "+1-579-368-5230",
             "availableLanguage": ["French", "English"]
           }
-        ],
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "4",
-          "bestRating": "5",
-          "worstRating": "1"
-        }
+        ]
+      }
+    </script>
+
+    <!-- JSON-LD FAQPage Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Combien de temps prend la création d'un site web?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le délai dépend de la complexité du projet. Un site vitrine prend généralement 2-3 semaines, une boutique e-commerce 3-4 semaines, et une application sur mesure 4-8 semaines."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quels sont vos tarifs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Mes forfaits commencent à 4 500 $ CAD pour un site vitrine et 7 500 $ CAD pour une boutique e-commerce. Les applications sur mesure sont établies sur devis. Paiements en 2-3 versements disponibles."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Utilisez-vous des templates ou tout est sur mesure?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Chaque projet est développé sur mesure. Pas de templates génériques — chaque site est codé from scratch avec React ou Laravel pour garantir performance, évolutivité et unicité."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Travaillez-vous avec des clients à l'extérieur du Québec?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolument! Je travaille avec des clients partout au Canada, en Europe et à l'international. Toutes les communications et livrables sont disponibles en français et en anglais."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Que se passe-t-il après la livraison du projet?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tous mes forfaits incluent 30 jours de support post-lancement pour les ajustements mineurs et corrections de bugs. Après cette période, des forfaits de maintenance mensuels sont disponibles."
+            }
+          }
+        ]
       }
     </script>
   </head>

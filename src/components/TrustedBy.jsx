@@ -43,9 +43,9 @@ const TrustedBy = () => {
       icon: Globe2,
     },
     {
-      value: "100%",
+      value: "React",
       unit: "",
-      label: lang === "fr" ? "Code sur mesure" : "Custom code",
+      label: lang === "fr" ? "& Laravel" : "& Laravel",
       icon: Code2,
     },
   ];
@@ -60,7 +60,7 @@ const TrustedBy = () => {
         <Reveal>
           <div className="text-center mb-10">
             <p className="text-sm text-slate-400 uppercase tracking-wider font-medium mb-2">
-              {lang === "fr" ? "Notre spécialisation" : "Our specialization"}
+              {lang === "fr" ? "Spécialisation" : "Specialization"}
             </p>
             <h3 className="text-xl md:text-2xl font-semibold text-white">
               {lang === "fr"

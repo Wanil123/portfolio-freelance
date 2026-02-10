@@ -57,8 +57,8 @@ const WhatsAppButton = () => {
             </p>
             <p className="text-xs text-slate-600">
               {lang === "fr"
-                ? "Écrivez-nous sur WhatsApp pour une réponse rapide!"
-                : "Message us on WhatsApp for a quick response!"}
+                ? "Écrivez-moi sur WhatsApp pour une réponse rapide!"
+                : "Message me on WhatsApp for a quick response!"}
             </p>
             {/* Arrow */}
             <div className="absolute -bottom-2 left-6 w-4 h-4 bg-white transform rotate-45" />
@@ -81,11 +81,8 @@ const WhatsAppButton = () => {
         <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full blur-lg opacity-50 group-hover:opacity-75 transition-opacity" />
 
         {/* Button */}
-        <div className="relative flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 rounded-full shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 transition-all group-hover:scale-105">
-          <MessageCircle size={22} className="text-white" fill="white" />
-          <span className="hidden md:block text-white font-semibold text-sm">
-            WhatsApp
-          </span>
+        <div className="relative flex items-center justify-center w-14 h-14 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 rounded-full shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 transition-all group-hover:scale-105">
+          <MessageCircle size={24} className="text-white" fill="white" />
         </div>
 
         {/* Online indicator */}

@@ -1,21 +1,21 @@
 // src/App.jsx
 import { useState, useEffect, lazy, Suspense } from "react";
+import { useTranslation } from "react-i18next";
 import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
 import CustomCursor from "./components/CustomCursor.jsx";
+import ErrorBoundary from "./components/ErrorBoundary.jsx";
 
 // Lazy load components that are below the fold for better initial load performance
-const TrustedBy = lazy(() => import("./components/TrustedBy.jsx"));
 const Services = lazy(() => import("./components/Services.jsx"));
-const Testimonials = lazy(() => import("./components/Testimonials.jsx"));
-const Process = lazy(() => import("./components/Process.jsx"));
-const OffersSection = lazy(() => import("./components/OffersSection.jsx"));
-const Skills = lazy(() => import("./components/Skills.jsx"));
 const Projects = lazy(() => import("./components/Projects.jsx"));
-const FAQ = lazy(() => import("./components/FAQ.jsx"));
-const Blog = lazy(() => import("./components/Blog.jsx"));
-const Contact = lazy(() => import("./components/Contact.jsx"));
+const Testimonials = lazy(() => import("./components/Testimonials.jsx"));
+const OffersSection = lazy(() => import("./components/OffersSection.jsx"));
+const Process = lazy(() => import("./components/Process.jsx"));
+const Skills = lazy(() => import("./components/Skills.jsx"));
 const About = lazy(() => import("./components/About.jsx"));
+const FAQ = lazy(() => import("./components/FAQ.jsx"));
+const Contact = lazy(() => import("./components/Contact.jsx"));
 const Footer = lazy(() => import("./components/Footer.jsx"));
 const ScrollToTopButton = lazy(() => import("./components/ScrollToTopButton.jsx"));
 const WhatsAppButton = lazy(() => import("./components/WhatsAppButton.jsx"));
@@ -28,8 +28,15 @@ const SectionLoader = () => (
 );
 
 function App() {
+  const { i18n } = useTranslation();
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
+
+  // Dynamic lang attribute on <html> element
+  useEffect(() => {
+    const lang = i18n.language?.startsWith("fr") ? "fr" : "en";
+    document.documentElement.lang = lang;
+  }, [i18n.language]);
 
   useEffect(() => {
     let rafId = null;
@@ -45,15 +52,14 @@ function App() {
         const sections = [
           "home",
           "services",
+          "projects",
           "testimonials",
           "offers",
           "process",
           "skills",
-          "projects",
-          "faq",
-          "blog",
-          "contact",
           "about",
+          "faq",
+          "contact",
         ];
 
         for (const section of sections) {
@@ -87,62 +93,37 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen">
-      {/* Custom Cursor - Desktop only */}
-      <CustomCursor />
+    <ErrorBoundary>
+      <div className="min-h-screen">
+        {/* Custom Cursor - Desktop only */}
+        <CustomCursor />
 
-      <Navbar
-        activeSection={activeSection}
-        scrollToSection={scrollToSection}
-        isScrolled={isScrolled}
-      />
+        <Navbar
+          activeSection={activeSection}
+          scrollToSection={scrollToSection}
+          isScrolled={isScrolled}
+        />
 
-      <main>
-        <Hero scrollToSection={scrollToSection} />
+        <main>
+          <Hero scrollToSection={scrollToSection} />
 
-        <Suspense fallback={<SectionLoader />}>
-          {/* Trust section */}
-          <TrustedBy />
-
-          {/* Services */}
-          <Services scrollToSection={scrollToSection} />
-
-          {/* Guarantees & Current Projects */}
-          <Testimonials />
-
-          {/* Pricing Packages */}
-          <OffersSection scrollToSection={scrollToSection} />
-
-          {/* Work Process */}
-          <Process scrollToSection={scrollToSection} />
-
-          {/* Tech Stack */}
-          <Skills />
-
-          {/* Portfolio */}
-          <Projects />
-
-          {/* FAQ */}
-          <FAQ />
-
-          {/* Blog / Resources */}
-          <Blog />
-
-          {/* Contact Form */}
-          <Contact />
-
-          {/* About */}
-          <About />
-
-          {/* Footer */}
-          <Footer />
-
-          {/* Floating Buttons */}
-          <ScrollToTopButton />
-          <WhatsAppButton />
-        </Suspense>
-      </main>
-    </div>
+          <Suspense fallback={<SectionLoader />}>
+            <Services scrollToSection={scrollToSection} />
+            <Projects />
+            <Testimonials />
+            <OffersSection scrollToSection={scrollToSection} />
+            <Process scrollToSection={scrollToSection} />
+            <Skills />
+            <About />
+            <FAQ />
+            <Contact />
+            <Footer />
+            <ScrollToTopButton />
+            <WhatsAppButton />
+          </Suspense>
+        </main>
+      </div>
+    </ErrorBoundary>
   );
 }
 

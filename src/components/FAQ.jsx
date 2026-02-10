@@ -30,8 +30,8 @@ const FAQ = () => {
         en: "How long does it take to create a website?",
       },
       answer: {
-        fr: "Le délai dépend de la complexité du projet. Un site vitrine prend généralement 2-3 semaines, une boutique e-commerce 3-4 semaines, et une application sur mesure 4-8 semaines. Nous établissons un calendrier précis dès le début du projet.",
-        en: "The timeline depends on project complexity. A business website typically takes 2-3 weeks, an e-commerce store 3-4 weeks, and a custom application 4-8 weeks. We establish a precise schedule at the start of the project.",
+        fr: "Le délai dépend de la complexité du projet. Un site vitrine prend généralement 2-3 semaines, une boutique e-commerce 3-4 semaines, et une application sur mesure 4-8 semaines. J'établis un calendrier précis dès le début du projet.",
+        en: "The timeline depends on project complexity. A business website typically takes 2-3 weeks, an e-commerce store 3-4 weeks, and a custom application 4-8 weeks. I establish a precise schedule at the start of the project.",
       },
     },
     {
@@ -66,8 +66,8 @@ const FAQ = () => {
         en: "What are your rates?",
       },
       answer: {
-        fr: "Mes forfaits commencent à 3 500 $ CAD pour un site vitrine et 5 500 $ CAD pour une boutique e-commerce. Les applications sur mesure sont établies sur devis. Je propose aussi des paiements en 2-3 versements pour faciliter votre budget.",
-        en: "My packages start at $3,500 CAD for a business website and $5,500 CAD for an e-commerce store. Custom applications are quoted individually. I also offer payment in 2-3 installments to help with your budget.",
+        fr: "Mes forfaits commencent à 4 500 $ CAD pour un site vitrine et 7 500 $ CAD pour une boutique e-commerce. Les applications sur mesure sont établies sur devis. Je propose aussi des paiements en 2-3 versements pour faciliter votre budget.",
+        en: "My packages start at $4,500 CAD for a business website and $7,500 CAD for an e-commerce store. Custom applications are quoted individually. I also offer payment in 2-3 installments to help with your budget.",
       },
     },
     {
@@ -78,8 +78,8 @@ const FAQ = () => {
         en: "Do you use templates or is everything custom?",
       },
       answer: {
-        fr: "Je développe chaque projet sur mesure selon vos besoins spécifiques. Pas de templates génériques - chaque site est codé from scratch avec React, Vue.js ou Laravel pour garantir performance, évolutivité et unicité.",
-        en: "I develop each project custom to your specific needs. No generic templates - each site is coded from scratch with React, Vue.js, or Laravel to ensure performance, scalability, and uniqueness.",
+        fr: "Je développe chaque projet sur mesure selon vos besoins spécifiques. Pas de templates génériques — chaque site est codé from scratch avec React ou Laravel pour garantir performance, évolutivité et unicité.",
+        en: "I develop each project custom to your specific needs. No generic templates — each site is coded from scratch with React or Laravel to ensure performance, scalability, and uniqueness.",
       },
     },
     {
@@ -114,7 +114,7 @@ const FAQ = () => {
         en: "Will my website be optimized for SEO?",
       },
       answer: {
-        fr: "Oui, tous mes sites incluent une optimisation SEO de base: structure HTML sémantique, balises meta, sitemap, temps de chargement optimisé, responsive design et Core Web Vitals. Pour une stratégie SEO avancée, je peux vous recommander des spécialistes.",
+        fr: "Oui, tous mes sites incluent une optimisation SEO de base : structure HTML sémantique, balises meta, sitemap, temps de chargement optimisé, responsive design et Core Web Vitals. Pour une stratégie SEO avancée, je peux vous recommander des spécialistes.",
         en: "Yes, all my sites include basic SEO optimization: semantic HTML structure, meta tags, sitemap, optimized loading times, responsive design, and Core Web Vitals. For advanced SEO strategy, I can recommend specialists.",
       },
     },
@@ -143,14 +143,14 @@ const FAQ = () => {
               <>
                 Vos questions,{" "}
                 <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  nos réponses
+                  mes réponses
                 </span>
               </>
             ) : (
               <>
                 Your questions,{" "}
                 <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  our answers
+                  answered
                 </span>
               </>
             )}
@@ -163,79 +163,81 @@ const FAQ = () => {
           </p>
         </Reveal>
 
-        {/* FAQ Grid - 2 columns on desktop */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-5">
-          {faqs.map((faq, index) => {
-            const Icon = faq.icon;
-            const isOpen = openIndex === index;
+        {/* FAQ - Two independent columns */}
+        <div className="flex flex-col lg:flex-row gap-4 md:gap-5">
+          {[faqs.slice(0, 4), faqs.slice(4)].map((column, colIndex) => (
+            <div key={colIndex} className="flex-1 space-y-4 md:space-y-5">
+              {column.map((faq, i) => {
+                const index = colIndex * 4 + i;
+                const Icon = faq.icon;
+                const isOpen = openIndex === index;
 
-            return (
-              <Reveal key={index} delay={index * 0.05}>
-                <div
-                  className={`group relative h-full bg-gradient-to-br from-slate-900/90 to-slate-950/90 border rounded-2xl transition-all duration-300 overflow-hidden ${
-                    isOpen
-                      ? "border-violet-500/50 shadow-lg shadow-violet-500/10"
-                      : "border-slate-800/50 hover:border-slate-700/50"
-                  }`}
-                >
-                  {/* Subtle gradient overlay on hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${faq.color} opacity-0 ${isOpen ? 'opacity-[0.03]' : 'group-hover:opacity-[0.02]'} transition-opacity duration-300`} />
-
-                  {/* Question Button */}
-                  <button
-                    onClick={() => toggleFAQ(index)}
-                    className="relative w-full flex items-start gap-4 p-5 md:p-6 text-left"
-                    aria-expanded={isOpen}
-                  >
-                    {/* Icon */}
+                return (
+                  <Reveal key={index} delay={index * 0.05}>
                     <div
-                      className={`flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br ${faq.color} flex items-center justify-center shadow-lg ${isOpen ? 'shadow-violet-500/20' : ''}`}
-                    >
-                      <Icon size={18} className="text-white" />
-                    </div>
-
-                    {/* Question text */}
-                    <div className="flex-1 min-w-0 pt-1">
-                      <span className={`block font-semibold text-sm md:text-base leading-snug transition-colors ${isOpen ? 'text-white' : 'text-slate-200 group-hover:text-white'}`}>
-                        {faq.question[lang]}
-                      </span>
-                    </div>
-
-                    {/* Chevron */}
-                    <div
-                      className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 mt-1 ${
+                      className={`group relative bg-gradient-to-br from-slate-900/90 to-slate-950/90 border rounded-2xl transition-all duration-300 overflow-hidden ${
                         isOpen
-                          ? "bg-violet-500 rotate-180"
-                          : "bg-slate-800/80 group-hover:bg-slate-700"
+                          ? "border-violet-500/50 shadow-lg shadow-violet-500/10"
+                          : "border-slate-800/50 hover:border-slate-700/50"
                       }`}
                     >
-                      <ChevronDown
-                        size={16}
-                        className={`transition-colors ${
-                          isOpen ? "text-white" : "text-slate-400"
-                        }`}
-                      />
-                    </div>
-                  </button>
+                      {/* Subtle gradient overlay */}
+                      <div className={`absolute inset-0 bg-gradient-to-br ${faq.color} opacity-0 ${isOpen ? 'opacity-[0.03]' : 'group-hover:opacity-[0.02]'} transition-opacity duration-300`} />
 
-                  {/* Answer */}
-                  <div
-                    className={`grid transition-all duration-300 ease-in-out ${
-                      isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                    }`}
-                  >
-                    <div className="overflow-hidden">
-                      <div className="px-5 md:px-6 pb-5 md:pb-6 pt-0 pl-[4.5rem] md:pl-[5rem]">
-                        <p className="text-slate-400 text-sm leading-relaxed">
-                          {faq.answer[lang]}
-                        </p>
+                      {/* Question Button */}
+                      <button
+                        onClick={() => toggleFAQ(index)}
+                        className="relative w-full flex items-start gap-4 p-5 md:p-6 text-left"
+                        aria-expanded={isOpen}
+                      >
+                        <div
+                          className={`flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br ${faq.color} flex items-center justify-center shadow-lg ${isOpen ? 'shadow-violet-500/20' : ''}`}
+                        >
+                          <Icon size={18} className="text-white" />
+                        </div>
+
+                        <div className="flex-1 min-w-0 pt-1">
+                          <span className={`block font-semibold text-sm md:text-base leading-snug transition-colors ${isOpen ? 'text-white' : 'text-slate-200 group-hover:text-white'}`}>
+                            {faq.question[lang]}
+                          </span>
+                        </div>
+
+                        <div
+                          className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 mt-1 ${
+                            isOpen
+                              ? "bg-violet-500 rotate-180"
+                              : "bg-slate-800/80 group-hover:bg-slate-700"
+                          }`}
+                        >
+                          <ChevronDown
+                            size={16}
+                            className={`transition-colors ${
+                              isOpen ? "text-white" : "text-slate-400"
+                            }`}
+                          />
+                        </div>
+                      </button>
+
+                      {/* Answer */}
+                      <div
+                        className={`grid transition-all duration-300 ease-in-out ${
+                          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                        }`}
+                      >
+                        <div className="overflow-hidden">
+                          <div className="px-5 md:px-6 pb-5 md:pb-6 pt-0 pl-[3.5rem] md:pl-[5rem]">
+                            <p className="text-slate-400 text-sm leading-relaxed">
+                              {faq.answer[lang]}
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </Reveal>
-            );
-          })}
+                  </Reveal>
+                );
+              })}
+            </div>
+          ))}
         </div>
 
         {/* Bottom CTA */}
@@ -253,8 +255,8 @@ const FAQ = () => {
                   </p>
                   <p className="text-xs md:text-sm text-slate-400">
                     {lang === "fr"
-                      ? "Nous répondons en moins de 24h"
-                      : "We respond within 24h"}
+                      ? "Je réponds en moins de 24h"
+                      : "I respond within 24h"}
                   </p>
                 </div>
               </div>

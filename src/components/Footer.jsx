@@ -50,19 +50,17 @@ const Footer = () => {
   const navLinks = [
     { id: "home", fr: "Accueil", en: "Home" },
     { id: "services", fr: "Services", en: "Services" },
-    { id: "offers", fr: "Forfaits", en: "Packages" },
-    { id: "process", fr: "Méthode", en: "Process" },
     { id: "projects", fr: "Projets", en: "Projects" },
-    { id: "skills", fr: "Compétences", en: "Skills" },
+    { id: "offers", fr: "Forfaits", en: "Pricing" },
     { id: "about", fr: "À propos", en: "About" },
     { id: "contact", fr: "Contact", en: "Contact" },
   ];
 
   const techStack = [
     { name: "React", gradient: "from-cyan-400 to-blue-500" },
-    { name: "Vue", gradient: "from-green-400 to-emerald-500" },
     { name: "Laravel", gradient: "from-red-400 to-orange-500" },
-    { name: "Odoo", gradient: "from-purple-400 to-violet-500" },
+    { name: "Tailwind", gradient: "from-sky-400 to-cyan-500" },
+    { name: "Odoo 17", gradient: "from-purple-400 to-violet-500" },
   ];
 
   // 🔹 Logo (depuis ton site)
@@ -110,16 +108,16 @@ const Footer = () => {
                 </h3>
                 <p className="text-[10px] text-slate-500 uppercase tracking-wider">
                   {lang === "fr"
-                    ? "Studio web moderne"
-                    : "Modern web studio"}
+                    ? "Développeur full-stack"
+                    : "Full-stack developer"}
                 </p>
               </div>
             </button>
 
             <p className="text-sm text-slate-400 leading-relaxed max-w-md">
               {lang === "fr"
-                ? "Studio web moderne basé à Montréal. Sites vitrines, e-commerce et applications sur mesure avec code propre, livraison rapide et support bilingue FR/EN."
-                : "Modern web studio based in Montreal. Landing pages, e-commerce and custom web apps with clean code, fast delivery and bilingual EN/FR support."}
+                ? "Développeur full-stack basé à Montréal. Sites vitrines, e-commerce et applications sur mesure. Code propre, livraison rapide, support bilingue FR/EN."
+                : "Full-stack developer based in Montreal. Business websites, e-commerce and custom web apps. Clean code, fast delivery, bilingual EN/FR support."}
             </p>
 
             <div className="flex flex-col gap-2.5">

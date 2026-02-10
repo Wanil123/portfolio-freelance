@@ -8,7 +8,6 @@ import {
   Palette,
   Code,
   ShoppingCart,
-  Settings,
 } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
 
@@ -20,11 +19,11 @@ const steps = [
     color: "from-cyan-400 to-blue-500",
     fr: {
       title: "Découverte & objectifs",
-      desc: "Nous clarifions votre activité, votre marché, votre public (FR/EN) et surtout ce que le site doit accomplir : vendre, présenter, générer des contacts ou automatiser.",
+      desc: "Je clarifie votre activité, votre marché, votre public (FR/EN) et surtout ce que le site doit accomplir : vendre, présenter ou générer des contacts.",
     },
     en: {
       title: "Discovery & goals",
-      desc: "We clarify your business, target audience (FR/EN) and what the site must do: sell, present, generate leads or automate.",
+      desc: "I clarify your business, target audience (FR/EN) and what the site must do: sell, present or generate leads.",
     },
   },
   {
@@ -34,11 +33,11 @@ const steps = [
     color: "from-emerald-400 to-green-500",
     fr: {
       title: "Plan de projet & devis",
-      desc: "Structure du site ou de l'application, fonctionnalités, technologies (React, Vue, Laravel, WordPress), délais et budget. Tout est formalisé, sans surprise.",
+      desc: "Structure du site, fonctionnalités, technologies (React, Laravel, Tailwind), délais et budget. Tout est formalisé, sans surprise.",
     },
     en: {
       title: "Project plan & estimate",
-      desc: "Site/app structure, features, stack (React, Vue, Laravel, WordPress), timeline and budget. Everything is written, no surprises.",
+      desc: "Site structure, features, stack (React, Laravel, Tailwind), timeline and budget. Everything is written, no surprises.",
     },
   },
   {
@@ -62,11 +61,11 @@ const steps = [
     color: "from-violet-400 to-purple-500",
     fr: {
       title: "Développement du site / app",
-      desc: "Intégration soignée en React/Vue ou WordPress, animations, responsive, formulaires de contact, bilingue FR/EN. Code versionné et propre.",
+      desc: "Intégration soignée en React + Tailwind ou Laravel, animations, responsive, formulaires de contact, bilingue FR/EN. Code versionné et propre.",
     },
     en: {
       title: "Website / app development",
-      desc: "Clean React/Vue or WordPress build, animations, responsive, contact forms, FR/EN. Versioned code.",
+      desc: "Clean React + Tailwind or Laravel build, animations, responsive, contact forms, FR/EN. Versioned code.",
     },
   },
   {
@@ -76,25 +75,11 @@ const steps = [
     color: "from-orange-400 to-amber-500",
     fr: {
       title: "E-commerce & intégrations",
-      desc: "Boutique en ligne (WooCommerce / Laravel), paiement (Stripe), connexion à vos outils (CRM, API, automatisations e-mail). Conçu pour convertir.",
+      desc: "Boutique en ligne avec Laravel, paiement (Stripe), connexion à vos outils (CRM, Odoo, API, automatisations e-mail). Conçu pour convertir.",
     },
     en: {
       title: "E-commerce & integrations",
-      desc: "Online shop (WooCommerce / Laravel), payments (Stripe), CRM/API connections, email automations. Built to sell.",
-    },
-  },
-  {
-    id: "06",
-    key: "odoo",
-    icon: Settings,
-    color: "from-indigo-400 to-blue-500",
-    fr: {
-      title: "Odoo / ERP & maintenance",
-      desc: "Pour les entreprises qui souhaitent aller plus loin : portails clients bilingues, modules Odoo 17 sur mesure, accompagnement et mises à jour.",
-    },
-    en: {
-      title: "Odoo / ERP & maintenance",
-      desc: "For companies that need more: bilingual customer portals, custom Odoo 17 modules, support and updates.",
+      desc: "Online shop with Laravel, payments (Stripe), CRM/Odoo/API connections, email automations. Built to sell.",
     },
   },
 ];
@@ -122,7 +107,7 @@ const included = {
 
 const Process = ({ id = "process", scrollToSection }) => {
   const { i18n } = useTranslation();
-  const lang = i18n.language?.startsWith("en") ? "en" : "fr";
+  const lang = i18n.language?.startsWith("fr") ? "fr" : "en";
 
   const handleQuoteClick = () => {
     if (scrollToSection) {
@@ -176,51 +161,49 @@ const Process = ({ id = "process", scrollToSection }) => {
           </p>
         </Reveal>
 
-        {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {steps.map((step, index) => {
-            const content = step[lang];
-            const Icon = step.icon;
+        {/* Steps Timeline */}
+        <div className="relative max-w-4xl mx-auto mb-16">
+          {/* Vertical connecting line */}
+          <div className="absolute left-7 md:left-9 top-6 bottom-6 w-px bg-gradient-to-b from-cyan-500/30 via-violet-500/40 to-orange-500/30" />
 
-            return (
-              <Reveal key={step.key} delay={index * 0.08}>
-                <div className="group relative h-full">
-                  {/* Glow effect on hover */}
-                  <div className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 bg-gradient-to-br from-violet-500/20 via-purple-500/10 to-transparent rounded-2xl blur-xl transition-opacity duration-500" />
+          <div className="space-y-5 md:space-y-6">
+            {steps.map((step, index) => {
+              const content = step[lang];
+              const Icon = step.icon;
 
-                  <div className="relative h-full bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-2xl p-6 hover:border-violet-400/50 transition-all duration-300 overflow-hidden">
-                    {/* Header with icon and number */}
-                    <div className="flex items-start gap-4 mb-4">
+              return (
+                <Reveal key={step.key} delay={index * 0.08}>
+                  <div className="group relative flex gap-4 md:gap-6">
+                    {/* Step icon */}
+                    <div className="relative z-10 flex-shrink-0">
                       <div
-                        className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${step.color} bg-opacity-10 border border-white/10 flex-shrink-0 group-hover:scale-110 transition-transform`}
+                        className={`flex h-14 w-14 md:h-[4.5rem] md:w-[4.5rem] items-center justify-center rounded-2xl bg-gradient-to-br ${step.color} shadow-lg group-hover:scale-105 transition-transform duration-300`}
                       >
-                        <Icon
-                          size={20}
-                          className={`bg-gradient-to-br ${step.color} bg-clip-text text-transparent`}
-                        />
-                      </div>
-
-                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-violet-500/10 border border-violet-400/30 text-violet-200 text-sm font-bold flex-shrink-0">
-                        {step.id}
+                        <Icon size={26} className="text-white" />
                       </div>
                     </div>
 
-                    <h3 className="text-lg md:text-xl font-bold text-white mb-3 leading-tight">
-                      {content.title}
-                    </h3>
-
-                    <p className="text-sm text-slate-300 leading-relaxed">
-                      {content.desc}
-                    </p>
-
-                    <div
-                      className={`mt-4 h-1 w-12 rounded-full bg-gradient-to-r ${step.color} opacity-50 group-hover:opacity-100 group-hover:w-20 transition-all`}
-                    />
+                    {/* Content card */}
+                    <div className="flex-1 min-w-0">
+                      <div className="bg-gradient-to-br from-slate-900/80 to-slate-950/80 border border-slate-800/50 rounded-2xl p-5 md:p-6 group-hover:border-violet-400/30 transition-all duration-300">
+                        <span
+                          className={`inline-block text-xs font-bold uppercase tracking-widest bg-gradient-to-r ${step.color} bg-clip-text text-transparent mb-1.5`}
+                        >
+                          {lang === "fr" ? `Étape ${step.id}` : `Step ${step.id}`}
+                        </span>
+                        <h3 className="text-base md:text-lg font-bold text-white mb-2 leading-tight">
+                          {content.title}
+                        </h3>
+                        <p className="text-sm text-slate-400 leading-relaxed">
+                          {content.desc}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </Reveal>
-            );
-          })}
+                </Reveal>
+              );
+            })}
+          </div>
         </div>
 
         {/* Bottom Section - What's Included + CTA */}
@@ -277,8 +260,8 @@ const Process = ({ id = "process", scrollToSection }) => {
                       </h4>
                       <p className="text-sm text-slate-300 mb-4">
                         {lang === "fr"
-                          ? "Parlez-nous de votre projet et recevez une estimation détaillée sous 48h."
-                          : "Tell us about your project and receive a detailed estimate within 48 hours."}
+                          ? "Parlez-moi de votre projet et recevez une estimation détaillée sous 48h."
+                          : "Tell me about your project and receive a detailed estimate within 48 hours."}
                       </p>
                       <button
                         onClick={handleQuoteClick}
@@ -301,8 +284,8 @@ const Process = ({ id = "process", scrollToSection }) => {
                           <div className="h-8 w-8 rounded-full bg-gradient-to-br from-violet-400 to-purple-500 flex items-center justify-center text-xs font-bold text-white border-2 border-slate-950">
                             R
                           </div>
-                          <div className="h-8 w-8 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-xs font-bold text-white border-2 border-slate-950">
-                            V
+                          <div className="h-8 w-8 rounded-full bg-gradient-to-br from-sky-400 to-cyan-500 flex items-center justify-center text-xs font-bold text-white border-2 border-slate-950">
+                            T
                           </div>
                           <div className="h-8 w-8 rounded-full bg-gradient-to-br from-orange-400 to-amber-500 flex items-center justify-center text-xs font-bold text-white border-2 border-slate-950">
                             L
@@ -315,7 +298,7 @@ const Process = ({ id = "process", scrollToSection }) => {
                               : "Modern stack"}
                           </p>
                           <p className="text-xs text-slate-400">
-                            React · Vue · Laravel
+                            React · Tailwind · Laravel
                           </p>
                         </div>
                       </div>

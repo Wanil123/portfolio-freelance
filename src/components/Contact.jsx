@@ -116,10 +116,14 @@ const Contact = () => {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          budget: formData.budget || "Non spécifié",
+          budget: formData.budget || (lang === "fr" ? "Non spécifié" : "Not specified"),
           message: formData.message,
-          _subject: `🚀 Nouveau message de ${formData.name} - PrimeDev Studios`,
+          _subject: lang === "fr"
+            ? `Nouveau message de ${formData.name} — PrimeDev Studios`
+            : `New message from ${formData.name} — PrimeDev Studios`,
+          _replyto: formData.email,
           _template: "table",
+          _honeypot: "",
         }),
       });
 
@@ -175,8 +179,8 @@ const Contact = () => {
 
           <p className="text-slate-300 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             {lang === "fr"
-              ? "Parlez-nous de votre projet web. Nous vous revenons rapidement avec un plan d'action et une estimation détaillée."
-              : "Tell us about your web project. We'll get back to you quickly with an action plan and detailed estimate."}
+              ? "Décrivez-moi votre projet web. Je vous reviens rapidement avec un plan d'action et une estimation détaillée."
+              : "Tell me about your web project. I'll get back to you quickly with an action plan and detailed estimate."}
           </p>
         </Reveal>
 
@@ -191,32 +195,28 @@ const Contact = () => {
                 <div className="mb-6">
                   <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
                     {lang === "fr"
-                      ? "Envoyez-nous un message"
-                      : "Send us a message"}
+                      ? "Envoyez-moi un message"
+                      : "Send me a message"}
                   </h3>
                   <p className="text-slate-400 text-sm">
                     {lang === "fr"
-                      ? "Décrivez votre projet et nous vous répondons sous 24h."
-                      : "Describe your project and we'll respond within 24h."}
+                      ? "Décrivez votre projet et je vous réponds sous 24h."
+                      : "Describe your project and I'll respond within 24h."}
                   </p>
                 </div>
 
-                {/* Netlify Form */}
                 <form
-                  name="contact"
-                  method="POST"
-                  data-netlify="true"
-                  netlify-honeypot="bot-field"
                   onSubmit={handleSubmit}
                   className="space-y-5"
                 >
-                  {/* Hidden field for Netlify */}
-                  <input type="hidden" name="form-name" value="contact" />
-                  <p className="hidden">
-                    <label>
-                      Don't fill this out: <input name="bot-field" />
-                    </label>
-                  </p>
+                  {/* Honeypot anti-spam (hidden from users) */}
+                  <input
+                    type="text"
+                    name="_honeypot"
+                    style={{ display: "none" }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
 
                   {/* Name */}
                   <div>
@@ -247,7 +247,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      placeholder="email@exemple.com"
+                      placeholder={lang === "fr" ? "email@exemple.com" : "email@example.com"}
                       className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-white placeholder-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all"
                     />
                   </div>
@@ -322,27 +322,29 @@ const Contact = () => {
                   </button>
 
                   {/* Status Messages */}
-                  {formStatus === "success" && (
-                    <div className="flex items-center gap-3 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30">
-                      <CheckCircle2 size={20} className="text-emerald-400 flex-shrink-0" />
-                      <p className="text-sm text-emerald-300">
-                        {lang === "fr"
-                          ? "Message envoyé avec succès! Nous vous répondrons sous 24h."
-                          : "Message sent successfully! We'll respond within 24h."}
-                      </p>
-                    </div>
-                  )}
+                  <div aria-live="polite" aria-atomic="true">
+                    {formStatus === "success" && (
+                      <div className="flex items-center gap-3 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30">
+                        <CheckCircle2 size={20} className="text-emerald-400 flex-shrink-0" />
+                        <p className="text-sm text-emerald-300">
+                          {lang === "fr"
+                            ? "Message envoyé avec succès! Je vous réponds sous 24h."
+                            : "Message sent successfully! I'll respond within 24h."}
+                        </p>
+                      </div>
+                    )}
 
-                  {formStatus === "error" && (
-                    <div className="flex items-center gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/30">
-                      <AlertCircle size={20} className="text-red-400 flex-shrink-0" />
-                      <p className="text-sm text-red-300">
-                        {lang === "fr"
-                          ? "Erreur lors de l'envoi. Veuillez réessayer ou nous contacter directement."
-                          : "Error sending message. Please try again or contact us directly."}
-                      </p>
-                    </div>
-                  )}
+                    {formStatus === "error" && (
+                      <div className="flex items-center gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/30">
+                        <AlertCircle size={20} className="text-red-400 flex-shrink-0" />
+                        <p className="text-sm text-red-300">
+                          {lang === "fr"
+                            ? "Erreur lors de l'envoi. Veuillez réessayer ou contactez-moi directement."
+                            : "Error sending message. Please try again or contact me directly."}
+                        </p>
+                      </div>
+                    )}
+                  </div>
                 </form>
               </div>
             </div>
@@ -355,7 +357,7 @@ const Contact = () => {
               <div className="relative">
                 <div className="relative bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-2xl p-6 backdrop-blur-sm">
                   <h4 className="text-lg font-semibold text-white mb-4">
-                    {lang === "fr" ? "Ou contactez-nous directement" : "Or contact us directly"}
+                    {lang === "fr" ? "Ou contactez-moi directement" : "Or contact me directly"}
                   </h4>
                   <div className="space-y-3">
                     {contactMethods.map((method, idx) => {
@@ -494,8 +496,8 @@ const Contact = () => {
                     </h4>
                     <p className="text-xs md:text-sm text-slate-400">
                       {lang === "fr"
-                        ? "Nous répondons rapidement à chaque demande."
-                        : "We respond quickly to every request."}
+                        ? "Je réponds rapidement à chaque demande."
+                        : "I respond quickly to every request."}
                     </p>
                   </div>
                 </div>

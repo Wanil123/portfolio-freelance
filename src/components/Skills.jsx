@@ -7,10 +7,8 @@ import {
   Globe2,
   ShieldCheck,
   Layers,
-  Network,
   Sparkles,
   TrendingUp,
-  Zap,
 } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
 
@@ -43,9 +41,8 @@ export default function Skills() {
         { name: "HTML5 / CSS3", color: "from-orange-400 to-red-500" },
         { name: "JavaScript (ES6+)", color: "from-yellow-400 to-orange-500" },
         { name: "React", color: "from-cyan-400 to-blue-500" },
-        { name: "Vue.js 3", color: "from-green-400 to-emerald-500" },
         { name: "Tailwind CSS", color: "from-sky-400 to-cyan-500" },
-        { name: "Bootstrap", color: "from-purple-400 to-violet-500" },
+        { name: "Framer Motion", color: "from-purple-400 to-violet-500" },
       ],
     },
     {
@@ -74,38 +71,36 @@ export default function Skills() {
       bgColor: "bg-cyan-500/10",
       borderColor: "border-cyan-500/30",
       iconColor: "text-cyan-300",
-      title: lang === "fr" ? "CMS & Déploiement" : "CMS & Deployment",
+      title: lang === "fr" ? "Outils & Déploiement" : "Tools & Deployment",
       subtitle: lang === "fr" ? "Livraison rapide & SEO" : "Fast delivery & SEO",
       description: lang === "fr"
-        ? "WordPress, sites headless et déploiements optimisés pour la visibilité."
-        : "WordPress, headless sites and optimized deployments for visibility.",
+        ? "Déploiements optimisés, versionnement et SEO pour une visibilité maximale."
+        : "Optimized deployments, version control and SEO for maximum visibility.",
       skills: [
-        { name: "WordPress", color: "from-slate-400 to-slate-600" },
-        { name: "Headless CMS", color: "from-cyan-400 to-blue-500" },
-        { name: "i18n (FR/EN)", color: "from-violet-400 to-purple-500" },
-        { name: "SEO", color: "from-green-400 to-emerald-500" },
         { name: "Git / GitHub", color: "from-orange-400 to-amber-500" },
         { name: "Netlify / Vercel", color: "from-teal-400 to-cyan-500" },
+        { name: "i18n (FR/EN)", color: "from-violet-400 to-purple-500" },
+        { name: "SEO", color: "from-green-400 to-emerald-500" },
+        { name: "Vite", color: "from-yellow-400 to-orange-500" },
+        { name: "Figma", color: "from-pink-400 to-rose-500" },
       ],
     },
     {
-      icon: Network,
+      icon: Server,
       color: "from-orange-400 to-amber-500",
       bgColor: "bg-orange-500/10",
       borderColor: "border-orange-500/30",
       iconColor: "text-orange-300",
-      title: lang === "fr" ? "Odoo & ERP" : "Odoo & ERP",
-      subtitle: lang === "fr" ? "Intégrations avancées" : "Advanced integrations",
+      title: "Odoo 17",
+      subtitle: lang === "fr" ? "ERP & portails clients" : "ERP & client portals",
       description: lang === "fr"
-        ? "Modules Odoo 17, portails clients, connexions ERP ↔ site web."
-        : "Odoo 17 modules, customer portals, ERP ↔ website connections.",
+        ? "Modules sur mesure, portails clients bilingues et connexions ERP ↔ site web."
+        : "Custom modules, bilingual client portals and ERP ↔ website connections.",
       skills: [
         { name: "Odoo 17", color: "from-purple-400 to-violet-500" },
         { name: lang === "fr" ? "Modules custom" : "Custom modules", color: "from-indigo-400 to-purple-500" },
         { name: lang === "fr" ? "Portails clients" : "Client portals", color: "from-cyan-400 to-blue-500" },
         { name: "QWeb / OWL", color: "from-violet-400 to-purple-500" },
-        { name: "PDF", color: "from-red-400 to-orange-500" },
-        { name: "API Odoo", color: "from-blue-400 to-cyan-500" },
       ],
     },
   ];
@@ -173,8 +168,8 @@ export default function Skills() {
 
           <p className="text-slate-300 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             {lang === "fr"
-              ? "Technologies front-end, back-end et ERP pour créer des solutions web complètes et performantes, livrées en bilingue."
-              : "Front-end, back-end and ERP technologies to create complete, high-performance web solutions, delivered bilingually."}
+              ? "Technologies front-end et back-end que j'utilise au quotidien pour créer des solutions web performantes, livrées en bilingue."
+              : "Front-end and back-end technologies I use daily to create high-performance web solutions, delivered bilingually."}
           </p>
         </Reveal>
 
@@ -240,7 +235,7 @@ export default function Skills() {
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-400/30 text-violet-200 text-xs md:text-sm font-medium mb-3">
                   <Sparkles size={14} />
-                  <span>{lang === "fr" ? "Notre engagement" : "Our commitment"}</span>
+                  <span>{lang === "fr" ? "Mon engagement" : "My commitment"}</span>
                 </div>
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
                   {lang === "fr" ? "Ce que vous obtenez avec chaque projet" : "What you get with every project"}
@@ -274,38 +269,6 @@ export default function Skills() {
                 })}
               </div>
 
-              {/* Bottom stats */}
-              <div className="mt-8 pt-8 border-t border-slate-800/50">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-                  <div>
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                      <Zap size={20} className="text-violet-400" />
-                      <p className="text-3xl font-bold text-white">20+</p>
-                    </div>
-                    <p className="text-sm text-slate-400">
-                      {lang === "fr" ? "Technologies maîtrisées" : "Technologies mastered"}
-                    </p>
-                  </div>
-                  <div>
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                      <Globe2 size={20} className="text-cyan-400" />
-                      <p className="text-3xl font-bold text-white">2</p>
-                    </div>
-                    <p className="text-sm text-slate-400">
-                      {lang === "fr" ? "Langues (FR/EN)" : "Languages (FR/EN)"}
-                    </p>
-                  </div>
-                  <div>
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                      <TrendingUp size={20} className="text-emerald-400" />
-                      <p className="text-3xl font-bold text-white">100%</p>
-                    </div>
-                    <p className="text-sm text-slate-400">
-                      {lang === "fr" ? "Code production-ready" : "Production-ready code"}
-                    </p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </Reveal>

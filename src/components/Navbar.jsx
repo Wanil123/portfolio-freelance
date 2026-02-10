@@ -6,11 +6,10 @@ import { useTranslation } from "react-i18next";
 const links = [
   { id: "home", en: "Home", fr: "Accueil" },
   { id: "services", en: "Services", fr: "Services" },
-  { id: "process", en: "Process", fr: "Processus" },
-  { id: "skills", en: "Skills", fr: "Compétences" },
   { id: "projects", en: "Projects", fr: "Projets" },
-  { id: "contact", en: "Contact", fr: "Contact" },
+  { id: "offers", en: "Pricing", fr: "Forfaits" },
   { id: "about", en: "About", fr: "À propos" },
+  { id: "contact", en: "Contact", fr: "Contact" },
 ];
 
 const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
@@ -52,8 +51,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
               alt="PrimeDev Studios"
               width={56}
               height={56}
-              style={{ width: '56px', height: '56px', minWidth: '56px', minHeight: '56px', objectFit: 'contain' }}
-              className="relative rounded-2xl shadow-xl border-2 border-violet-500/50 group-hover:border-violet-400/80 group-hover:scale-105 transition-all duration-300"
+              className="relative w-10 h-10 md:w-14 md:h-14 object-contain rounded-2xl shadow-xl border-2 border-violet-500/50 group-hover:border-violet-400/80 group-hover:scale-105 transition-all duration-300"
             />
           </div>
 
@@ -95,7 +93,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
         <button
           className="md:hidden text-white"
           onClick={() => setIsOpen((p) => !p)}
-          aria-label="Toggle navigation"
+          aria-label={lang === "fr" ? "Ouvrir le menu" : "Toggle navigation"}
         >
           {isOpen ? <X /> : <Menu />}
         </button>
@@ -103,7 +101,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
 
       {/* MOBILE MENU */}
       {isOpen && (
-        <div className="md:hidden bg-slate-950/95 border-t border-slate-800">
+        <div className="md:hidden bg-slate-950/95 border-t border-slate-800 max-h-[calc(100vh-60px)] overflow-y-auto">
           {links.map((link) => {
             const isActive = activeSection === link.id;
             return (

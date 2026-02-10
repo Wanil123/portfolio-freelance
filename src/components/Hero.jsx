@@ -1,12 +1,9 @@
 // src/components/Hero.jsx
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight, Zap, Globe2, Shield, CheckCircle2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
-
 const Hero = ({ scrollToSection }) => {
   const { i18n } = useTranslation();
   const lang = i18n.language?.startsWith("fr") ? "fr" : "en";
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   return (
     <section
@@ -84,11 +81,11 @@ const Hero = ({ scrollToSection }) => {
         {/* Subtitle */}
         <p className="text-lg md:text-xl lg:text-2xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up animation-delay-200">
           {lang === "fr"
-            ? "Studio web spécialisé en sites vitrines et e-commerce. Design moderne, code propre, livraison rapide."
-            : "Web studio specialized in business websites and e-commerce. Modern design, clean code, fast delivery."}
+            ? "Développeur full-stack à Montréal. Des sites et e-commerces conçus pour transformer vos visiteurs en clients — livrés clé en main."
+            : "Full-stack developer in Montréal. Websites and e-commerce stores designed to turn visitors into customers — delivered turnkey."}
         </p>
 
-        {/* Single Primary CTA */}
+        {/* CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up animation-delay-400">
           <button
             onClick={() => scrollToSection("contact")}
@@ -104,34 +101,50 @@ const Hero = ({ scrollToSection }) => {
 
           <button
             onClick={() => scrollToSection("projects")}
-            className="group flex items-center gap-2 px-6 py-4 text-slate-300 hover:text-white font-medium transition-colors active:scale-95"
+            className="group flex items-center gap-2 px-6 py-4 rounded-xl border border-slate-700/50 hover:border-violet-500/50 text-slate-300 hover:text-white font-medium transition-all active:scale-95"
           >
-            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-800/50 border border-slate-700 group-hover:border-violet-500/50 group-hover:bg-slate-800 transition-all">
-              <Play size={16} className="text-violet-400 ml-0.5" />
-            </div>
             <span>{lang === "fr" ? "Voir les projets" : "View projects"}</span>
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
 
-        {/* Trust Indicators */}
-        <div className="mt-16 flex flex-wrap items-center justify-center gap-6 md:gap-10 animate-fade-in-up animation-delay-600">
-          <div className="flex items-center gap-2 text-slate-400 text-sm">
-            <svg className="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span>{lang === "fr" ? "Livraison 2-4 sem." : "2-4 weeks delivery"}</span>
-          </div>
-          <div className="flex items-center gap-2 text-slate-400 text-sm">
-            <svg className="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span>{lang === "fr" ? "Bilingue FR/EN" : "Bilingual FR/EN"}</span>
-          </div>
-          <div className="flex items-center gap-2 text-slate-400 text-sm">
-            <svg className="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span>{lang === "fr" ? "Support 30 jours" : "30-day support"}</span>
+        {/* Social proof */}
+        <div className="mt-14 flex flex-col items-center gap-5 animate-fade-in-up animation-delay-600">
+          {/* Real project proof */}
+          <button
+            onClick={() => scrollToSection("projects")}
+            className="group inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-slate-900/60 border border-slate-800/50 hover:border-violet-500/30 backdrop-blur-sm transition-all"
+          >
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex-shrink-0">
+              <CheckCircle2 size={14} className="text-emerald-400" />
+            </div>
+            <div className="text-left">
+              <p className="text-[10px] text-slate-500 uppercase tracking-wider font-medium">
+                {lang === "fr" ? "Dernier projet livré" : "Latest project shipped"}
+              </p>
+              <p className="text-sm font-medium text-white group-hover:text-violet-300 transition-colors">
+                LamIPict.com — {lang === "fr" ? "E-commerce en production" : "E-commerce in production"}
+              </p>
+            </div>
+            <ArrowRight size={14} className="text-slate-600 group-hover:text-violet-400 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+          </button>
+
+          {/* Key benefits */}
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 text-sm text-slate-400">
+            <span className="flex items-center gap-1.5">
+              <Zap size={14} className="text-violet-400" />
+              {lang === "fr" ? "Livraison 2-4 sem." : "2-4 weeks delivery"}
+            </span>
+            <span className="hidden sm:block w-px h-3.5 bg-slate-700" />
+            <span className="flex items-center gap-1.5">
+              <Globe2 size={14} className="text-violet-400" />
+              {lang === "fr" ? "Bilingue FR/EN" : "Bilingual FR/EN"}
+            </span>
+            <span className="hidden sm:block w-px h-3.5 bg-slate-700" />
+            <span className="flex items-center gap-1.5">
+              <Shield size={14} className="text-violet-400" />
+              {lang === "fr" ? "Satisfaction garantie" : "Satisfaction guaranteed"}
+            </span>
           </div>
         </div>
 
