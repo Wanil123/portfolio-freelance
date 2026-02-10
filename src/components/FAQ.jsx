@@ -164,7 +164,7 @@ const FAQ = () => {
         </Reveal>
 
         {/* FAQ - Two independent columns */}
-        <div className="flex flex-col lg:flex-row gap-4 md:gap-5">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-5">
           {[faqs.slice(0, 4), faqs.slice(4)].map((column, colIndex) => (
             <div key={colIndex} className="flex-1 space-y-4 md:space-y-5">
               {column.map((faq, i) => {

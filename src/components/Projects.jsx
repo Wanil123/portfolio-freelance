@@ -253,11 +253,13 @@ const Projects = () => {
               </div>
             </Reveal>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mb-8 md:mb-12">
+            <div className="flex flex-wrap gap-3 md:gap-6 mb-8 md:mb-12">
               {featuredProjects.map((p, index) => (
-                <Reveal key={p.id} delay={index * 0.1}>
-                  {renderCard(p)}
-                </Reveal>
+                <div key={p.id} className="w-[calc(50%-6px)]">
+                  <Reveal delay={index * 0.1}>
+                    {renderCard(p)}
+                  </Reveal>
+                </div>
               ))}
             </div>
           </>
@@ -276,11 +278,13 @@ const Projects = () => {
               </div>
             </Reveal>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+            <div className="flex flex-wrap gap-3 md:gap-6">
               {otherProjects.map((p, index) => (
-                <Reveal key={p.id} delay={index * 0.1}>
-                  {renderCard(p)}
-                </Reveal>
+                <div key={p.id} className="w-[calc(50%-6px)]">
+                  <Reveal delay={index * 0.1}>
+                    {renderCard(p)}
+                  </Reveal>
+                </div>
               ))}
             </div>
           </>

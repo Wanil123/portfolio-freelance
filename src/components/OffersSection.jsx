@@ -462,10 +462,11 @@ const OffersSection = ({ scrollToSection }) => {
         {/* ─── PRICING CARDS ─── */}
         <div
           key={activeTab}
-          className="grid gap-6 md:gap-8 lg:grid-cols-3 mb-12"
+          className="flex flex-wrap gap-4 md:gap-6 lg:gap-8 mb-12"
         >
           {offers.map((offer, index) => (
-            <Reveal key={`${activeTab}-${offer.name}`} delay={index * 0.1}>
+            <div key={`${activeTab}-${offer.name}`} className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-22px)]">
+            <Reveal delay={index * 0.1}>
               <div
                 className={`relative group h-full ${
                   offer.popular ? "lg:-mt-4 lg:mb-4" : ""
@@ -590,6 +591,7 @@ const OffersSection = ({ scrollToSection }) => {
                 </div>
               </div>
             </Reveal>
+            </div>
           ))}
         </div>
 
