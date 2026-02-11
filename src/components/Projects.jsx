@@ -255,7 +255,7 @@ const Projects = () => {
 
             <div className="flex flex-wrap gap-3 md:gap-6 mb-8 md:mb-12">
               {featuredProjects.map((p, index) => (
-                <div key={p.id} className="w-[calc(50%-6px)]">
+                <div key={p.id} className="w-[calc(50%-6px)] md:w-[calc(50%-12px)]">
                   <Reveal delay={index * 0.1}>
                     {renderCard(p)}
                   </Reveal>
@@ -280,7 +280,7 @@ const Projects = () => {
 
             <div className="flex flex-wrap gap-3 md:gap-6">
               {otherProjects.map((p, index) => (
-                <div key={p.id} className="w-[calc(50%-6px)]">
+                <div key={p.id} className="w-[calc(50%-6px)] md:w-[calc(50%-12px)]">
                   <Reveal delay={index * 0.1}>
                     {renderCard(p)}
                   </Reveal>
