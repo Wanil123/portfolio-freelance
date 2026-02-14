@@ -144,6 +144,94 @@ export const projects = [
     featured: true,
   },
   {
+    id: 6,
+    key: "maison-elysee",
+    title: {
+      en: "Maison Élysée — Luxury Fashion Boutique",
+      fr: "Maison Élysée — Boutique Mode Luxe",
+    },
+    subtitle: {
+      en: "WordPress Development",
+      fr: "Développement WordPress",
+    },
+    context: {
+      en: "WordPress custom development",
+      fr: "Développement WordPress sur mesure",
+    },
+    description: {
+      en: "WordPress e-commerce showcase for a fictional haute couture fashion house. Botiga child theme, custom plugin with shortcodes, elegant design and seamless FR/EN bilingual navigation.",
+      fr: "Vitrine e-commerce WordPress pour une maison de haute couture fictive. Thème enfant Botiga, plugin sur mesure avec shortcodes, design élégant et navigation bilingue FR/EN.",
+    },
+    tech: ["WordPress", "PHP 8", "CSS3", "JavaScript", "Botiga", "MySQL"],
+    features: {
+      en: [
+        "Botiga child theme with custom design",
+        "Custom plugin with shortcodes",
+        "Bilingual interface (FR/EN)",
+        "Intersection Observer scroll animations",
+        "Responsive luxury design",
+        "Google Fonts (Playfair Display, Montserrat)",
+      ],
+      fr: [
+        "Thème enfant Botiga avec design sur mesure",
+        "Plugin custom avec shortcodes",
+        "Interface bilingue (FR/EN)",
+        "Animations au scroll avec Intersection Observer",
+        "Design luxe responsive",
+        "Google Fonts (Playfair Display, Montserrat)",
+      ],
+    },
+    link: "https://maison-elysee.infinityfreeapp.com",
+    github: "https://github.com/Wanil123/maison-elysee",
+    icon: "👗",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=500&fit=crop&q=80",
+    featured: true,
+  },
+  {
+    id: 7,
+    key: "ciel-dore",
+    title: {
+      en: "Le Ciel Doré — 5-Star Restaurant",
+      fr: "Le Ciel Doré — Restaurant 5 Étoiles",
+    },
+    subtitle: {
+      en: "WordPress Development",
+      fr: "Développement WordPress",
+    },
+    context: {
+      en: "WordPress custom development",
+      fr: "Développement WordPress sur mesure",
+    },
+    description: {
+      en: "WordPress showcase for a fictional Mediterranean fine-dining restaurant. Custom post types for dishes & events, categorized menu card, online reservation system and FR/EN bilingual interface.",
+      fr: "Site vitrine WordPress pour un restaurant gastronomique méditerranéen fictif. Types de contenu personnalisés, carte des menus par catégorie, réservation en ligne et interface bilingue FR/EN.",
+    },
+    tech: ["WordPress", "PHP 8", "CSS3", "JavaScript", "Botiga", "MySQL"],
+    features: {
+      en: [
+        "Custom Post Types (dishes, events)",
+        "Custom taxonomies (categories, cuisines)",
+        "Online reservation form",
+        "Dynamic menu card by category",
+        "Bilingual interface (FR/EN)",
+        "Scroll animations & page loader",
+      ],
+      fr: [
+        "Types de contenu personnalisés (plats, événements)",
+        "Taxonomies custom (catégories, cuisines)",
+        "Formulaire de réservation en ligne",
+        "Carte des menus dynamique par catégorie",
+        "Interface bilingue (FR/EN)",
+        "Animations au scroll & loader de page",
+      ],
+    },
+    link: "http://le-ciel-dore.kesug.com",
+    github: "https://github.com/Wanil123/le-ciel-dore",
+    icon: "🍽️",
+    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=500&fit=crop&q=80",
+    featured: true,
+  },
+  {
     id: 4,
     key: "music",
     title: {
