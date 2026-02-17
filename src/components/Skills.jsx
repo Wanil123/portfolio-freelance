@@ -9,6 +9,7 @@ import {
   Layers,
   Sparkles,
   TrendingUp,
+  Bot,
 } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
 
@@ -83,6 +84,26 @@ export default function Skills() {
         { name: "SEO", color: "from-green-400 to-emerald-500" },
         { name: "Vite", color: "from-yellow-400 to-orange-500" },
         { name: "Figma", color: "from-pink-400 to-rose-500" },
+      ],
+    },
+    {
+      icon: Bot,
+      color: "from-pink-400 to-rose-500",
+      bgColor: "bg-pink-500/10",
+      borderColor: "border-pink-500/30",
+      iconColor: "text-pink-300",
+      title: lang === "fr" ? "IA & Automatisation" : "AI & Automation",
+      subtitle: lang === "fr" ? "Solutions IA pour PME" : "AI solutions for SMBs",
+      description: lang === "fr"
+        ? "Chatbots, agents vocaux, automatisation CRM et workflows IA sur mesure."
+        : "Chatbots, voice agents, CRM automation and custom AI workflows.",
+      skills: [
+        { name: "n8n / Make.com", color: "from-orange-400 to-red-500" },
+        { name: "OpenAI / Claude", color: "from-green-400 to-emerald-500" },
+        { name: "Retell AI", color: "from-blue-400 to-indigo-500" },
+        { name: "Voiceflow", color: "from-purple-400 to-violet-500" },
+        { name: lang === "fr" ? "Agents vocaux" : "Voice Agents", color: "from-cyan-400 to-blue-500" },
+        { name: lang === "fr" ? "Automatisation CRM" : "CRM Automation", color: "from-pink-400 to-rose-500" },
       ],
     },
     {

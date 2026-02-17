@@ -51,6 +51,96 @@ export const projects = [
     isClientProject: true,
   },
 
+  // === AI AUTOMATION DEMOS ===
+  {
+    id: 8,
+    key: "renoconnect-ai",
+    title: {
+      en: "RénoConnect AI — AI Receptionist Agent",
+      fr: "RénoConnect AI — Agent IA Réceptionniste",
+    },
+    subtitle: {
+      en: "AI Automation",
+      fr: "Automatisation IA",
+    },
+    context: {
+      en: "AI automation demo — Renovation industry",
+      fr: "Démo automatisation IA — Industrie rénovation",
+    },
+    description: {
+      en: "AI receptionist agent for a renovation company. Handles incoming calls 24/7, qualifies leads with AI scoring, books appointments automatically and syncs with CRM. Interactive demo with live conversation simulation.",
+      fr: "Agent IA réceptionniste pour entreprise de rénovation. Gère les appels entrants 24/7, qualifie les leads avec scoring IA, prend les rendez-vous automatiquement et synchronise avec le CRM. Démo interactive avec simulation de conversation en direct.",
+    },
+    tech: ["React", "n8n", "Retell AI", "OpenAI", "Twilio", "Google Calendar API"],
+    features: {
+      en: [
+        "24/7 AI-powered call answering",
+        "Automatic lead qualification with scoring",
+        "Appointment booking with calendar sync",
+        "SMS/email confirmation automation",
+        "Real-time analytics dashboard",
+        "Live conversation demo with typing animation",
+      ],
+      fr: [
+        "Réponse aux appels 24/7 par agent IA",
+        "Qualification automatique des leads avec scoring",
+        "Prise de rendez-vous avec sync calendrier",
+        "Automatisation SMS/email de confirmation",
+        "Tableau de bord analytics en temps réel",
+        "Démo conversation live avec animation",
+      ],
+    },
+    link: "https://reno-connect-ai.netlify.app",
+    icon: "🏗️",
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=500&fit=crop&q=80",
+    featured: true,
+    isAIDemo: true,
+  },
+  {
+    id: 9,
+    key: "dentiflow-ai",
+    title: {
+      en: "DentiFlow AI — Dental Clinic Automation",
+      fr: "DentiFlow AI — Automatisation Clinique Dentaire",
+    },
+    subtitle: {
+      en: "AI Automation",
+      fr: "Automatisation IA",
+    },
+    context: {
+      en: "AI automation demo — Healthcare",
+      fr: "Démo automatisation IA — Santé",
+    },
+    description: {
+      en: "Complete AI automation system for a dental clinic. Patient pipeline with AI scoring, 6 active automations (appointment reminders, no-show recovery, review collection), intelligent chatbot for online booking. Interactive demo with real-time metrics.",
+      fr: "Système d'automatisation IA complet pour clinique dentaire. Pipeline patients avec scoring IA, 6 automatisations actives (rappels RDV, récupération no-show, collecte d'avis), chatbot intelligent pour prise de RDV en ligne. Démo interactive avec métriques temps réel.",
+    },
+    tech: ["React", "n8n", "OpenAI", "Twilio", "CRM Integration", "Vite"],
+    features: {
+      en: [
+        "Patient pipeline with AI scoring",
+        "6 active automation workflows",
+        "No-show recovery (35% win-back rate)",
+        "Intelligent booking chatbot",
+        "Automated review collection",
+        "ROI dashboard (14x monthly return)",
+      ],
+      fr: [
+        "Pipeline patients avec scoring IA",
+        "6 workflows d'automatisation actifs",
+        "Récupération no-show (35% taux récupération)",
+        "Chatbot intelligent de prise de RDV",
+        "Collecte automatisée d'avis Google",
+        "Tableau de bord ROI (14x retour mensuel)",
+      ],
+    },
+    link: "https://dentiflow-ai.netlify.app",
+    icon: "🦷",
+    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&h=500&fit=crop&q=80",
+    featured: true,
+    isAIDemo: true,
+  },
+
   // === PROFESSIONAL PROJECTS ===
   {
     id: 2,

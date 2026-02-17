@@ -23,6 +23,27 @@ export const skillCategories = [
     },
   },
   {
+    key: "ai-automation",
+    category: {
+      en: "AI & Automation",
+      fr: "IA & Automatisation",
+    },
+    icon: "Bot",
+    color: "from-pink-400 to-rose-500",
+    skills: [
+      { name: { en: "n8n / Make.com", fr: "n8n / Make.com" }, level: 88 },
+      { name: { en: "OpenAI API / Claude", fr: "API OpenAI / Claude" }, level: 90 },
+      { name: { en: "AI Voice Agents (Retell AI)", fr: "Agents vocaux IA (Retell AI)" }, level: 82 },
+      { name: { en: "Chatbot Development", fr: "Développement de chatbots" }, level: 86 },
+      { name: { en: "Voiceflow", fr: "Voiceflow" }, level: 84 },
+      { name: { en: "CRM Automation", fr: "Automatisation CRM" }, level: 85 },
+    ],
+    additional: {
+      en: "AI workflow automation, lead qualification bots, automated appointment scheduling, smart email sequences, voice AI receptionists, business process automation, GoHighLevel, HubSpot",
+      fr: "Automatisation de workflows IA, bots de qualification de leads, prise de RDV automatisée, séquences emails intelligentes, réceptionnistes vocaux IA, automatisation des processus d'affaires, GoHighLevel, HubSpot",
+    },
+  },
+  {
     key: "backend",
     category: {
       en: "Back-End & ERP",

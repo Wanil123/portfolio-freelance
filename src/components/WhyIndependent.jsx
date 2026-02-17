@@ -47,6 +47,10 @@ const WhyIndependent = () => {
                   fr: "Garder le contrôle sur la qualité, la fiabilité et l'innovation de chaque projet",
                   en: "Maintain control over the quality, reliability and innovation of each project"
                 },
+                {
+                  fr: "Intégrer l'IA et l'automatisation dans chaque projet pour offrir des résultats concrets et mesurables",
+                  en: "Integrate AI and automation into every project to deliver concrete, measurable results"
+                },
               ].map((item, index) => (
                 <div key={index} className="flex items-start gap-2 text-slate-200 text-sm">
                   <Check size={16} className="text-emerald-400 mt-0.5 flex-shrink-0" />
@@ -58,8 +62,8 @@ const WhyIndependent = () => {
           <div className="bg-violet-500/10 border border-violet-500/30 rounded-xl p-4">
             <p className="text-slate-100 font-medium text-sm md:text-base">
               {lang === "fr"
-                ? "Ma vision : devenir un partenaire de confiance pour mes clients, et créer avec eux des sites et outils web qui ont un impact réel sur leur entreprise."
-                : "My vision: to become a trusted partner for my clients, and create with them websites and web tools that have a real impact on their business."}
+                ? "Ma vision : devenir LE partenaire IA de confiance pour les PME québécoises, en créant des sites web intelligents et des automatisations qui ont un impact réel sur leur chiffre d'affaires."
+                : "My vision: to become THE trusted AI partner for Québec SMBs, building smart websites and automations that have a real impact on their revenue."}
             </p>
           </div>
         </div>

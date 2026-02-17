@@ -10,6 +10,7 @@ import {
   ArrowRight,
   Zap,
   Shield,
+  Bot,
 } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
 
@@ -62,6 +63,17 @@ const About = () => {
       bgColor: "bg-amber-500/10",
       iconColor: "text-amber-300",
     },
+    {
+      icon: Bot,
+      title: lang === "fr" ? "Automatisation intelligente" : "Smart automation",
+      description:
+        lang === "fr"
+          ? "Chatbots IA, agents vocaux, automatisation CRM et suivi des leads — j'intègre des solutions IA directement dans vos projets pour automatiser et convertir."
+          : "AI chatbots, voice agents, CRM automation and lead tracking — I integrate AI solutions directly into your projects to automate and convert.",
+      color: "from-pink-400 to-rose-500",
+      bgColor: "bg-pink-500/10",
+      iconColor: "text-pink-300",
+    },
   ];
 
   return (
@@ -97,8 +109,8 @@ const About = () => {
 
           <p className="text-slate-300 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             {lang === "fr"
-              ? "Un développeur full-stack senior, basé à Montréal, qui livre des projets web en production."
-              : "A senior full-stack developer, based in Montréal, shipping web projects to production."}
+              ? "Développeur full-stack & spécialiste en automatisation IA, basé à Montréal."
+              : "Full-stack developer & AI automation specialist, based in Montréal."}
           </p>
         </Reveal>
 
@@ -120,16 +132,16 @@ const About = () => {
                   </h3>
                   <p className="text-sm text-violet-300 font-medium">
                     {lang === "fr"
-                      ? "Développeur full-stack · Fondateur de PrimeDev Studios"
-                      : "Full-stack developer · Founder of PrimeDev Studios"}
+                      ? "Développeur full-stack · Automatisation IA · Fondateur de PrimeDev Studios"
+                      : "Full-stack developer · AI Automation · Founder of PrimeDev Studios"}
                   </p>
                 </div>
 
                 <div className="space-y-4 text-slate-300 text-sm md:text-base leading-relaxed">
                   <p>
                     {lang === "fr"
-                      ? "Développeur full-stack basé à Montréal, je conçois et livre des sites web et applications performantes avec React, Laravel et Tailwind CSS. Chaque projet est pensé pour la production : rapide, bilingue FR/EN et optimisé pour le référencement."
-                      : "Full-stack developer based in Montréal, I design and ship high-performance websites and applications using React, Laravel and Tailwind CSS. Every project is built for production: fast, bilingual FR/EN and SEO-optimized."}
+                      ? "Développeur full-stack basé à Montréal, je conçois des sites web performants et des solutions d'automatisation IA pour les PME. React, Laravel, n8n, OpenAI — chaque projet est pensé pour la production : rapide, bilingue FR/EN et optimisé pour convertir."
+                      : "Full-stack developer based in Montréal, I build high-performance websites and AI automation solutions for SMBs. React, Laravel, n8n, OpenAI — every project is built for production: fast, bilingual FR/EN and optimized to convert."}
                   </p>
 
                   <p>
@@ -140,8 +152,8 @@ const About = () => {
 
                   <p>
                     {lang === "fr"
-                      ? "Je collabore principalement avec des PME qui souhaitent une présence en ligne professionnelle, des fondateurs qui ont besoin d'un MVP solide rapidement, et des agences à la recherche d'un développeur externe fiable."
-                      : "I primarily work with SMBs seeking a professional online presence, founders who need a solid MVP fast, and agencies looking for a reliable external developer."}
+                      ? "J'intègre désormais l'IA dans mes projets web — chatbots, agents vocaux, automatisation CRM — pour aider les PME à ne plus perdre de clients et à gagner du temps au quotidien."
+                      : "I now integrate AI into my web projects — chatbots, voice agents, CRM automation — to help SMBs stop losing clients and save time every day."}
                   </p>
                 </div>
 
@@ -160,8 +172,8 @@ const About = () => {
                     },
                     {
                       icon: Code2,
-                      text: "React · Laravel · Tailwind",
-                      detail: lang === "fr" ? "Stack principal" : "Main stack",
+                      text: "React · Laravel · n8n · OpenAI",
+                      detail: lang === "fr" ? "Stack web + IA" : "Web + AI stack",
                     },
                     {
                       icon: CheckCircle2,

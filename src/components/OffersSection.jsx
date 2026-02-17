@@ -5,19 +5,23 @@ import {
   Layout,
   ShoppingBag,
   Code2,
+  Bot,
   Check,
   ArrowRight,
   Sparkles,
   Clock,
   Star,
   Shield,
+  TrendingUp,
+  Phone,
+  Zap,
 } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
 
 const OffersSection = ({ scrollToSection }) => {
   const { i18n } = useTranslation();
   const lang = i18n.language?.startsWith("fr") ? "fr" : "en";
-  const [activeTab, setActiveTab] = useState("vitrine");
+  const [activeTab, setActiveTab] = useState("ai");
 
   const handleContactClick = () => {
     if (typeof scrollToSection === "function") {
@@ -33,11 +37,13 @@ const OffersSection = ({ scrollToSection }) => {
   const tabs =
     lang === "fr"
       ? [
+          { id: "ai", label: "Automatisation IA", icon: Bot },
           { id: "vitrine", label: "Sites vitrines", icon: Layout },
           { id: "ecommerce", label: "Boutiques en ligne", icon: ShoppingBag },
           { id: "custom", label: "Sur mesure", icon: Code2 },
         ]
       : [
+          { id: "ai", label: "AI Automation", icon: Bot },
           { id: "vitrine", label: "Websites", icon: Layout },
           { id: "ecommerce", label: "E-commerce", icon: ShoppingBag },
           { id: "custom", label: "Custom", icon: Code2 },
@@ -45,6 +51,120 @@ const OffersSection = ({ scrollToSection }) => {
 
   // ─── DATA ────────────────────────────────────────────────
   const data = {
+    ai: {
+      fr: [
+        {
+          name: "Starter",
+          price: "500 $/mois",
+          pages: "Chatbot IA pour votre site",
+          timeline: "1-2 semaines",
+          features: [
+            "Chatbot IA intégré à votre site web",
+            "Répond aux questions fréquentes 24/7",
+            "Capture et qualifie les leads",
+            "Connexion CRM (HubSpot, GoHighLevel)",
+            "Historique des conversations",
+          ],
+          ideal: "PME, prestataires de services, SaaS",
+          popular: false,
+          color: "from-cyan-400 to-blue-500",
+          accent: "text-cyan-400",
+          accentBg: "bg-cyan-500/10 border-cyan-500/20",
+        },
+        {
+          name: "Growth",
+          price: "1 500 $/mois",
+          pages: "Agent vocal IA + chatbot",
+          timeline: "2-3 semaines",
+          features: [
+            "Tout de Starter +",
+            "Agent vocal IA (réceptionniste 24/7)",
+            "Qualification automatique des leads",
+            "Prise de rendez-vous automatisée",
+            "SMS/email de confirmation",
+          ],
+          ideal: "Entrepreneurs, cliniques, cabinets",
+          popular: true,
+          color: "from-violet-400 to-purple-500",
+          accent: "text-violet-400",
+          accentBg: "bg-violet-500/10 border-violet-500/20",
+        },
+        {
+          name: "Premium",
+          price: "3 000 $/mois",
+          pages: "Automatisation complète des ventes",
+          timeline: "3-4 semaines",
+          features: [
+            "Tout de Growth +",
+            "Follow-up email/SMS automatique",
+            "Séquences de nurturing IA",
+            "Intégration CRM avec scoring IA",
+            "Tableau de bord analytics complet",
+          ],
+          ideal: "Entreprises B2B, équipes de vente",
+          popular: false,
+          color: "from-emerald-400 to-teal-500",
+          accent: "text-emerald-400",
+          accentBg: "bg-emerald-500/10 border-emerald-500/20",
+        },
+      ],
+      en: [
+        {
+          name: "Starter",
+          price: "500 CAD/mo",
+          pages: "AI chatbot for your website",
+          timeline: "1-2 weeks",
+          features: [
+            "AI chatbot embedded on your website",
+            "Answers FAQs 24/7",
+            "Captures and qualifies leads",
+            "CRM connection (HubSpot, GoHighLevel)",
+            "Conversation history & analytics",
+          ],
+          ideal: "SMBs, service providers, SaaS",
+          popular: false,
+          color: "from-cyan-400 to-blue-500",
+          accent: "text-cyan-400",
+          accentBg: "bg-cyan-500/10 border-cyan-500/20",
+        },
+        {
+          name: "Growth",
+          price: "1,500 CAD/mo",
+          pages: "AI voice agent + chatbot",
+          timeline: "2-3 weeks",
+          features: [
+            "Everything in Starter +",
+            "AI voice agent (24/7 receptionist)",
+            "Automatic lead qualification",
+            "Automated appointment booking",
+            "SMS/email confirmation",
+          ],
+          ideal: "Contractors, clinics, firms",
+          popular: true,
+          color: "from-violet-400 to-purple-500",
+          accent: "text-violet-400",
+          accentBg: "bg-violet-500/10 border-violet-500/20",
+        },
+        {
+          name: "Premium",
+          price: "3,000 CAD/mo",
+          pages: "Full sales automation",
+          timeline: "3-4 weeks",
+          features: [
+            "Everything in Growth +",
+            "Automatic email/SMS follow-up",
+            "AI nurturing sequences",
+            "CRM integration with AI lead scoring",
+            "Full analytics dashboard",
+          ],
+          ideal: "B2B companies, sales teams",
+          popular: false,
+          color: "from-emerald-400 to-teal-500",
+          accent: "text-emerald-400",
+          accentBg: "bg-emerald-500/10 border-emerald-500/20",
+        },
+      ],
+    },
     vitrine: {
       fr: [
         {
@@ -458,6 +578,50 @@ const OffersSection = ({ scrollToSection }) => {
             </div>
           </div>
         </Reveal>
+
+        {/* ─── AI ROI STATS ─── */}
+        {activeTab === "ai" && (
+          <Reveal delay={0.15}>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+              {[
+                {
+                  icon: Phone,
+                  stat: lang === "fr" ? "−80%" : "−80%",
+                  label: lang === "fr" ? "d'appels manqués" : "missed calls",
+                  color: "text-emerald-400",
+                  bg: "bg-emerald-500/10 border-emerald-500/20",
+                },
+                {
+                  icon: Zap,
+                  stat: lang === "fr" ? "30 sec" : "30 sec",
+                  label: lang === "fr" ? "temps de réponse aux leads" : "lead response time",
+                  color: "text-violet-400",
+                  bg: "bg-violet-500/10 border-violet-500/20",
+                },
+                {
+                  icon: TrendingUp,
+                  stat: lang === "fr" ? "+40%" : "+40%",
+                  label: lang === "fr" ? "de rendez-vous bookés" : "appointments booked",
+                  color: "text-pink-400",
+                  bg: "bg-pink-500/10 border-pink-500/20",
+                },
+              ].map((item, idx) => {
+                const Icon = item.icon;
+                return (
+                  <div key={idx} className={`flex items-center gap-4 p-4 rounded-xl border ${item.bg} backdrop-blur-sm`}>
+                    <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${item.bg} flex-shrink-0`}>
+                      <Icon size={20} className={item.color} />
+                    </div>
+                    <div>
+                      <p className={`text-2xl font-bold ${item.color}`}>{item.stat}</p>
+                      <p className="text-xs text-slate-400">{item.label}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </Reveal>
+        )}
 
         {/* ─── PRICING CARDS ─── */}
         <div

@@ -7,7 +7,7 @@ import {
   Lightbulb,
   Palette,
   Code,
-  ShoppingCart,
+  Bot,
 } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
 
@@ -70,16 +70,16 @@ const steps = [
   },
   {
     id: "05",
-    key: "ecom",
-    icon: ShoppingCart,
+    key: "automation",
+    icon: Bot,
     color: "from-orange-400 to-amber-500",
     fr: {
-      title: "E-commerce & intégrations",
-      desc: "Boutique en ligne avec Laravel, paiement (Stripe), connexion à vos outils (CRM, Odoo, API, automatisations e-mail). Conçu pour convertir.",
+      title: "Automatisation & intégrations IA",
+      desc: "Chatbots IA, agents vocaux, automatisation des leads, connexion à vos outils (CRM, Stripe, calendrier). Conçu pour convertir et automatiser.",
     },
     en: {
-      title: "E-commerce & integrations",
-      desc: "Online shop with Laravel, payments (Stripe), CRM/Odoo/API connections, email automations. Built to sell.",
+      title: "Automation & AI integrations",
+      desc: "AI chatbots, voice agents, lead automation, tool connections (CRM, Stripe, calendar). Built to convert and automate.",
     },
   },
 ];

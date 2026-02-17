@@ -81,8 +81,8 @@ const Hero = ({ scrollToSection }) => {
         {/* Subtitle */}
         <p className="text-lg md:text-xl lg:text-2xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up animation-delay-200">
           {lang === "fr"
-            ? "Développeur full-stack à Montréal. Des sites et e-commerces conçus pour transformer vos visiteurs en clients — livrés clé en main."
-            : "Full-stack developer in Montréal. Websites and e-commerce stores designed to turn visitors into customers — delivered turnkey."}
+            ? "Je crée des sites web et des automatisations IA qui font croître votre business."
+            : "I build websites and AI automations that grow your business."}
         </p>
 
         {/* CTAs */}
@@ -142,8 +142,8 @@ const Hero = ({ scrollToSection }) => {
             </span>
             <span className="hidden sm:block w-px h-3.5 bg-slate-700" />
             <span className="flex items-center gap-1.5">
-              <Shield size={14} className="text-violet-400" />
-              {lang === "fr" ? "Satisfaction garantie" : "Satisfaction guaranteed"}
+              <Zap size={14} className="text-violet-400" />
+              {lang === "fr" ? "Automatisation IA" : "AI Automation"}
             </span>
           </div>
         </div>
