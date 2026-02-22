@@ -5,7 +5,7 @@ import { projects } from "../data/projects.js";
 import { Check, ExternalLink, Code2, X, ChevronRight, Rocket, Play, Star, ArrowRight } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
 
-const heroProject = projects.find((p) => p.isClientProject);
+const heroProjects = projects.filter((p) => p.isClientProject);
 const featuredProjects = projects.filter((p) => p.featured && !p.isClientProject);
 const otherProjects = projects.filter((p) => !p.featured);
 
@@ -84,23 +84,27 @@ const Projects = () => {
         </span>
       </div>
 
-      <div className="absolute top-3 right-3 md:top-4 md:right-4">
-        <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/30">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-[10px] md:text-xs text-emerald-300 font-medium">{lang === "fr" ? "En ligne" : "Live"}</span>
+      {p.link && (
+        <div className="absolute top-3 right-3 md:top-4 md:right-4">
+          <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/30">
+            <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-[10px] md:text-xs text-emerald-300 font-medium">{lang === "fr" ? "En ligne" : "Live"}</span>
+          </div>
         </div>
-      </div>
+      )}
 
-      <a
-        href={p.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="hidden md:flex absolute inset-0 items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-slate-950/60"
-      >
-        <div className="flex items-center justify-center w-14 h-14 rounded-full bg-violet-500 shadow-lg shadow-violet-500/50 hover:scale-110 transition-transform">
-          <Play size={24} className="text-white ml-1" />
-        </div>
-      </a>
+      {p.link && (
+        <a
+          href={p.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden md:flex absolute inset-0 items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-slate-950/60"
+        >
+          <div className="flex items-center justify-center w-14 h-14 rounded-full bg-violet-500 shadow-lg shadow-violet-500/50 hover:scale-110 transition-transform">
+            <Play size={24} className="text-white ml-1" />
+          </div>
+        </a>
+      )}
     </div>
   );
 
@@ -147,19 +151,33 @@ const Projects = () => {
         </div>
 
         <div className={`flex items-center gap-2 md:gap-3 pt-3 border-t border-slate-800/50 ${isHero ? "pt-4" : ""}`}>
-          <a
-            href={p.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`flex-1 flex items-center justify-center gap-1.5 md:gap-2 rounded-lg md:rounded-xl text-white font-medium transition-all active:scale-95 ${
-              p.isClientProject
-                ? "bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600"
-                : "bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600"
-            } ${isHero ? "px-4 md:px-6 py-2.5 md:py-3 text-sm md:text-base" : "px-3 md:px-4 py-2 md:py-2.5 text-xs md:text-sm"}`}
-          >
-            <ExternalLink size={isHero ? 16 : 14} />
-            {lang === "fr" ? "Voir le site" : "View site"}
-          </a>
+          {p.link ? (
+            <a
+              href={p.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex-1 flex items-center justify-center gap-1.5 md:gap-2 rounded-lg md:rounded-xl text-white font-medium transition-all active:scale-95 ${
+                p.isClientProject
+                  ? "bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600"
+                  : "bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600"
+              } ${isHero ? "px-4 md:px-6 py-2.5 md:py-3 text-sm md:text-base" : "px-3 md:px-4 py-2 md:py-2.5 text-xs md:text-sm"}`}
+            >
+              <ExternalLink size={isHero ? 16 : 14} />
+              {lang === "fr" ? "Voir le site" : "View site"}
+            </a>
+          ) : (
+            <button
+              onClick={() => openModal(p)}
+              className={`flex-1 flex items-center justify-center gap-1.5 md:gap-2 rounded-lg md:rounded-xl text-white font-medium transition-all active:scale-95 ${
+                p.isClientProject
+                  ? "bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600"
+                  : "bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600"
+              } ${isHero ? "px-4 md:px-6 py-2.5 md:py-3 text-sm md:text-base" : "px-3 md:px-4 py-2 md:py-2.5 text-xs md:text-sm"}`}
+            >
+              <ChevronRight size={isHero ? 16 : 14} />
+              {lang === "fr" ? "Voir détails" : "View details"}
+            </button>
+          )}
           <button
             onClick={() => openModal(p)}
             className={`flex items-center justify-center rounded-lg md:rounded-xl bg-slate-800/50 border border-slate-700/50 hover:border-violet-500/50 hover:bg-slate-800 text-slate-400 hover:text-white transition-all active:scale-95 ${
@@ -233,12 +251,12 @@ const Projects = () => {
           </p>
         </Reveal>
 
-        {/* Hero Project — Client */}
-        {heroProject && (
-          <Reveal className="mb-8 md:mb-12">
-            {renderCard(heroProject, true)}
+        {/* Hero Projects — Clients */}
+        {heroProjects.map((hp) => (
+          <Reveal key={hp.id} className="mb-8 md:mb-12">
+            {renderCard(hp, true)}
           </Reveal>
-        )}
+        ))}
 
         {/* Featured Projects */}
         {featuredProjects.length > 0 && (
@@ -365,10 +383,12 @@ const Projects = () => {
                           {context}
                         </span>
                       )}
-                      <span className="flex items-center gap-1.5 text-xs px-2.5 py-1 md:px-3 md:py-1.5 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/30">
-                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                        Live
-                      </span>
+                      {selectedProject.link && (
+                        <span className="flex items-center gap-1.5 text-xs px-2.5 py-1 md:px-3 md:py-1.5 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/30">
+                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                          Live
+                        </span>
+                      )}
                     </div>
 
                     <h3 id="project-modal-title" className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3 md:mb-4 flex items-center gap-2 md:gap-3">
@@ -408,19 +428,21 @@ const Projects = () => {
                     </div>
 
                     <div className="pt-4 border-t border-slate-800/50 flex flex-col sm:flex-row gap-3">
-                      <a
-                        href={selectedProject.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`flex-1 inline-flex items-center justify-center gap-2 px-5 md:px-6 py-3 rounded-xl font-semibold shadow-lg transition-all active:scale-95 text-sm md:text-base text-white ${
-                          selectedProject.isClientProject
-                            ? "bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 shadow-emerald-500/20 hover:shadow-emerald-500/40"
-                            : "bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 shadow-violet-500/20 hover:shadow-violet-500/40"
-                        }`}
-                      >
-                        {lang === "fr" ? "Voir le projet" : "View project"}
-                        <ExternalLink size={16} />
-                      </a>
+                      {selectedProject.link && (
+                        <a
+                          href={selectedProject.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`flex-1 inline-flex items-center justify-center gap-2 px-5 md:px-6 py-3 rounded-xl font-semibold shadow-lg transition-all active:scale-95 text-sm md:text-base text-white ${
+                            selectedProject.isClientProject
+                              ? "bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 shadow-emerald-500/20 hover:shadow-emerald-500/40"
+                              : "bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 shadow-violet-500/20 hover:shadow-violet-500/40"
+                          }`}
+                        >
+                          {lang === "fr" ? "Voir le projet" : "View project"}
+                          <ExternalLink size={16} />
+                        </a>
+                      )}
                       <button
                         onClick={closeModal}
                         className="px-5 md:px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-medium transition-colors active:scale-95 text-sm md:text-base"

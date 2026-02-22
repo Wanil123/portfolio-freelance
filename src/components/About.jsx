@@ -8,7 +8,6 @@ import {
   MessageSquare,
   Sparkles,
   ArrowRight,
-  Zap,
   Shield,
   Bot,
 } from "lucide-react";
@@ -116,78 +115,92 @@ const About = () => {
 
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 mb-12">
-          {/* Left Column - Story */}
+          {/* Left Column - Story + Photo */}
           <Reveal delay={0.1}>
             <div className="relative h-full">
               <div className="absolute -inset-1 bg-gradient-to-r from-violet-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-50" />
 
               <div className="relative h-full bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
-                <div className="mb-6">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-500/10 border border-violet-400/30 text-violet-200 text-xs font-medium mb-4">
-                    <Zap size={12} />
-                    <span>{lang === "fr" ? "Qui je suis" : "Who I am"}</span>
+                {/* Photo + Name */}
+                <div className="flex items-center gap-4 mb-6">
+                  <img
+                    src="/assets/wanil.jpeg"
+                    alt="Wanil Parfait"
+                    className="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-violet-500/30 shadow-lg shadow-violet-500/20"
+                  />
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-1">
+                      Wanil Parfait
+                    </h3>
+                    <p className="text-sm text-violet-300 font-medium">
+                      {lang === "fr"
+                        ? "Fondateur — PrimeDev Studios"
+                        : "Founder — PrimeDev Studios"}
+                    </p>
+                    <div className="flex items-center gap-1.5 mt-1.5">
+                      <div className="relative flex h-2.5 w-2.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                      </div>
+                      <span className="text-xs text-emerald-400 font-medium">
+                        {lang === "fr" ? "Disponible pour nouveaux projets" : "Available for new projects"}
+                      </span>
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-1">
-                    Wanil Parfait
-                  </h3>
-                  <p className="text-sm text-violet-300 font-medium">
-                    {lang === "fr"
-                      ? "Développeur full-stack · Automatisation IA · Fondateur de PrimeDev Studios"
-                      : "Full-stack developer · AI Automation · Founder of PrimeDev Studios"}
-                  </p>
                 </div>
 
+                {/* Bio - human tone */}
                 <div className="space-y-4 text-slate-300 text-sm md:text-base leading-relaxed">
                   <p>
                     {lang === "fr"
-                      ? "Développeur full-stack basé à Montréal, je conçois des sites web performants et des solutions d'automatisation IA pour les PME. React, Laravel, n8n, OpenAI — chaque projet est pensé pour la production : rapide, bilingue FR/EN et optimisé pour convertir."
-                      : "Full-stack developer based in Montréal, I build high-performance websites and AI automation solutions for SMBs. React, Laravel, n8n, OpenAI — every project is built for production: fast, bilingual FR/EN and optimized to convert."}
+                      ? "Je suis développeur web depuis 5 ans, surtout en React et TypeScript côté front, avec un solide background en backend (Python, PHP/Laravel, Node.js). Avant de lancer PrimeDev, j'ai passé plus de 3 ans en entreprise à Montréal où je développais des APIs qui servaient plus de 10 000 requêtes par jour."
+                      : "I've been a web developer for 5 years, mostly in React and TypeScript on the front-end, with a solid backend background (Python, PHP/Laravel, Node.js). Before starting PrimeDev, I spent over 3 years in the industry in Montreal building APIs that served over 10,000 requests per day."}
                   </p>
 
                   <p>
                     {lang === "fr"
-                      ? "J'ai fondé PrimeDev Studios pour offrir un service direct, sans intermédiaire. De la conception au déploiement, un seul interlocuteur — ce qui garantit une communication claire, des délais respectés et un résultat conforme à vos attentes."
-                      : "I founded PrimeDev Studios to provide a direct, no-middleman service. From design to deployment, one point of contact — ensuring clear communication, met deadlines and a result that matches your expectations."}
+                      ? "J'ai fondé PrimeDev Studios parce que je voulais travailler directement avec les entrepreneurs d'ici — pas à travers 3 niveaux de gestion dans une grosse boîte. Quand vous travaillez avec moi, c'est moi qui code votre site, moi qui réponds à vos messages, moi qui livre le produit."
+                      : "I founded PrimeDev Studios because I wanted to work directly with local entrepreneurs — not through 3 layers of management in a big firm. When you work with me, I'm the one coding your site, answering your messages, and delivering the product."}
                   </p>
 
                   <p>
                     {lang === "fr"
-                      ? "J'intègre désormais l'IA dans mes projets web — chatbots, agents vocaux, automatisation CRM — pour aider les PME à ne plus perdre de clients et à gagner du temps au quotidien."
-                      : "I now integrate AI into my web projects — chatbots, voice agents, CRM automation — to help SMBs stop losing clients and save time every day."}
+                      ? "Aujourd'hui, j'intègre l'IA dans mes projets web — chatbots, agents vocaux, automatisation CRM — pour aider les PME à ne plus perdre de clients le soir et les week-ends."
+                      : "Today, I integrate AI into my web projects — chatbots, voice agents, CRM automation — to help SMBs stop losing clients during evenings and weekends."}
                   </p>
                 </div>
 
                 {/* Key facts */}
-                <div className="mt-6 pt-6 border-t border-slate-800/50 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="mt-5 grid grid-cols-2 gap-3">
                   {[
                     {
                       icon: MapPin,
-                      text: lang === "fr" ? "Montréal, QC" : "Montréal, QC",
-                      detail: lang === "fr" ? "Disponible en remote" : "Available remotely",
+                      text: "Montréal, QC",
+                      detail: lang === "fr" ? "Remote disponible" : "Remote available",
                     },
                     {
                       icon: Globe2,
                       text: lang === "fr" ? "Français & English" : "French & English",
-                      detail: lang === "fr" ? "Sites bilingues natifs" : "Natively bilingual sites",
+                      detail: lang === "fr" ? "Bilingue natif" : "Natively bilingual",
                     },
                     {
                       icon: Code2,
-                      text: "React · Laravel · n8n · OpenAI",
+                      text: "React · Laravel · n8n",
                       detail: lang === "fr" ? "Stack web + IA" : "Web + AI stack",
                     },
                     {
                       icon: CheckCircle2,
-                      text: lang === "fr" ? "LamIPict.com livré" : "LamIPict.com delivered",
-                      detail: lang === "fr" ? "E-commerce en production" : "E-commerce in production",
+                      text: lang === "fr" ? "5 ans d'expérience" : "5 years experience",
+                      detail: lang === "fr" ? "APIs 10K+ requêtes/jour" : "APIs 10K+ requests/day",
                     },
                   ].map((fact, idx) => {
                     const Icon = fact.icon;
                     return (
-                      <div key={idx} className="flex items-start gap-3 p-3 rounded-lg bg-slate-800/30">
-                        <Icon size={16} className="text-violet-400 flex-shrink-0 mt-0.5" />
+                      <div key={idx} className="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-800/30">
+                        <Icon size={14} className="text-violet-400 flex-shrink-0 mt-0.5" />
                         <div>
-                          <p className="text-sm text-white font-medium">{fact.text}</p>
-                          <p className="text-xs text-slate-500">{fact.detail}</p>
+                          <p className="text-xs text-white font-medium">{fact.text}</p>
+                          <p className="text-[10px] text-slate-500">{fact.detail}</p>
                         </div>
                       </div>
                     );

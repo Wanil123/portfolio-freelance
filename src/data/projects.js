@@ -46,7 +46,52 @@ export const projects = [
     },
     link: "https://lamipict.com",
     icon: "📸",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=500&fit=crop&q=80",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop&q=80",
+    featured: true,
+    isClientProject: true,
+  },
+
+  // === CLIENT PROJECT #2 ===
+  {
+    id: 10,
+    key: "groupe-destine",
+    title: {
+      en: "Groupe Destin\u00e9 Inc. \u2014 Community Organization",
+      fr: "Groupe Destin\u00e9 Inc. \u2014 Organisation Communautaire",
+    },
+    subtitle: {
+      en: "Business Website",
+      fr: "Site Vitrine",
+    },
+    context: {
+      en: "Client project \u2014 Montreal",
+      fr: "Projet client \u2014 Montr\u00e9al",
+    },
+    description: {
+      en: "Professional bilingual website for a multidisciplinary community development organization. 7 pages covering 4 sectors of intervention (Agriculture, Health, Security, Cleanliness), optimized contact form, SEO and fully responsive design.",
+      fr: "Site web vitrine professionnel et bilingue pour une organisation de d\u00e9veloppement communautaire multidisciplinaire. 7 pages couvrant 4 secteurs d\u2019intervention (Agriculture, Sant\u00e9, S\u00e9curit\u00e9, Propret\u00e9), formulaire de contact optimis\u00e9, SEO et design responsive.",
+    },
+    tech: ["React", "Tailwind CSS", "i18next", "Vite", "SEO"],
+    features: {
+      en: [
+        "7 custom pages with modern design",
+        "4 sector showcase (Agriculture, Health, Security, Cleanliness)",
+        "Bilingual interface (FR/EN)",
+        "Optimized contact form with CTA",
+        "Basic SEO optimization (H1/H2/H3, meta tags)",
+        "Fully responsive design",
+      ],
+      fr: [
+        "7 pages sur mesure avec design moderne",
+        "Pr\u00e9sentation de 4 secteurs (Agriculture, Sant\u00e9, S\u00e9curit\u00e9, Propret\u00e9)",
+        "Interface bilingue (FR/EN)",
+        "Formulaire de contact optimis\u00e9 avec CTA",
+        "Optimisation SEO de base (H1/H2/H3, balises meta)",
+        "Design responsive complet",
+      ],
+    },
+    icon: "\uD83C\uDFE2",
+    image: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31?w=800&h=500&fit=crop&q=80",
     featured: true,
     isClientProject: true,
   },

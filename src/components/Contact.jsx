@@ -29,6 +29,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    projectType: "",
     budget: "",
     message: "",
   });
@@ -37,6 +38,16 @@ const Contact = () => {
 
   const WHATSAPP_LINK =
     "https://wa.me/15793685230?text=Bonjour%20Wanil,%20je%20veux%20parler%20de%20mon%20projet%20web.";
+
+  const projectTypeOptions = [
+    { value: "site-vitrine", label: lang === "fr" ? "Site vitrine" : "Business website" },
+    { value: "ecommerce", label: lang === "fr" ? "Boutique en ligne" : "E-commerce store" },
+    { value: "agent-ia", label: lang === "fr" ? "Agent IA réceptionniste" : "AI Receptionist Agent" },
+    { value: "chatbot", label: lang === "fr" ? "Chatbot IA" : "AI Chatbot" },
+    { value: "automatisation", label: lang === "fr" ? "Automatisation / CRM" : "Automation / CRM" },
+    { value: "app-custom", label: lang === "fr" ? "Application sur mesure" : "Custom application" },
+    { value: "autre", label: lang === "fr" ? "Autre" : "Other" },
+  ];
 
   const budgetOptions = [
     { value: "< 3000", label: lang === "fr" ? "Moins de 3 000 $" : "Under $3,000" },
@@ -116,6 +127,7 @@ const Contact = () => {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
+          projectType: formData.projectType || (lang === "fr" ? "Non spécifié" : "Not specified"),
           budget: formData.budget || (lang === "fr" ? "Non spécifié" : "Not specified"),
           message: formData.message,
           _subject: lang === "fr"
@@ -129,7 +141,7 @@ const Contact = () => {
 
       if (response.ok) {
         setFormStatus("success");
-        setFormData({ name: "", email: "", budget: "", message: "" });
+        setFormData({ name: "", email: "", projectType: "", budget: "", message: "" });
       } else {
         throw new Error("Form submission failed");
       }
@@ -250,6 +262,31 @@ const Contact = () => {
                       placeholder={lang === "fr" ? "email@exemple.com" : "email@example.com"}
                       className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-white placeholder-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all"
                     />
+                  </div>
+
+                  {/* Project Type */}
+                  <div>
+                    <label htmlFor="project-type-select" className="flex items-center gap-2 text-sm text-slate-300 mb-2 font-medium">
+                      <FileText size={14} className="text-violet-400" />
+                      {lang === "fr" ? "Type de projet" : "Project type"}
+                    </label>
+                    <select
+                      id="project-type-select"
+                      name="projectType"
+                      value={formData.projectType}
+                      onChange={handleInputChange}
+                      aria-label={lang === "fr" ? "Type de projet" : "Project type"}
+                      className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-white focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all appearance-none cursor-pointer"
+                    >
+                      <option value="" className="bg-slate-900">
+                        {lang === "fr" ? "Sélectionnez un type" : "Select a type"}
+                      </option>
+                      {projectTypeOptions.map((option) => (
+                        <option key={option.value} value={option.value} className="bg-slate-900">
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
                   </div>
 
                   {/* Budget */}

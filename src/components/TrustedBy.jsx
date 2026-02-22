@@ -3,10 +3,11 @@ import { useTranslation } from "react-i18next";
 import {
   Layout,
   ShoppingBag,
-  Zap,
+  Bot,
   Globe2,
   Code2,
   Clock,
+  Star,
 } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
 
@@ -26,6 +27,12 @@ const TrustedBy = () => {
       name: lang === "fr" ? "E-commerce" : "E-commerce",
       description: lang === "fr" ? "Boutiques en ligne" : "Online stores",
       color: "from-pink-400 to-rose-500",
+    },
+    {
+      icon: Bot,
+      name: lang === "fr" ? "Automatisation IA" : "AI Automation",
+      description: lang === "fr" ? "Chatbots & agents vocaux" : "Chatbots & voice agents",
+      color: "from-cyan-400 to-blue-500",
     },
   ];
 
@@ -60,12 +67,12 @@ const TrustedBy = () => {
         <Reveal>
           <div className="text-center mb-10">
             <p className="text-sm text-slate-400 uppercase tracking-wider font-medium mb-2">
-              {lang === "fr" ? "Spécialisation" : "Specialization"}
+              {lang === "fr" ? "Sp\u00e9cialisation" : "Specialization"}
             </p>
             <h3 className="text-xl md:text-2xl font-semibold text-white">
               {lang === "fr"
-                ? "Sites web modernes pour PME et e-commerce"
-                : "Modern websites for SMBs and e-commerce"}
+                ? "Sites web, e-commerce et automatisation IA pour PME"
+                : "Websites, e-commerce and AI automation for SMBs"}
             </h3>
           </div>
         </Reveal>
@@ -94,6 +101,35 @@ const TrustedBy = () => {
                 </div>
               );
             })}
+          </div>
+        </Reveal>
+
+        {/* Client Trust Line */}
+        <Reveal delay={0.15}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
+            <div className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-900/80 border border-slate-800/50">
+              <Star size={14} className="text-amber-400" fill="currentColor" />
+              <a
+                href="https://lamipict.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-semibold text-violet-400 hover:text-violet-300 transition-colors"
+              >
+                LamIPict.com
+              </a>
+              <span className="text-xs text-slate-500">
+                {lang === "fr" ? "— E-commerce" : "— E-commerce"}
+              </span>
+            </div>
+            <div className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-900/80 border border-slate-800/50">
+              <Star size={14} className="text-amber-400" fill="currentColor" />
+              <span className="text-sm font-semibold text-violet-400">
+                {lang === "fr" ? "Groupe Destin\u00e9 Inc." : "Groupe Destin\u00e9 Inc."}
+              </span>
+              <span className="text-xs text-slate-500">
+                {lang === "fr" ? "— Site vitrine" : "— Business site"}
+              </span>
+            </div>
           </div>
         </Reveal>
 

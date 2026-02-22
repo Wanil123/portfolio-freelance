@@ -66,6 +66,7 @@ const OffersSection = ({ scrollToSection }) => {
             "Historique des conversations",
           ],
           ideal: "PME, prestataires de services, SaaS",
+          roi: "1 lead converti par mois = rentable",
           popular: false,
           color: "from-cyan-400 to-blue-500",
           accent: "text-cyan-400",
@@ -84,6 +85,7 @@ const OffersSection = ({ scrollToSection }) => {
             "SMS/email de confirmation",
           ],
           ideal: "Entrepreneurs, cliniques, cabinets",
+          roi: "1 appel manqué récupéré/sem = 10x le coût",
           popular: true,
           color: "from-violet-400 to-purple-500",
           accent: "text-violet-400",
@@ -102,6 +104,7 @@ const OffersSection = ({ scrollToSection }) => {
             "Tableau de bord analytics complet",
           ],
           ideal: "Entreprises B2B, équipes de vente",
+          roi: "Système complet qui se paie en 30 jours",
           popular: false,
           color: "from-emerald-400 to-teal-500",
           accent: "text-emerald-400",
@@ -122,6 +125,7 @@ const OffersSection = ({ scrollToSection }) => {
             "Conversation history & analytics",
           ],
           ideal: "SMBs, service providers, SaaS",
+          roi: "1 converted lead per month = profitable",
           popular: false,
           color: "from-cyan-400 to-blue-500",
           accent: "text-cyan-400",
@@ -140,6 +144,7 @@ const OffersSection = ({ scrollToSection }) => {
             "SMS/email confirmation",
           ],
           ideal: "Contractors, clinics, firms",
+          roi: "1 missed call recovered/week = 10x the cost",
           popular: true,
           color: "from-violet-400 to-purple-500",
           accent: "text-violet-400",
@@ -158,6 +163,7 @@ const OffersSection = ({ scrollToSection }) => {
             "Full analytics dashboard",
           ],
           ideal: "B2B companies, sales teams",
+          roi: "Full system that pays for itself in 30 days",
           popular: false,
           color: "from-emerald-400 to-teal-500",
           accent: "text-emerald-400",
@@ -734,6 +740,14 @@ const OffersSection = ({ scrollToSection }) => {
                       </p>
                       <p className="text-sm text-slate-200">{offer.ideal}</p>
                     </div>
+
+                    {/* ROI context */}
+                    {offer.roi && (
+                      <div className="mb-5 flex items-center gap-2 px-3 py-2 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
+                        <TrendingUp size={14} className="text-emerald-400 flex-shrink-0" />
+                        <p className="text-xs text-emerald-300 font-medium">{offer.roi}</p>
+                      </div>
+                    )}
 
                     {/* CTA */}
                     <button

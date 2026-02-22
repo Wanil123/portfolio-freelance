@@ -36,8 +36,30 @@ const Testimonials = () => {
         en: "E-commerce site",
       },
       date: {
-        fr: "Décembre 2025",
+        fr: "D\u00e9cembre 2025",
         en: "December 2025",
+      },
+    },
+    {
+      name: "Groupe Destin\u00e9 Inc.",
+      initials: "GD",
+      role: {
+        fr: "Organisation communautaire",
+        en: "Community organization",
+      },
+      company: "Groupe Destin\u00e9",
+      rating: 5,
+      quote: {
+        fr: "On cherchait quelqu\u2019un de fiable pour notre site web et on a bien fait de choisir Wanil. Il a compris notre mission communautaire du premier coup. Le site est beau, facile \u00e0 naviguer et nos membres sont impressionn\u00e9s. Je le recommande sans h\u00e9siter.",
+        en: "We were looking for someone reliable for our website and we made the right choice with Wanil. He understood our community mission right away. The site is beautiful, easy to navigate and our members are impressed. I recommend him without hesitation.",
+      },
+      project: {
+        fr: "Site vitrine bilingue",
+        en: "Bilingual business site",
+      },
+      date: {
+        fr: "Janvier 2026",
+        en: "January 2026",
       },
     },
   ];
@@ -99,10 +121,16 @@ const Testimonials = () => {
 
   const completedProjects = [
     {
-      status: lang === "fr" ? "Livré" : "Delivered",
+      status: lang === "fr" ? "Livr\u00e9" : "Delivered",
       type: lang === "fr" ? "Site e-commerce" : "E-commerce site",
-      industry: "LamIPict — Montréal",
+      industry: "LamIPict \u2014 Montr\u00e9al",
       color: "from-emerald-400 to-green-500",
+    },
+    {
+      status: lang === "fr" ? "Livr\u00e9" : "Delivered",
+      type: lang === "fr" ? "Site vitrine bilingue" : "Bilingual business site",
+      industry: "Groupe Destin\u00e9 Inc.",
+      color: "from-violet-400 to-purple-500",
     },
   ];
 
@@ -132,14 +160,14 @@ const Testimonials = () => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             {lang === "fr" ? (
               <>
-                Un premier client,{" "}
+                Clients satisfaits,{" "}
                 <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  un vrai retour
+                  vrais retours
                 </span>
               </>
             ) : (
               <>
-                First client,{" "}
+                Satisfied clients,{" "}
                 <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                   real feedback
                 </span>
@@ -149,8 +177,8 @@ const Testimonials = () => {
 
           <p className="text-slate-300 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             {lang === "fr"
-              ? "Voici le retour de mon premier client livré, et mes engagements pour chaque projet."
-              : "Here's the feedback from my first delivered client, and my commitments for every project."}
+              ? "Ce que disent mes clients, et mes engagements pour chaque projet."
+              : "What my clients say, and my commitments for every project."}
           </p>
         </Reveal>
 
@@ -270,13 +298,13 @@ const Testimonials = () => {
                   </div>
                   <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
                     {lang === "fr"
-                      ? "1 projet livré"
-                      : "1 project delivered"}
+                      ? "2 projets livr\u00e9s"
+                      : "2 projects delivered"}
                   </h3>
                   <p className="text-slate-400 text-sm">
                     {lang === "fr"
-                      ? "Un client satisfait à Montréal — d'autres à venir."
-                      : "A satisfied client in Montreal — more to come."}
+                      ? "Des clients satisfaits \u00e0 Montr\u00e9al \u2014 d\u2019autres \u00e0 venir."
+                      : "Satisfied clients in Montreal \u2014 more to come."}
                   </p>
                 </div>
 

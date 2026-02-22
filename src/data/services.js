@@ -2,28 +2,28 @@
 export const services = [
   {
     id: "agent-ai-receptionniste",
-    icon: "🤖",
+    icon: "\uD83E\uDD16",
     featured: true,
     title: {
-      fr: "Agent IA réceptionniste",
+      fr: "Agent IA r\u00e9ceptionniste",
       en: "AI Receptionist Agent",
     },
     price: {
-      fr: "à partir de 1 500 $/mois",
+      fr: "\u00e0 partir de 1 500 $/mois",
       en: "from 1,500 CAD/mo",
     },
     timeline: {
-      fr: "1 à 2 semaines",
+      fr: "1 \u00e0 2 semaines",
       en: "1 to 2 weeks",
     },
     features: {
       fr: [
-        "Réponse aux appels 24/7 par agent vocal IA",
+        "R\u00e9ponse aux appels 24/7 par agent vocal IA",
         "Qualification automatique des leads",
-        "Prise de rendez-vous automatisée (Calendly/Cal.com)",
+        "Prise de rendez-vous automatis\u00e9e (Calendly/Cal.com)",
         "Envoi SMS/email de confirmation",
-        "Intégration CRM & Google Sheets",
-        "Tableau de bord de suivi en temps réel",
+        "Int\u00e9gration CRM & Google Sheets",
+        "Tableau de bord de suivi en temps r\u00e9el",
       ],
       en: [
         "24/7 AI-powered phone answering",
@@ -41,27 +41,27 @@ export const services = [
   },
   {
     id: "chatbot-ai",
-    icon: "💬",
+    icon: "\uD83D\uDCAC",
     featured: true,
     title: {
       fr: "Chatbot IA intelligent",
       en: "AI Smart Chatbot",
     },
     price: {
-      fr: "à partir de 500 $/mois",
+      fr: "\u00e0 partir de 500 $/mois",
       en: "from 500 CAD/mo",
     },
     timeline: {
-      fr: "1 à 2 semaines",
+      fr: "1 \u00e0 2 semaines",
       en: "1 to 2 weeks",
     },
     features: {
       fr: [
-        "Chatbot IA intégré à votre site web",
-        "Répond aux questions fréquentes automatiquement",
+        "Chatbot IA int\u00e9gr\u00e9 \u00e0 votre site web",
+        "R\u00e9pond aux questions fr\u00e9quentes automatiquement",
         "Capture et qualifie les leads 24/7",
         "Connexion CRM (HubSpot, GoHighLevel)",
-        "Personnalisé à votre entreprise et vos services",
+        "Personnalis\u00e9 \u00e0 votre entreprise et vos services",
         "Historique des conversations et analytics",
       ],
       en: [
@@ -80,27 +80,27 @@ export const services = [
   },
   {
     id: "automatisation-ventes",
-    icon: "⚡",
+    icon: "\u26A1",
     featured: true,
     title: {
       fr: "Automatisation des ventes",
       en: "Sales Automation",
     },
     price: {
-      fr: "à partir de 1 000 $/mois",
+      fr: "\u00e0 partir de 1 000 $/mois",
       en: "from 1,000 CAD/mo",
     },
     timeline: {
-      fr: "2 à 3 semaines",
+      fr: "2 \u00e0 3 semaines",
       en: "2 to 3 weeks",
     },
     features: {
       fr: [
         "Follow-up email/SMS automatique des prospects",
-        "Séquences de nurturing IA personnalisées",
-        "Relance automatique des paniers abandonnés",
-        "Intégration CRM avec scoring IA des leads",
-        "Rapports de conversion automatisés",
+        "S\u00e9quences de nurturing IA personnalis\u00e9es",
+        "Relance automatique des paniers abandonn\u00e9s",
+        "Int\u00e9gration CRM avec scoring IA des leads",
+        "Rapports de conversion automatis\u00e9s",
         "Workflows n8n / Make.com sur mesure",
       ],
       en: [
@@ -113,7 +113,7 @@ export const services = [
       ],
     },
     idealFor: {
-      fr: "E-commerce, agences, entreprises B2B, équipes de vente",
+      fr: "E-commerce, agences, entreprises B2B, \u00e9quipes de vente",
       en: "E-commerce, agencies, B2B companies, sales teams",
     },
   },
@@ -126,11 +126,11 @@ export const services = [
       en: "Business website",
     },
     price: {
-      fr: "à partir de 4 500 $",
+      fr: "\u00e0 partir de 4 500 $",
       en: "from 4,500 CAD",
     },
     timeline: {
-      fr: "2 à 4 semaines",
+      fr: "2 \u00e0 4 semaines",
       en: "2 to 4 weeks",
     },
     features: {
@@ -165,20 +165,20 @@ export const services = [
       en: "E-commerce store",
     },
     price: {
-      fr: "à partir de 7 500 $",
+      fr: "\u00e0 partir de 7 500 $",
       en: "from 7,500 CAD",
     },
     timeline: {
-      fr: "3 à 6 semaines",
+      fr: "3 \u00e0 6 semaines",
       en: "3 to 6 weeks",
     },
     features: {
       fr: [
         "Catalogue produits complet",
         "Panier & processus de paiement",
-        "Intégration Stripe/PayPal",
+        "Int\u00e9gration Stripe/PayPal",
         "Gestion des stocks & commandes",
-        "Système de suivi commandes",
+        "Syst\u00e8me de suivi commandes",
         "Formation admin incluse",
       ],
       en: [
@@ -191,34 +191,34 @@ export const services = [
       ],
     },
     idealFor: {
-      fr: "Commerçants, marques, artisans vendant en ligne",
+      fr: "Commer\u00e7ants, marques, artisans vendant en ligne",
       en: "Retailers, brands, artisans selling online",
     },
   },
   {
     id: "refonte-de-site",
     icon: "\uD83D\uDD04",
-    featured: false,
+    featured: true,
     title: {
       fr: "Refonte de site",
       en: "Website redesign",
     },
     price: {
-      fr: "à partir de 4 000 $",
+      fr: "\u00e0 partir de 4 000 $",
       en: "from 4,000 CAD",
     },
     timeline: {
-      fr: "2 à 3 semaines",
+      fr: "2 \u00e0 3 semaines",
       en: "2 to 3 weeks",
     },
     features: {
       fr: [
-        "Refonte visuelle complète",
+        "Refonte visuelle compl\u00e8te",
         "Design UI/UX moderne",
         "Optimisation mobile",
-        "Amélioration des performances",
+        "Am\u00e9lioration des performances",
         "Migration du contenu",
-        "Préservation du SEO",
+        "Pr\u00e9servation du SEO",
       ],
       en: [
         "Complete visual redesign",
@@ -230,125 +230,8 @@ export const services = [
       ],
     },
     idealFor: {
-      fr: "Sites désuets, rebranding, projets de modernisation",
+      fr: "Sites d\u00e9suets, rebranding, projets de modernisation",
       en: "Outdated sites, rebranding, modernization projects",
-    },
-  },
-  {
-    id: "landing-page",
-    icon: "\uD83C\uDFAF",
-    featured: false,
-    title: {
-      fr: "Page d'atterrissage",
-      en: "Landing page",
-    },
-    price: {
-      fr: "à partir de 1 800 $",
-      en: "from 1,800 CAD",
-    },
-    timeline: {
-      fr: "1 à 2 semaines",
-      en: "1 to 2 weeks",
-    },
-    features: {
-      fr: [
-        "Page unique à haute conversion",
-        "Optimisée pour les conversions",
-        "Prête pour tests A/B",
-        "Chargement ultra-rapide",
-        "Design mobile-first",
-        "Optimisation des CTA",
-      ],
-      en: [
-        "High-conversion single page",
-        "Optimized for conversions",
-        "A/B testing ready",
-        "Ultra-fast loading",
-        "Mobile-first design",
-        "CTA optimization",
-      ],
-    },
-    idealFor: {
-      fr: "Lancements, campagnes, génération de leads",
-      en: "Launches, campaigns, lead generation",
-    },
-  },
-  {
-    id: "seo-referencement",
-    icon: "\uD83D\uDD0D",
-    featured: false,
-    title: {
-      fr: "SEO & Référencement",
-      en: "SEO & Ranking",
-    },
-    price: {
-      fr: "à partir de 800 $/mois",
-      en: "from 800 CAD/mo",
-    },
-    timeline: {
-      fr: "3 à 6 mois",
-      en: "3 to 6 months",
-    },
-    features: {
-      fr: [
-        "Audit SEO technique",
-        "Recherche de mots-clés & stratégie",
-        "Optimisation on-page",
-        "Profil Google Business",
-        "Rapports de performance mensuels",
-        "Analyse de la concurrence",
-      ],
-      en: [
-        "Technical SEO audit",
-        "Keyword research & strategy",
-        "On-page optimization",
-        "Google Business profile",
-        "Monthly performance reports",
-        "Competitor analysis",
-      ],
-    },
-    idealFor: {
-      fr: "Entreprises voulant mieux se positionner sur Google",
-      en: "Businesses wanting to rank higher on Google",
-    },
-  },
-  {
-    id: "maintenance-support",
-    icon: "\uD83D\uDEE1\uFE0F",
-    featured: false,
-    title: {
-      fr: "Maintenance & support",
-      en: "Maintenance & support",
-    },
-    price: {
-      fr: "85\u2013120 $/h",
-      en: "85\u2013120 CAD/h",
-    },
-    timeline: {
-      fr: "Continu",
-      en: "Ongoing",
-    },
-    features: {
-      fr: [
-        "Correctifs & mises à jour",
-        "Modifications de contenu",
-        "Optimisation performance",
-        "Correctifs de sécurité",
-        "Ajout de fonctionnalités",
-        "Support prioritaire 24h",
-      ],
-      en: [
-        "Bug fixes & updates",
-        "Content modifications",
-        "Performance optimization",
-        "Security patches",
-        "Feature additions",
-        "24h priority support",
-      ],
-    },
-    idealFor: {
-      fr: "Sites existants, partenariats long terme",
-      en: "Existing sites, long-term partnerships",
     },
   },
 ];

@@ -12,7 +12,8 @@ import {
   Code2,
   Users,
   Server,
-  Search
+  Search,
+  Shield
 } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
 
@@ -118,6 +119,42 @@ const FAQ = () => {
         en: "Yes, all my sites include basic SEO optimization: semantic HTML structure, meta tags, sitemap, optimized loading times, responsive design, and Core Web Vitals. For advanced SEO strategy, I can recommend specialists.",
       },
     },
+    {
+      icon: Shield,
+      color: "from-rose-400 to-pink-400",
+      question: {
+        fr: "Et si je ne suis pas satisfait du résultat?",
+        en: "What if I'm not satisfied with the result?",
+      },
+      answer: {
+        fr: "Corrections illimitées jusqu'à votre satisfaction complète — c'est dans le contrat. Si le délai convenu n'est pas respecté de mon côté, vous recevez 10% de remise. Je ne considère pas un projet comme terminé tant que vous n'êtes pas content du résultat.",
+        en: "Unlimited revisions until you're fully satisfied — it's in the contract. If I miss the agreed deadline, you get a 10% discount. I don't consider a project done until you're happy with the result.",
+      },
+    },
+    {
+      icon: Users,
+      color: "from-sky-400 to-blue-400",
+      question: {
+        fr: "Combien de révisions sont incluses?",
+        en: "How many revisions are included?",
+      },
+      answer: {
+        fr: "Révisions illimitées sur le design et le contenu tant que ça reste dans le scope initial du projet. Si vous voulez ajouter des fonctionnalités qui n'étaient pas prévues, on s'entend sur un ajustement avant de continuer. Pas de surprises.",
+        en: "Unlimited revisions on design and content as long as it stays within the original project scope. If you want to add features that weren't planned, we agree on an adjustment before continuing. No surprises.",
+      },
+    },
+    {
+      icon: DollarSign,
+      color: "from-lime-400 to-green-400",
+      question: {
+        fr: "Après les 30 jours de support, ça coûte combien?",
+        en: "After the 30-day support period, how much does it cost?",
+      },
+      answer: {
+        fr: "Après les 30 jours gratuits, je propose des forfaits de maintenance à partir de 85$/heure pour des interventions ponctuelles, ou un forfait mensuel selon vos besoins. La majorité de mes clients n'ont pas besoin de maintenance régulière une fois le site livré.",
+        en: "After the free 30 days, I offer maintenance at $85/hour for one-time interventions, or a monthly package based on your needs. Most of my clients don't need regular maintenance once the site is delivered.",
+      },
+    },
   ];
 
   const toggleFAQ = (index) => {
@@ -165,10 +202,10 @@ const FAQ = () => {
 
         {/* FAQ - Two independent columns */}
         <div className="flex flex-col md:flex-row gap-4 md:gap-5">
-          {[faqs.slice(0, 4), faqs.slice(4)].map((column, colIndex) => (
+          {[faqs.slice(0, Math.ceil(faqs.length / 2)), faqs.slice(Math.ceil(faqs.length / 2))].map((column, colIndex) => (
             <div key={colIndex} className="flex-1 space-y-4 md:space-y-5">
               {column.map((faq, i) => {
-                const index = colIndex * 4 + i;
+                const index = colIndex * Math.ceil(faqs.length / 2) + i;
                 const Icon = faq.icon;
                 const isOpen = openIndex === index;
 

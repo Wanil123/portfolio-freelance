@@ -1,4 +1,5 @@
 // src/components/Footer.jsx
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Linkedin,
@@ -11,11 +12,13 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
+import PrivacyPolicy from "./PrivacyPolicy";
 
 const Footer = () => {
   const { i18n } = useTranslation();
   const lang = i18n.language?.startsWith("fr") ? "fr" : "en";
   const year = new Date().getFullYear();
+  const [showPrivacy, setShowPrivacy] = useState(false);
 
   const scrollTo = (id) => {
     const el = document.getElementById(id);
@@ -262,6 +265,14 @@ const Footer = () => {
                     ? "Tous droits réservés"
                     : "All rights reserved"}
                 </span>
+                <span>·</span>
+                <button
+                  type="button"
+                  onClick={() => setShowPrivacy(true)}
+                  className="hover:text-violet-400 transition-colors underline underline-offset-2"
+                >
+                  {lang === "fr" ? "Mentions légales" : "Privacy Policy"}
+                </button>
               </div>
 
               {/* Badges */}
@@ -299,6 +310,8 @@ const Footer = () => {
           </div>
         </Reveal>
       </div>
+
+      <PrivacyPolicy isOpen={showPrivacy} onClose={() => setShowPrivacy(false)} />
     </footer>
   );
 };

@@ -8,10 +8,8 @@ const Services = ({ scrollToSection }) => {
   const { i18n } = useTranslation();
   const lang = i18n.language?.startsWith("fr") ? "fr" : "en";
 
-  // Show featured services first
-  const sortedServices = [...services].sort(
-    (a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0)
-  );
+  // Services are already ordered: AI first, then web dev
+  const sortedServices = services;
 
   const handleContactClick = () => {
     if (typeof scrollToSection === "function") {
@@ -41,16 +39,16 @@ const Services = ({ scrollToSection }) => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             {lang === "fr" ? (
               <>
-                Sites web{" "}
+                Web & IA{" "}
                 <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                   sur mesure
                 </span>
               </>
             ) : (
               <>
-                Custom{" "}
+                Custom web{" "}
                 <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  websites
+                  & AI solutions
                 </span>
               </>
             )}
@@ -58,8 +56,8 @@ const Services = ({ scrollToSection }) => {
 
           <p className="text-slate-300 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             {lang === "fr"
-              ? "Du site vitrine à la boutique en ligne, je crée des solutions web modernes adaptées à vos besoins."
-              : "From business websites to online stores, I build modern web solutions tailored to your needs."}
+              ? "Sites web, e-commerce et automatisation IA — des solutions modernes qui g\u00e9n\u00e8rent des r\u00e9sultats concrets."
+              : "Websites, e-commerce and AI automation \u2014 modern solutions that drive real results."}
           </p>
         </Reveal>
 
