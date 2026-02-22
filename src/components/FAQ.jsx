@@ -31,8 +31,8 @@ const FAQ = () => {
         en: "How long does it take to create a website?",
       },
       answer: {
-        fr: "Le délai dépend de la complexité du projet. Un site vitrine prend généralement 2-3 semaines, une boutique e-commerce 3-4 semaines, et une application sur mesure 4-8 semaines. J'établis un calendrier précis dès le début du projet.",
-        en: "The timeline depends on project complexity. A business website typically takes 2-3 weeks, an e-commerce store 3-4 weeks, and a custom application 4-8 weeks. I establish a precise schedule at the start of the project.",
+        fr: "Le délai dépend de la complexité du projet. Un site vitrine prend généralement 2-3 semaines, une boutique e-commerce 3-4 semaines, et une application sur mesure 4-8 semaines. Nous établissons un calendrier précis dès le début du projet.",
+        en: "The timeline depends on project complexity. A business website typically takes 2-3 weeks, an e-commerce store 3-4 weeks, and a custom application 4-8 weeks. We establish a precise schedule at the start of the project.",
       },
     },
     {
@@ -43,8 +43,8 @@ const FAQ = () => {
         en: "Do you work with clients outside Quebec?",
       },
       answer: {
-        fr: "Absolument! Je travaille avec des clients partout au Canada, en Europe et à l'international. Toutes mes communications et livrables sont disponibles en français et en anglais. Les appels se font via Zoom ou Google Meet selon votre fuseau horaire.",
-        en: "Absolutely! I work with clients across Canada, Europe, and internationally. All my communications and deliverables are available in both French and English. Calls are done via Zoom or Google Meet according to your timezone.",
+        fr: "Absolument! Nous travaillons avec des clients partout au Canada, en Europe et à l'international. Toutes nos communications et livrables sont disponibles en français et en anglais. Les appels se font via Zoom ou Google Meet selon votre fuseau horaire.",
+        en: "Absolutely! We work with clients across Canada, Europe, and internationally. All our communications and deliverables are available in both French and English. Calls are done via Zoom or Google Meet according to your timezone.",
       },
     },
     {
@@ -55,8 +55,8 @@ const FAQ = () => {
         en: "What happens after the project is delivered?",
       },
       answer: {
-        fr: "Tous mes forfaits incluent 30 jours de support post-lancement pour les ajustements mineurs et corrections de bugs. Après cette période, je propose des forfaits de maintenance mensuels ou des interventions ponctuelles selon vos besoins.",
-        en: "All my packages include 30 days of post-launch support for minor adjustments and bug fixes. After this period, I offer monthly maintenance packages or one-time interventions based on your needs.",
+        fr: "Tous nos forfaits incluent 30 jours de support post-lancement pour les ajustements mineurs et corrections de bugs. Après cette période, nous proposons des forfaits de maintenance mensuels ou des interventions ponctuelles selon vos besoins.",
+        en: "All our packages include 30 days of post-launch support for minor adjustments and bug fixes. After this period, we offer monthly maintenance packages or one-time interventions based on your needs.",
       },
     },
     {
@@ -67,8 +67,8 @@ const FAQ = () => {
         en: "What are your rates?",
       },
       answer: {
-        fr: "Mes forfaits commencent à 4 500 $ CAD pour un site vitrine et 7 500 $ CAD pour une boutique e-commerce. Les applications sur mesure sont établies sur devis. Je propose aussi des paiements en 2-3 versements pour faciliter votre budget.",
-        en: "My packages start at $4,500 CAD for a business website and $7,500 CAD for an e-commerce store. Custom applications are quoted individually. I also offer payment in 2-3 installments to help with your budget.",
+        fr: "Nos forfaits commencent à 4 500 $ CAD pour un site vitrine et 7 500 $ CAD pour une boutique e-commerce. Les applications sur mesure sont établies sur devis. Nous proposons aussi des paiements en 2-3 versements pour faciliter votre budget.",
+        en: "Our packages start at $4,500 CAD for a business website and $7,500 CAD for an e-commerce store. Custom applications are quoted individually. We also offer payment in 2-3 installments to help with your budget.",
       },
     },
     {
@@ -79,8 +79,8 @@ const FAQ = () => {
         en: "Do you use templates or is everything custom?",
       },
       answer: {
-        fr: "Je développe chaque projet sur mesure selon vos besoins spécifiques. Pas de templates génériques — chaque site est codé from scratch avec React ou Laravel pour garantir performance, évolutivité et unicité.",
-        en: "I develop each project custom to your specific needs. No generic templates — each site is coded from scratch with React or Laravel to ensure performance, scalability, and uniqueness.",
+        fr: "Nous développons chaque projet sur mesure selon vos besoins spécifiques. Pas de templates génériques — chaque site est codé from scratch avec React ou Laravel pour garantir performance, évolutivité et unicité.",
+        en: "We develop each project custom to your specific needs. No generic templates — each site is coded from scratch with React or Laravel to ensure performance, scalability, and uniqueness.",
       },
     },
     {
@@ -103,8 +103,8 @@ const FAQ = () => {
         en: "Do you offer hosting and domain names?",
       },
       answer: {
-        fr: "Je peux vous guider dans le choix de l'hébergement optimal (Netlify, Vercel, hébergement traditionnel) et vous aider à configurer votre domaine. Ces frais sont séparés et vous gardez le contrôle total de vos comptes.",
-        en: "I can guide you in choosing optimal hosting (Netlify, Vercel, traditional hosting) and help you set up your domain. These costs are separate, and you maintain full control of your accounts.",
+        fr: "Nous pouvons vous guider dans le choix de l'hébergement optimal (Netlify, Vercel, hébergement traditionnel) et vous aider à configurer votre domaine. Ces frais sont séparés et vous gardez le contrôle total de vos comptes.",
+        en: "We can guide you in choosing optimal hosting (Netlify, Vercel, traditional hosting) and help you set up your domain. These costs are separate, and you maintain full control of your accounts.",
       },
     },
     {
@@ -115,8 +115,8 @@ const FAQ = () => {
         en: "Will my website be optimized for SEO?",
       },
       answer: {
-        fr: "Oui, tous mes sites incluent une optimisation SEO de base : structure HTML sémantique, balises meta, sitemap, temps de chargement optimisé, responsive design et Core Web Vitals. Pour une stratégie SEO avancée, je peux vous recommander des spécialistes.",
-        en: "Yes, all my sites include basic SEO optimization: semantic HTML structure, meta tags, sitemap, optimized loading times, responsive design, and Core Web Vitals. For advanced SEO strategy, I can recommend specialists.",
+        fr: "Oui, tous nos sites incluent une optimisation SEO de base : structure HTML sémantique, balises meta, sitemap, temps de chargement optimisé, responsive design et Core Web Vitals. Pour une stratégie SEO avancée, nous pouvons vous recommander des spécialistes.",
+        en: "Yes, all our sites include basic SEO optimization: semantic HTML structure, meta tags, sitemap, optimized loading times, responsive design, and Core Web Vitals. For advanced SEO strategy, we can recommend specialists.",
       },
     },
     {
@@ -127,8 +127,8 @@ const FAQ = () => {
         en: "What if I'm not satisfied with the result?",
       },
       answer: {
-        fr: "Corrections illimitées jusqu'à votre satisfaction complète — c'est dans le contrat. Si le délai convenu n'est pas respecté de mon côté, vous recevez 10% de remise. Je ne considère pas un projet comme terminé tant que vous n'êtes pas content du résultat.",
-        en: "Unlimited revisions until you're fully satisfied — it's in the contract. If I miss the agreed deadline, you get a 10% discount. I don't consider a project done until you're happy with the result.",
+        fr: "Corrections illimitées jusqu'à votre satisfaction complète — c'est dans le contrat. Si le délai convenu n'est pas respecté de notre côté, vous recevez 10% de remise. Nous ne considérons pas un projet comme terminé tant que vous n'êtes pas content du résultat.",
+        en: "Unlimited revisions until you're fully satisfied — it's in the contract. If we miss the agreed deadline, you get a 10% discount. We don't consider a project done until you're happy with the result.",
       },
     },
     {
@@ -151,8 +151,8 @@ const FAQ = () => {
         en: "After the 30-day support period, how much does it cost?",
       },
       answer: {
-        fr: "Après les 30 jours gratuits, je propose des forfaits de maintenance à partir de 85$/heure pour des interventions ponctuelles, ou un forfait mensuel selon vos besoins. La majorité de mes clients n'ont pas besoin de maintenance régulière une fois le site livré.",
-        en: "After the free 30 days, I offer maintenance at $85/hour for one-time interventions, or a monthly package based on your needs. Most of my clients don't need regular maintenance once the site is delivered.",
+        fr: "Après les 30 jours gratuits, nous proposons des forfaits de maintenance à partir de 85$/heure pour des interventions ponctuelles, ou un forfait mensuel selon vos besoins. La majorité de nos clients n'ont pas besoin de maintenance régulière une fois le site livré.",
+        en: "After the free 30 days, we offer maintenance at $85/hour for one-time interventions, or a monthly package based on your needs. Most of our clients don't need regular maintenance once the site is delivered.",
       },
     },
   ];
@@ -180,7 +180,7 @@ const FAQ = () => {
               <>
                 Vos questions,{" "}
                 <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  mes réponses
+                  nos réponses
                 </span>
               </>
             ) : (
@@ -292,8 +292,8 @@ const FAQ = () => {
                   </p>
                   <p className="text-xs md:text-sm text-slate-400">
                     {lang === "fr"
-                      ? "Je réponds en moins de 24h"
-                      : "I respond within 24h"}
+                      ? "Nous répondons en moins de 24h"
+                      : "We respond within 24h"}
                   </p>
                 </div>
               </div>

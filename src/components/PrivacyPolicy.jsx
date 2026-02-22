@@ -25,7 +25,7 @@ const PrivacyPolicy = ({ isOpen, onClose }) => {
     sections: [
       {
         heading: "\u00c9diteur du site",
-        text: "PrimeDev Studios\nWanil Parfait \u2014 D\u00e9veloppeur web freelance\nMontr\u00e9al, QC, Canada\ninfo@prime-dev-studios.com",
+        text: "PrimeDev Studios\nWanil Parfait \u2014 Fondateur & D\u00e9veloppeur principal\nMontr\u00e9al, QC, Canada\ninfo@prime-dev-studios.com",
       },
       {
         heading: "H\u00e9bergement",
@@ -53,7 +53,7 @@ const PrivacyPolicy = ({ isOpen, onClose }) => {
     sections: [
       {
         heading: "Site Publisher",
-        text: "PrimeDev Studios\nWanil Parfait \u2014 Freelance Web Developer\nMontreal, QC, Canada\ninfo@prime-dev-studios.com",
+        text: "PrimeDev Studios\nWanil Parfait \u2014 Founder & Lead Developer\nMontreal, QC, Canada\ninfo@prime-dev-studios.com",
       },
       {
         heading: "Hosting",

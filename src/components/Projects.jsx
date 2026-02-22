@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { projects } from "../data/projects.js";
-import { Check, ExternalLink, Code2, X, ChevronRight, Rocket, Play, Star, ArrowRight } from "lucide-react";
+import { Check, ExternalLink, Code2, X, ChevronRight, Rocket, Play, Star, ArrowRight, Bot } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
 
 const heroProjects = projects.filter((p) => p.isClientProject);
@@ -202,6 +202,14 @@ const Projects = () => {
           </div>
         </div>
       )}
+      {p.isAIDemo && (
+        <div className="absolute -top-2 -right-2 md:-top-3 md:-right-3 z-10">
+          <div className="flex items-center gap-1 px-2 py-0.5 md:px-3 md:py-1 rounded-full bg-gradient-to-r from-violet-500 to-purple-500 text-white text-[10px] md:text-xs font-medium shadow-lg">
+            <Bot size={10} />
+            <span>Demo</span>
+          </div>
+        </div>
+      )}
 
       <div className={`hidden md:block pointer-events-none absolute -inset-1 opacity-0 group-hover:opacity-100 rounded-2xl blur-xl transition-opacity duration-500 ${
         p.isClientProject
@@ -233,7 +241,7 @@ const Projects = () => {
         <Reveal className="text-center mb-10 md:mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-violet-500/10 border border-violet-400/30 text-violet-200 text-xs md:text-sm font-medium mb-4">
             <Rocket size={14} />
-            <span>{lang === "fr" ? "Réalisations" : "My Work"}</span>
+            <span>{lang === "fr" ? "Réalisations" : "Our Work"}</span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 md:mb-4">
@@ -381,6 +389,12 @@ const Projects = () => {
                         <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 md:px-3 md:py-1.5 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 font-medium">
                           <Star size={12} />
                           {context}
+                        </span>
+                      )}
+                      {selectedProject.isAIDemo && (
+                        <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 md:px-3 md:py-1.5 rounded-full bg-violet-500/10 text-violet-300 border border-violet-500/30 font-medium">
+                          <Bot size={12} />
+                          Demo
                         </span>
                       )}
                       {selectedProject.link && (

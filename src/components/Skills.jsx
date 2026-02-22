@@ -189,8 +189,8 @@ export default function Skills() {
 
           <p className="text-slate-300 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             {lang === "fr"
-              ? "Technologies front-end et back-end que j'utilise au quotidien pour créer des solutions web performantes, livrées en bilingue."
-              : "Front-end and back-end technologies I use daily to create high-performance web solutions, delivered bilingually."}
+              ? "Technologies front-end et back-end que nous utilisons au quotidien pour créer des solutions web performantes, livrées en bilingue."
+              : "Front-end and back-end technologies we use daily to create high-performance web solutions, delivered bilingually."}
           </p>
         </Reveal>
 

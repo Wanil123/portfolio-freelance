@@ -40,7 +40,7 @@ i18n
           process: "Process",
 
           // Status
-          available: "Available for Freelance",
+          available: "Available for new projects",
           scrollTop: "Back to top",
 
           // CTAs
@@ -102,13 +102,13 @@ i18n
           process: "Processus",
 
           // Status
-          available: "Disponible en freelance",
+          available: "Disponible pour nouveaux projets",
           scrollTop: "Retour en haut",
 
           // CTAs
           getQuote: "Obtenir un devis",
           startProject: "Démarrer un projet",
-          viewProjects: "Voir mes projets",
+          viewProjects: "Voir nos projets",
           bookCall: "Réserver un appel",
           sendMessage: "Envoyer le message",
           freeConsultation: "Consultation gratuite",

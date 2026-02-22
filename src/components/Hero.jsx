@@ -81,8 +81,8 @@ const Hero = ({ scrollToSection }) => {
         {/* Subtitle */}
         <p className="text-lg md:text-xl lg:text-2xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up animation-delay-200">
           {lang === "fr"
-            ? "Je crée des sites web et des automatisations IA qui font croître votre business."
-            : "I build websites and AI automations that grow your business."}
+            ? "Nous créons des sites web et des automatisations IA qui font croître votre business."
+            : "We build websites and AI automations that grow your business."}
         </p>
 
         {/* CTAs */}
@@ -94,7 +94,7 @@ const Hero = ({ scrollToSection }) => {
             {/* Shine effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
             <span className="relative flex items-center gap-2">
-              {lang === "fr" ? "Démarrer mon projet" : "Start my project"}
+              {lang === "fr" ? "Démarrer votre projet" : "Start your project"}
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </span>
           </button>

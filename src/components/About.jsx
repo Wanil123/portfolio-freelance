@@ -23,8 +23,8 @@ const About = () => {
       title: lang === "fr" ? "Communication directe" : "Direct communication",
       description:
         lang === "fr"
-          ? "Pas de chargé de projet entre nous. Vous parlez directement au développeur qui code votre site. Questions, changements, feedback — tout est rapide."
-          : "No project manager between us. You talk directly to the developer building your site. Questions, changes, feedback — everything is fast.",
+          ? "Pas d'intermédiaire. Vous échangez directement avec l'équipe qui développe votre site. Questions, changements, feedback — tout est rapide."
+          : "No middleman. You work directly with the team building your site. Questions, changes, feedback — everything is fast.",
       color: "from-emerald-400 to-green-500",
       bgColor: "bg-emerald-500/10",
       iconColor: "text-emerald-300",
@@ -67,8 +67,8 @@ const About = () => {
       title: lang === "fr" ? "Automatisation intelligente" : "Smart automation",
       description:
         lang === "fr"
-          ? "Chatbots IA, agents vocaux, automatisation CRM et suivi des leads — j'intègre des solutions IA directement dans vos projets pour automatiser et convertir."
-          : "AI chatbots, voice agents, CRM automation and lead tracking — I integrate AI solutions directly into your projects to automate and convert.",
+          ? "Chatbots IA, agents vocaux, automatisation CRM et suivi des leads — nous intégrons des solutions IA directement dans vos projets pour automatiser et convertir."
+          : "AI chatbots, voice agents, CRM automation and lead tracking — we integrate AI solutions directly into your projects to automate and convert.",
       color: "from-pink-400 to-rose-500",
       bgColor: "bg-pink-500/10",
       iconColor: "text-pink-300",
@@ -108,8 +108,8 @@ const About = () => {
 
           <p className="text-slate-300 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             {lang === "fr"
-              ? "Développeur full-stack & spécialiste en automatisation IA, basé à Montréal."
-              : "Full-stack developer & AI automation specialist, based in Montréal."}
+              ? "Studio de développement web & automatisation IA, basé à Montréal."
+              : "Web development & AI automation studio, based in Montréal."}
           </p>
         </Reveal>
 
@@ -134,8 +134,8 @@ const About = () => {
                     </h3>
                     <p className="text-sm text-violet-300 font-medium">
                       {lang === "fr"
-                        ? "Fondateur — PrimeDev Studios"
-                        : "Founder — PrimeDev Studios"}
+                        ? "Fondateur & Développeur principal"
+                        : "Founder & Lead Developer"}
                     </p>
                     <div className="flex items-center gap-1.5 mt-1.5">
                       <div className="relative flex h-2.5 w-2.5">
@@ -153,20 +153,20 @@ const About = () => {
                 <div className="space-y-4 text-slate-300 text-sm md:text-base leading-relaxed">
                   <p>
                     {lang === "fr"
-                      ? "Je suis développeur web depuis 5 ans, surtout en React et TypeScript côté front, avec un solide background en backend (Python, PHP/Laravel, Node.js). Avant de lancer PrimeDev, j'ai passé plus de 3 ans en entreprise à Montréal où je développais des APIs qui servaient plus de 10 000 requêtes par jour."
-                      : "I've been a web developer for 5 years, mostly in React and TypeScript on the front-end, with a solid backend background (Python, PHP/Laravel, Node.js). Before starting PrimeDev, I spent over 3 years in the industry in Montreal building APIs that served over 10,000 requests per day."}
+                      ? "PrimeDev Studios est un studio de développement web basé à Montréal, spécialisé en React, TypeScript et Laravel. Avec plus de 5 ans d'expérience en développement full-stack et plus de 3 ans en entreprise à bâtir des APIs servant 10 000+ requêtes par jour, nous apportons une expertise concrète à chaque projet."
+                      : "PrimeDev Studios is a Montreal-based web development studio specializing in React, TypeScript and Laravel. With over 5 years of full-stack experience and 3+ years building enterprise APIs serving 10,000+ requests per day, we bring real-world expertise to every project."}
                   </p>
 
                   <p>
                     {lang === "fr"
-                      ? "J'ai fondé PrimeDev Studios parce que je voulais travailler directement avec les entrepreneurs d'ici — pas à travers 3 niveaux de gestion dans une grosse boîte. Quand vous travaillez avec moi, c'est moi qui code votre site, moi qui réponds à vos messages, moi qui livre le produit."
-                      : "I founded PrimeDev Studios because I wanted to work directly with local entrepreneurs — not through 3 layers of management in a big firm. When you work with me, I'm the one coding your site, answering your messages, and delivering the product."}
+                      ? "Fondé par Wanil Parfait, le studio est né d'une conviction : les PME méritent un partenaire technique qui travaille directement avec elles — sans intermédiaire, sans délai inutile. Chez PrimeDev, vous travaillez avec les gens qui codent votre projet."
+                      : "Founded by Wanil Parfait, the studio was born from a belief: SMBs deserve a technical partner that works directly with them — no middlemen, no unnecessary delays. At PrimeDev, you work with the people who build your project."}
                   </p>
 
                   <p>
                     {lang === "fr"
-                      ? "Aujourd'hui, j'intègre l'IA dans mes projets web — chatbots, agents vocaux, automatisation CRM — pour aider les PME à ne plus perdre de clients le soir et les week-ends."
-                      : "Today, I integrate AI into my web projects — chatbots, voice agents, CRM automation — to help SMBs stop losing clients during evenings and weekends."}
+                      ? "Aujourd'hui, nous intégrons l'IA dans nos projets web — chatbots, agents vocaux, automatisation CRM — pour aider les PME à ne plus perdre de clients le soir et les week-ends."
+                      : "Today, we integrate AI into our web projects — chatbots, voice agents, CRM automation — to help SMBs stop losing clients during evenings and weekends."}
                   </p>
                 </div>
 
@@ -214,7 +214,7 @@ const About = () => {
           <div className="space-y-4 md:space-y-5">
             <Reveal>
               <p className="text-xs md:text-sm text-slate-500 font-medium uppercase tracking-wider mb-2">
-                {lang === "fr" ? "Pourquoi travailler avec moi" : "Why work with me"}
+                {lang === "fr" ? "Pourquoi travailler avec nous" : "Why work with us"}
               </p>
             </Reveal>
             {strengths.map((strength, idx) => {
@@ -255,8 +255,8 @@ const About = () => {
           <div className="text-center">
             <p className="text-lg text-slate-300 mb-6 max-w-2xl mx-auto">
               {lang === "fr"
-                ? "Un projet en tête? Écrivez-moi, je réponds en moins de 24h."
-                : "Have a project in mind? Write to me, I reply within 24h."}
+                ? "Un projet en tête? Écrivez-nous, nous répondons en moins de 24h."
+                : "Have a project in mind? Write to us, we reply within 24h."}
             </p>
 
             <a

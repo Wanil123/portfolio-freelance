@@ -37,7 +37,7 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const WHATSAPP_LINK =
-    "https://wa.me/15793685230?text=Bonjour%20Wanil,%20je%20veux%20parler%20de%20mon%20projet%20web.";
+    "https://wa.me/15793685230?text=Bonjour%20PrimeDev,%20je%20veux%20parler%20de%20mon%20projet%20web.";
 
   const projectTypeOptions = [
     { value: "site-vitrine", label: lang === "fr" ? "Site vitrine" : "Business website" },
@@ -191,8 +191,8 @@ const Contact = () => {
 
           <p className="text-slate-300 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             {lang === "fr"
-              ? "Décrivez-moi votre projet web. Je vous reviens rapidement avec un plan d'action et une estimation détaillée."
-              : "Tell me about your web project. I'll get back to you quickly with an action plan and detailed estimate."}
+              ? "Décrivez-nous votre projet web. Nous vous revenons rapidement avec un plan d'action et une estimation détaillée."
+              : "Tell us about your web project. We'll get back to you quickly with an action plan and detailed estimate."}
           </p>
         </Reveal>
 
@@ -207,13 +207,13 @@ const Contact = () => {
                 <div className="mb-6">
                   <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
                     {lang === "fr"
-                      ? "Envoyez-moi un message"
-                      : "Send me a message"}
+                      ? "Envoyez-nous un message"
+                      : "Send us a message"}
                   </h3>
                   <p className="text-slate-400 text-sm">
                     {lang === "fr"
-                      ? "Décrivez votre projet et je vous réponds sous 24h."
-                      : "Describe your project and I'll respond within 24h."}
+                      ? "Décrivez votre projet et nous vous répondons sous 24h."
+                      : "Describe your project and we'll respond within 24h."}
                   </p>
                 </div>
 
@@ -365,8 +365,8 @@ const Contact = () => {
                         <CheckCircle2 size={20} className="text-emerald-400 flex-shrink-0" />
                         <p className="text-sm text-emerald-300">
                           {lang === "fr"
-                            ? "Message envoyé avec succès! Je vous réponds sous 24h."
-                            : "Message sent successfully! I'll respond within 24h."}
+                            ? "Message envoyé avec succès! Nous vous répondons sous 24h."
+                            : "Message sent successfully! We'll respond within 24h."}
                         </p>
                       </div>
                     )}
@@ -376,8 +376,8 @@ const Contact = () => {
                         <AlertCircle size={20} className="text-red-400 flex-shrink-0" />
                         <p className="text-sm text-red-300">
                           {lang === "fr"
-                            ? "Erreur lors de l'envoi. Veuillez réessayer ou contactez-moi directement."
-                            : "Error sending message. Please try again or contact me directly."}
+                            ? "Erreur lors de l'envoi. Veuillez réessayer ou contactez-nous directement."
+                            : "Error sending message. Please try again or contact us directly."}
                         </p>
                       </div>
                     )}
@@ -394,7 +394,7 @@ const Contact = () => {
               <div className="relative">
                 <div className="relative bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-2xl p-6 backdrop-blur-sm">
                   <h4 className="text-lg font-semibold text-white mb-4">
-                    {lang === "fr" ? "Ou contactez-moi directement" : "Or contact me directly"}
+                    {lang === "fr" ? "Ou contactez-nous directement" : "Or contact us directly"}
                   </h4>
                   <div className="space-y-3">
                     {contactMethods.map((method, idx) => {
@@ -533,8 +533,8 @@ const Contact = () => {
                     </h4>
                     <p className="text-xs md:text-sm text-slate-400">
                       {lang === "fr"
-                        ? "Je réponds rapidement à chaque demande."
-                        : "I respond quickly to every request."}
+                        ? "Nous répondons rapidement à chaque demande."
+                        : "We respond quickly to every request."}
                     </p>
                   </div>
                 </div>

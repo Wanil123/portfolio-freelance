@@ -111,16 +111,16 @@ const Footer = () => {
                 </h3>
                 <p className="text-[10px] text-slate-500 uppercase tracking-wider">
                   {lang === "fr"
-                    ? "Développeur full-stack"
-                    : "Full-stack developer"}
+                    ? "Studio de développement web"
+                    : "Web development studio"}
                 </p>
               </div>
             </button>
 
             <p className="text-sm text-slate-400 leading-relaxed max-w-md">
               {lang === "fr"
-                ? "Développeur full-stack basé à Montréal. Sites vitrines, e-commerce et applications sur mesure. Code propre, livraison rapide, support bilingue FR/EN."
-                : "Full-stack developer based in Montreal. Business websites, e-commerce and custom web apps. Clean code, fast delivery, bilingual EN/FR support."}
+                ? "Studio de développement web basé à Montréal. Sites vitrines, e-commerce, automatisation IA et applications sur mesure. Code propre, livraison rapide, support bilingue FR/EN."
+                : "Web development studio based in Montreal. Business websites, e-commerce, AI automation and custom web apps. Clean code, fast delivery, bilingual EN/FR support."}
             </p>
 
             <div className="flex flex-col gap-2.5">
@@ -206,7 +206,7 @@ const Footer = () => {
             {/* Social */}
             <div>
               <p className="text-xs text-slate-500 mb-3">
-                {lang === "fr" ? "Suivez-moi" : "Follow me"}
+                {lang === "fr" ? "Suivez-nous" : "Follow us"}
               </p>
               <div className="flex items-center gap-2">
                 {socialLinks.map((social) => {

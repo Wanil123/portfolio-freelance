@@ -19,11 +19,11 @@ const steps = [
     color: "from-cyan-400 to-blue-500",
     fr: {
       title: "Découverte & objectifs",
-      desc: "Je clarifie votre activité, votre marché, votre public (FR/EN) et surtout ce que le site doit accomplir : vendre, présenter ou générer des contacts.",
+      desc: "Nous clarifions votre activité, votre marché, votre public (FR/EN) et surtout ce que le site doit accomplir : vendre, présenter ou générer des contacts.",
     },
     en: {
       title: "Discovery & goals",
-      desc: "I clarify your business, target audience (FR/EN) and what the site must do: sell, present or generate leads.",
+      desc: "We clarify your business, target audience (FR/EN) and what the site must do: sell, present or generate leads.",
     },
   },
   {
@@ -260,8 +260,8 @@ const Process = ({ id = "process", scrollToSection }) => {
                       </h4>
                       <p className="text-sm text-slate-300 mb-4">
                         {lang === "fr"
-                          ? "Parlez-moi de votre projet et recevez une estimation détaillée sous 48h."
-                          : "Tell me about your project and receive a detailed estimate within 48 hours."}
+                          ? "Parlez-nous de votre projet et recevez une estimation détaillée sous 48h."
+                          : "Tell us about your project and receive a detailed estimate within 48 hours."}
                       </p>
                       <button
                         onClick={handleQuoteClick}
