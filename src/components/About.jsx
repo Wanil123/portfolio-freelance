@@ -153,8 +153,8 @@ const About = () => {
                 <div className="space-y-4 text-slate-300 text-sm md:text-base leading-relaxed">
                   <p>
                     {lang === "fr"
-                      ? "PrimeDev Studios est un studio de développement web basé à Montréal, spécialisé en React, TypeScript et Laravel. Avec plus de 5 ans d'expérience en développement full-stack et plus de 3 ans en entreprise à bâtir des APIs servant 10 000+ requêtes par jour, nous apportons une expertise concrète à chaque projet."
-                      : "PrimeDev Studios is a Montreal-based web development studio specializing in React, TypeScript and Laravel. With over 5 years of full-stack experience and 3+ years building enterprise APIs serving 10,000+ requests per day, we bring real-world expertise to every project."}
+                      ? "PrimeDev Studios est un studio de développement web basé à Montréal, spécialisé en React, Vue.js, TypeScript et Laravel. Avec plus de 5 ans d'expérience en développement full-stack et plus de 3 ans en entreprise à bâtir des APIs servant 10 000+ requêtes par jour, nous apportons une expertise concrète à chaque projet."
+                      : "PrimeDev Studios is a Montreal-based web development studio specializing in React, Vue.js, TypeScript and Laravel. With over 5 years of full-stack experience and 3+ years building enterprise APIs serving 10,000+ requests per day, we bring real-world expertise to every project."}
                   </p>
 
                   <p>
@@ -185,7 +185,7 @@ const About = () => {
                     },
                     {
                       icon: Code2,
-                      text: "React · Laravel · n8n",
+                      text: "React · Vue.js · Laravel · n8n",
                       detail: lang === "fr" ? "Stack web + IA" : "Web + AI stack",
                     },
                     {

@@ -120,10 +120,10 @@ const Hero = ({ scrollToSection }) => {
             </div>
             <div className="text-left">
               <p className="text-[10px] text-slate-500 uppercase tracking-wider font-medium">
-                {lang === "fr" ? "Dernier projet livré" : "Latest project shipped"}
+                {lang === "fr" ? "2 projets livrés · 3e en cours" : "2 projects delivered · 3rd in progress"}
               </p>
               <p className="text-sm font-medium text-white group-hover:text-violet-300 transition-colors">
-                LamIPict.com — {lang === "fr" ? "E-commerce en production" : "E-commerce in production"}
+                LamIPict.com — {lang === "fr" ? "E-commerce livré" : "E-commerce delivered"}
               </p>
             </div>
             <ArrowRight size={14} className="text-slate-600 group-hover:text-violet-400 group-hover:translate-x-0.5 transition-all flex-shrink-0" />

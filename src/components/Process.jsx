@@ -33,11 +33,11 @@ const steps = [
     color: "from-emerald-400 to-green-500",
     fr: {
       title: "Plan de projet & devis",
-      desc: "Structure du site, fonctionnalités, technologies (React, Laravel, Tailwind), délais et budget. Tout est formalisé, sans surprise.",
+      desc: "Structure du site, fonctionnalités, technologies (React, Vue.js, Laravel, Tailwind), délais et budget. Tout est formalisé, sans surprise.",
     },
     en: {
       title: "Project plan & estimate",
-      desc: "Site structure, features, stack (React, Laravel, Tailwind), timeline and budget. Everything is written, no surprises.",
+      desc: "Site structure, features, stack (React, Vue.js, Laravel, Tailwind), timeline and budget. Everything is written, no surprises.",
     },
   },
   {
@@ -61,11 +61,11 @@ const steps = [
     color: "from-violet-400 to-purple-500",
     fr: {
       title: "Développement du site / app",
-      desc: "Intégration soignée en React + Tailwind ou Laravel, animations, responsive, formulaires de contact, bilingue FR/EN. Code versionné et propre.",
+      desc: "Intégration soignée en React, Vue.js ou Laravel + Tailwind, animations, responsive, formulaires de contact, bilingue FR/EN. Code versionné et propre.",
     },
     en: {
       title: "Website / app development",
-      desc: "Clean React + Tailwind or Laravel build, animations, responsive, contact forms, FR/EN. Versioned code.",
+      desc: "Clean React, Vue.js or Laravel + Tailwind build, animations, responsive, contact forms, FR/EN. Versioned code.",
     },
   },
   {
@@ -298,7 +298,7 @@ const Process = ({ id = "process", scrollToSection }) => {
                               : "Modern stack"}
                           </p>
                           <p className="text-xs text-slate-400">
-                            React · Tailwind · Laravel
+                            React · Vue.js · Laravel · Tailwind
                           </p>
                         </div>
                       </div>

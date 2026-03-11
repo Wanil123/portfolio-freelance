@@ -79,8 +79,8 @@ const FAQ = () => {
         en: "Do you use templates or is everything custom?",
       },
       answer: {
-        fr: "Nous développons chaque projet sur mesure selon vos besoins spécifiques. Pas de templates génériques — chaque site est codé from scratch avec React ou Laravel pour garantir performance, évolutivité et unicité.",
-        en: "We develop each project custom to your specific needs. No generic templates — each site is coded from scratch with React or Laravel to ensure performance, scalability, and uniqueness.",
+        fr: "Nous développons chaque projet sur mesure selon vos besoins spécifiques. Pas de templates génériques — chaque site est codé from scratch avec React, Vue.js ou Laravel pour garantir performance, évolutivité et unicité.",
+        en: "We develop each project custom to your specific needs. No generic templates — each site is coded from scratch with React, Vue.js or Laravel to ensure performance, scalability, and uniqueness.",
       },
     },
     {
