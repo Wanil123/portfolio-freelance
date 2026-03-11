@@ -9,8 +9,8 @@ export const services = [
       en: "AI Receptionist Agent",
     },
     price: {
-      fr: "\u00e0 partir de 1 500 $/mois",
-      en: "from 1,500 CAD/mo",
+      fr: "Forfait mensuel",
+      en: "Monthly plan",
     },
     timeline: {
       fr: "1 \u00e0 2 semaines",
@@ -48,8 +48,8 @@ export const services = [
       en: "AI Smart Chatbot",
     },
     price: {
-      fr: "\u00e0 partir de 500 $/mois",
-      en: "from 500 CAD/mo",
+      fr: "Forfait mensuel",
+      en: "Monthly plan",
     },
     timeline: {
       fr: "1 \u00e0 2 semaines",
@@ -87,8 +87,8 @@ export const services = [
       en: "Sales Automation",
     },
     price: {
-      fr: "\u00e0 partir de 1 000 $/mois",
-      en: "from 1,000 CAD/mo",
+      fr: "Forfait mensuel",
+      en: "Monthly plan",
     },
     timeline: {
       fr: "2 \u00e0 3 semaines",
@@ -126,8 +126,8 @@ export const services = [
       en: "Business website",
     },
     price: {
-      fr: "\u00e0 partir de 4 500 $",
-      en: "from 4,500 CAD",
+      fr: "Projet clé en main",
+      en: "Turnkey project",
     },
     timeline: {
       fr: "2 \u00e0 4 semaines",
@@ -165,8 +165,8 @@ export const services = [
       en: "E-commerce store",
     },
     price: {
-      fr: "\u00e0 partir de 7 500 $",
-      en: "from 7,500 CAD",
+      fr: "Projet clé en main",
+      en: "Turnkey project",
     },
     timeline: {
       fr: "3 \u00e0 6 semaines",
@@ -204,8 +204,8 @@ export const services = [
       en: "Website redesign",
     },
     price: {
-      fr: "\u00e0 partir de 4 000 $",
-      en: "from 4,000 CAD",
+      fr: "Projet clé en main",
+      en: "Turnkey project",
     },
     timeline: {
       fr: "2 \u00e0 3 semaines",

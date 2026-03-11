@@ -110,9 +110,13 @@ const Services = ({ scrollToSection }) => {
                           <h3 className="text-xl font-bold text-white leading-tight mb-1">
                             {title}
                           </h3>
-                          <p className="text-lg font-semibold text-violet-400">
-                            {price}
-                          </p>
+                          <button
+                            type="button"
+                            onClick={(e) => { e.stopPropagation(); scrollToSection("offers"); }}
+                            className="text-sm font-medium text-violet-400 hover:text-violet-300 transition-colors underline underline-offset-2 decoration-violet-400/30 hover:decoration-violet-300/50"
+                          >
+                            {price} →
+                          </button>
                         </div>
                       </div>
                     </div>
