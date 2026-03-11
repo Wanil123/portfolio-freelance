@@ -12,7 +12,6 @@ import {
   Bot,
 } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
-import wanilImg from "/assets/wanil.jpeg";
 
 const About = () => {
   const { i18n } = useTranslation();
@@ -125,7 +124,7 @@ const About = () => {
                 {/* Photo + Name */}
                 <div className="flex items-center gap-4 mb-6">
                   <img
-                    src={wanilImg}
+                    src="/assets/wanil.jpeg"
                     alt="Wanil Parfait"
                     className="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-violet-500/30 shadow-lg shadow-violet-500/20"
                   />
