@@ -1,12 +1,11 @@
 // src/components/Services.jsx
-import { useTranslation } from "react-i18next";
+import { useLanguage } from "../hooks/useLanguage";
 import { services } from "../data/services.js";
 import { Check, ArrowRight, Zap, Clock, Star } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
 
 const Services = ({ scrollToSection }) => {
-  const { i18n } = useTranslation();
-  const lang = i18n.language?.startsWith("fr") ? "fr" : "en";
+  const { lang } = useLanguage();
 
   // Services are already ordered: AI first, then web dev
   const sortedServices = services;

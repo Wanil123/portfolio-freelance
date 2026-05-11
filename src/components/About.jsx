@@ -1,5 +1,6 @@
 // src/components/About.jsx
-import { useTranslation } from "react-i18next";
+import { useLanguage } from "../hooks/useLanguage";
+import { COMPANY, CONTACT } from "../constants/config";
 import {
   Globe2,
   Code2,
@@ -7,24 +8,23 @@ import {
   CheckCircle2,
   MessageSquare,
   Sparkles,
-  ArrowRight,
+  Calendar,
   Shield,
   Bot,
 } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
 
 const About = () => {
-  const { i18n } = useTranslation();
-  const lang = i18n.language?.startsWith("fr") ? "fr" : "en";
+  const { lang } = useLanguage();
 
   const strengths = [
     {
       icon: MessageSquare,
-      title: lang === "fr" ? "Communication directe" : "Direct communication",
+      title: lang === "fr" ? "Vous parlez directement avec moi" : "You talk directly to me",
       description:
         lang === "fr"
-          ? "Pas d'intermédiaire. Vous échangez directement avec l'équipe qui développe votre site. Questions, changements, feedback — tout est rapide."
-          : "No middleman. You work directly with the team building your site. Questions, changes, feedback — everything is fast.",
+          ? "Pas d'intermédiaire, pas de junior à qui déléguer. Vous échangez avec le développeur qui code votre site — questions, changements, feedback, tout passe par moi."
+          : "No middleman, no junior handling your project. You work directly with the developer writing your code — questions, changes, feedback — all through me.",
       color: "from-emerald-400 to-green-500",
       bgColor: "bg-emerald-500/10",
       iconColor: "text-emerald-300",
@@ -34,8 +34,8 @@ const About = () => {
       title: lang === "fr" ? "Code propre, livré prêt" : "Clean code, shipped ready",
       description:
         lang === "fr"
-          ? "Pas de prototype à refaire. Vous recevez un produit déployé, documenté et que vous pouvez maintenir. Le code vous appartient."
-          : "No prototype to redo. You receive a deployed, documented product you can maintain. The code is yours.",
+          ? "Pas de prototype à refaire. Vous recevez un produit déployé, documenté et que vous pouvez maintenir. Le code vous appartient à 100%."
+          : "No prototype to redo. You receive a deployed, documented product you can maintain. The code is 100% yours.",
       color: "from-violet-400 to-purple-500",
       bgColor: "bg-violet-500/10",
       iconColor: "text-violet-300",
@@ -56,19 +56,19 @@ const About = () => {
       title: lang === "fr" ? "Satisfaction garantie" : "Satisfaction guaranteed",
       description:
         lang === "fr"
-          ? "Corrections illimitées jusqu'à votre satisfaction. Support 30 jours après livraison. Si le délai n'est pas respecté, 10% de remise."
-          : "Unlimited revisions until you're satisfied. 30-day post-launch support. If the deadline is missed, 10% discount.",
+          ? "Corrections illimitées jusqu'à votre satisfaction. Support 30 jours après livraison. Si je rate le délai, vous recevez 10% de remise — automatiquement."
+          : "Unlimited revisions until you're satisfied. 30-day post-launch support. If I miss the deadline, you get 10% back — automatically.",
       color: "from-amber-400 to-orange-500",
       bgColor: "bg-amber-500/10",
       iconColor: "text-amber-300",
     },
     {
       icon: Bot,
-      title: lang === "fr" ? "Automatisation intelligente" : "Smart automation",
+      title: lang === "fr" ? "IA intégrée dès le départ" : "AI built in from the start",
       description:
         lang === "fr"
-          ? "Chatbots IA, agents vocaux, automatisation CRM et suivi des leads — nous intégrons des solutions IA directement dans vos projets pour automatiser et convertir."
-          : "AI chatbots, voice agents, CRM automation and lead tracking — we integrate AI solutions directly into your projects to automate and convert.",
+          ? "Chatbots IA, agents vocaux, automatisation CRM — j'intègre des solutions IA dans vos projets pour répondre à vos leads 24h/7j, même quand vous dormez."
+          : "AI chatbots, voice agents, CRM automation — I integrate AI into your projects to answer leads 24/7, even while you sleep.",
       color: "from-pink-400 to-rose-500",
       bgColor: "bg-pink-500/10",
       iconColor: "text-pink-300",
@@ -91,14 +91,14 @@ const About = () => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             {lang === "fr" ? (
               <>
-                Derrière{" "}
+                La personne derrière{" "}
                 <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                   PrimeDev
                 </span>
               </>
             ) : (
               <>
-                Behind{" "}
+                The person behind{" "}
                 <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                   PrimeDev
                 </span>
@@ -108,8 +108,8 @@ const About = () => {
 
           <p className="text-slate-300 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             {lang === "fr"
-              ? "Studio de développement web & automatisation IA, basé à Montréal."
-              : "Web development & AI automation studio, based in Montréal."}
+              ? "Développeur full-stack solo à Montréal — ce qui signifie que vous avez toujours affaire à moi, du premier appel à la mise en ligne."
+              : "Solo full-stack developer in Montréal — which means you always deal with me, from the first call to go-live."}
           </p>
         </Reveal>
 
@@ -122,51 +122,59 @@ const About = () => {
 
               <div className="relative h-full bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
                 {/* Photo + Name */}
-                <div className="flex items-center gap-4 mb-6">
-                  <img
-                    src="/wanil.jpeg"
-                    alt="Wanil Parfait"
-                    className="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-violet-500/30 shadow-lg shadow-violet-500/20"
-                  />
-                  <div>
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 mb-6">
+                  <div className="relative flex-shrink-0">
+                    <div className="absolute -inset-1 bg-gradient-to-br from-violet-500/40 to-purple-500/40 rounded-2xl blur-md" />
+                    <img
+                      src="/wanil.jpeg"
+                      alt="Wanil Parfait"
+                      className="relative w-36 h-36 md:w-44 md:h-44 rounded-2xl object-cover border-2 border-violet-500/40 shadow-xl shadow-violet-500/20"
+                    />
+                  </div>
+                  <div className="text-center sm:text-left">
                     <h3 className="text-2xl font-bold text-white mb-1">
                       Wanil Parfait
                     </h3>
-                    <p className="text-sm text-violet-300 font-medium">
+                    <p className="text-sm text-violet-300 font-medium mb-3">
                       {lang === "fr"
-                        ? "Fondateur & Développeur principal"
-                        : "Founder & Lead Developer"}
+                        ? "Fondateur & Développeur — PrimeDev Studios"
+                        : "Founder & Developer — PrimeDev Studios"}
                     </p>
-                    <div className="flex items-center gap-1.5 mt-1.5">
+                    <div className="flex items-center justify-center sm:justify-start gap-1.5 mb-3">
                       <div className="relative flex h-2.5 w-2.5">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
                       </div>
                       <span className="text-xs text-emerald-400 font-medium">
-                        {lang === "fr" ? "Disponible pour nouveaux projets" : "Available for new projects"}
+                        {lang === "fr" ? "Disponible — 2 spots ce trimestre" : "Available — 2 spots this quarter"}
                       </span>
                     </div>
+                    <p className="text-xs text-slate-500 leading-relaxed max-w-xs">
+                      {lang === "fr"
+                        ? "Développeur full-stack solo · Montréal, QC · 5+ ans d'expérience"
+                        : "Solo full-stack developer · Montréal, QC · 5+ years experience"}
+                    </p>
                   </div>
                 </div>
 
-                {/* Bio - human tone */}
+                {/* Bio - first person, solo as strength */}
                 <div className="space-y-4 text-slate-300 text-sm md:text-base leading-relaxed">
                   <p>
                     {lang === "fr"
-                      ? "PrimeDev Studios est un studio de développement web basé à Montréal, spécialisé en React, Vue.js, TypeScript et Laravel. Avec plus de 5 ans d'expérience en développement full-stack et plus de 3 ans en entreprise à bâtir des APIs servant 10 000+ requêtes par jour, nous apportons une expertise concrète à chaque projet."
-                      : "PrimeDev Studios is a Montreal-based web development studio specializing in React, Vue.js, TypeScript and Laravel. With over 5 years of full-stack experience and 3+ years building enterprise APIs serving 10,000+ requests per day, we bring real-world expertise to every project."}
+                      ? "Je suis développeur full-stack avec plus de 5 ans d'expérience — dont 3 ans en entreprise à construire des APIs qui traitent 10 000+ requêtes par jour. J'ai fondé PrimeDev Studios pour offrir aux PME québécoises ce que les grandes agences ne peuvent pas : un accès direct au développeur, sans intermédiaire."
+                      : "I'm a full-stack developer with 5+ years of experience — including 3 years building enterprise APIs handling 10,000+ requests per day. I founded PrimeDev Studios to give SMBs what big agencies can't: direct access to the developer, no middlemen."}
                   </p>
 
                   <p>
                     {lang === "fr"
-                      ? "Fondé par Wanil Parfait, le studio est né d'une conviction : les PME méritent un partenaire technique qui travaille directement avec elles — sans intermédiaire, sans délai inutile. Chez PrimeDev, vous travaillez avec les gens qui codent votre projet."
-                      : "Founded by Wanil Parfait, the studio was born from a belief: SMBs deserve a technical partner that works directly with them — no middlemen, no unnecessary delays. At PrimeDev, you work with the people who build your project."}
+                      ? "Travailler seul, c'est un choix stratégique. Cela signifie que c'est moi qui répond à vos messages, moi qui code vos fonctionnalités, et moi qui m'engage sur les délais. Vous n'êtes jamais transféré à un junior ou perdu dans un système de tickets."
+                      : "Working solo is a deliberate choice. It means I'm the one answering your messages, writing your features, and committing to deadlines. You're never passed off to a junior or lost in a ticket system."}
                   </p>
 
                   <p>
                     {lang === "fr"
-                      ? "Aujourd'hui, nous intégrons l'IA dans nos projets web — chatbots, agents vocaux, automatisation CRM — pour aider les PME à ne plus perdre de clients le soir et les week-ends."
-                      : "Today, we integrate AI into our web projects — chatbots, voice agents, CRM automation — to help SMBs stop losing clients during evenings and weekends."}
+                      ? "Aujourd'hui, j'intègre l'IA dans chaque projet — chatbots, agents vocaux, automatisation CRM — pour que vos leads reçoivent une réponse à 2h du matin, pas le lendemain matin."
+                      : "Today, I integrate AI into every project — chatbots, voice agents, CRM automation — so your leads get a response at 2am, not the next morning."}
                   </p>
                 </div>
 
@@ -175,7 +183,7 @@ const About = () => {
                   {[
                     {
                       icon: MapPin,
-                      text: "Montréal, QC",
+                      text: COMPANY.location,
                       detail: lang === "fr" ? "Remote disponible" : "Remote available",
                     },
                     {
@@ -190,8 +198,8 @@ const About = () => {
                     },
                     {
                       icon: CheckCircle2,
-                      text: lang === "fr" ? "5 ans d'expérience" : "5 years experience",
-                      detail: lang === "fr" ? "APIs 10K+ requêtes/jour" : "APIs 10K+ requests/day",
+                      text: lang === "fr" ? "5+ ans d'expérience" : "5+ years experience",
+                      detail: lang === "fr" ? "APIs 10K+ requêtes/jour" : "APIs 10K+ req/day",
                     },
                   ].map((fact, idx) => {
                     const Icon = fact.icon;
@@ -214,7 +222,7 @@ const About = () => {
           <div className="space-y-4 md:space-y-5">
             <Reveal>
               <p className="text-xs md:text-sm text-slate-500 font-medium uppercase tracking-wider mb-2">
-                {lang === "fr" ? "Pourquoi travailler avec nous" : "Why work with us"}
+                {lang === "fr" ? "Pourquoi travailler avec moi" : "Why work with me"}
               </p>
             </Reveal>
             {strengths.map((strength, idx) => {
@@ -255,21 +263,20 @@ const About = () => {
           <div className="text-center">
             <p className="text-lg text-slate-300 mb-6 max-w-2xl mx-auto">
               {lang === "fr"
-                ? "Un projet en tête? Écrivez-nous, nous répondons en moins de 24h."
-                : "Have a project in mind? Write to us, we reply within 24h."}
+                ? "30 minutes d'appel gratuit — je vous dis honnêtement si je peux vous aider et combien ça coûte."
+                : "30-minute free call — I'll tell you honestly if I can help and what it costs."}
             </p>
 
             <a
-              href="#contact"
-              className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all text-base"
+              href={CONTACT.calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all hover:scale-105 active:scale-95 text-base"
             >
+              <Calendar size={18} />
               {lang === "fr"
-                ? "Discutons de votre projet"
-                : "Let's discuss your project"}
-              <ArrowRight
-                size={20}
-                className="group-hover:translate-x-1 transition-transform"
-              />
+                ? "Réserver mon appel gratuit (30 min)"
+                : "Book my free call (30 min)"}
             </a>
           </div>
         </Reveal>

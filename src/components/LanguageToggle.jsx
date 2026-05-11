@@ -1,10 +1,9 @@
 // src/components/LanguageToggle.jsx
 import { Globe2 } from "lucide-react";
-import { useTranslation } from "react-i18next";
+import { useLanguage } from "../hooks/useLanguage";
 
 const LanguageToggle = () => {
-  const { i18n } = useTranslation();
-  const lang = i18n.language || "en";
+  const { lang, i18n } = useLanguage();
 
   const toggleLang = () => {
     const next = lang === "en" ? "fr" : "en";

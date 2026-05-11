@@ -1,6 +1,6 @@
 // src/components/Projects.jsx
-import { useState, useEffect, useRef } from "react";
-import { useTranslation } from "react-i18next";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { useLanguage } from "../hooks/useLanguage";
 import { projects } from "../data/projects.js";
 import { Check, ExternalLink, Code2, X, ChevronRight, Rocket, Play, Star, ArrowRight, Bot } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
@@ -10,22 +10,26 @@ const featuredProjects = projects.filter((p) => p.featured && !p.isClientProject
 const otherProjects = projects.filter((p) => !p.featured);
 
 const Projects = () => {
-  const { i18n } = useTranslation();
-  const lang = i18n.language?.startsWith("fr") ? "fr" : "en";
+  const { lang, getField: getFieldFromHook } = useLanguage();
   const [selectedProject, setSelectedProject] = useState(null);
-  const [imageLoaded, setImageLoaded] = useState({});
+  const imageLoadedRef = useRef(new Set());
+  const [, forceRender] = useState(0);
   const modalRef = useRef(null);
   const closeButtonRef = useRef(null);
+  const triggerRef = useRef(null);
 
-  const openModal = (project) => {
+  const openModal = useCallback((project) => {
+    triggerRef.current = document.activeElement;
     setSelectedProject(project);
     document.body.style.overflow = "hidden";
-  };
+  }, []);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setSelectedProject(null);
     document.body.style.overflow = "auto";
-  };
+    triggerRef.current?.focus();
+    triggerRef.current = null;
+  }, []);
 
   useEffect(() => {
     if (!selectedProject) return;
@@ -49,21 +53,22 @@ const Projects = () => {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [selectedProject]);
+  }, [selectedProject, closeModal]);
 
-  const handleImageLoad = (id) => {
-    setImageLoaded((prev) => ({ ...prev, [id]: true }));
-  };
+  const handleImageLoad = useCallback((id) => {
+    imageLoadedRef.current.add(id);
+    forceRender((n) => n + 1);
+  }, []);
 
-  const getField = (field) => typeof field === "string" ? field : field?.[lang] || "";
+  const getField = useCallback((field) => getFieldFromHook(field), [getFieldFromHook]);
 
   // ─── Render helpers (not components, just JSX functions) ───
 
-  const renderImage = (p, isHero) => (
+  const renderImage = useCallback((p, isHero) => (
     <div className={`relative overflow-hidden bg-slate-800/50 ${
       isHero ? "h-48 sm:h-56 lg:min-h-[320px] lg:w-1/2" : "h-40 sm:h-44 md:h-48"
     }`}>
-      {!imageLoaded[p.id] && (
+      {!imageLoadedRef.current.has(p.id) && (
         <div className="absolute inset-0 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 animate-pulse" />
       )}
       <img
@@ -72,7 +77,7 @@ const Projects = () => {
         loading="lazy"
         onLoad={() => handleImageLoad(p.id)}
         className={`w-full h-full object-cover transition-all duration-500 ${
-          imageLoaded[p.id] ? "opacity-100" : "opacity-0"
+          imageLoadedRef.current.has(p.id) ? "opacity-100" : "opacity-0"
         } group-hover:scale-105`}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
@@ -106,9 +111,9 @@ const Projects = () => {
         </a>
       )}
     </div>
-  );
+  ), [lang, handleImageLoad, getField]);
 
-  const renderContent = (p, isHero) => {
+  const renderContent = useCallback((p, isHero) => {
     const tech = p.tech || [];
     const maxTech = isHero ? 5 : 3;
 
@@ -190,9 +195,9 @@ const Projects = () => {
         </div>
       </div>
     );
-  };
+  }, [lang, openModal, getField]);
 
-  const renderCard = (p, isHero = false) => (
+  const renderCard = useCallback((p, isHero = false) => (
     <div className="group relative h-full">
       {p.isClientProject && (
         <div className="absolute -top-2 -right-2 md:-top-3 md:-right-3 z-10">
@@ -228,7 +233,7 @@ const Projects = () => {
         {renderContent(p, isHero)}
       </div>
     </div>
-  );
+  ), [lang, renderImage, renderContent]);
 
   return (
     <section id="projects" className="py-16 md:py-24 relative overflow-hidden">

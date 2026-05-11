@@ -286,12 +286,12 @@ export const projects = [
       fr: "Maison Élysée — Boutique Mode Luxe",
     },
     subtitle: {
-      en: "WordPress Development",
-      fr: "Développement WordPress",
+      en: "WordPress — Personal project",
+      fr: "WordPress — Projet personnel",
     },
     context: {
-      en: "WordPress custom development",
-      fr: "Développement WordPress sur mesure",
+      en: "Personal project — fictional client",
+      fr: "Projet personnel — client fictif",
     },
     description: {
       en: "WordPress e-commerce showcase for a fictional haute couture fashion house. Botiga child theme, custom plugin with shortcodes, elegant design and seamless FR/EN bilingual navigation.",
@@ -330,12 +330,12 @@ export const projects = [
       fr: "Le Ciel Doré — Restaurant 5 Étoiles",
     },
     subtitle: {
-      en: "WordPress Development",
-      fr: "Développement WordPress",
+      en: "WordPress — Personal project",
+      fr: "WordPress — Projet personnel",
     },
     context: {
-      en: "WordPress custom development",
-      fr: "Développement WordPress sur mesure",
+      en: "Personal project — fictional client",
+      fr: "Projet personnel — client fictif",
     },
     description: {
       en: "WordPress showcase for a fictional Mediterranean fine-dining restaurant. Custom post types for dishes & events, categorized menu card, online reservation system and FR/EN bilingual interface.",
@@ -360,7 +360,7 @@ export const projects = [
         "Animations au scroll & loader de page",
       ],
     },
-    link: "http://le-ciel-dore.kesug.com",
+    link: "https://le-ciel-dore.kesug.com",
     github: "https://github.com/Wanil123/le-ciel-dore",
     icon: "🍽️",
     image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=500&fit=crop&q=80",
@@ -447,7 +447,7 @@ export const projects = [
         "Changement d'unité (C/F)",
       ],
     },
-    link: "https://your-weather-ap.netlify.app/",
+    link: "https://your-weather-app.netlify.app/",
     icon: "🌤️",
     image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=800&h=500&fit=crop&q=80",
     featured: false,

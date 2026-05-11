@@ -1,13 +1,15 @@
 // src/components/Footer.jsx
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useLanguage } from "../hooks/useLanguage";
+import { CONTACT, SOCIAL, COMPANY } from "../constants/config";
 import {
   Linkedin,
   Github,
   Mail,
   Globe2,
   MapPin,
-  ArrowUpRight,
+  Phone,
+  Calendar,
   Code2,
   Sparkles,
 } from "lucide-react";
@@ -15,8 +17,7 @@ import { Reveal } from "./ui/Reveal";
 import PrivacyPolicy from "./PrivacyPolicy";
 
 const Footer = () => {
-  const { i18n } = useTranslation();
-  const lang = i18n.language?.startsWith("fr") ? "fr" : "en";
+  const { lang } = useLanguage();
   const year = new Date().getFullYear();
   const [showPrivacy, setShowPrivacy] = useState(false);
 
@@ -26,27 +27,30 @@ const Footer = () => {
     el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  const WHATSAPP = `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(
+    lang === "fr"
+      ? "Bonjour Wanil, je veux discuter de mon projet."
+      : "Hello Wanil, I want to discuss my project."
+  )}`;
+
   const socialLinks = [
     {
       name: "LinkedIn",
-      href: "https://www.linkedin.com/in/wanil-parfait-b26889108/",
+      href: SOCIAL.linkedin,
       icon: Linkedin,
-      color:
-        "hover:bg-blue-500/10 hover:text-blue-400 hover:border-blue-500/30",
+      color: "hover:bg-blue-500/10 hover:text-blue-400 hover:border-blue-500/30",
     },
     {
       name: "GitHub",
-      href: "https://github.com/wanilparfait",
+      href: SOCIAL.github,
       icon: Github,
-      color:
-        "hover:bg-slate-500/10 hover:text-slate-300 hover:border-slate-500/30",
+      color: "hover:bg-slate-500/10 hover:text-slate-300 hover:border-slate-500/30",
     },
     {
       name: "Email",
-      href: "mailto:info@prime-dev-studios.com",
+      href: `mailto:${CONTACT.email}`,
       icon: Mail,
-      color:
-        "hover:bg-violet-500/10 hover:text-violet-400 hover:border-violet-500/30",
+      color: "hover:bg-violet-500/10 hover:text-violet-400 hover:border-violet-500/30",
     },
   ];
 
@@ -63,15 +67,13 @@ const Footer = () => {
     { name: "React", gradient: "from-cyan-400 to-blue-500" },
     { name: "Laravel", gradient: "from-red-400 to-orange-500" },
     { name: "Tailwind", gradient: "from-sky-400 to-cyan-500" },
-    { name: "Odoo 17", gradient: "from-purple-400 to-violet-500" },
+    { name: "n8n / AI", gradient: "from-purple-400 to-violet-500" },
   ];
 
-  // 🔹 Logo (depuis ton site)
-  const logoSrc = "https://www.prime-dev-studios.com/logo.png";
+  const logoSrc = `/logo.png`;
 
   return (
     <footer className="relative mt-20 border-t border-slate-800/50 bg-gradient-to-b from-slate-950/60 via-slate-950/80 to-slate-950 overflow-hidden">
-      {/* Background decoration */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-violet-900/5 via-transparent to-transparent -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16">
@@ -84,43 +86,36 @@ const Footer = () => {
               onClick={() => scrollTo("home")}
               className="flex items-center gap-3 mb-4 group"
             >
-              {/* Logo with glow */}
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-violet-500/30 to-purple-500/30 rounded-xl blur-lg opacity-80 group-hover:opacity-100 transition-opacity" />
                 <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-700/50 overflow-hidden shadow-xl">
-                  {logoSrc ? (
-                    <img
-                      src={logoSrc}
-                      alt="PrimeDev Studios"
-                      className="h-10 w-10 object-contain"
-                      onError={(e) => {
-                        // Fallback si le logo ne se charge pas
-                        e.currentTarget.style.display = "none";
-                      }}
-                    />
-                  ) : (
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500/20 to-purple-500/20">
-                      <Code2 size={20} className="text-violet-300" />
-                    </div>
-                  )}
+                  <img
+                    src={logoSrc}
+                    alt={COMPANY.name}
+                    className="h-10 w-10 object-contain"
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none";
+                      e.currentTarget.parentElement.innerHTML = `<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500/20 to-purple-500/20"><span style="color:#a78bfa;font-size:20px;">⚡</span></div>`;
+                    }}
+                  />
                 </div>
               </div>
               <div className="text-left">
                 <h3 className="text-xl font-bold bg-gradient-to-r from-violet-400 via-purple-400 to-violet-400 bg-clip-text text-transparent">
-                  PrimeDev Studios
+                  {COMPANY.name}
                 </h3>
                 <p className="text-[10px] text-slate-500 uppercase tracking-wider">
                   {lang === "fr"
-                    ? "Studio de développement web"
-                    : "Web development studio"}
+                    ? "Développeur full-stack solo · Montréal"
+                    : "Solo full-stack developer · Montréal"}
                 </p>
               </div>
             </button>
 
             <p className="text-sm text-slate-400 leading-relaxed max-w-md">
               {lang === "fr"
-                ? "Studio de développement web basé à Montréal. Sites vitrines, e-commerce, automatisation IA et applications sur mesure. Code propre, livraison rapide, support bilingue FR/EN."
-                : "Web development studio based in Montreal. Business websites, e-commerce, AI automation and custom web apps. Clean code, fast delivery, bilingual EN/FR support."}
+                ? "Wanil Parfait — développeur full-stack à Montréal. Sites vitrines, e-commerce et automatisation IA pour PME québécoises. Vous parlez toujours directement avec moi."
+                : "Wanil Parfait — full-stack developer in Montréal. Business websites, e-commerce, and AI automation for SMBs. You always deal directly with me."}
             </p>
 
             <div className="flex flex-col gap-2.5">
@@ -129,8 +124,8 @@ const Footer = () => {
                   <MapPin size={12} className="text-violet-400/70" />
                 </div>
                 <span>
-                  Montréal, QC ·{" "}
-                  {lang === "fr" ? "Remote mondial" : "Remote worldwide"}
+                  {COMPANY.location} ·{" "}
+                  {lang === "fr" ? "Remote disponible" : "Remote available"}
                 </span>
               </div>
               <div className="flex items-center gap-2.5 text-xs text-slate-500">
@@ -146,16 +141,15 @@ const Footer = () => {
             </div>
 
             {/* CTA Button */}
-            <button
-              onClick={() => scrollTo("contact")}
-              className="group inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white text-sm font-semibold rounded-xl transition-all shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40"
+            <a
+              href={CONTACT.calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white text-sm font-semibold rounded-xl transition-all shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 hover:scale-105 active:scale-95"
             >
-              {lang === "fr" ? "Démarrer un projet" : "Start a project"}
-              <ArrowUpRight
-                size={16}
-                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-              />
-            </button>
+              <Calendar size={15} />
+              {lang === "fr" ? "Réserver un appel gratuit" : "Book a free call"}
+            </a>
           </Reveal>
 
           {/* Quick Links */}
@@ -180,25 +174,39 @@ const Footer = () => {
           </Reveal>
 
           {/* Contact & Social */}
-          <Reveal delay={0.2} className="md:col-span-4 space-y-5">
+          <Reveal delay={0.2} className="md:col-span-4 space-y-4">
             <h4 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-4">
-              {lang === "fr" ? "Restons en contact" : "Stay connected"}
+              {lang === "fr" ? "Contactez-moi" : "Contact me"}
             </h4>
+
+            {/* WhatsApp — top priority */}
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-3 p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/20 hover:border-emerald-400/50 hover:bg-emerald-500/10 transition-all"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex-shrink-0 group-hover:scale-110 transition-transform">
+                <Phone size={18} className="text-emerald-400" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-xs text-slate-500 mb-0.5">WhatsApp</p>
+                <p className="text-sm text-emerald-300 font-medium">{CONTACT.phone}</p>
+              </div>
+            </a>
 
             {/* Email */}
             <a
-              href="mailto:info@prime-dev-studios.com"
+              href={`mailto:${CONTACT.email}`}
               className="group flex items-center gap-3 p-3 rounded-xl bg-slate-800/30 border border-slate-700/50 hover:border-violet-500/50 hover:bg-slate-800/50 transition-all"
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-violet-500/10 border border-violet-500/30 flex-shrink-0 group-hover:scale-110 transition-transform">
                 <Mail size={18} className="text-violet-400" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-xs text-slate-500 mb-0.5">
-                  {lang === "fr" ? "Email" : "Email"}
-                </p>
+                <p className="text-xs text-slate-500 mb-0.5">Email</p>
                 <p className="text-sm text-white font-medium truncate">
-                  info@prime-dev-studios.com
+                  {CONTACT.email}
                 </p>
               </div>
             </a>
@@ -206,7 +214,7 @@ const Footer = () => {
             {/* Social */}
             <div>
               <p className="text-xs text-slate-500 mb-3">
-                {lang === "fr" ? "Suivez-nous" : "Follow us"}
+                {lang === "fr" ? "Retrouvez-moi" : "Find me"}
               </p>
               <div className="flex items-center gap-2">
                 {socialLinks.map((social) => {
@@ -258,7 +266,7 @@ const Footer = () => {
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               {/* Copyright */}
               <div className="flex items-center gap-4 text-[11px] text-slate-500">
-                <span>© {year} PrimeDev Studios</span>
+                <span>© {year} {COMPANY.name}</span>
                 <span className="hidden md:inline">·</span>
                 <span className="hidden md:inline">
                   {lang === "fr"
@@ -278,11 +286,11 @@ const Footer = () => {
               {/* Badges */}
               <div className="flex flex-wrap items-center justify-center md:justify-end gap-1.5 md:gap-2 text-[10px] md:text-[11px]">
                 <span className="px-2 md:px-2.5 py-1 md:py-1.5 rounded-lg bg-slate-800/40 border border-slate-700/40 text-violet-400/80 font-medium hover:border-violet-500/50 transition-colors cursor-default">
-                  {lang === "fr" ? "Code propre" : "Clean code"}
+                  {lang === "fr" ? "Paiement en 3x" : "Pay in 3x"}
                 </span>
                 <span className="text-slate-600 hidden md:inline">·</span>
                 <span className="px-2 md:px-2.5 py-1 md:py-1.5 rounded-lg bg-slate-800/40 border border-slate-700/40 text-violet-400/80 font-medium hover:border-violet-500/50 transition-colors cursor-default">
-                  {lang === "fr" ? "Livraison rapide" : "Fast delivery"}
+                  {lang === "fr" ? "Livraison garantie" : "Delivery guaranteed"}
                 </span>
                 <span className="text-slate-600 hidden md:inline">·</span>
                 <span className="px-2 md:px-2.5 py-1 md:py-1.5 rounded-lg bg-slate-800/40 border border-slate-700/40 text-violet-400/80 font-medium hover:border-violet-500/50 transition-colors cursor-default">
@@ -297,12 +305,12 @@ const Footer = () => {
                 {lang === "fr" ? (
                   <>
                     Conçu et développé avec{" "}
-                    <span className="text-violet-400">♥</span> à Montréal
+                    <span className="text-violet-400">♥</span> à Montréal par Wanil Parfait
                   </>
                 ) : (
                   <>
                     Designed and built with{" "}
-                    <span className="text-violet-400">♥</span> in Montréal
+                    <span className="text-violet-400">♥</span> in Montréal by Wanil Parfait
                   </>
                 )}
               </p>

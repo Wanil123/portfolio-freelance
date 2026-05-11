@@ -1,6 +1,6 @@
 // src/App.jsx
 import { useState, useEffect, lazy, Suspense } from "react";
-import { useTranslation } from "react-i18next";
+import { useLanguage } from "./hooks/useLanguage";
 import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
 import CustomCursor from "./components/CustomCursor.jsx";
@@ -14,6 +14,7 @@ const OffersSection = lazy(() => import("./components/OffersSection.jsx"));
 const Process = lazy(() => import("./components/Process.jsx"));
 const Skills = lazy(() => import("./components/Skills.jsx"));
 const About = lazy(() => import("./components/About.jsx"));
+const ProgrammeVitrine = lazy(() => import("./components/ProgrammeVitrine.jsx"));
 const FAQ = lazy(() => import("./components/FAQ.jsx"));
 const Contact = lazy(() => import("./components/Contact.jsx"));
 const Footer = lazy(() => import("./components/Footer.jsx"));
@@ -28,15 +29,14 @@ const SectionLoader = () => (
 );
 
 function App() {
-  const { i18n } = useTranslation();
+  const { lang, i18n } = useLanguage();
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
 
   // Dynamic lang attribute on <html> element
   useEffect(() => {
-    const lang = i18n.language?.startsWith("fr") ? "fr" : "en";
     document.documentElement.lang = lang;
-  }, [i18n.language]);
+  }, [lang]);
 
   useEffect(() => {
     let rafId = null;
@@ -115,6 +115,7 @@ function App() {
             <Process scrollToSection={scrollToSection} />
             <Skills />
             <About />
+            <ProgrammeVitrine />
             <FAQ />
             <Contact />
             <Footer />

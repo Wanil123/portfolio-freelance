@@ -1,6 +1,6 @@
 // src/components/CaseStudies.jsx
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useLanguage } from "../hooks/useLanguage";
 import {
   TrendingUp,
   Clock,
@@ -16,8 +16,7 @@ import {
 import { Reveal } from "./ui/Reveal";
 
 const CaseStudies = () => {
-  const { i18n } = useTranslation();
-  const lang = i18n.language?.startsWith("fr") ? "fr" : "en";
+  const { lang } = useLanguage();
   const [expandedCase, setExpandedCase] = useState(null);
 
   const caseStudies = [

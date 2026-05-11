@@ -1,20 +1,18 @@
 // src/components/WhatsAppButton.jsx
 import { useState, useEffect } from "react";
 import { MessageCircle, X } from "lucide-react";
-import { useTranslation } from "react-i18next";
+import { useLanguage } from "../hooks/useLanguage";
+import { CONTACT } from "../constants/config";
 
 const WhatsAppButton = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
-  const { i18n } = useTranslation();
-  const lang = i18n.language?.startsWith("fr") ? "fr" : "en";
-
-  const WHATSAPP_NUMBER = "15793685230";
+  const { lang } = useLanguage();
   const message = lang === "fr"
     ? "Bonjour! Je suis intéressé(e) par vos services de développement web."
     : "Hello! I'm interested in your web development services.";
 
-  const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  const WHATSAPP_LINK = `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(message)}`;
 
   useEffect(() => {
     // Show button after 2 seconds

@@ -1,9 +1,17 @@
 // src/components/Hero.jsx
-import { ArrowRight, Zap, Globe2, Shield, CheckCircle2 } from "lucide-react";
-import { useTranslation } from "react-i18next";
+import { ArrowRight, Phone, Calendar, Zap, Shield, Clock } from "lucide-react";
+import { useLanguage } from "../hooks/useLanguage";
+import { CONTACT } from "../constants/config";
+
 const Hero = ({ scrollToSection }) => {
-  const { i18n } = useTranslation();
-  const lang = i18n.language?.startsWith("fr") ? "fr" : "en";
+  const { lang } = useLanguage();
+
+  const CALENDLY = CONTACT.calendlyUrl;
+  const WHATSAPP = `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(
+    lang === "fr"
+      ? "Bonjour Wanil, je veux discuter de mon projet web."
+      : "Hello Wanil, I'd like to discuss my web project."
+  )}`;
 
   return (
     <section
@@ -12,148 +20,140 @@ const Hero = ({ scrollToSection }) => {
     >
       {/* Animated Background */}
       <div className="absolute inset-0 bg-slate-950 -z-20" />
-
-      {/* Gradient Orbs - Animated (smaller on mobile for performance) */}
       <div className="absolute top-1/4 left-1/4 w-48 h-48 md:w-96 md:h-96 bg-violet-500/30 rounded-full blur-[64px] md:blur-[128px] animate-pulse-slow -z-10" />
       <div className="absolute bottom-1/4 right-1/4 w-40 h-40 md:w-80 md:h-80 bg-purple-500/20 rounded-full blur-[50px] md:blur-[100px] animate-pulse-slow animation-delay-2000 -z-10" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-indigo-500/10 rounded-full blur-[75px] md:blur-[150px] -z-10" />
-
-      {/* Subtle Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f08_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f08_1px,transparent_1px)] bg-[size:4rem_4rem] -z-10" />
 
       {/* Main Content */}
-      <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8 text-center pt-20 pb-16">
+      <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center pt-24 pb-16">
 
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-400/30 backdrop-blur-sm mb-8 animate-fade-in">
+        {/* Scarcity Badge — style MetalMax "programme maison pilote" */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-400/40 backdrop-blur-sm mb-6 animate-fade-in">
           <div className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
           </div>
-          <span className="text-violet-200 text-sm font-medium">
-            {lang === "fr" ? "Disponible pour nouveaux projets" : "Available for new projects"}
+          <span className="text-amber-200 text-sm font-semibold">
+            {lang === "fr"
+              ? "2 spots disponibles ce trimestre — places limitées"
+              : "2 spots available this quarter — limited availability"}
           </span>
         </div>
 
-        {/* Main Headline */}
+        {/* Main Headline — client pain, not tech features */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-white mb-6 animate-fade-in-up">
           {lang === "fr" ? (
             <>
-              Sites web qui{" "}
+              Votre PME perd{" "}
               <span className="relative">
                 <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  convertissent
+                  des clients
                 </span>
                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 8" fill="none">
-                  <path d="M1 5.5C47 2 153 2 199 5.5" stroke="url(#gradient)" strokeWidth="3" strokeLinecap="round"/>
+                  <path d="M1 5.5C47 2 153 2 199 5.5" stroke="url(#g1)" strokeWidth="3" strokeLinecap="round"/>
                   <defs>
-                    <linearGradient id="gradient" x1="0" y1="0" x2="200" y2="0">
-                      <stop stopColor="#a78bfa"/>
-                      <stop offset="0.5" stopColor="#c084fc"/>
-                      <stop offset="1" stopColor="#f472b6"/>
+                    <linearGradient id="g1" x1="0" y1="0" x2="200" y2="0">
+                      <stop stopColor="#a78bfa"/><stop offset="0.5" stopColor="#c084fc"/><stop offset="1" stopColor="#f472b6"/>
                     </linearGradient>
                   </defs>
                 </svg>
               </span>
+              {" "}chaque soir.
             </>
           ) : (
             <>
-              Websites that{" "}
+              Your business loses{" "}
               <span className="relative">
                 <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  convert
+                  clients
                 </span>
                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 8" fill="none">
-                  <path d="M1 5.5C47 2 153 2 199 5.5" stroke="url(#gradient2)" strokeWidth="3" strokeLinecap="round"/>
+                  <path d="M1 5.5C47 2 153 2 199 5.5" stroke="url(#g2)" strokeWidth="3" strokeLinecap="round"/>
                   <defs>
-                    <linearGradient id="gradient2" x1="0" y1="0" x2="200" y2="0">
-                      <stop stopColor="#a78bfa"/>
-                      <stop offset="0.5" stopColor="#c084fc"/>
-                      <stop offset="1" stopColor="#f472b6"/>
+                    <linearGradient id="g2" x1="0" y1="0" x2="200" y2="0">
+                      <stop stopColor="#a78bfa"/><stop offset="0.5" stopColor="#c084fc"/><stop offset="1" stopColor="#f472b6"/>
                     </linearGradient>
                   </defs>
                 </svg>
               </span>
+              {" "}every night.
             </>
           )}
         </h1>
 
-        {/* Subtitle */}
-        <p className="text-lg md:text-xl lg:text-2xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up animation-delay-200">
+        {/* Subtitle — outcome-focused */}
+        <p className="text-lg md:text-xl lg:text-2xl text-slate-300 max-w-2xl mx-auto mb-4 leading-relaxed animate-fade-in-up animation-delay-200">
           {lang === "fr"
-            ? "Nous créons des sites web et des automatisations IA qui font croître votre business."
-            : "We build websites and AI automations that grow your business."}
+            ? "Site web professionnel + IA qui répond à vos leads 24h/7j. Livré en 2 à 4 semaines. Résultat garanti ou remboursé."
+            : "Professional website + AI that answers your leads 24/7. Delivered in 2-4 weeks. Results guaranteed or refunded."}
         </p>
 
-        {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up animation-delay-400">
-          <button
-            onClick={() => scrollToSection("contact")}
-            className="group relative px-8 py-4 bg-gradient-to-r from-violet-500 to-purple-500 text-white font-semibold rounded-xl shadow-2xl shadow-violet-500/25 hover:shadow-violet-500/40 transition-all duration-300 hover:scale-105 active:scale-95 overflow-hidden"
-          >
-            {/* Shine effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-            <span className="relative flex items-center gap-2">
-              {lang === "fr" ? "Démarrer votre projet" : "Start your project"}
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </span>
-          </button>
+        {/* Social proof line */}
+        <p className="text-sm text-slate-500 mb-10 animate-fade-in-up animation-delay-300">
+          {lang === "fr"
+            ? "Wanil Parfait · Développeur full-stack · 5+ ans d'expérience · Montréal, QC"
+            : "Wanil Parfait · Full-stack developer · 5+ years experience · Montréal, QC"}
+        </p>
 
-          <button
-            onClick={() => scrollToSection("projects")}
-            className="group flex items-center gap-2 px-6 py-4 rounded-xl border border-slate-700/50 hover:border-violet-500/50 text-slate-300 hover:text-white font-medium transition-all active:scale-95"
+        {/* PRIMARY CTA — one dominant action */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up animation-delay-400">
+          <a
+            href={CALENDLY}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-violet-500 to-purple-500 text-white font-bold text-lg rounded-xl shadow-2xl shadow-violet-500/30 hover:shadow-violet-500/50 transition-all duration-300 hover:scale-105 active:scale-95 overflow-hidden"
           >
-            <span>{lang === "fr" ? "Voir les projets" : "View projects"}</span>
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </button>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+            <span className="relative flex items-center justify-center gap-2">
+              <Calendar size={20} />
+              {lang === "fr" ? "Réserver mon appel gratuit (30 min)" : "Book my free call (30 min)"}
+            </span>
+          </a>
+
+          <a
+            href={WHATSAPP}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-4 rounded-xl border border-emerald-500/40 hover:border-emerald-400/70 bg-emerald-500/5 hover:bg-emerald-500/10 text-emerald-300 hover:text-emerald-200 font-semibold transition-all active:scale-95"
+          >
+            <Phone size={18} />
+            <span>{lang === "fr" ? "WhatsApp — réponse rapide" : "WhatsApp — fast reply"}</span>
+          </a>
         </div>
 
-        {/* Social proof */}
-        <div className="mt-14 flex flex-col items-center gap-5 animate-fade-in-up animation-delay-600">
-          {/* Real project proof */}
-          <button
-            onClick={() => scrollToSection("projects")}
-            className="group inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-slate-900/60 border border-slate-800/50 hover:border-violet-500/30 backdrop-blur-sm transition-all"
-          >
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex-shrink-0">
-              <CheckCircle2 size={14} className="text-emerald-400" />
-            </div>
-            <div className="text-left">
-              <p className="text-[10px] text-slate-500 uppercase tracking-wider font-medium">
-                {lang === "fr" ? "2 projets livrés · 3e en cours" : "2 projects delivered · 3rd in progress"}
-              </p>
-              <p className="text-sm font-medium text-white group-hover:text-violet-300 transition-colors">
-                LamIPict.com — {lang === "fr" ? "E-commerce livré" : "E-commerce delivered"}
-              </p>
-            </div>
-            <ArrowRight size={14} className="text-slate-600 group-hover:text-violet-400 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
-          </button>
-
-          {/* Key benefits */}
-          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 text-sm text-slate-400">
-            <span className="flex items-center gap-1.5">
-              <Zap size={14} className="text-violet-400" />
-              {lang === "fr" ? "Livraison 2-4 sem." : "2-4 weeks delivery"}
+        {/* Trust signals bar — replace "2 projets livrés" avec des signaux d'autorité réels */}
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-4 md:gap-8 animate-fade-in-up animation-delay-600">
+          <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900/60 border border-slate-800/50 backdrop-blur-sm">
+            <Zap size={15} className="text-violet-400 flex-shrink-0" />
+            <span className="text-sm text-slate-300 font-medium">
+              {lang === "fr" ? "5+ ans expérience full-stack" : "5+ years full-stack experience"}
             </span>
-            <span className="hidden sm:block w-px h-3.5 bg-slate-700" />
-            <span className="flex items-center gap-1.5">
-              <Globe2 size={14} className="text-violet-400" />
-              {lang === "fr" ? "Bilingue FR/EN" : "Bilingual FR/EN"}
+          </div>
+          <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900/60 border border-slate-800/50 backdrop-blur-sm">
+            <Clock size={15} className="text-violet-400 flex-shrink-0" />
+            <span className="text-sm text-slate-300 font-medium">
+              {lang === "fr" ? "Livraison 2-4 sem. garantie" : "2-4 week delivery guaranteed"}
             </span>
-            <span className="hidden sm:block w-px h-3.5 bg-slate-700" />
-            <span className="flex items-center gap-1.5">
-              <Zap size={14} className="text-violet-400" />
-              {lang === "fr" ? "Automatisation IA" : "AI Automation"}
+          </div>
+          <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900/60 border border-slate-800/50 backdrop-blur-sm">
+            <Shield size={15} className="text-violet-400 flex-shrink-0" />
+            <span className="text-sm text-slate-300 font-medium">
+              {lang === "fr" ? "Paiement en 3x sans frais" : "Pay in 3 installments, no fees"}
             </span>
           </div>
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <button
+          onClick={() => scrollToSection("services")}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer"
+          aria-label={lang === "fr" ? "Défiler vers le bas" : "Scroll down"}
+        >
           <div className="w-6 h-10 rounded-full border-2 border-slate-600 flex items-start justify-center p-1">
             <div className="w-1.5 h-2.5 bg-violet-400 rounded-full animate-scroll-down" />
           </div>
-        </div>
+        </button>
       </div>
     </section>
   );

@@ -1,10 +1,11 @@
 // src/components/FAQ.jsx
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useLanguage } from "../hooks/useLanguage";
+import { CONTACT } from "../constants/config";
 import {
   ChevronDown,
   HelpCircle,
-  Sparkles,
+  Calendar,
   Clock,
   Globe,
   Headphones,
@@ -13,16 +14,28 @@ import {
   Users,
   Server,
   Search,
-  Shield
+  Shield,
+  Zap,
 } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
 
 const FAQ = () => {
-  const { i18n } = useTranslation();
-  const lang = i18n.language?.startsWith("fr") ? "fr" : "en";
-  const [openIndex, setOpenIndex] = useState(0); // First one open by default
+  const { lang } = useLanguage();
+  const [openIndex, setOpenIndex] = useState(0);
 
   const faqs = [
+    {
+      icon: DollarSign,
+      color: "from-amber-400 to-orange-400",
+      question: {
+        fr: "Puis-je payer en plusieurs fois?",
+        en: "Can I pay in installments?",
+      },
+      answer: {
+        fr: "Oui — je propose le paiement en 3 versements sans frais : 40% pour démarrer, 30% à mi-projet, 30% à la livraison. Cela s'applique à tous les forfaits. Pas de frais cachés, pas d'intérêts.",
+        en: "Yes — I offer payment in 3 installments at no extra cost: 40% to start, 30% at mid-project, 30% at delivery. This applies to all packages. No hidden fees, no interest.",
+      },
+    },
     {
       icon: Clock,
       color: "from-blue-400 to-cyan-400",
@@ -31,92 +44,8 @@ const FAQ = () => {
         en: "How long does it take to create a website?",
       },
       answer: {
-        fr: "Le délai dépend de la complexité du projet. Un site vitrine prend généralement 2-3 semaines, une boutique e-commerce 3-4 semaines, et une application sur mesure 4-8 semaines. Nous établissons un calendrier précis dès le début du projet.",
-        en: "The timeline depends on project complexity. A business website typically takes 2-3 weeks, an e-commerce store 3-4 weeks, and a custom application 4-8 weeks. We establish a precise schedule at the start of the project.",
-      },
-    },
-    {
-      icon: Globe,
-      color: "from-emerald-400 to-green-400",
-      question: {
-        fr: "Travaillez-vous avec des clients à l'extérieur du Québec?",
-        en: "Do you work with clients outside Quebec?",
-      },
-      answer: {
-        fr: "Absolument! Nous travaillons avec des clients partout au Canada, en Europe et à l'international. Toutes nos communications et livrables sont disponibles en français et en anglais. Les appels se font via Zoom ou Google Meet selon votre fuseau horaire.",
-        en: "Absolutely! We work with clients across Canada, Europe, and internationally. All our communications and deliverables are available in both French and English. Calls are done via Zoom or Google Meet according to your timezone.",
-      },
-    },
-    {
-      icon: Headphones,
-      color: "from-violet-400 to-purple-400",
-      question: {
-        fr: "Que se passe-t-il après la livraison du projet?",
-        en: "What happens after the project is delivered?",
-      },
-      answer: {
-        fr: "Tous nos forfaits incluent 30 jours de support post-lancement pour les ajustements mineurs et corrections de bugs. Après cette période, nous proposons des forfaits de maintenance mensuels ou des interventions ponctuelles selon vos besoins.",
-        en: "All our packages include 30 days of post-launch support for minor adjustments and bug fixes. After this period, we offer monthly maintenance packages or one-time interventions based on your needs.",
-      },
-    },
-    {
-      icon: DollarSign,
-      color: "from-amber-400 to-orange-400",
-      question: {
-        fr: "Quels sont vos tarifs?",
-        en: "What are your rates?",
-      },
-      answer: {
-        fr: "Nos forfaits commencent à 4 500 $ CAD pour un site vitrine et 7 500 $ CAD pour une boutique e-commerce. Les applications sur mesure sont établies sur devis. Nous proposons aussi des paiements en 2-3 versements pour faciliter votre budget.",
-        en: "Our packages start at $4,500 CAD for a business website and $7,500 CAD for an e-commerce store. Custom applications are quoted individually. We also offer payment in 2-3 installments to help with your budget.",
-      },
-    },
-    {
-      icon: Code2,
-      color: "from-pink-400 to-rose-400",
-      question: {
-        fr: "Utilisez-vous des templates ou tout est sur mesure?",
-        en: "Do you use templates or is everything custom?",
-      },
-      answer: {
-        fr: "Nous développons chaque projet sur mesure selon vos besoins spécifiques. Pas de templates génériques — chaque site est codé from scratch avec React, Vue.js ou Laravel pour garantir performance, évolutivité et unicité.",
-        en: "We develop each project custom to your specific needs. No generic templates — each site is coded from scratch with React, Vue.js or Laravel to ensure performance, scalability, and uniqueness.",
-      },
-    },
-    {
-      icon: Users,
-      color: "from-cyan-400 to-blue-400",
-      question: {
-        fr: "Comment fonctionne le processus de collaboration?",
-        en: "How does the collaboration process work?",
-      },
-      answer: {
-        fr: "1) Appel découverte gratuit pour comprendre vos besoins. 2) Proposition détaillée avec prix et délais. 3) Dépôt de 50% pour démarrer. 4) Design et développement avec points réguliers. 5) Tests et révisions. 6) Mise en ligne et formation. 7) Paiement final et support 30 jours.",
-        en: "1) Free discovery call to understand your needs. 2) Detailed proposal with pricing and timeline. 3) 50% deposit to start. 4) Design and development with regular check-ins. 5) Testing and revisions. 6) Launch and training. 7) Final payment and 30-day support.",
-      },
-    },
-    {
-      icon: Server,
-      color: "from-indigo-400 to-violet-400",
-      question: {
-        fr: "Proposez-vous l'hébergement et le nom de domaine?",
-        en: "Do you offer hosting and domain names?",
-      },
-      answer: {
-        fr: "Nous pouvons vous guider dans le choix de l'hébergement optimal (Netlify, Vercel, hébergement traditionnel) et vous aider à configurer votre domaine. Ces frais sont séparés et vous gardez le contrôle total de vos comptes.",
-        en: "We can guide you in choosing optimal hosting (Netlify, Vercel, traditional hosting) and help you set up your domain. These costs are separate, and you maintain full control of your accounts.",
-      },
-    },
-    {
-      icon: Search,
-      color: "from-teal-400 to-emerald-400",
-      question: {
-        fr: "Mon site sera-t-il optimisé pour le référencement (SEO)?",
-        en: "Will my website be optimized for SEO?",
-      },
-      answer: {
-        fr: "Oui, tous nos sites incluent une optimisation SEO de base : structure HTML sémantique, balises meta, sitemap, temps de chargement optimisé, responsive design et Core Web Vitals. Pour une stratégie SEO avancée, nous pouvons vous recommander des spécialistes.",
-        en: "Yes, all our sites include basic SEO optimization: semantic HTML structure, meta tags, sitemap, optimized loading times, responsive design, and Core Web Vitals. For advanced SEO strategy, we can recommend specialists.",
+        fr: "Un site vitrine prend 2-3 semaines, une boutique e-commerce 3-4 semaines, et une application sur mesure 4-8 semaines. Je m'engage sur un délai précis dès le début — et si je le rate, vous recevez 10% de remise automatiquement.",
+        en: "A business website takes 2-3 weeks, an e-commerce store 3-4 weeks, and a custom application 4-8 weeks. I commit to a precise deadline from the start — and if I miss it, you get a 10% discount automatically.",
       },
     },
     {
@@ -127,32 +56,104 @@ const FAQ = () => {
         en: "What if I'm not satisfied with the result?",
       },
       answer: {
-        fr: "Corrections illimitées jusqu'à votre satisfaction complète — c'est dans le contrat. Si le délai convenu n'est pas respecté de notre côté, vous recevez 10% de remise. Nous ne considérons pas un projet comme terminé tant que vous n'êtes pas content du résultat.",
-        en: "Unlimited revisions until you're fully satisfied — it's in the contract. If we miss the agreed deadline, you get a 10% discount. We don't consider a project done until you're happy with the result.",
+        fr: "Corrections illimitées jusqu'à votre satisfaction complète — c'est dans le contrat. Je ne considère pas un projet comme terminé tant que vous n'êtes pas content. Et si le délai n'est pas respecté de mon côté, 10% de remise automatique.",
+        en: "Unlimited revisions until you're fully satisfied — it's in the contract. I don't consider a project done until you're happy with the result. And if I miss the deadline, you automatically get 10% back.",
+      },
+    },
+    {
+      icon: Zap,
+      color: "from-violet-400 to-purple-400",
+      question: {
+        fr: "Pourquoi choisir un indépendant plutôt qu'une agence?",
+        en: "Why choose a freelancer over an agency?",
+      },
+      answer: {
+        fr: "Avec une agence, vous payez pour un chef de projet qui délègue à un junior que vous ne verrez jamais. Avec moi, vous parlez directement avec le développeur qui code votre site — pas d'intermédiaire, pas de mauvaises communications, pas de marges gonflées. Résultat : moins cher, plus rapide, et vous savez exactement qui est responsable.",
+        en: "With an agency, you pay for a project manager who delegates to a junior you'll never meet. With me, you talk directly to the developer writing your code — no middlemen, no miscommunications, no inflated margins. The result: cheaper, faster, and you always know who's accountable.",
+      },
+    },
+    {
+      icon: Headphones,
+      color: "from-emerald-400 to-green-400",
+      question: {
+        fr: "Que se passe-t-il après la livraison du projet?",
+        en: "What happens after the project is delivered?",
+      },
+      answer: {
+        fr: "Tous mes forfaits incluent 30 jours de support post-lancement pour les ajustements et corrections. Après cette période, je propose des interventions ponctuelles à 85$/h ou un forfait mensuel selon vos besoins.",
+        en: "All my packages include 30 days of post-launch support for adjustments and fixes. After this period, I offer one-time interventions at $85/h or a monthly retainer based on your needs.",
+      },
+    },
+    {
+      icon: Globe,
+      color: "from-cyan-400 to-blue-400",
+      question: {
+        fr: "Travaillez-vous avec des clients à l'extérieur du Québec?",
+        en: "Do you work with clients outside Quebec?",
+      },
+      answer: {
+        fr: "Oui — je travaille avec des clients partout au Canada et à l'international. Toutes les communications et livrables sont disponibles en français et en anglais. Les appels se font via Zoom selon votre fuseau horaire.",
+        en: "Yes — I work with clients across Canada and internationally. All communications and deliverables are available in both French and English. Calls are done via Zoom based on your timezone.",
+      },
+    },
+    {
+      icon: Code2,
+      color: "from-pink-400 to-rose-400",
+      question: {
+        fr: "Utilisez-vous des templates ou tout est sur mesure?",
+        en: "Do you use templates or is everything custom?",
+      },
+      answer: {
+        fr: "Chaque projet est développé sur mesure selon vos besoins. Pas de templates génériques — chaque site est codé from scratch avec React, Vue.js ou Laravel pour garantir performance, unicité et évolutivité. Le code vous appartient à 100%.",
+        en: "Every project is custom-built to your needs. No generic templates — each site is coded from scratch with React, Vue.js or Laravel for performance, uniqueness, and scalability. The code is 100% yours.",
       },
     },
     {
       icon: Users,
       color: "from-sky-400 to-blue-400",
       question: {
+        fr: "Comment fonctionne le processus de collaboration?",
+        en: "How does the collaboration process work?",
+      },
+      answer: {
+        fr: "1) Appel gratuit de 30 min pour comprendre vos besoins. 2) Proposition détaillée avec prix et délais. 3) Acompte de 40% pour démarrer. 4) Design et développement avec points réguliers. 5) Tests et révisions. 6) Mise en ligne et formation. 7) Paiement final et support 30 jours.",
+        en: "1) Free 30-min call to understand your needs. 2) Detailed proposal with pricing and timeline. 3) 40% deposit to start. 4) Design and development with regular check-ins. 5) Testing and revisions. 6) Launch and training. 7) Final payment and 30-day support.",
+      },
+    },
+    {
+      icon: Server,
+      color: "from-indigo-400 to-violet-400",
+      question: {
+        fr: "Proposez-vous l'hébergement et le nom de domaine?",
+        en: "Do you offer hosting and domain names?",
+      },
+      answer: {
+        fr: "Je vous guide dans le choix de l'hébergement optimal (Netlify, Vercel, hébergement traditionnel) et vous aide à configurer votre domaine. Ces frais sont séparés et vous gardez le contrôle total de vos comptes.",
+        en: "I guide you in choosing optimal hosting (Netlify, Vercel, traditional hosting) and help you set up your domain. These costs are separate, and you maintain full control of your accounts.",
+      },
+    },
+    {
+      icon: Search,
+      color: "from-teal-400 to-emerald-400",
+      question: {
+        fr: "Mon site sera-t-il optimisé pour le référencement (SEO)?",
+        en: "Will my website be optimized for SEO?",
+      },
+      answer: {
+        fr: "Oui, tous les sites incluent une optimisation SEO de base : structure HTML sémantique, balises meta, sitemap, temps de chargement optimisé, responsive design et Core Web Vitals. Pour une stratégie SEO avancée (blogging, backlinks), je peux vous recommander des spécialistes.",
+        en: "Yes, all sites include basic SEO optimization: semantic HTML structure, meta tags, sitemap, optimized loading times, responsive design, and Core Web Vitals. For advanced SEO strategy (blogging, backlinks), I can recommend specialists.",
+      },
+    },
+    {
+      icon: Users,
+      color: "from-lime-400 to-green-400",
+      question: {
         fr: "Combien de révisions sont incluses?",
         en: "How many revisions are included?",
       },
       answer: {
-        fr: "Révisions illimitées sur le design et le contenu tant que ça reste dans le scope initial du projet. Si vous voulez ajouter des fonctionnalités qui n'étaient pas prévues, on s'entend sur un ajustement avant de continuer. Pas de surprises.",
-        en: "Unlimited revisions on design and content as long as it stays within the original project scope. If you want to add features that weren't planned, we agree on an adjustment before continuing. No surprises.",
-      },
-    },
-    {
-      icon: DollarSign,
-      color: "from-lime-400 to-green-400",
-      question: {
-        fr: "Après les 30 jours de support, ça coûte combien?",
-        en: "After the 30-day support period, how much does it cost?",
-      },
-      answer: {
-        fr: "Après les 30 jours gratuits, nous proposons des forfaits de maintenance à partir de 85$/heure pour des interventions ponctuelles, ou un forfait mensuel selon vos besoins. La majorité de nos clients n'ont pas besoin de maintenance régulière une fois le site livré.",
-        en: "After the free 30 days, we offer maintenance at $85/hour for one-time interventions, or a monthly package based on your needs. Most of our clients don't need regular maintenance once the site is delivered.",
+        fr: "Révisions illimitées sur le design et le contenu dans le scope initial du projet. Si vous voulez ajouter des fonctionnalités non prévues, on s'entend sur un ajustement avant de continuer. Pas de surprises, tout est transparent.",
+        en: "Unlimited revisions on design and content within the original project scope. If you want to add features that weren't planned, we agree on an adjustment before continuing. No surprises — everything is transparent.",
       },
     },
   ];
@@ -163,7 +164,6 @@ const FAQ = () => {
 
   return (
     <section id="faq" className="py-20 md:py-24 relative overflow-hidden">
-      {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900/30 to-slate-950 -z-10" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-violet-900/10 via-transparent to-transparent -z-10" />
 
@@ -180,14 +180,14 @@ const FAQ = () => {
               <>
                 Vos questions,{" "}
                 <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  nos réponses
+                  réponses honnêtes
                 </span>
               </>
             ) : (
               <>
                 Your questions,{" "}
                 <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  answered
+                  honest answers
                 </span>
               </>
             )}
@@ -195,8 +195,8 @@ const FAQ = () => {
 
           <p className="text-slate-300 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             {lang === "fr"
-              ? "Tout ce que vous devez savoir avant de démarrer votre projet web."
-              : "Everything you need to know before starting your web project."}
+              ? "Tout ce que vous devez savoir avant de me confier votre projet."
+              : "Everything you need to know before trusting me with your project."}
           </p>
         </Reveal>
 
@@ -218,10 +218,8 @@ const FAQ = () => {
                           : "border-slate-800/50 hover:border-slate-700/50"
                       }`}
                     >
-                      {/* Subtle gradient overlay */}
                       <div className={`absolute inset-0 bg-gradient-to-br ${faq.color} opacity-0 ${isOpen ? 'opacity-[0.03]' : 'group-hover:opacity-[0.02]'} transition-opacity duration-300`} />
 
-                      {/* Question Button */}
                       <button
                         onClick={() => toggleFAQ(index)}
                         className="relative w-full flex items-start gap-4 p-5 md:p-6 text-left"
@@ -255,7 +253,6 @@ const FAQ = () => {
                         </div>
                       </button>
 
-                      {/* Answer */}
                       <div
                         className={`grid transition-all duration-300 ease-in-out ${
                           isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
@@ -283,8 +280,8 @@ const FAQ = () => {
             <div className="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-6 p-5 md:p-8 rounded-2xl bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 shadow-xl">
               <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
                 <div className="flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500 to-purple-500 shadow-lg shadow-violet-500/25 flex-shrink-0">
-                  <Sparkles size={20} className="text-white md:hidden" />
-                  <Sparkles size={24} className="text-white hidden md:block" />
+                  <Calendar size={20} className="text-white md:hidden" />
+                  <Calendar size={24} className="text-white hidden md:block" />
                 </div>
                 <div className="text-center sm:text-left">
                   <p className="text-white font-bold text-base md:text-lg">
@@ -292,16 +289,18 @@ const FAQ = () => {
                   </p>
                   <p className="text-xs md:text-sm text-slate-400">
                     {lang === "fr"
-                      ? "Nous répondons en moins de 24h"
-                      : "We respond within 24h"}
+                      ? "Je réponds en moins de 24h — ou appelez directement"
+                      : "I respond within 24h — or call me directly"}
                   </p>
                 </div>
               </div>
               <a
-                href="#contact"
-                className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all whitespace-nowrap text-sm md:text-base text-center"
+                href={CONTACT.calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all hover:scale-105 active:scale-95 whitespace-nowrap text-sm md:text-base text-center"
               >
-                {lang === "fr" ? "Poser une question" : "Ask a question"}
+                {lang === "fr" ? "Réserver un appel gratuit" : "Book a free call"}
               </a>
             </div>
           </div>

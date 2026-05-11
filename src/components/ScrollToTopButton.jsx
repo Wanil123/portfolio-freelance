@@ -1,14 +1,13 @@
 // src/components/ScrollToTopButton.jsx
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowUp } from "lucide-react";
-import { useTranslation } from "react-i18next";
+import { useLanguage } from "../hooks/useLanguage";
 
 const ScrollToTopButton = () => {
   const [visible, setVisible] = useState(false);
   const [progress, setProgress] = useState(0);
   const raf = useRef(0);
-  const { i18n } = useTranslation();
-  const lang = i18n.language || "en";
+  const { lang } = useLanguage();
 
   const label = useMemo(
     () => (lang === "fr" ? "Retour en haut" : "Scroll to top"),

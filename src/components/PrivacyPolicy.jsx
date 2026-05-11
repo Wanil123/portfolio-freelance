@@ -1,11 +1,11 @@
 // src/components/PrivacyPolicy.jsx
 import { useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import { useLanguage } from "../hooks/useLanguage";
+import { CONTACT, COMPANY } from "../constants/config";
 import { X, Shield } from "lucide-react";
 
 const PrivacyPolicy = ({ isOpen, onClose }) => {
-  const { i18n } = useTranslation();
-  const lang = i18n.language?.startsWith("fr") ? "fr" : "en";
+  const { lang } = useLanguage();
 
   useEffect(() => {
     if (isOpen) {
@@ -25,7 +25,7 @@ const PrivacyPolicy = ({ isOpen, onClose }) => {
     sections: [
       {
         heading: "\u00c9diteur du site",
-        text: "PrimeDev Studios\nWanil Parfait \u2014 Fondateur & D\u00e9veloppeur principal\nMontr\u00e9al, QC, Canada\ninfo@prime-dev-studios.com",
+        text: `${COMPANY.name}\nWanil Parfait \u2014 Fondateur & D\u00e9veloppeur principal\n${COMPANY.location}, Canada\n${CONTACT.email}`,
       },
       {
         heading: "H\u00e9bergement",
@@ -41,7 +41,7 @@ const PrivacyPolicy = ({ isOpen, onClose }) => {
       },
       {
         heading: "Vos droits",
-        text: "Conform\u00e9ment \u00e0 la Loi 25 du Qu\u00e9bec et au RGPD (pour les visiteurs europ\u00e9ens), vous disposez d\u2019un droit d\u2019acc\u00e8s, de rectification et de suppression de vos donn\u00e9es personnelles. Contactez-nous \u00e0 info@prime-dev-studios.com pour toute demande.",
+        text: `Conform\u00e9ment \u00e0 la Loi 25 du Qu\u00e9bec et au RGPD (pour les visiteurs europ\u00e9ens), vous disposez d\u2019un droit d\u2019acc\u00e8s, de rectification et de suppression de vos donn\u00e9es personnelles. Contactez-nous \u00e0 ${CONTACT.email} pour toute demande.`,
       },
       {
         heading: "Propri\u00e9t\u00e9 intellectuelle",
@@ -53,7 +53,7 @@ const PrivacyPolicy = ({ isOpen, onClose }) => {
     sections: [
       {
         heading: "Site Publisher",
-        text: "PrimeDev Studios\nWanil Parfait \u2014 Founder & Lead Developer\nMontreal, QC, Canada\ninfo@prime-dev-studios.com",
+        text: `${COMPANY.name}\nWanil Parfait \u2014 Founder & Lead Developer\n${COMPANY.location}, Canada\n${CONTACT.email}`,
       },
       {
         heading: "Hosting",
@@ -69,7 +69,7 @@ const PrivacyPolicy = ({ isOpen, onClose }) => {
       },
       {
         heading: "Your Rights",
-        text: "In accordance with Quebec's Law 25 and GDPR (for European visitors), you have the right to access, rectify, and delete your personal data. Contact us at info@prime-dev-studios.com for any request.",
+        text: `In accordance with Quebec's Law 25 and GDPR (for European visitors), you have the right to access, rectify, and delete your personal data. Contact us at ${CONTACT.email} for any request.`,
       },
       {
         heading: "Intellectual Property",

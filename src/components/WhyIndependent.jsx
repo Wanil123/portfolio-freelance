@@ -1,10 +1,10 @@
 // src/components/WhyIndependent.jsx
-import { useTranslation } from "react-i18next";
+import { useLanguage } from "../hooks/useLanguage";
+import { COMPANY } from "../constants/config";
 import { Rocket, Check } from "lucide-react";
 
 const WhyIndependent = () => {
-  const { i18n } = useTranslation();
-  const lang = i18n.language || "en";
+  const { lang } = useLanguage();
 
   return (
     <section id="why" className="py-16">
@@ -16,14 +16,14 @@ const WhyIndependent = () => {
             </div>
             <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white">
               {lang === "fr"
-                ? "Pourquoi choisir PrimeDev Studios"
-                : "Why choose PrimeDev Studios"}
+                ? `Pourquoi choisir ${COMPANY.name}`
+                : `Why choose ${COMPANY.name}`}
             </h2>
           </div>
           <p className="text-slate-200 mb-4 text-sm md:text-base">
             {lang === "fr"
-              ? "Après plusieurs années à concevoir et optimiser des solutions web complètes pour des PME et des organisations, nous avons fondé PrimeDev Studios pour offrir une approche directe et sans intermédiaire."
-              : "After years designing and optimizing complete web solutions for SMBs and organizations, we founded PrimeDev Studios to offer a direct, no-middleman approach."}
+              ? `Après plusieurs années à concevoir et optimiser des solutions web complètes pour des PME et des organisations, nous avons fondé ${COMPANY.name} pour offrir une approche directe et sans intermédiaire.`
+              : `After years designing and optimizing complete web solutions for SMBs and organizations, we founded ${COMPANY.name} to offer a direct, no-middleman approach.`}
           </p>
           <div className="bg-slate-950/40 border border-slate-700/80 rounded-xl p-5 mb-4">
             <p className="text-slate-100 mb-3 font-medium">

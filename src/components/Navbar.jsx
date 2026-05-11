@@ -1,10 +1,10 @@
 // src/components/Navbar.jsx
 import { useState } from "react";
-import { Menu, X, Globe2 } from "lucide-react";
-import { useTranslation } from "react-i18next";
+import { Menu, X, Globe2, Phone, Calendar } from "lucide-react";
+import { useLanguage } from "../hooks/useLanguage";
+import { COMPANY, CONTACT } from "../constants/config";
 
 const links = [
-  { id: "home", en: "Home", fr: "Accueil" },
   { id: "services", en: "Services", fr: "Services" },
   { id: "projects", en: "Projects", fr: "Projets" },
   { id: "offers", en: "Pricing", fr: "Forfaits" },
@@ -14,8 +14,7 @@ const links = [
 
 const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { i18n } = useTranslation();
-  const lang = i18n.language || "en";
+  const { lang, i18n } = useLanguage();
 
   const handleNavClick = (id) => {
     scrollToSection(id);
@@ -28,41 +27,43 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
     localStorage.setItem("lang", next);
   };
 
+  const WHATSAPP = `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(
+    lang === "fr"
+      ? "Bonjour Wanil, je veux discuter de mon projet."
+      : "Hello Wanil, I want to discuss my project."
+  )}`;
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out will-change-[background-color,border-color] ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${
         isScrolled
-          ? "bg-slate-950/90 backdrop-blur-md border-b border-slate-800"
+          ? "bg-slate-950/95 backdrop-blur-md border-b border-slate-800"
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 py-2.5 md:py-3 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 py-2.5 md:py-3 flex items-center justify-between gap-4">
         {/* LOGO */}
         <button
           onClick={() => handleNavClick("home")}
-          className="group flex items-center gap-3"
+          className="group flex items-center gap-2.5 flex-shrink-0"
         >
-          {/* Logo avec glow effect */}
           <div className="relative flex-shrink-0">
-            {/* Glow background */}
             <div className="absolute -inset-2 bg-gradient-to-r from-violet-500/50 to-purple-500/50 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <img
               src="/logo.png"
-              alt="PrimeDev Studios"
+              alt={COMPANY.name}
               width={56}
               height={56}
-              className="relative w-10 h-10 md:w-14 md:h-14 object-contain rounded-2xl shadow-xl border-2 border-violet-500/50 group-hover:border-violet-400/80 group-hover:scale-105 transition-all duration-300"
+              className="relative w-12 h-12 md:w-14 md:h-14 object-contain rounded-xl shadow-xl border-2 border-violet-500/50 group-hover:border-violet-400/80 transition-all duration-300"
             />
           </div>
-
-          {/* Texte sur une ligne */}
-          <span className="font-bold text-base md:text-lg bg-gradient-to-r from-white via-violet-100 to-white bg-clip-text text-transparent group-hover:from-violet-200 group-hover:via-white group-hover:to-violet-200 transition-all duration-300 whitespace-nowrap">
-            PrimeDev Studios
+          <span className="font-bold text-sm md:text-base bg-gradient-to-r from-white via-violet-100 to-white bg-clip-text text-transparent whitespace-nowrap">
+            {COMPANY.name}
           </span>
         </button>
 
-        {/* DESKTOP LINKS */}
-        <div className="hidden md:flex items-center gap-3">
+        {/* DESKTOP — nav links (hidden on small screens) */}
+        <div className="hidden lg:flex items-center gap-1">
           {links.map((link) => {
             const isActive = activeSection === link.id;
             return (
@@ -71,62 +72,107 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
                 onClick={() => handleNavClick(link.id)}
                 className={
                   isActive
-                    ? "text-white text-sm px-3 py-1.5 rounded-full bg-slate-900/70 border border-violet-500/40 shadow-sm"
-                    : "text-slate-200 hover:text-white text-sm px-3 py-1.5 rounded-full hover:bg-slate-900/30"
+                    ? "text-white text-sm px-3 py-1.5 rounded-full bg-slate-900/70 border border-violet-500/40"
+                    : "text-slate-300 hover:text-white text-sm px-3 py-1.5 rounded-full hover:bg-slate-900/30 transition-colors"
                 }
               >
                 {lang === "fr" ? link.fr : link.en}
               </button>
             );
           })}
-
-          <button
-            onClick={toggleLang}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/40 border border-slate-700/60 text-slate-100 text-xs"
-          >
-            <Globe2 size={14} />
-            <span className="uppercase">{lang === "fr" ? "FR" : "EN"}</span>
-          </button>
         </div>
 
-        {/* MOBILE BTN */}
-        <button
-          className="md:hidden text-white"
-          onClick={() => setIsOpen((p) => !p)}
-          aria-label={lang === "fr" ? "Ouvrir le menu" : "Toggle navigation"}
-        >
-          {isOpen ? <X /> : <Menu />}
-        </button>
+        {/* DESKTOP — right side: phone + CTA + lang */}
+        <div className="hidden md:flex items-center gap-2 flex-shrink-0">
+          {/* Phone number — visible, clickable */}
+          <a
+            href={WHATSAPP}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-medium hover:bg-emerald-500/20 transition-colors"
+          >
+            <Phone size={12} />
+            <span>{CONTACT.phone}</span>
+          </a>
+
+          {/* Language toggle */}
+          <button
+            onClick={toggleLang}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/40 border border-slate-700/60 text-slate-100 text-xs hover:border-slate-600 transition-colors"
+          >
+            <Globe2 size={13} />
+            <span className="uppercase font-medium">{lang === "fr" ? "FR" : "EN"}</span>
+          </button>
+
+          {/* PRIMARY CTA — "Appel gratuit" like MetalMax "Soumission gratuite" */}
+          <a
+            href={CONTACT.calendlyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white text-sm font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all hover:scale-105 active:scale-95"
+          >
+            <Calendar size={14} />
+            <span>{lang === "fr" ? "Appel gratuit" : "Free call"}</span>
+          </a>
+        </div>
+
+        {/* MOBILE — lang + hamburger */}
+        <div className="md:hidden flex items-center gap-2">
+          <button
+            onClick={toggleLang}
+            className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-slate-900/40 border border-slate-700/60 text-slate-100 text-xs"
+          >
+            <Globe2 size={12} />
+            <span className="uppercase">{lang === "fr" ? "FR" : "EN"}</span>
+          </button>
+          <button
+            className="text-white p-1"
+            onClick={() => setIsOpen((p) => !p)}
+            aria-label={lang === "fr" ? "Ouvrir le menu" : "Toggle navigation"}
+          >
+            {isOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
       {/* MOBILE MENU */}
       {isOpen && (
-        <div className="md:hidden bg-slate-950/95 border-t border-slate-800 max-h-[calc(100vh-60px)] overflow-y-auto">
+        <div className="md:hidden bg-slate-950/98 border-t border-slate-800 max-h-[calc(100vh-60px)] overflow-y-auto">
           {links.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <button
                 key={link.id}
                 onClick={() => handleNavClick(link.id)}
-                className={
-                  isActive
-                    ? "block w-full text-left px-6 py-3 text-white bg-slate-900/50"
-                    : "block w-full text-left px-6 py-3 text-slate-200"
-                }
+                className={`block w-full text-left px-6 py-3.5 text-sm border-b border-slate-800/50 ${
+                  isActive ? "text-white bg-slate-900/50" : "text-slate-300"
+                }`}
               >
                 {lang === "fr" ? link.fr : link.en}
               </button>
             );
           })}
 
-          <div className="px-6 py-3 flex items-center justify-between gap-3">
-            <button
-              onClick={toggleLang}
-              className="flex items-center gap-1 px-3 py-1 rounded-full bg-slate-900/40 border border-slate-700/60 text-slate-100 text-xs"
+          {/* Mobile CTA */}
+          <div className="p-4 space-y-3">
+            <a
+              href={CONTACT.calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 text-white font-semibold text-sm"
             >
-              <Globe2 size={14} />
-              <span className="uppercase">{lang === "fr" ? "FR" : "EN"}</span>
-            </button>
+              <Calendar size={16} />
+              {lang === "fr" ? "Réserver un appel gratuit" : "Book a free call"}
+            </a>
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-emerald-500/40 text-emerald-300 font-medium text-sm"
+            >
+              <Phone size={16} />
+              {lang === "fr" ? "WhatsApp — réponse rapide" : "WhatsApp — fast reply"}
+            </a>
           </div>
         </div>
       )}

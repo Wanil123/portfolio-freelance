@@ -1,5 +1,5 @@
 // src/components/Process.jsx
-import { useTranslation } from "react-i18next";
+import { useLanguage } from "../hooks/useLanguage";
 import {
   Sparkles,
   ArrowRight,
@@ -106,8 +106,7 @@ const included = {
 };
 
 const Process = ({ id = "process", scrollToSection }) => {
-  const { i18n } = useTranslation();
-  const lang = i18n.language?.startsWith("fr") ? "fr" : "en";
+  const { lang } = useLanguage();
 
   const handleQuoteClick = () => {
     if (scrollToSection) {

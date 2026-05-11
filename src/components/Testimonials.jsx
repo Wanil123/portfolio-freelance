@@ -1,5 +1,5 @@
 // src/components/Testimonials.jsx
-import { useTranslation } from "react-i18next";
+import { useLanguage } from "../hooks/useLanguage";
 import {
   Sparkles,
   Shield,
@@ -14,8 +14,7 @@ import {
 import { Reveal } from "./ui/Reveal";
 
 const Testimonials = () => {
-  const { i18n } = useTranslation();
-  const lang = i18n.language?.startsWith("fr") ? "fr" : "en";
+  const { lang } = useLanguage();
 
   const testimonials = [
     {

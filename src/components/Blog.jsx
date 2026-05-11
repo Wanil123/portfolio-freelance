@@ -1,11 +1,10 @@
 // src/components/Blog.jsx
-import { useTranslation } from "react-i18next";
+import { useLanguage } from "../hooks/useLanguage";
 import { Clock, ArrowRight, Sparkles, Tag, ExternalLink } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
 
 const Blog = () => {
-  const { i18n } = useTranslation();
-  const lang = i18n.language?.startsWith("fr") ? "fr" : "en";
+  const { lang } = useLanguage();
 
   const articles = [
     {
