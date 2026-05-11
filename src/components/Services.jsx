@@ -1,24 +1,17 @@
 // src/components/Services.jsx
 import { useLanguage } from "../hooks/useLanguage";
 import { services } from "../data/services.js";
-import { Check, ArrowRight, Zap, Clock, Star } from "lucide-react";
+import { Check, ArrowRight, Zap, Clock, Star, Calendar } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
+import { CONTACT } from "../constants/config";
 
 const Services = ({ scrollToSection }) => {
   const { lang } = useLanguage();
 
-  // Services are already ordered: AI first, then web dev
   const sortedServices = services;
 
   const handleContactClick = () => {
-    if (typeof scrollToSection === "function") {
-      scrollToSection("contact");
-      return;
-    }
-    if (typeof document !== "undefined") {
-      const el = document.getElementById("contact");
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    window.open(CONTACT.calendlyUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -157,13 +150,10 @@ const Services = ({ scrollToSection }) => {
                         service.featured
                           ? "bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white shadow-lg shadow-violet-500/20 hover:shadow-violet-500/40"
                           : "bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-violet-500/50 text-white"
-                      } text-sm font-semibold transition-all active:scale-95`}
+                      } text-sm font-semibold transition-all hover:scale-105 active:scale-95`}
                     >
-                      {lang === "fr" ? "Demander un devis" : "Request quote"}
-                      <ArrowRight
-                        size={16}
-                        className="group-hover/btn:translate-x-1 transition-transform"
-                      />
+                      <Calendar size={14} />
+                      {lang === "fr" ? "Réserver un appel gratuit" : "Book a free call"}
                     </button>
                   </div>
                 </div>

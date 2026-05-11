@@ -176,8 +176,8 @@ const Testimonials = () => {
 
           <p className="text-slate-300 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             {lang === "fr"
-              ? "Ce que disent nos clients, et nos engagements pour chaque projet."
-              : "What our clients say, and our commitments for every project."}
+              ? "Ce que disent mes clients, et mes engagements pour chaque projet."
+              : "What my clients say, and my commitments for every project."}
           </p>
         </Reveal>
 
@@ -359,16 +359,18 @@ const Testimonials = () => {
           <div className="mt-12 text-center">
             <p className="text-slate-400 text-sm mb-4">
               {lang === "fr"
-                ? "Devenez notre prochain client satisfait"
-                : "Become our next satisfied client"}
+                ? "Devenez mon prochain client satisfait"
+                : "Become my next satisfied client"}
             </p>
             <a
-              href="#contact"
-              className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all"
+              href="https://calendly.com/maiwanpar/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all hover:scale-105 active:scale-95"
             >
               {lang === "fr"
-                ? "Obtenir un devis gratuit"
-                : "Get a free quote"}
+                ? "Réserver un appel gratuit"
+                : "Book a free call"}
               <ArrowRight
                 size={18}
                 className="group-hover:translate-x-1 transition-transform"

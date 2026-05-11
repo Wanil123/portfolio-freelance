@@ -29,16 +29,16 @@ const Hero = ({ scrollToSection }) => {
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center pt-24 pb-16">
 
-        {/* Scarcity Badge — style MetalMax "programme maison pilote" */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-400/40 backdrop-blur-sm mb-6 animate-fade-in">
-          <div className="relative flex h-2 w-2">
+        {/* Scarcity Badge */}
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-amber-500/10 border border-amber-400/40 backdrop-blur-sm mb-6 animate-fade-in max-w-[95vw]">
+          <div className="relative flex h-2 w-2 flex-shrink-0">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
           </div>
-          <span className="text-amber-200 text-sm font-semibold">
+          <span className="text-amber-200 text-xs sm:text-sm font-semibold text-center">
             {lang === "fr"
-              ? "2 spots disponibles ce trimestre — places limitées"
-              : "2 spots available this quarter — limited availability"}
+              ? "2 spots disponibles ce trimestre"
+              : "2 spots available this quarter"}
           </span>
         </div>
 
@@ -113,20 +113,20 @@ const Hero = ({ scrollToSection }) => {
           </a>
 
           {/* Secondary contact options */}
-          <div className="flex items-center gap-3">
-            <span className="text-xs text-slate-500">
-              {lang === "fr" ? "ou contactez-moi :" : "or reach me:"}
+          <div className="flex items-center justify-center gap-2 flex-wrap">
+            <span className="text-xs text-slate-500 w-full text-center sm:w-auto">
+              {lang === "fr" ? "ou contactez-moi directement :" : "or reach me directly:"}
             </span>
             <a
               href={SMS}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-slate-700/60 bg-slate-900/40 hover:border-violet-500/50 hover:bg-slate-800/50 text-slate-300 hover:text-white text-sm font-medium transition-all active:scale-95"
+              className="flex items-center gap-1.5 px-5 py-2.5 rounded-full border border-slate-700/60 bg-slate-900/40 hover:border-violet-500/50 hover:bg-slate-800/50 text-slate-300 hover:text-white text-sm font-medium transition-all active:scale-95"
             >
               <MessageSquare size={14} />
               <span>SMS</span>
             </a>
             <a
               href={TEL}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-slate-700/60 bg-slate-900/40 hover:border-violet-500/50 hover:bg-slate-800/50 text-slate-300 hover:text-white text-sm font-medium transition-all active:scale-95"
+              className="flex items-center gap-1.5 px-5 py-2.5 rounded-full border border-slate-700/60 bg-slate-900/40 hover:border-violet-500/50 hover:bg-slate-800/50 text-slate-300 hover:text-white text-sm font-medium transition-all active:scale-95"
             >
               <Phone size={14} />
               <span>{lang === "fr" ? "Appel" : "Call"}</span>
@@ -134,24 +134,24 @@ const Hero = ({ scrollToSection }) => {
           </div>
         </div>
 
-        {/* Trust signals bar — replace "2 projets livrés" avec des signaux d'autorité réels */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-4 md:gap-8 animate-fade-in-up animation-delay-600">
-          <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900/60 border border-slate-800/50 backdrop-blur-sm">
+        {/* Trust signals bar */}
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3 animate-fade-in-up animation-delay-600 w-full max-w-xl mx-auto sm:max-w-none">
+          <div className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-slate-900/60 border border-slate-800/50 backdrop-blur-sm">
             <Zap size={15} className="text-violet-400 flex-shrink-0" />
             <span className="text-sm text-slate-300 font-medium">
-              {lang === "fr" ? "5+ ans expérience full-stack" : "5+ years full-stack experience"}
+              {lang === "fr" ? "5+ ans d'expérience" : "5+ years experience"}
             </span>
           </div>
-          <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900/60 border border-slate-800/50 backdrop-blur-sm">
+          <div className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-slate-900/60 border border-slate-800/50 backdrop-blur-sm">
             <Clock size={15} className="text-violet-400 flex-shrink-0" />
             <span className="text-sm text-slate-300 font-medium">
-              {lang === "fr" ? "Livraison 2-4 sem. garantie" : "2-4 week delivery guaranteed"}
+              {lang === "fr" ? "Livraison 2-4 sem." : "2-4 week delivery"}
             </span>
           </div>
-          <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900/60 border border-slate-800/50 backdrop-blur-sm">
+          <div className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-slate-900/60 border border-slate-800/50 backdrop-blur-sm">
             <Shield size={15} className="text-violet-400 flex-shrink-0" />
             <span className="text-sm text-slate-300 font-medium">
-              {lang === "fr" ? "Paiement en 3x sans frais" : "Pay in 3 installments, no fees"}
+              {lang === "fr" ? "Paiement en 3x" : "Pay in 3x"}
             </span>
           </div>
         </div>
