@@ -34,109 +34,123 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled, isNavVisible }) =>
       : "Hello Wanil, I want to discuss my project."
   )}`;
 
+  // Nav bar height — keep in sync with mobile menu top offset below
+  const NAV_H = "57px";
+
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${
-        isScrolled
-          ? "bg-slate-950/95 backdrop-blur-md border-b border-slate-800"
-          : "bg-transparent border-b border-transparent"
-      } ${isNavVisible || isOpen ? "translate-y-0" : "-translate-y-full"}`}
-    >
-      <div className="max-w-7xl mx-auto px-4 py-2.5 md:py-3 flex items-center justify-between gap-4">
-        {/* LOGO */}
-        <button
-          onClick={() => handleNavClick("home")}
-          className="group flex items-center gap-2.5 flex-shrink-0"
-        >
-          <div className="relative flex-shrink-0">
-            <div className="absolute -inset-2 bg-gradient-to-r from-violet-500/50 to-purple-500/50 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <img
-              src="/logo.png"
-              alt={COMPANY.name}
-              width={56}
-              height={56}
-              className="relative w-12 h-12 md:w-14 md:h-14 object-contain rounded-xl shadow-xl border-2 border-violet-500/50 group-hover:border-violet-400/80 transition-all duration-300"
-            />
+    <>
+      {/* ─── TOP BAR ──────────────────────────────────────────────── */}
+      {/* NOTE: no position:fixed children inside this nav — CSS transform
+          on a parent breaks fixed positioning (spec §9.6.1). Mobile menu
+          is a sibling below. */}
+      <nav
+        style={{ willChange: "transform" }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-out ${
+          isScrolled
+            ? "bg-slate-950/95 backdrop-blur-md border-b border-slate-800"
+            : "bg-transparent border-b border-transparent"
+        } ${isNavVisible || isOpen ? "translate-y-0" : "-translate-y-full"}`}
+      >
+        <div className="max-w-7xl mx-auto px-4 py-2.5 md:py-3 flex items-center justify-between gap-4">
+          {/* LOGO */}
+          <button
+            onClick={() => handleNavClick("home")}
+            className="group flex items-center gap-2.5 flex-shrink-0"
+          >
+            <div className="relative flex-shrink-0">
+              <div className="absolute -inset-2 bg-gradient-to-r from-violet-500/50 to-purple-500/50 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <img
+                src="/logo.png"
+                alt={COMPANY.name}
+                width={56}
+                height={56}
+                className="relative w-12 h-12 md:w-14 md:h-14 object-contain rounded-xl shadow-xl border-2 border-violet-500/50 group-hover:border-violet-400/80 transition-all duration-300"
+              />
+            </div>
+            <span className="font-bold text-sm md:text-base bg-gradient-to-r from-white via-violet-100 to-white bg-clip-text text-transparent whitespace-nowrap">
+              {COMPANY.name}
+            </span>
+          </button>
+
+          {/* DESKTOP — nav links */}
+          <div className="hidden lg:flex items-center gap-1">
+            {links.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <button
+                  key={link.id}
+                  onClick={() => handleNavClick(link.id)}
+                  className={
+                    isActive
+                      ? "text-white text-sm px-3 py-1.5 rounded-full bg-slate-900/70 border border-violet-500/40"
+                      : "text-slate-300 hover:text-white text-sm px-3 py-1.5 rounded-full hover:bg-slate-900/30 transition-colors"
+                  }
+                >
+                  {lang === "fr" ? link.fr : link.en}
+                </button>
+              );
+            })}
           </div>
-          <span className="font-bold text-sm md:text-base bg-gradient-to-r from-white via-violet-100 to-white bg-clip-text text-transparent whitespace-nowrap">
-            {COMPANY.name}
-          </span>
-        </button>
 
-        {/* DESKTOP — nav links (hidden on small screens) */}
-        <div className="hidden lg:flex items-center gap-1">
-          {links.map((link) => {
-            const isActive = activeSection === link.id;
-            return (
-              <button
-                key={link.id}
-                onClick={() => handleNavClick(link.id)}
-                className={
-                  isActive
-                    ? "text-white text-sm px-3 py-1.5 rounded-full bg-slate-900/70 border border-violet-500/40"
-                    : "text-slate-300 hover:text-white text-sm px-3 py-1.5 rounded-full hover:bg-slate-900/30 transition-colors"
-                }
-              >
-                {lang === "fr" ? link.fr : link.en}
-              </button>
-            );
-          })}
+          {/* DESKTOP — right side */}
+          <div className="hidden md:flex items-center gap-2 flex-shrink-0">
+            <a
+              href={TEL}
+              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800/50 border border-slate-700/50 text-slate-300 text-xs font-medium hover:border-violet-500/40 hover:text-white transition-colors"
+            >
+              <Phone size={12} />
+              <span>{CONTACT.phone}</span>
+            </a>
+
+            <button
+              onClick={toggleLang}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/40 border border-slate-700/60 text-slate-100 text-xs hover:border-slate-600 transition-colors"
+            >
+              <Globe2 size={13} />
+              <span className="uppercase font-medium">{lang === "fr" ? "FR" : "EN"}</span>
+            </button>
+
+            <a
+              href={CONTACT.calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white text-sm font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all hover:scale-105 active:scale-95"
+            >
+              <Calendar size={14} />
+              <span>{lang === "fr" ? "Appel gratuit" : "Free call"}</span>
+            </a>
+          </div>
+
+          {/* MOBILE — lang + hamburger */}
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={toggleLang}
+              className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-slate-900/40 border border-slate-700/60 text-slate-100 text-xs"
+            >
+              <Globe2 size={12} />
+              <span className="uppercase">{lang === "fr" ? "FR" : "EN"}</span>
+            </button>
+            {/* Larger tap target: p-2.5 = 44px touch area */}
+            <button
+              className="text-white p-2.5 -mr-1"
+              onClick={() => setIsOpen((p) => !p)}
+              aria-label={lang === "fr" ? "Ouvrir le menu" : "Toggle navigation"}
+              aria-expanded={isOpen}
+            >
+              {isOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
+      </nav>
 
-        {/* DESKTOP — right side: phone + CTA + lang */}
-        <div className="hidden md:flex items-center gap-2 flex-shrink-0">
-          {/* Phone number — clickable tel: */}
-          <a
-            href={TEL}
-            className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800/50 border border-slate-700/50 text-slate-300 text-xs font-medium hover:border-violet-500/40 hover:text-white transition-colors"
-          >
-            <Phone size={12} />
-            <span>{CONTACT.phone}</span>
-          </a>
-
-          {/* Language toggle */}
-          <button
-            onClick={toggleLang}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/40 border border-slate-700/60 text-slate-100 text-xs hover:border-slate-600 transition-colors"
-          >
-            <Globe2 size={13} />
-            <span className="uppercase font-medium">{lang === "fr" ? "FR" : "EN"}</span>
-          </button>
-
-          {/* PRIMARY CTA — "Appel gratuit" like MetalMax "Soumission gratuite" */}
-          <a
-            href={CONTACT.calendlyUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white text-sm font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all hover:scale-105 active:scale-95"
-          >
-            <Calendar size={14} />
-            <span>{lang === "fr" ? "Appel gratuit" : "Free call"}</span>
-          </a>
-        </div>
-
-        {/* MOBILE — lang + hamburger */}
-        <div className="md:hidden flex items-center gap-2">
-          <button
-            onClick={toggleLang}
-            className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-slate-900/40 border border-slate-700/60 text-slate-100 text-xs"
-          >
-            <Globe2 size={12} />
-            <span className="uppercase">{lang === "fr" ? "FR" : "EN"}</span>
-          </button>
-          <button
-            className="text-white p-1"
-            onClick={() => setIsOpen((p) => !p)}
-            aria-label={lang === "fr" ? "Ouvrir le menu" : "Toggle navigation"}
-          >
-            {isOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
-      </div>
-
-      {/* MOBILE MENU — full screen overlay */}
+      {/* ─── MOBILE MENU — sibling of <nav>, NOT a child ─────────── */}
+      {/* Positioned as a sibling so CSS transforms on the nav bar above
+          do NOT affect this element's fixed positioning. */}
       {isOpen && (
-        <div className="fixed inset-0 top-[57px] z-40 bg-slate-950 overflow-y-auto md:hidden flex flex-col">
+        <div
+          className="fixed left-0 right-0 bottom-0 z-[49] bg-slate-950 overflow-y-auto md:hidden flex flex-col"
+          style={{ top: NAV_H }}
+        >
           {/* Nav links */}
           <div className="flex-1">
             {links.map((link) => {
@@ -145,10 +159,10 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled, isNavVisible }) =>
                 <button
                   key={link.id}
                   onClick={() => handleNavClick(link.id)}
-                  className={`block w-full text-left px-6 py-4 text-base border-b border-slate-800/60 font-medium ${
+                  className={`block w-full text-left px-6 py-4 text-base border-b border-slate-800/60 font-medium transition-colors ${
                     isActive
-                      ? "text-white bg-slate-900/60 border-l-2 border-l-violet-500"
-                      : "text-slate-300"
+                      ? "text-white bg-slate-900/60 border-l-4 border-l-violet-500"
+                      : "text-slate-300 hover:text-white hover:bg-slate-900/30"
                   }`}
                 >
                   {lang === "fr" ? link.fr : link.en}
@@ -157,7 +171,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled, isNavVisible }) =>
             })}
           </div>
 
-          {/* Mobile CTAs — bottom of menu */}
+          {/* Mobile CTAs */}
           <div className="p-5 space-y-3 border-t border-slate-800">
             <a
               href={CONTACT.calendlyUrl}
@@ -173,6 +187,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled, isNavVisible }) =>
               <a
                 href={SMS}
                 className="flex items-center justify-center gap-2 flex-1 py-3.5 rounded-xl border border-slate-700 bg-slate-900/50 text-slate-200 font-semibold text-sm"
+                onClick={() => setIsOpen(false)}
               >
                 <MessageSquare size={16} />
                 SMS
@@ -180,18 +195,19 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled, isNavVisible }) =>
               <a
                 href={TEL}
                 className="flex items-center justify-center gap-2 flex-1 py-3.5 rounded-xl border border-slate-700 bg-slate-900/50 text-slate-200 font-semibold text-sm"
+                onClick={() => setIsOpen(false)}
               >
                 <Phone size={16} />
                 {lang === "fr" ? "Appel" : "Call"}
               </a>
             </div>
-            <p className="text-center text-xs text-slate-600 pb-2">
+            <p className="text-center text-xs text-slate-500 pb-2">
               {lang === "fr" ? "Je réponds en moins de 2h" : "I reply within 2h"}
             </p>
           </div>
         </div>
       )}
-    </nav>
+    </>
   );
 };
 
