@@ -1,5 +1,5 @@
 // src/App.jsx
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { useLanguage } from "./hooks/useLanguage";
 import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
@@ -32,6 +32,8 @@ function App() {
   const { lang, i18n } = useLanguage();
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   // Dynamic lang attribute on <html> element
   useEffect(() => {
@@ -47,7 +49,16 @@ function App() {
 
       rafId = requestAnimationFrame(() => {
         rafId = null;
-        setIsScrolled(window.scrollY > 50);
+        const currentY = window.scrollY;
+        setIsScrolled(currentY > 50);
+
+        // Hide nav on scroll down, show on scroll up (only past 100px)
+        if (currentY > 100) {
+          setIsNavVisible(currentY < lastScrollY.current);
+        } else {
+          setIsNavVisible(true);
+        }
+        lastScrollY.current = currentY;
 
         const sections = [
           "home",
@@ -85,11 +96,10 @@ function App() {
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      const top = el.getBoundingClientRect().top + window.scrollY - 65;
+      window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
     }
+    setIsNavVisible(true);
   };
 
   return (
@@ -102,6 +112,7 @@ function App() {
           activeSection={activeSection}
           scrollToSection={scrollToSection}
           isScrolled={isScrolled}
+          isNavVisible={isNavVisible}
         />
 
         <main>

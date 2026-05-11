@@ -12,7 +12,7 @@ const links = [
   { id: "contact", en: "Contact", fr: "Contact" },
 ];
 
-const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
+const Navbar = ({ activeSection, scrollToSection, isScrolled, isNavVisible }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { lang, i18n } = useLanguage();
 
@@ -40,7 +40,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
         isScrolled
           ? "bg-slate-950/95 backdrop-blur-md border-b border-slate-800"
           : "bg-transparent border-b border-transparent"
-      }`}
+      } ${isNavVisible || isOpen ? "translate-y-0" : "-translate-y-full"}`}
     >
       <div className="max-w-7xl mx-auto px-4 py-2.5 md:py-3 flex items-center justify-between gap-4">
         {/* LOGO */}
