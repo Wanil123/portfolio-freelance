@@ -52,13 +52,17 @@ function App() {
         const currentY = window.scrollY;
         setIsScrolled(currentY > 50);
 
-        // Hide nav on scroll down, show on scroll up (only past 100px)
-        if (currentY > 100) {
-          setIsNavVisible(currentY < lastScrollY.current);
-        } else {
-          setIsNavVisible(true);
-        }
+        const delta = currentY - lastScrollY.current;
         lastScrollY.current = currentY;
+
+        // Always show near top; use delta threshold to avoid mobile jitter
+        if (currentY <= 80) {
+          setIsNavVisible(true);
+        } else if (delta > 10) {
+          setIsNavVisible(false); // scrolled down ≥10px
+        } else if (delta < -5) {
+          setIsNavVisible(true);  // scrolled up ≥5px
+        }
 
         const sections = [
           "home",
