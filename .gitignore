@@ -7,3 +7,7 @@ node_modules/
 dist/
 .claude/
 activate-form.js
+
+# Fichiers confidentiels — ne jamais committer
+Operations.zip
+operations_extracted/
