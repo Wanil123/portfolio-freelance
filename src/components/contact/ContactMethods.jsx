@@ -4,7 +4,8 @@ import {
   Mail,
   Calendar,
   Check,
-  MessageCircle,
+  Phone,
+  MessageSquare,
   ArrowRight,
 } from "lucide-react";
 import { Reveal } from "../ui/Reveal";
@@ -12,7 +13,8 @@ import { Reveal } from "../ui/Reveal";
 const ContactMethods = () => {
   const { lang } = useLanguage();
 
-  const WHATSAPP_LINK = `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(
+  const TEL = `tel:${CONTACT.phone.replace(/\s/g, "")}`;
+  const SMS = `sms:${CONTACT.phone.replace(/\s/g, "")}${/iPhone|iPad|iPod/i.test(navigator.userAgent) ? "&" : "?"}body=${encodeURIComponent(
     lang === "fr"
       ? "Bonjour Wanil, je veux discuter de mon projet web."
       : "Hello Wanil, I'd like to discuss my web project."
@@ -20,28 +22,41 @@ const ContactMethods = () => {
 
   const contactMethods = [
     {
-      icon: MessageCircle,
-      label: "WhatsApp",
+      icon: Phone,
+      label: lang === "fr" ? "Appel direct" : "Direct call",
       value: CONTACT.phone,
-      href: WHATSAPP_LINK,
-      bgColor: "bg-emerald-500/10",
-      borderColor: "border-emerald-500/30",
-      hoverBorder: "hover:border-emerald-400/60",
-      hoverBg: "hover:bg-emerald-500/10",
-      iconColor: "text-emerald-300",
-      description: lang === "fr" ? "Réponse rapide — moins de 2h" : "Fast reply — within 2h",
+      href: TEL,
+      bgColor: "bg-violet-500/10",
+      borderColor: "border-violet-500/20",
+      hoverBorder: "hover:border-violet-400/60",
+      hoverBg: "hover:bg-violet-500/10",
+      iconColor: "text-violet-300",
+      description: lang === "fr" ? "Je décroche — appel direct" : "I pick up — direct call",
       badge: lang === "fr" ? "Recommandé" : "Recommended",
     },
     {
+      icon: MessageSquare,
+      label: "SMS / Texto",
+      value: CONTACT.phone,
+      href: SMS,
+      bgColor: "bg-emerald-500/10",
+      borderColor: "border-slate-700/30",
+      hoverBorder: "hover:border-emerald-400/50",
+      hoverBg: "hover:bg-emerald-500/5",
+      iconColor: "text-emerald-300",
+      description: lang === "fr" ? "Réponse rapide — moins de 2h" : "Fast reply — within 2h",
+      badge: null,
+    },
+    {
       icon: Mail,
-      label: lang === "fr" ? "Email" : "Email",
+      label: "Email",
       value: CONTACT.email,
       href: `mailto:${CONTACT.email}`,
-      bgColor: "bg-violet-500/10",
+      bgColor: "bg-slate-700/20",
       borderColor: "border-slate-700/30",
-      hoverBorder: "hover:border-violet-500/50",
+      hoverBorder: "hover:border-slate-600/50",
       hoverBg: "hover:bg-slate-800/50",
-      iconColor: "text-violet-300",
+      iconColor: "text-slate-300",
       description: lang === "fr" ? "Réponse sous 24h" : "Response within 24h",
       badge: null,
     },

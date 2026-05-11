@@ -1,6 +1,6 @@
 // src/components/Navbar.jsx
 import { useState } from "react";
-import { Menu, X, Globe2, Phone, Calendar } from "lucide-react";
+import { Menu, X, Globe2, Phone, Calendar, MessageSquare } from "lucide-react";
 import { useLanguage } from "../hooks/useLanguage";
 import { COMPANY, CONTACT } from "../constants/config";
 
@@ -27,7 +27,8 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
     localStorage.setItem("lang", next);
   };
 
-  const WHATSAPP = `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(
+  const TEL = `tel:${CONTACT.phone.replace(/\s/g, "")}`;
+  const SMS = `sms:${CONTACT.phone.replace(/\s/g, "")}${/iPhone|iPad|iPod/i.test(navigator.userAgent) ? "&" : "?"}body=${encodeURIComponent(
     lang === "fr"
       ? "Bonjour Wanil, je veux discuter de mon projet."
       : "Hello Wanil, I want to discuss my project."
@@ -84,12 +85,10 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
 
         {/* DESKTOP — right side: phone + CTA + lang */}
         <div className="hidden md:flex items-center gap-2 flex-shrink-0">
-          {/* Phone number — visible, clickable */}
+          {/* Phone number — clickable tel: */}
           <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-medium hover:bg-emerald-500/20 transition-colors"
+            href={TEL}
+            className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800/50 border border-slate-700/50 text-slate-300 text-xs font-medium hover:border-violet-500/40 hover:text-white transition-colors"
           >
             <Phone size={12} />
             <span>{CONTACT.phone}</span>
@@ -164,15 +163,22 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
               <Calendar size={16} />
               {lang === "fr" ? "Réserver un appel gratuit" : "Book a free call"}
             </a>
-            <a
-              href={WHATSAPP}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-emerald-500/40 text-emerald-300 font-medium text-sm"
-            >
-              <Phone size={16} />
-              {lang === "fr" ? "WhatsApp — réponse rapide" : "WhatsApp — fast reply"}
-            </a>
+            <div className="flex gap-2">
+              <a
+                href={SMS}
+                className="flex items-center justify-center gap-2 flex-1 py-3 rounded-xl border border-slate-700/50 text-slate-300 font-medium text-sm hover:border-violet-500/40 transition-colors"
+              >
+                <MessageSquare size={15} />
+                SMS
+              </a>
+              <a
+                href={TEL}
+                className="flex items-center justify-center gap-2 flex-1 py-3 rounded-xl border border-slate-700/50 text-slate-300 font-medium text-sm hover:border-violet-500/40 transition-colors"
+              >
+                <Phone size={15} />
+                {lang === "fr" ? "Appel" : "Call"}
+              </a>
+            </div>
           </div>
         </div>
       )}

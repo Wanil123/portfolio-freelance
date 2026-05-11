@@ -27,11 +27,7 @@ const Footer = () => {
     el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const WHATSAPP = `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(
-    lang === "fr"
-      ? "Bonjour Wanil, je veux discuter de mon projet."
-      : "Hello Wanil, I want to discuss my project."
-  )}`;
+  const TEL = `tel:${CONTACT.phone.replace(/\s/g, "")}`;
 
   const socialLinks = [
     {
@@ -179,19 +175,17 @@ const Footer = () => {
               {lang === "fr" ? "Contactez-moi" : "Contact me"}
             </h4>
 
-            {/* WhatsApp — top priority */}
+            {/* Phone — top priority */}
             <a
-              href={WHATSAPP}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-3 p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/20 hover:border-emerald-400/50 hover:bg-emerald-500/10 transition-all"
+              href={TEL}
+              className="group flex items-center gap-3 p-3 rounded-xl bg-violet-500/5 border border-violet-500/20 hover:border-violet-400/50 hover:bg-violet-500/10 transition-all"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex-shrink-0 group-hover:scale-110 transition-transform">
-                <Phone size={18} className="text-emerald-400" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-violet-500/10 border border-violet-500/30 flex-shrink-0 group-hover:scale-110 transition-transform">
+                <Phone size={18} className="text-violet-400" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-xs text-slate-500 mb-0.5">WhatsApp</p>
-                <p className="text-sm text-emerald-300 font-medium">{CONTACT.phone}</p>
+                <p className="text-xs text-slate-500 mb-0.5">{lang === "fr" ? "Appel direct" : "Direct call"}</p>
+                <p className="text-sm text-white font-medium">{CONTACT.phone}</p>
               </div>
             </a>
 

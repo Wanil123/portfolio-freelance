@@ -1,5 +1,5 @@
 // src/components/Hero.jsx
-import { ArrowRight, Phone, Calendar, Zap, Shield, Clock } from "lucide-react";
+import { Phone, Calendar, Zap, Shield, Clock, MessageSquare } from "lucide-react";
 import { useLanguage } from "../hooks/useLanguage";
 import { CONTACT } from "../constants/config";
 
@@ -7,11 +7,12 @@ const Hero = ({ scrollToSection }) => {
   const { lang } = useLanguage();
 
   const CALENDLY = CONTACT.calendlyUrl;
-  const WHATSAPP = `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(
+  const SMS = `sms:${CONTACT.phone.replace(/\s/g, "")}${/iPhone|iPad|iPod/i.test(navigator.userAgent) ? "&" : "?"}body=${encodeURIComponent(
     lang === "fr"
       ? "Bonjour Wanil, je veux discuter de mon projet web."
       : "Hello Wanil, I'd like to discuss my web project."
   )}`;
+  const TEL = `tel:${CONTACT.phone.replace(/\s/g, "")}`;
 
   return (
     <section
@@ -97,7 +98,7 @@ const Hero = ({ scrollToSection }) => {
         </p>
 
         {/* PRIMARY CTA — one dominant action */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up animation-delay-400">
+        <div className="flex flex-col items-center justify-center gap-4 animate-fade-in-up animation-delay-400">
           <a
             href={CALENDLY}
             target="_blank"
@@ -111,15 +112,26 @@ const Hero = ({ scrollToSection }) => {
             </span>
           </a>
 
-          <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-4 rounded-xl border border-emerald-500/40 hover:border-emerald-400/70 bg-emerald-500/5 hover:bg-emerald-500/10 text-emerald-300 hover:text-emerald-200 font-semibold transition-all active:scale-95"
-          >
-            <Phone size={18} />
-            <span>{lang === "fr" ? "WhatsApp — réponse rapide" : "WhatsApp — fast reply"}</span>
-          </a>
+          {/* Secondary contact options */}
+          <div className="flex items-center gap-3">
+            <span className="text-xs text-slate-500">
+              {lang === "fr" ? "ou contactez-moi :" : "or reach me:"}
+            </span>
+            <a
+              href={SMS}
+              className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-slate-700/60 bg-slate-900/40 hover:border-violet-500/50 hover:bg-slate-800/50 text-slate-300 hover:text-white text-sm font-medium transition-all active:scale-95"
+            >
+              <MessageSquare size={14} />
+              <span>SMS</span>
+            </a>
+            <a
+              href={TEL}
+              className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-slate-700/60 bg-slate-900/40 hover:border-violet-500/50 hover:bg-slate-800/50 text-slate-300 hover:text-white text-sm font-medium transition-all active:scale-95"
+            >
+              <Phone size={14} />
+              <span>{lang === "fr" ? "Appel" : "Call"}</span>
+            </a>
+          </div>
         </div>
 
         {/* Trust signals bar — replace "2 projets livrés" avec des signaux d'autorité réels */}

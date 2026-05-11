@@ -1,6 +1,6 @@
 // src/components/WhatsAppButton.jsx
 import { useState, useEffect } from "react";
-import { MessageCircle, X } from "lucide-react";
+import { Phone, X } from "lucide-react";
 import { useLanguage } from "../hooks/useLanguage";
 import { CONTACT } from "../constants/config";
 
@@ -8,24 +8,16 @@ const WhatsAppButton = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const { lang } = useLanguage();
-  const message = lang === "fr"
-    ? "Bonjour! Je suis intéressé(e) par vos services de développement web."
-    : "Hello! I'm interested in your web development services.";
 
-  const WHATSAPP_LINK = `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(message)}`;
+  const TEL = `tel:${CONTACT.phone.replace(/\s/g, "")}`;
 
   useEffect(() => {
-    // Show button after 2 seconds
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 2000);
-
-    // Show tooltip after 5 seconds (first time only)
+    const timer = setTimeout(() => setIsVisible(true), 2000);
     const tooltipTimer = setTimeout(() => {
-      const hasSeenTooltip = sessionStorage.getItem("whatsapp-tooltip-seen");
-      if (!hasSeenTooltip) {
+      const seen = sessionStorage.getItem("contact-tooltip-seen");
+      if (!seen) {
         setShowTooltip(true);
-        sessionStorage.setItem("whatsapp-tooltip-seen", "true");
+        sessionStorage.setItem("contact-tooltip-seen", "true");
       }
     }, 5000);
 
@@ -42,7 +34,7 @@ const WhatsAppButton = () => {
       {/* Tooltip */}
       {showTooltip && (
         <div className="absolute bottom-full left-0 mb-3 animate-fadeIn">
-          <div className="relative bg-white text-slate-800 rounded-xl shadow-xl p-4 max-w-[240px]">
+          <div className="relative bg-white text-slate-800 rounded-xl shadow-xl p-4 max-w-[220px]">
             <button
               onClick={() => setShowTooltip(false)}
               className="absolute -top-2 -right-2 w-6 h-6 bg-slate-200 hover:bg-slate-300 rounded-full flex items-center justify-center transition-colors"
@@ -51,42 +43,30 @@ const WhatsAppButton = () => {
               <X size={14} />
             </button>
             <p className="text-sm font-medium mb-1">
-              {lang === "fr" ? "Besoin d'aide?" : "Need help?"}
+              {lang === "fr" ? "On se parle?" : "Let's talk?"}
             </p>
             <p className="text-xs text-slate-600">
               {lang === "fr"
-                ? "Écrivez-moi sur WhatsApp pour une réponse rapide!"
-                : "Message me on WhatsApp for a quick response!"}
+                ? "Appelez-moi directement — je réponds."
+                : "Call me directly — I pick up."}
             </p>
-            {/* Arrow */}
             <div className="absolute -bottom-2 left-6 w-4 h-4 bg-white transform rotate-45" />
           </div>
         </div>
       )}
 
-      {/* WhatsApp Button */}
+      {/* Phone Button */}
       <a
-        href={WHATSAPP_LINK}
-        target="_blank"
-        rel="noopener noreferrer"
+        href={TEL}
         className="group relative flex items-center"
-        aria-label={lang === "fr" ? "Contacter sur WhatsApp" : "Contact on WhatsApp"}
+        aria-label={lang === "fr" ? "Appeler Wanil" : "Call Wanil"}
       >
-        {/* Pulse animation */}
-        <div className="absolute inset-0 bg-emerald-500 rounded-full animate-ping opacity-25" />
-
-        {/* Glow effect */}
-        <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full blur-lg opacity-50 group-hover:opacity-75 transition-opacity" />
-
-        {/* Button */}
-        <div className="relative flex items-center justify-center w-14 h-14 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 rounded-full shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 transition-all group-hover:scale-105">
-          <MessageCircle size={24} className="text-white" fill="white" />
+        <div className="absolute inset-0 bg-violet-500 rounded-full animate-ping opacity-20" />
+        <div className="absolute -inset-1 bg-gradient-to-r from-violet-500 to-purple-500 rounded-full blur-lg opacity-40 group-hover:opacity-60 transition-opacity" />
+        <div className="relative flex items-center justify-center w-14 h-14 bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 rounded-full shadow-lg shadow-violet-500/30 hover:shadow-violet-500/50 transition-all group-hover:scale-105">
+          <Phone size={22} className="text-white" />
         </div>
-
-        {/* Online indicator */}
-        <div className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-400 border-2 border-white rounded-full flex items-center justify-center">
-          <div className="w-2 h-2 bg-white rounded-full" />
-        </div>
+        <div className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-400 border-2 border-white rounded-full" />
       </a>
     </div>
   );
