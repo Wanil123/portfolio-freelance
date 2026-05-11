@@ -12,19 +12,8 @@ const WhatsAppButton = () => {
   const TEL = `tel:${CONTACT.phone.replace(/\s/g, "")}`;
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 2000);
-    const tooltipTimer = setTimeout(() => {
-      const seen = sessionStorage.getItem("contact-tooltip-seen");
-      if (!seen) {
-        setShowTooltip(true);
-        sessionStorage.setItem("contact-tooltip-seen", "true");
-      }
-    }, 5000);
-
-    return () => {
-      clearTimeout(timer);
-      clearTimeout(tooltipTimer);
-    };
+    const timer = setTimeout(() => setIsVisible(true), 3000);
+    return () => clearTimeout(timer);
   }, []);
 
   if (!isVisible) return null;

@@ -134,51 +134,60 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
         </div>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* MOBILE MENU — full screen overlay */}
       {isOpen && (
-        <div className="md:hidden bg-slate-950/98 border-t border-slate-800 max-h-[calc(100vh-60px)] overflow-y-auto">
-          {links.map((link) => {
-            const isActive = activeSection === link.id;
-            return (
-              <button
-                key={link.id}
-                onClick={() => handleNavClick(link.id)}
-                className={`block w-full text-left px-6 py-3.5 text-sm border-b border-slate-800/50 ${
-                  isActive ? "text-white bg-slate-900/50" : "text-slate-300"
-                }`}
-              >
-                {lang === "fr" ? link.fr : link.en}
-              </button>
-            );
-          })}
+        <div className="fixed inset-0 top-[57px] z-40 bg-slate-950 overflow-y-auto md:hidden flex flex-col">
+          {/* Nav links */}
+          <div className="flex-1">
+            {links.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <button
+                  key={link.id}
+                  onClick={() => handleNavClick(link.id)}
+                  className={`block w-full text-left px-6 py-4 text-base border-b border-slate-800/60 font-medium ${
+                    isActive
+                      ? "text-white bg-slate-900/60 border-l-2 border-l-violet-500"
+                      : "text-slate-300"
+                  }`}
+                >
+                  {lang === "fr" ? link.fr : link.en}
+                </button>
+              );
+            })}
+          </div>
 
-          {/* Mobile CTA */}
-          <div className="p-4 space-y-3">
+          {/* Mobile CTAs — bottom of menu */}
+          <div className="p-5 space-y-3 border-t border-slate-800">
             <a
               href={CONTACT.calendlyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 text-white font-semibold text-sm"
+              className="flex items-center justify-center gap-2 w-full py-4 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 text-white font-bold text-base shadow-lg shadow-violet-500/25"
+              onClick={() => setIsOpen(false)}
             >
-              <Calendar size={16} />
+              <Calendar size={18} />
               {lang === "fr" ? "Réserver un appel gratuit" : "Book a free call"}
             </a>
-            <div className="flex gap-2">
+            <div className="flex gap-3">
               <a
                 href={SMS}
-                className="flex items-center justify-center gap-2 flex-1 py-3 rounded-xl border border-slate-700/50 text-slate-300 font-medium text-sm hover:border-violet-500/40 transition-colors"
+                className="flex items-center justify-center gap-2 flex-1 py-3.5 rounded-xl border border-slate-700 bg-slate-900/50 text-slate-200 font-semibold text-sm"
               >
-                <MessageSquare size={15} />
+                <MessageSquare size={16} />
                 SMS
               </a>
               <a
                 href={TEL}
-                className="flex items-center justify-center gap-2 flex-1 py-3 rounded-xl border border-slate-700/50 text-slate-300 font-medium text-sm hover:border-violet-500/40 transition-colors"
+                className="flex items-center justify-center gap-2 flex-1 py-3.5 rounded-xl border border-slate-700 bg-slate-900/50 text-slate-200 font-semibold text-sm"
               >
-                <Phone size={15} />
+                <Phone size={16} />
                 {lang === "fr" ? "Appel" : "Call"}
               </a>
             </div>
+            <p className="text-center text-xs text-slate-600 pb-2">
+              {lang === "fr" ? "Je réponds en moins de 2h" : "I reply within 2h"}
+            </p>
           </div>
         </div>
       )}
