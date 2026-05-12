@@ -56,13 +56,16 @@ function App() {
         const delta = currentY - lastScrollY.current;
         lastScrollY.current = currentY;
 
-        // Always show near top; use delta threshold to avoid mobile jitter
-        if (currentY <= 80) {
+        // Desktop: navbar always visible. Mobile only: hide on scroll down.
+        const isMobile = window.innerWidth < 768;
+        if (!isMobile) {
+          setIsNavVisible(true);
+        } else if (currentY <= 80) {
           setIsNavVisible(true);
         } else if (delta > 10) {
-          setIsNavVisible(false); // scrolled down ≥10px
+          setIsNavVisible(false);
         } else if (delta < -5) {
-          setIsNavVisible(true);  // scrolled up ≥5px
+          setIsNavVisible(true);
         }
 
         const sections = [
@@ -91,9 +94,15 @@ function App() {
       });
     };
 
+    const handleResize = () => {
+      if (window.innerWidth >= 768) setIsNavVisible(true);
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
       if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);
