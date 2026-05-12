@@ -28,8 +28,8 @@ const Testimonials = () => {
       company: "LamIPict.com",
       rating: 5,
       quote: {
-        fr: "Wanil a bâti notre plateforme e-commerce de laminage photo de A à Z. Le site est rapide, l'expérience de commande est fluide et nos clients adorent. Budget respecté, livraison dans les temps — exactement ce qu'on avait besoin. Très professionnel.",
-        en: "Wanil built our photo lamination e-commerce platform from A to Z. The site is fast, the ordering experience is smooth, and our customers love it. Budget respected, delivered on time — exactly what we needed. Very professional.",
+        fr: "Wanil nous a accompagnés dans la création de LamiPict.com — un projet qui a pas mal évolué en cours de route. Au départ on voulait un site pour présenter nos produits et prendre des commandes. On a vite réalisé qu'on avait besoin de bien plus : gestion des fichiers clients, espace admin, calcul des taxes par province, expérience d'achat complète. Ce que j'ai apprécié, c'est qu'il a pas paniqué quand on changeait d'idée. Y'a des moments où je me demandais si c'était faisable — il revenait toujours avec une solution. Le site est maintenant bilingue, mobile et opérationnel. On a mis plus de temps qu'on pensait, mais le résultat est là.",
+        en: "Wanil helped us build LamiPict.com — a project that evolved quite a bit along the way. We started wanting a site to showcase products and take orders. We quickly realized we needed much more: client file management, an admin panel, province-by-province tax calculation, and a full checkout experience. What I appreciated is that he didn't panic when we changed direction. There were moments I wasn't sure it was all doable — he always came back with a solution. The site is now bilingual, mobile-ready, and live. It took longer than we planned, but the result is there.",
       },
       project: {
         fr: "Site e-commerce",
@@ -50,8 +50,8 @@ const Testimonials = () => {
       company: "Groupe Destin\u00e9",
       rating: 5,
       quote: {
-        fr: "Ce qui nous a marqués, c'est à quel point Wanil a compris notre mission communautaire dès le départ. Le site reflète vraiment qui on est : clair, accessible et bilingue. Nos membres nous disent souvent que c'est facile à naviguer. Un vrai partenaire, pas juste un développeur.",
-        en: "What stood out to us is how quickly Wanil understood our community mission from day one. The site truly reflects who we are: clear, accessible, and bilingual. Our members often tell us it's easy to navigate. A real partner, not just a developer.",
+        fr: "Au départ, on voulait juste un site clair pour présenter notre mission. Le budget n'était pas illimité, et on voulait pas se retrouver avec quelque chose de compliqué à gérer. Wanil a pris le temps de comprendre ce qu'on fait avant même de parler de design. Il a pensé à des détails auxquels on n'aurait pas pensé nous-mêmes — comment structurer nos secteurs d'intervention, comment rendre le formulaire de contact moins intimidant pour nos membres. Le résultat, c'est un site qu'on peut expliquer en 30 secondes.",
+        en: "We needed a clear site to present our mission — no big budget, and nothing too complicated to manage afterward. Wanil took the time to understand what we do before even talking about design. He thought of details we wouldn't have caught ourselves — how to structure our areas of work, how to make the contact form less intimidating for community members. The result is a site we can explain in 30 seconds.",
       },
       project: {
         fr: "Site vitrine bilingue",
