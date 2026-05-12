@@ -292,13 +292,11 @@ const Projects = () => {
               </div>
             </Reveal>
 
-            <div className="flex flex-wrap gap-3 md:gap-6 mb-8 md:mb-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-6 mb-8 md:mb-12">
               {featuredProjects.map((p, index) => (
-                <div key={p.id} className="w-[calc(50%-6px)] md:w-[calc(50%-12px)]">
-                  <Reveal delay={index * 0.1}>
-                    {renderCard(p)}
-                  </Reveal>
-                </div>
+                <Reveal key={p.id} delay={index * 0.1}>
+                  {renderCard(p)}
+                </Reveal>
               ))}
             </div>
           </>
@@ -317,13 +315,11 @@ const Projects = () => {
               </div>
             </Reveal>
 
-            <div className="flex flex-wrap gap-3 md:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-6">
               {otherProjects.map((p, index) => (
-                <div key={p.id} className="w-[calc(50%-6px)] md:w-[calc(50%-12px)]">
-                  <Reveal delay={index * 0.1}>
-                    {renderCard(p)}
-                  </Reveal>
-                </div>
+                <Reveal key={p.id} delay={index * 0.1}>
+                  {renderCard(p)}
+                </Reveal>
               ))}
             </div>
           </>
@@ -386,9 +382,7 @@ const Projects = () => {
                 const subtitle = getField(selectedProject.subtitle);
                 const context = getField(selectedProject.context);
                 const description = getField(selectedProject.description);
-                const features = Array.isArray(selectedProject.features)
-                  ? selectedProject.features
-                  : selectedProject.features?.[lang] || [];
+                const features = selectedProject.features?.[lang] || [];
                 const tech = selectedProject.tech || [];
 
                 return (

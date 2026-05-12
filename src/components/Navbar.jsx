@@ -77,6 +77,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
         <div className="max-w-7xl mx-auto px-4 py-2.5 md:py-3 flex items-center justify-between gap-4">
           {/* LOGO */}
           <button
+            type="button"
             onClick={() => handleNavClick("home")}
             className="group flex items-center gap-2.5 flex-shrink-0"
           >
@@ -102,6 +103,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
               return (
                 <button
                   key={link.id}
+                  type="button"
                   onClick={() => handleNavClick(link.id)}
                   className={
                     isActive
@@ -125,6 +127,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
               <span>{CONTACT.phone}</span>
             </a>
             <button
+              type="button"
               onClick={toggleLang}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/40 border border-slate-700/60 text-slate-100 text-xs hover:border-slate-600 transition-colors"
             >
@@ -145,6 +148,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
           {/* MOBILE — lang + hamburger */}
           <div className="md:hidden flex items-center gap-2">
             <button
+              type="button"
               onClick={toggleLang}
               className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-slate-900/40 border border-slate-700/60 text-slate-100 text-xs"
             >

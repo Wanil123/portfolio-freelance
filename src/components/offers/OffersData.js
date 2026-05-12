@@ -21,7 +21,7 @@ export const pricingData = {
     fr: [
       {
         name: "Starter",
-        price: "500 $/mois",
+        price: "500 $ CAD/mois",
         pages: "Chatbot IA pour votre site",
         timeline: "1-2 semaines",
         features: [
@@ -40,7 +40,7 @@ export const pricingData = {
       },
       {
         name: "Growth",
-        price: "1 500 $/mois",
+        price: "1 500 $ CAD/mois",
         pages: "Agent vocal IA + chatbot",
         timeline: "2-3 semaines",
         features: [
@@ -59,7 +59,7 @@ export const pricingData = {
       },
       {
         name: "Premium",
-        price: "3 000 $/mois",
+        price: "3 000 $ CAD/mois",
         pages: "Automatisation complète des ventes",
         timeline: "3-4 semaines",
         features: [
@@ -141,7 +141,7 @@ export const pricingData = {
     fr: [
       {
         name: "Essentiel",
-        price: "4 500 $",
+        price: "4 500 $ CAD",
         pages: "5 pages sur mesure",
         timeline: "2-3 semaines",
         features: [
@@ -159,7 +159,7 @@ export const pricingData = {
       },
       {
         name: "Professionnel",
-        price: "6 500 $",
+        price: "6 500 $ CAD",
         pages: "7-10 pages sur mesure",
         timeline: "3-4 semaines",
         features: [
@@ -177,7 +177,7 @@ export const pricingData = {
       },
       {
         name: "Premium",
-        price: "9 000 $+",
+        price: "9 000 $ CAD+",
         pages: "10+ pages sur mesure",
         timeline: "4-6 semaines",
         features: [
@@ -255,7 +255,7 @@ export const pricingData = {
     fr: [
       {
         name: "Starter",
-        price: "7 500 $",
+        price: "7 500 $ CAD",
         pages: "Jusqu'à 50 produits",
         timeline: "3-4 semaines",
         features: [
@@ -273,7 +273,7 @@ export const pricingData = {
       },
       {
         name: "Business",
-        price: "12 000 $",
+        price: "12 000 $ CAD",
         pages: "Jusqu'à 200 produits",
         timeline: "4-6 semaines",
         features: [
@@ -369,7 +369,7 @@ export const pricingData = {
     fr: [
       {
         name: "Dashboard / Portail",
-        price: "8 000 $+",
+        price: "8 000 $ CAD+",
         pages: "Application web complète",
         timeline: "4-8 semaines",
         features: [
@@ -387,7 +387,7 @@ export const pricingData = {
       },
       {
         name: "Application complète",
-        price: "15 000 $+",
+        price: "15 000 $ CAD+",
         pages: "Solution sur mesure",
         timeline: "6-12 semaines",
         features: [

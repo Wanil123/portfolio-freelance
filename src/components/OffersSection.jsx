@@ -64,7 +64,11 @@ const OffersSection = () => {
         {/* Tab Switcher */}
         <Reveal delay={0.1}>
           <div className="flex justify-center mb-10 md:mb-12">
-            <div className="inline-flex gap-1 p-1.5 rounded-xl bg-slate-900/80 border border-slate-800/60 backdrop-blur-sm w-full sm:w-auto">
+            <div
+              role="tablist"
+              aria-label={lang === "fr" ? "Catégories de forfaits" : "Pricing categories"}
+              className="inline-flex gap-1 p-1.5 rounded-xl bg-slate-900/80 border border-slate-800/60 backdrop-blur-sm w-full sm:w-auto"
+            >
               {tabs.map((tab) => (
                 <PricingTab
                   key={tab.id}
@@ -144,14 +148,14 @@ const OffersSection = () => {
                   <ul className="space-y-2 text-sm text-slate-300">
                     {(lang === "fr"
                       ? [
-                          "Maintenance mensuelle (85-120 $/h)",
-                          "SEO & référencement (800 $/mois+)",
+                          "Maintenance mensuelle (85–120 $ CAD/h)",
+                          "SEO & référencement (800 $ CAD/mois+)",
                           "Landing pages additionnelles",
                           "Formation avancée",
                         ]
                       : [
-                          "Monthly maintenance ($85-120/h)",
-                          "SEO & ranking ($800/mo+)",
+                          "Monthly maintenance ($85–120 CAD/h)",
+                          "SEO & ranking ($800+ CAD/mo)",
                           "Additional landing pages",
                           "Advanced training",
                         ]

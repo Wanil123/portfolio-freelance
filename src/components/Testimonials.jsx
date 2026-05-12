@@ -198,13 +198,18 @@ const Testimonials = () => {
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/10 border border-violet-500/30">
                     <Quote size={22} className="text-violet-400" />
                   </div>
-                  <div className="flex gap-1">
+                  <div
+                    className="flex gap-1"
+                    aria-label={`${testimonial.rating} ${lang === "fr" ? "étoiles sur 5" : "stars out of 5"}`}
+                    role="img"
+                  >
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star
                         key={i}
                         size={18}
                         className="text-amber-400"
                         fill="currentColor"
+                        aria-hidden="true"
                       />
                     ))}
                   </div>

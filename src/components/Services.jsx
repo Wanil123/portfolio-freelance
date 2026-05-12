@@ -8,8 +8,6 @@ import { CONTACT } from "../constants/config";
 const Services = ({ scrollToSection }) => {
   const { lang } = useLanguage();
 
-  const sortedServices = services;
-
   const handleContactClick = () => {
     window.open(CONTACT.calendlyUrl, "_blank", "noopener,noreferrer");
   };
@@ -25,7 +23,7 @@ const Services = ({ scrollToSection }) => {
         <Reveal className="text-center mb-12 md:mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-400/30 text-violet-200 text-xs md:text-sm font-medium mb-4">
             <Zap size={14} />
-            <span>{lang === "fr" ? "Services" : "Services"}</span>
+            <span>{lang === "fr" ? "Services" : "What we offer"}</span>
           </div>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
@@ -55,7 +53,7 @@ const Services = ({ scrollToSection }) => {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-          {sortedServices.map((service, index) => {
+          {services.map((service, index) => {
             const title = lang === "fr" ? service.title.fr : service.title.en;
             const price = lang === "fr" ? service.price.fr : service.price.en;
             const timeline =

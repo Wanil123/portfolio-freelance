@@ -144,18 +144,6 @@ const FAQ = () => {
         en: "Yes, all sites include basic SEO optimization: semantic HTML structure, meta tags, sitemap, optimized loading times, responsive design, and Core Web Vitals. For advanced SEO strategy (blogging, backlinks), I can recommend specialists.",
       },
     },
-    {
-      icon: Users,
-      color: "from-lime-400 to-green-400",
-      question: {
-        fr: "Combien de révisions sont incluses?",
-        en: "How many revisions are included?",
-      },
-      answer: {
-        fr: "Révisions illimitées sur le design et le contenu dans le scope initial du projet. Si vous voulez ajouter des fonctionnalités non prévues, on s'entend sur un ajustement avant de continuer. Pas de surprises, tout est transparent.",
-        en: "Unlimited revisions on design and content within the original project scope. If you want to add features that weren't planned, we agree on an adjustment before continuing. No surprises — everything is transparent.",
-      },
-    },
   ];
 
   const toggleFAQ = (index) => {
@@ -221,6 +209,7 @@ const FAQ = () => {
                       <div className={`absolute inset-0 bg-gradient-to-br ${faq.color} opacity-0 ${isOpen ? 'opacity-[0.03]' : 'group-hover:opacity-[0.02]'} transition-opacity duration-300`} />
 
                       <button
+                        id={`faq-question-${index}`}
                         onClick={() => toggleFAQ(index)}
                         className="relative w-full flex items-start gap-4 p-5 md:p-6 text-left"
                         aria-expanded={isOpen}
@@ -254,6 +243,8 @@ const FAQ = () => {
                       </button>
 
                       <div
+                        role="region"
+                        aria-labelledby={`faq-question-${index}`}
                         className={`grid transition-all duration-300 ease-in-out ${
                           isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                         }`}

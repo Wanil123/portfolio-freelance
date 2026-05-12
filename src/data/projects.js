@@ -140,6 +140,7 @@ export const projects = [
     image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=500&fit=crop&q=80",
     featured: true,
     isAIDemo: true,
+    isClientProject: false,
   },
   {
     id: 9,
@@ -184,6 +185,7 @@ export const projects = [
     image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&h=500&fit=crop&q=80",
     featured: true,
     isAIDemo: true,
+    isClientProject: false,
   },
 
   // === PROFESSIONAL PROJECTS ===
@@ -229,6 +231,7 @@ export const projects = [
     icon: "🎬",
     image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800&h=500&fit=crop&q=80",
     featured: true,
+    isClientProject: false,
   },
   {
     id: 3,
@@ -277,6 +280,7 @@ export const projects = [
     icon: "🧬",
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop&q=80",
     featured: true,
+    isClientProject: false,
   },
   {
     id: 6,
@@ -321,6 +325,7 @@ export const projects = [
     icon: "👗",
     image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=500&fit=crop&q=80",
     featured: true,
+    isClientProject: false,
   },
   {
     id: 7,
@@ -365,6 +370,7 @@ export const projects = [
     icon: "🍽️",
     image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=500&fit=crop&q=80",
     featured: true,
+    isClientProject: false,
   },
   {
     id: 4,
@@ -408,6 +414,7 @@ export const projects = [
     icon: "🎵",
     image: "https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=800&h=500&fit=crop&q=80",
     featured: false,
+    isClientProject: false,
   },
   {
     id: 5,
@@ -451,5 +458,6 @@ export const projects = [
     icon: "🌤️",
     image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=800&h=500&fit=crop&q=80",
     featured: false,
+    isClientProject: false,
   },
 ];

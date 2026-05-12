@@ -40,7 +40,8 @@ const ContactForm = () => {
   }, []);
 
   // Validation helpers
-  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isValidEmail = (email) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) && email.length <= 254;
 
   const validationMessages = {
     nameRequired: lang === "fr" ? "Le nom est requis." : "Name is required.",
@@ -234,6 +235,7 @@ const ContactForm = () => {
               value={formData.name}
               onChange={handleInputChange}
               required
+              aria-required="true"
               maxLength={100}
               placeholder={lang === "fr" ? "Jean Dupont" : "John Smith"}
               className={`w-full px-4 py-3 rounded-xl bg-slate-800/50 border ${errors.name ? "border-red-500/50" : "border-slate-700/50"} text-base text-white placeholder-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all`}
@@ -254,6 +256,9 @@ const ContactForm = () => {
               value={formData.email}
               onChange={handleInputChange}
               required
+              aria-required="true"
+              inputMode="email"
+              autoComplete="email"
               placeholder={lang === "fr" ? "email@exemple.com" : "email@example.com"}
               className={`w-full px-4 py-3 rounded-xl bg-slate-800/50 border ${errors.email ? "border-red-500/50" : "border-slate-700/50"} text-base text-white placeholder-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all`}
             />
@@ -368,6 +373,7 @@ const ContactForm = () => {
               value={formData.message}
               onChange={handleInputChange}
               required
+              aria-required="true"
               rows={4}
               placeholder={
                 lang === "fr"

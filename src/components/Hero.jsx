@@ -175,6 +175,7 @@ const Hero = ({ scrollToSection }) => {
 
         {/* Scroll indicator */}
         <button
+          type="button"
           onClick={() => scrollToSection("services")}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer"
           aria-label={lang === "fr" ? "Défiler vers le bas" : "Scroll down"}
