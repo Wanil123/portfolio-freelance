@@ -34,7 +34,7 @@ function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
   const lastScrollY = useRef(0);
-  const downBuffer = useRef(0); // accumulated downward pixels (resets on any upward move)
+  const lastChangeY = useRef(0); // Y position when navbar state last changed
 
   // Dynamic lang attribute on <html> element
   useEffect(() => {
@@ -57,25 +57,27 @@ function App() {
         const delta = currentY - lastScrollY.current;
         lastScrollY.current = currentY;
 
-        // Desktop: always visible. Mobile: buffer-based hide to survive iOS momentum bounce.
+        // Desktop: always visible.
+        // Mobile: distance-from-last-change (Headroom.js pattern) — immune to per-frame jitter.
         const isMobile = window.innerWidth < 768;
         if (!isMobile) {
           setIsNavVisible(true);
-          downBuffer.current = 0;
+          lastChangeY.current = currentY;
         } else if (currentY <= 80) {
           setIsNavVisible(true);
-          downBuffer.current = 0;
-        } else if (delta > 0) {
-          // Scrolling down: accumulate pixels, hide only after 60px cumulative
-          downBuffer.current += delta;
-          if (downBuffer.current > 60) {
+          lastChangeY.current = currentY;
+        } else {
+          const dist = currentY - lastChangeY.current;
+          if (dist > 80) {
+            // Scrolled down 80px from last change point → hide
             setIsNavVisible(false);
-            downBuffer.current = 0;
+            lastChangeY.current = currentY;
+          } else if (dist < -30) {
+            // Scrolled up 30px from last change point → show
+            setIsNavVisible(true);
+            lastChangeY.current = currentY;
           }
-        } else if (delta < 0) {
-          // Any upward movement: reset buffer + show immediately
-          downBuffer.current = 0;
-          setIsNavVisible(true);
+          // Tiny movements (< 30px up or < 80px down): do nothing
         }
 
         const sections = [
@@ -105,7 +107,10 @@ function App() {
     };
 
     const handleResize = () => {
-      if (window.innerWidth >= 768) setIsNavVisible(true);
+      if (window.innerWidth >= 768) {
+        setIsNavVisible(true);
+        lastChangeY.current = Math.max(0, window.scrollY);
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -124,6 +129,7 @@ function App() {
       window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
     }
     setIsNavVisible(true);
+    lastChangeY.current = Math.max(0, window.scrollY);
   };
 
   return (
