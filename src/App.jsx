@@ -34,6 +34,7 @@ function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
   const lastScrollY = useRef(0);
+  const downBuffer = useRef(0); // accumulated downward pixels (resets on any upward move)
 
   // Dynamic lang attribute on <html> element
   useEffect(() => {
@@ -56,15 +57,24 @@ function App() {
         const delta = currentY - lastScrollY.current;
         lastScrollY.current = currentY;
 
-        // Desktop: navbar always visible. Mobile only: hide on scroll down.
+        // Desktop: always visible. Mobile: buffer-based hide to survive iOS momentum bounce.
         const isMobile = window.innerWidth < 768;
         if (!isMobile) {
           setIsNavVisible(true);
+          downBuffer.current = 0;
         } else if (currentY <= 80) {
           setIsNavVisible(true);
-        } else if (delta > 10) {
-          setIsNavVisible(false);
-        } else if (delta < -5) {
+          downBuffer.current = 0;
+        } else if (delta > 0) {
+          // Scrolling down: accumulate pixels, hide only after 60px cumulative
+          downBuffer.current += delta;
+          if (downBuffer.current > 60) {
+            setIsNavVisible(false);
+            downBuffer.current = 0;
+          }
+        } else if (delta < 0) {
+          // Any upward movement: reset buffer + show immediately
+          downBuffer.current = 0;
           setIsNavVisible(true);
         }
 
