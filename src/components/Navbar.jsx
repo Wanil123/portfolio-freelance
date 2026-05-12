@@ -45,7 +45,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
   return (
     <>
       <nav
-        className={`sticky top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+        className={`sticky top-0 left-0 right-0 z-[10000] transition-colors duration-300 ${
           isScrolled
             ? "bg-slate-950/95 backdrop-blur-md border-b border-slate-800"
             : "bg-slate-950/80 backdrop-blur-sm border-b border-transparent"
@@ -145,7 +145,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
 
       {isOpen && (
         <div
-          className="fixed left-0 right-0 bottom-0 z-[49] bg-slate-950 overflow-y-auto md:hidden flex flex-col"
+          className="fixed left-0 right-0 bottom-0 z-[9999] bg-slate-950 overflow-y-auto md:hidden flex flex-col"
           style={{ top: "68px" }}
         >
           {/* Nav links */}
