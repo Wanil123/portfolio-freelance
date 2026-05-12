@@ -26,10 +26,21 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
     }
   }, []);
 
-  // Lock body scroll when mobile menu is open
+  // Lock scroll on html + body (body alone doesn't block iOS Safari)
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    const html = document.documentElement;
+    const body = document.body;
+    if (isOpen) {
+      html.style.overflowY = "hidden";
+      body.style.overflowY = "hidden";
+    } else {
+      html.style.overflowY = "";
+      body.style.overflowY = "";
+    }
+    return () => {
+      html.style.overflowY = "";
+      body.style.overflowY = "";
+    };
   }, [isOpen]);
 
   const handleNavClick = (id) => {
@@ -158,7 +169,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
       {isOpen && createPortal(
         <div
           className="fixed inset-0 flex flex-col md:hidden"
-          style={{ zIndex: 9999, paddingTop: navHeight }}
+          style={{ zIndex: 9999, paddingTop: navHeight, touchAction: "none" }}
         >
           {/* Dark overlay background */}
           <div className="absolute inset-0 bg-slate-950" />
@@ -166,8 +177,8 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
           {/* Subtle top gradient accent */}
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/40 to-transparent" style={{ top: navHeight }} />
 
-          {/* Scrollable content */}
-          <div className="relative flex flex-col flex-1 overflow-y-auto">
+          {/* Scrollable content — touch-action:pan-y re-enabled for internal scroll */}
+          <div className="relative flex flex-col flex-1 overflow-y-auto" style={{ touchAction: "pan-y" }}>
 
             {/* Nav links */}
             <nav className="flex-1 py-2">
