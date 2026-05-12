@@ -105,7 +105,7 @@ const Services = ({ scrollToSection }) => {
                           <button
                             type="button"
                             onClick={(e) => { e.stopPropagation(); scrollToSection("offers"); }}
-                            className="text-sm font-medium text-violet-400 hover:text-violet-300 transition-colors underline underline-offset-2 decoration-violet-400/30 hover:decoration-violet-300/50"
+                            className="text-sm font-medium text-violet-400 hover:text-violet-300 transition-colors underline underline-offset-2 decoration-violet-400/30 hover:decoration-violet-300/50 py-2 px-1 -mx-1 -my-2"
                           >
                             {price} →
                           </button>
@@ -150,7 +150,7 @@ const Services = ({ scrollToSection }) => {
                         service.featured
                           ? "bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white shadow-lg shadow-violet-500/20 hover:shadow-violet-500/40"
                           : "bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-violet-500/50 text-white"
-                      } text-sm font-semibold transition-all hover:scale-105 active:scale-95`}
+                      } text-sm font-semibold transition-all sm:hover:scale-105 active:scale-95`}
                     >
                       <Calendar size={14} />
                       {lang === "fr" ? "Réserver un appel gratuit" : "Book a free call"}

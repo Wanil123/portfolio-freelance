@@ -144,7 +144,7 @@ const PricingCard = ({ offer, index, lang, activeTab, onContactClick }) => {
                   offer.popular
                     ? "bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40"
                     : "bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-violet-500/50 text-white"
-                } text-sm font-semibold transition-all hover:scale-105 active:scale-95`}
+                } text-sm font-semibold transition-all sm:hover:scale-105 active:scale-95`}
               >
                 {lang === "fr" ? "Réserver un appel gratuit" : "Book a free call"}
                 <ArrowRight

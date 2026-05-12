@@ -12,6 +12,7 @@ import {
   Quote,
 } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
+import { CONTACT } from "../constants/config";
 
 const Testimonials = () => {
   const { lang } = useLanguage();
@@ -66,6 +67,7 @@ const Testimonials = () => {
   const guarantees = [
     {
       icon: Shield,
+      iconColor: "text-emerald-400",
       color: "from-emerald-400 to-green-500",
       bgColor: "bg-emerald-500/10",
       title: {
@@ -79,6 +81,7 @@ const Testimonials = () => {
     },
     {
       icon: Clock,
+      iconColor: "text-violet-400",
       color: "from-violet-400 to-purple-500",
       bgColor: "bg-violet-500/10",
       title: {
@@ -92,6 +95,7 @@ const Testimonials = () => {
     },
     {
       icon: Code2,
+      iconColor: "text-cyan-400",
       color: "from-cyan-400 to-blue-500",
       bgColor: "bg-cyan-500/10",
       title: {
@@ -105,6 +109,7 @@ const Testimonials = () => {
     },
     {
       icon: Zap,
+      iconColor: "text-amber-400",
       color: "from-amber-400 to-orange-500",
       bgColor: "bg-amber-500/10",
       title: {
@@ -249,7 +254,7 @@ const Testimonials = () => {
               <Reveal key={index} delay={index * 0.1}>
                 <div className="group relative h-full">
                   <div
-                    className={`pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 bg-gradient-to-br ${guarantee.color} opacity-20 rounded-2xl blur-xl transition-opacity duration-500`}
+                    className={`pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 bg-gradient-to-br ${guarantee.color} rounded-2xl blur-xl transition-opacity duration-500`}
                   />
 
                   <div className="relative h-full bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-2xl p-6 md:p-8 hover:border-violet-400/50 transition-all duration-300">
@@ -259,7 +264,7 @@ const Testimonials = () => {
                       >
                         <Icon
                           size={24}
-                          className={`bg-gradient-to-br ${guarantee.color} bg-clip-text text-transparent`}
+                          className={guarantee.iconColor}
                         />
                       </div>
                       <div>
@@ -363,10 +368,10 @@ const Testimonials = () => {
                 : "Become my next satisfied client"}
             </p>
             <a
-              href="https://calendly.com/maiwanpar/30min"
+              href={CONTACT.calendlyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all hover:scale-105 active:scale-95"
+              className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all sm:hover:scale-105 active:scale-95"
             >
               {lang === "fr"
                 ? "Réserver un appel gratuit"

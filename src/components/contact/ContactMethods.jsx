@@ -13,8 +13,10 @@ import { Reveal } from "../ui/Reveal";
 const ContactMethods = () => {
   const { lang } = useLanguage();
 
-  const TEL = `tel:${CONTACT.phone.replace(/\s/g, "")}`;
-  const SMS = `sms:${CONTACT.phone.replace(/\s/g, "")}${/iPhone|iPad|iPod/i.test(navigator.userAgent) ? "&" : "?"}body=${encodeURIComponent(
+  const phoneRaw = CONTACT.phone.replace(/[\s\-]/g, "");
+  const TEL = `tel:${phoneRaw}`;
+  const isIOS = typeof navigator !== "undefined" && /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const SMS = `sms:${phoneRaw}${isIOS ? "&" : "?"}body=${encodeURIComponent(
     lang === "fr"
       ? "Bonjour Wanil, je veux discuter de mon projet web."
       : "Hello Wanil, I'd like to discuss my web project."

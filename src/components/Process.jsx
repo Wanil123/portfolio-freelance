@@ -87,7 +87,7 @@ const steps = [
 const included = {
   fr: [
     "Contrat / mandat clair",
-    "Suivi par e-mail / WhatsApp",
+    "Suivi par e-mail / SMS",
     "Code livré et versionné (Git)",
     "Site bilingue FR/EN disponible",
     "Déploiement (Netlify, VPS, hébergeur client)",
@@ -96,7 +96,7 @@ const included = {
   ],
   en: [
     "Clear contract / SoW",
-    "Follow-up by e-mail / WhatsApp",
+    "Follow-up by e-mail / SMS",
     "Code on Git / handover",
     "Bilingual site FR/EN available",
     "Deployment (Netlify, VPS, client hosting)",
@@ -250,7 +250,7 @@ const Process = ({ id = "process", scrollToSection }) => {
 
                 {/* Right - CTA Card */}
                 <div className="relative">
-                  <div className="sticky top-8 space-y-4">
+                  <div className="lg:sticky lg:top-8 space-y-4">
                     <div className="p-6 rounded-xl bg-gradient-to-br from-violet-500/10 to-purple-500/10 border border-violet-500/30">
                       <h4 className="text-lg font-bold text-white mb-3">
                         {lang === "fr"

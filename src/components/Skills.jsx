@@ -202,7 +202,7 @@ export default function Skills() {
               <Reveal key={category.title} delay={index * 0.1}>
                 <div className="group relative h-full">
                   {/* Glow effect */}
-                  <div className={`pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 bg-gradient-to-br ${category.color} opacity-20 rounded-2xl blur-xl transition-opacity duration-500`} />
+                  <div className={`pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 bg-gradient-to-br ${category.color} rounded-2xl blur-xl transition-opacity duration-500`} />
 
                   <div className="relative h-full bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-2xl p-6 md:p-8 hover:border-violet-400/50 transition-all duration-300">
 

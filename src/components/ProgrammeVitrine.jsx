@@ -56,16 +56,16 @@ const ProgrammeVitrine = () => {
         <Reveal>
           {/* Scarcity badge */}
           <div className="flex justify-center mb-8">
-            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-500/10 border border-amber-400/40 backdrop-blur-sm">
-              <div className="relative flex h-2.5 w-2.5">
+            <div className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-amber-500/10 border border-amber-400/40 backdrop-blur-sm max-w-full">
+              <div className="relative flex h-2.5 w-2.5 flex-shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500"></span>
               </div>
-              <Flame size={14} className="text-amber-400" />
-              <span className="text-amber-200 text-sm font-semibold">
+              <Flame size={14} className="text-amber-400 flex-shrink-0" />
+              <span className="text-amber-200 text-xs sm:text-sm font-semibold text-center">
                 {lang === "fr"
-                  ? "Programme Vitrine — 2 places disponibles ce trimestre"
-                  : "Showcase Program — 2 spots available this quarter"}
+                  ? "Programme Vitrine — 2 places ce trimestre"
+                  : "Showcase Program — 2 spots this quarter"}
               </span>
             </div>
           </div>
@@ -155,26 +155,22 @@ const ProgrammeVitrine = () => {
                     </ul>
                   </div>
 
-                  {/* Spots counter */}
+                  {/* Spots counter — 2 spots available = 2 bars empty */}
                   <div className="mb-6 p-4 rounded-xl bg-amber-500/5 border border-amber-500/20">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-semibold text-amber-200">
                         {lang === "fr" ? "Places disponibles ce trimestre" : "Spots available this quarter"}
                       </span>
-                      <span className="text-2xl font-bold text-amber-400">2/2</span>
+                      <span className="text-2xl font-bold text-amber-400">2</span>
                     </div>
                     <div className="flex gap-2">
-                      <div className="flex-1 h-2 rounded-full bg-amber-400/30">
-                        <div className="h-full w-full rounded-full bg-amber-400" />
-                      </div>
-                      <div className="flex-1 h-2 rounded-full bg-amber-400/30">
-                        <div className="h-full w-full rounded-full bg-amber-400" />
-                      </div>
+                      <div className="flex-1 h-2 rounded-full bg-amber-400/30" />
+                      <div className="flex-1 h-2 rounded-full bg-amber-400/30" />
                     </div>
                     <p className="text-xs text-amber-300/70 mt-2">
                       {lang === "fr"
-                        ? "Renouvellement au prochain trimestre"
-                        : "Refreshes next quarter"}
+                        ? "2 places ouvertes — première arrivée, première servie"
+                        : "2 open spots — first come, first served"}
                     </p>
                   </div>
 
@@ -183,12 +179,12 @@ const ProgrammeVitrine = () => {
                     href={CONTACT.calendlyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-slate-900 font-bold text-base shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 transition-all hover:scale-105 active:scale-95"
+                    className="group w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-slate-900 font-bold text-base shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 transition-all sm:hover:scale-105 active:scale-95"
                   >
                     <Calendar size={18} />
                     {lang === "fr"
-                      ? "Postuler au Programme Vitrine — Appel gratuit"
-                      : "Apply to Showcase Program — Free call"}
+                      ? "Postuler — Appel gratuit 30 min"
+                      : "Apply — Free 30 min call"}
                   </a>
                   <p className="text-center text-xs text-slate-500 mt-3">
                     {lang === "fr"

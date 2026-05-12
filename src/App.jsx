@@ -49,7 +49,8 @@ function App() {
 
       rafId = requestAnimationFrame(() => {
         rafId = null;
-        const currentY = window.scrollY;
+        // Clamp to 0: iOS elastic scroll can give negative scrollY values
+        const currentY = Math.max(0, window.scrollY);
         setIsScrolled(currentY > 50);
 
         const delta = currentY - lastScrollY.current;
@@ -100,7 +101,7 @@ function App() {
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 65;
+      const top = el.getBoundingClientRect().top + window.scrollY - 72;
       window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
     }
     setIsNavVisible(true);

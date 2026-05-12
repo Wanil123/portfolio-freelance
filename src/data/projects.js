@@ -447,7 +447,7 @@ export const projects = [
         "Changement d'unité (C/F)",
       ],
     },
-    link: "https://your-weather-app.netlify.app/",
+    link: null,
     icon: "🌤️",
     image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=800&h=500&fit=crop&q=80",
     featured: false,

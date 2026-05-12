@@ -7,12 +7,14 @@ const Hero = ({ scrollToSection }) => {
   const { lang } = useLanguage();
 
   const CALENDLY = CONTACT.calendlyUrl;
-  const SMS = `sms:${CONTACT.phone.replace(/\s/g, "")}${/iPhone|iPad|iPod/i.test(navigator.userAgent) ? "&" : "?"}body=${encodeURIComponent(
+  const phoneRaw = CONTACT.phone.replace(/[\s\-]/g, "");
+  const TEL = `tel:${phoneRaw}`;
+  const isIOS = typeof navigator !== "undefined" && /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const SMS = `sms:${phoneRaw}${isIOS ? "&" : "?"}body=${encodeURIComponent(
     lang === "fr"
       ? "Bonjour Wanil, je veux discuter de mon projet web."
       : "Hello Wanil, I'd like to discuss my web project."
   )}`;
-  const TEL = `tel:${CONTACT.phone.replace(/\s/g, "")}`;
 
   return (
     <section
@@ -103,7 +105,7 @@ const Hero = ({ scrollToSection }) => {
             href={CALENDLY}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-violet-500 to-purple-500 text-white font-bold text-lg rounded-xl shadow-2xl shadow-violet-500/30 hover:shadow-violet-500/50 transition-all duration-300 hover:scale-105 active:scale-95 overflow-hidden"
+            className="group relative w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-violet-500 to-purple-500 text-white font-bold text-lg rounded-xl shadow-2xl shadow-violet-500/30 hover:shadow-violet-500/50 transition-all duration-300 sm:hover:scale-105 active:scale-95 overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
             <span className="relative flex items-center justify-center gap-2">

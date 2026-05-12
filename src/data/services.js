@@ -42,7 +42,7 @@ export const services = [
   {
     id: "chatbot-ai",
     icon: "\uD83D\uDCAC",
-    featured: true,
+    featured: false,
     title: {
       fr: "Chatbot IA intelligent",
       en: "AI Smart Chatbot",
@@ -81,7 +81,7 @@ export const services = [
   {
     id: "automatisation-ventes",
     icon: "\u26A1",
-    featured: true,
+    featured: false,
     title: {
       fr: "Automatisation des ventes",
       en: "Sales Automation",
@@ -159,7 +159,7 @@ export const services = [
   {
     id: "boutique-en-ligne",
     icon: "\uD83D\uDED2",
-    featured: true,
+    featured: false,
     title: {
       fr: "Boutique en ligne",
       en: "E-commerce store",
@@ -198,7 +198,7 @@ export const services = [
   {
     id: "refonte-de-site",
     icon: "\uD83D\uDD04",
-    featured: true,
+    featured: false,
     title: {
       fr: "Refonte de site",
       en: "Website redesign",

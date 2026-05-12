@@ -27,15 +27,17 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled, isNavVisible }) =>
     localStorage.setItem("lang", next);
   };
 
-  const TEL = `tel:${CONTACT.phone.replace(/\s/g, "")}`;
-  const SMS = `sms:${CONTACT.phone.replace(/\s/g, "")}${/iPhone|iPad|iPod/i.test(navigator.userAgent) ? "&" : "?"}body=${encodeURIComponent(
+  const phoneRaw = CONTACT.phone.replace(/[\s\-]/g, "");
+  const TEL = `tel:${phoneRaw}`;
+  const isIOS = typeof navigator !== "undefined" && /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const SMS = `sms:${phoneRaw}${isIOS ? "&" : "?"}body=${encodeURIComponent(
     lang === "fr"
       ? "Bonjour Wanil, je veux discuter de mon projet."
       : "Hello Wanil, I want to discuss my project."
   )}`;
 
-  // Nav bar height — keep in sync with mobile menu top offset below
-  const NAV_H = "57px";
+  // Nav bar height: py-2.5 (10px*2) + logo h-12 (48px) = 68px on mobile
+  const NAV_H = "68px";
 
   return (
     <>
@@ -114,7 +116,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled, isNavVisible }) =>
               href={CONTACT.calendlyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white text-sm font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all hover:scale-105 active:scale-95"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white text-sm font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all sm:hover:scale-105 active:scale-95"
             >
               <Calendar size={14} />
               <span>{lang === "fr" ? "Appel gratuit" : "Free call"}</span>
@@ -171,8 +173,8 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled, isNavVisible }) =>
             })}
           </div>
 
-          {/* Mobile CTAs */}
-          <div className="p-5 space-y-3 border-t border-slate-800">
+          {/* Mobile CTAs — padding-bottom accounts for iOS home indicator */}
+          <div className="p-5 space-y-3 border-t border-slate-800" style={{ paddingBottom: 'calc(1.25rem + env(safe-area-inset-bottom))' }}>
             <a
               href={CONTACT.calendlyUrl}
               target="_blank"

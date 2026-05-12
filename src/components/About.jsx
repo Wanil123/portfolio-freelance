@@ -231,7 +231,7 @@ const About = () => {
                 <Reveal key={idx} delay={0.1 + idx * 0.05}>
                   <div className="group relative">
                     <div
-                      className={`pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 bg-gradient-to-br ${strength.color} opacity-20 rounded-xl blur-xl transition-opacity duration-500`}
+                      className={`pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 bg-gradient-to-br ${strength.color} rounded-xl blur-xl transition-opacity duration-500`}
                     />
 
                     <div className="relative bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-xl p-5 md:p-6 hover:border-violet-400/50 transition-all">

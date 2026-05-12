@@ -202,11 +202,12 @@ const ContactForm = () => {
 
           {/* Name */}
           <div>
-            <label className="flex items-center gap-2 text-sm text-slate-300 mb-2 font-medium">
+            <label htmlFor="field-name" className="flex items-center gap-2 text-sm text-slate-300 mb-2 font-medium">
               <User size={14} className="text-violet-400" />
               {lang === "fr" ? "Votre nom" : "Your name"} *
             </label>
             <input
+              id="field-name"
               type="text"
               name="name"
               value={formData.name}
@@ -214,25 +215,26 @@ const ContactForm = () => {
               required
               maxLength={100}
               placeholder={lang === "fr" ? "Jean Dupont" : "John Smith"}
-              className={`w-full px-4 py-3 rounded-xl bg-slate-800/50 border ${errors.name ? "border-red-500/50" : "border-slate-700/50"} text-white placeholder-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all`}
+              className={`w-full px-4 py-3 rounded-xl bg-slate-800/50 border ${errors.name ? "border-red-500/50" : "border-slate-700/50"} text-base text-white placeholder-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all`}
             />
             {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
           </div>
 
           {/* Email */}
           <div>
-            <label className="flex items-center gap-2 text-sm text-slate-300 mb-2 font-medium">
+            <label htmlFor="field-email" className="flex items-center gap-2 text-sm text-slate-300 mb-2 font-medium">
               <Mail size={14} className="text-violet-400" />
               {lang === "fr" ? "Votre email" : "Your email"} *
             </label>
             <input
+              id="field-email"
               type="email"
               name="email"
               value={formData.email}
               onChange={handleInputChange}
               required
               placeholder={lang === "fr" ? "email@exemple.com" : "email@example.com"}
-              className={`w-full px-4 py-3 rounded-xl bg-slate-800/50 border ${errors.email ? "border-red-500/50" : "border-slate-700/50"} text-white placeholder-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all`}
+              className={`w-full px-4 py-3 rounded-xl bg-slate-800/50 border ${errors.email ? "border-red-500/50" : "border-slate-700/50"} text-base text-white placeholder-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all`}
             />
             {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
           </div>
@@ -249,7 +251,7 @@ const ContactForm = () => {
               value={formData.projectType}
               onChange={handleInputChange}
               aria-label={lang === "fr" ? "Type de projet" : "Project type"}
-              className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-white focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all appearance-none cursor-pointer"
+              className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-base text-white focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all appearance-none cursor-pointer"
             >
               <option value="" className="bg-slate-900">
                 {lang === "fr" ? "Selectionnez un type" : "Select a type"}
@@ -274,7 +276,7 @@ const ContactForm = () => {
               value={formData.budget}
               onChange={handleInputChange}
               aria-label={lang === "fr" ? "Budget estime" : "Estimated budget"}
-              className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-white focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all appearance-none cursor-pointer"
+              className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-base text-white focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all appearance-none cursor-pointer"
             >
               <option value="" className="bg-slate-900">
                 {lang === "fr" ? "Selectionnez une option" : "Select an option"}
@@ -289,11 +291,12 @@ const ContactForm = () => {
 
           {/* Message */}
           <div>
-            <label className="flex items-center gap-2 text-sm text-slate-300 mb-2 font-medium">
+            <label htmlFor="field-message" className="flex items-center gap-2 text-sm text-slate-300 mb-2 font-medium">
               <FileText size={14} className="text-violet-400" />
               {lang === "fr" ? "Decrivez votre projet" : "Describe your project"} *
             </label>
             <textarea
+              id="field-message"
               name="message"
               value={formData.message}
               onChange={handleInputChange}
@@ -304,7 +307,7 @@ const ContactForm = () => {
                   ? "J'ai besoin d'un site e-commerce pour vendre mes produits..."
                   : "I need an e-commerce site to sell my products..."
               }
-              className={`w-full px-4 py-3 rounded-xl bg-slate-800/50 border ${errors.message ? "border-red-500/50" : "border-slate-700/50"} text-white placeholder-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all resize-none`}
+              className={`w-full px-4 py-3 rounded-xl bg-slate-800/50 border ${errors.message ? "border-red-500/50" : "border-slate-700/50"} text-base text-white placeholder-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all resize-none`}
             />
             {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message}</p>}
           </div>
