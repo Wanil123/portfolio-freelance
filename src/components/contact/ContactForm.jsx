@@ -415,7 +415,7 @@ const ContactForm = () => {
                   <button type="button" onClick={() => document.dispatchEvent(new CustomEvent("open-privacy"))} className="underline underline-offset-2 hover:text-violet-400 transition-colors">
                     Privacy Policy
                   </button>
-                  {" "}(Loi 25). *</>
+                  {" "}(Law 25). *</>
                 )}
               </span>
             </label>

@@ -33,7 +33,7 @@ const AIStatsSection = ({ lang }) => {
           );
         })}
       </div>
-      <p className="text-[11px] text-slate-600 text-right mb-10">
+      <p className="text-[11px] text-slate-400 text-right mb-10">
         {lang === "fr"
           ? "* Benchmarks observés en industrie — Retell AI, n8n, HubSpot (2024)"
           : "* Industry benchmarks — Retell AI, n8n, HubSpot (2024)"}
