@@ -1,5 +1,6 @@
 // src/components/Navbar.jsx
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Menu, X, Globe2, Phone, Calendar, MessageSquare } from "lucide-react";
 import { useLanguage } from "../hooks/useLanguage";
 import { COMPANY, CONTACT } from "../constants/config";
@@ -143,10 +144,10 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
         </div>
       </nav>
 
-      {isOpen && (
+      {isOpen && createPortal(
         <div
-          className="fixed left-0 right-0 bottom-0 z-[9999] bg-slate-950 overflow-y-auto md:hidden flex flex-col"
-          style={{ top: "68px" }}
+          className="fixed left-0 right-0 bottom-0 bg-slate-950 overflow-y-auto flex flex-col md:hidden"
+          style={{ top: "68px", zIndex: 9999 }}
         >
           {/* Nav links */}
           <div className="flex-1">
@@ -202,7 +203,8 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
               {lang === "fr" ? "Je réponds en moins de 2h" : "I reply within 2h"}
             </p>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
