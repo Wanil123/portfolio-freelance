@@ -35,19 +35,20 @@ const CustomCursor = () => {
       // Dot follows instantly
       dot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
 
-      if (!isVisible) setIsVisible(true);
+      setIsVisible(true);
     };
 
     const handleMouseEnter = () => setIsVisible(true);
     const handleMouseLeave = () => setIsVisible(false);
 
-    // Smooth outline follow
+    // Smooth outline follow — use a ref-guarded loop to avoid memory leaks on remount
+    let rafId = null;
     const animateOutline = () => {
       outlineX += (mouseX - outlineX) * 0.15;
       outlineY += (mouseY - outlineY) * 0.15;
 
       outline.style.transform = `translate(${outlineX - 20}px, ${outlineY - 20}px)`;
-      requestAnimationFrame(animateOutline);
+      rafId = requestAnimationFrame(animateOutline);
     };
 
     // Detect hoverable elements
@@ -85,7 +86,7 @@ const CustomCursor = () => {
     document.addEventListener("mouseover", handleMouseOver);
     document.addEventListener("mouseout", handleMouseOut);
 
-    const animationId = requestAnimationFrame(animateOutline);
+    rafId = requestAnimationFrame(animateOutline);
 
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
@@ -93,9 +94,9 @@ const CustomCursor = () => {
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mouseover", handleMouseOver);
       document.removeEventListener("mouseout", handleMouseOut);
-      cancelAnimationFrame(animationId);
+      if (rafId) cancelAnimationFrame(rafId);
     };
-  }, [isTouchDevice, isVisible]);
+  }, [isTouchDevice]);
 
   // Don't render on touch devices
   if (isTouchDevice) return null;

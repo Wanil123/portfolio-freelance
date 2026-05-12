@@ -100,8 +100,10 @@
 }
 
 .animate-pulse-slow {
-  will-change: opacity, transform;
-  transform: translateZ(0); /* Enable GPU acceleration */
+  /* GPU acceleration via opacity-only will-change is sufficient for blur+opacity animations.
+     Avoid will-change:transform here — it forces a new stacking context on every blurred background div,
+     causing excessive GPU memory usage (4+ composited layers for Hero background alone). */
+  will-change: opacity;
 }
 
 /* Animation delays — opacity:0 so content is invisible until animation plays */

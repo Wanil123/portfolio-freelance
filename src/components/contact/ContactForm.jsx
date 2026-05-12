@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "../../hooks/useLanguage";
 import { CONTACT, COMPANY } from "../../constants/config";
 import {
@@ -31,24 +31,31 @@ const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
   const [cooldown, setCooldown] = useState(false);
+  const cooldownTimerRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (cooldownTimerRef.current) clearTimeout(cooldownTimerRef.current);
+    };
+  }, []);
 
   // Validation helpers
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const validationMessages = {
     nameRequired: lang === "fr" ? "Le nom est requis." : "Name is required.",
-    nameMin: lang === "fr" ? "Le nom doit contenir au moins 2 caracteres." : "Name must be at least 2 characters.",
-    nameMax: lang === "fr" ? "Le nom ne peut pas depasser 100 caracteres." : "Name cannot exceed 100 characters.",
+    nameMin: lang === "fr" ? "Le nom doit contenir au moins 2 caractères." : "Name must be at least 2 characters.",
+    nameMax: lang === "fr" ? "Le nom ne peut pas dépasser 100 caractères." : "Name cannot exceed 100 characters.",
     emailRequired: lang === "fr" ? "L'email est requis." : "Email is required.",
     emailInvalid: lang === "fr" ? "Veuillez entrer un email valide." : "Please enter a valid email.",
     messageRequired: lang === "fr" ? "Le message est requis." : "Message is required.",
-    messageMin: lang === "fr" ? "Le message doit contenir au moins 10 caracteres." : "Message must be at least 10 characters.",
-    messageMax: lang === "fr" ? "Le message ne peut pas depasser 2000 caracteres." : "Message cannot exceed 2000 characters.",
+    messageMin: lang === "fr" ? "Le message doit contenir au moins 10 caractères." : "Message must be at least 10 characters.",
+    messageMax: lang === "fr" ? "Le message ne peut pas dépasser 2000 caractères." : "Message cannot exceed 2000 characters.",
     networkError: lang === "fr"
-      ? "Erreur de connexion. Verifiez votre connexion internet et reessayez."
+      ? "Erreur de connexion. Vérifiez votre connexion internet et réessayez."
       : "Connection error. Check your internet connection and try again.",
     serverError: lang === "fr"
-      ? "Erreur du serveur. Veuillez reessayer plus tard ou contactez-nous directement."
+      ? "Erreur du serveur. Veuillez réessayer plus tard ou contactez-nous directement."
       : "Server error. Please try again later or contact us directly.",
   };
 
@@ -87,7 +94,7 @@ const ContactForm = () => {
   const projectTypeOptions = [
     { value: "site-vitrine", label: lang === "fr" ? "Site vitrine" : "Business website" },
     { value: "ecommerce", label: lang === "fr" ? "Boutique en ligne" : "E-commerce store" },
-    { value: "agent-ia", label: lang === "fr" ? "Agent IA receptionniste" : "AI Receptionist Agent" },
+    { value: "agent-ia", label: lang === "fr" ? "Agent IA réceptionniste" : "AI Receptionist Agent" },
     { value: "chatbot", label: lang === "fr" ? "Chatbot IA" : "AI Chatbot" },
     { value: "automatisation", label: lang === "fr" ? "Automatisation / CRM" : "Automation / CRM" },
     { value: "app-custom", label: lang === "fr" ? "Application sur mesure" : "Custom application" },
@@ -99,7 +106,7 @@ const ContactForm = () => {
     { value: "3000-5000", label: lang === "fr" ? "3 000 $ - 5 000 $" : "$3,000 - $5,000" },
     { value: "5000-10000", label: lang === "fr" ? "5 000 $ - 10 000 $" : "$5,000 - $10,000" },
     { value: "> 10000", label: lang === "fr" ? "Plus de 10 000 $" : "Over $10,000" },
-    { value: "not-sure", label: lang === "fr" ? "Pas encore defini" : "Not sure yet" },
+    { value: "not-sure", label: lang === "fr" ? "Pas encore défini" : "Not sure yet" },
   ];
 
   const handleInputChange = (e) => {
@@ -133,8 +140,12 @@ const ContactForm = () => {
     };
 
     try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
+
       const response = await fetch(CONTACT.formEndpoint, {
         method: "POST",
+        signal: controller.signal,
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json"
@@ -142,10 +153,10 @@ const ContactForm = () => {
         body: JSON.stringify({
           name: trimmedData.name,
           email: trimmedData.email,
-          projectType: trimmedData.projectType || (lang === "fr" ? "Non specifie" : "Not specified"),
-          budget: trimmedData.budget || (lang === "fr" ? "Non specifie" : "Not specified"),
-          timeline: trimmedData.timeline || (lang === "fr" ? "Non specifie" : "Not specified"),
-          hasWebsite: trimmedData.hasWebsite || (lang === "fr" ? "Non specifie" : "Not specified"),
+          projectType: trimmedData.projectType || (lang === "fr" ? "Non spécifié" : "Not specified"),
+          budget: trimmedData.budget || (lang === "fr" ? "Non spécifié" : "Not specified"),
+          timeline: trimmedData.timeline || (lang === "fr" ? "Non spécifié" : "Not specified"),
+          hasWebsite: trimmedData.hasWebsite || (lang === "fr" ? "Non spécifié" : "Not specified"),
           message: trimmedData.message,
           _subject: lang === "fr"
             ? `Nouveau message de ${trimmedData.name} — ${COMPANY.name}`
@@ -156,18 +167,20 @@ const ContactForm = () => {
         }),
       });
 
+      clearTimeout(timeoutId);
+
       if (response.ok) {
         setFormStatus("success");
         setFormData({ name: "", email: "", projectType: "", budget: "", timeline: "", hasWebsite: "", message: "" });
         setErrors({});
         setCooldown(true);
-        setTimeout(() => setCooldown(false), 5000);
+        cooldownTimerRef.current = setTimeout(() => setCooldown(false), 5000);
       } else {
         setFormStatus("error");
       }
     } catch (error) {
       console.error("Form submission error:", error);
-      if (error instanceof TypeError && error.message === "Failed to fetch") {
+      if (error.name === "AbortError" || (error instanceof TypeError && error.message === "Failed to fetch")) {
         setFormStatus("network-error");
       } else {
         setFormStatus("error");
@@ -190,7 +203,7 @@ const ContactForm = () => {
           </h3>
           <p className="text-slate-400 text-sm">
             {lang === "fr"
-              ? "Decrivez votre projet et nous vous repondons sous 24h."
+              ? "Décrivez votre projet et nous vous répondons sous 24h."
               : "Describe your project and we'll respond within 24h."}
           </p>
         </div>
@@ -262,7 +275,7 @@ const ContactForm = () => {
               className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-base text-white focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all appearance-none cursor-pointer"
             >
               <option value="" className="bg-slate-900">
-                {lang === "fr" ? "Selectionnez un type" : "Select a type"}
+                {lang === "fr" ? "Sélectionnez un type" : "Select a type"}
               </option>
               {projectTypeOptions.map((option) => (
                 <option key={option.value} value={option.value} className="bg-slate-900">
@@ -276,18 +289,18 @@ const ContactForm = () => {
           <div>
             <label htmlFor="budget-select" className="flex items-center gap-2 text-sm text-slate-300 mb-2 font-medium">
               <DollarSign size={14} className="text-violet-400" />
-              {lang === "fr" ? "Budget estime" : "Estimated budget"}
+              {lang === "fr" ? "Budget estimé" : "Estimated budget"}
             </label>
             <select
               id="budget-select"
               name="budget"
               value={formData.budget}
               onChange={handleInputChange}
-              aria-label={lang === "fr" ? "Budget estime" : "Estimated budget"}
+              aria-label={lang === "fr" ? "Budget estimé" : "Estimated budget"}
               className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-base text-white focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all appearance-none cursor-pointer"
             >
               <option value="" className="bg-slate-900">
-                {lang === "fr" ? "Selectionnez une option" : "Select an option"}
+                {lang === "fr" ? "Sélectionnez une option" : "Select an option"}
               </option>
               {budgetOptions.map((option) => (
                 <option key={option.value} value={option.value} className="bg-slate-900">
@@ -312,7 +325,7 @@ const ContactForm = () => {
               className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-base text-white focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all appearance-none cursor-pointer"
             >
               <option value="" className="bg-slate-900">
-                {lang === "fr" ? "Selectionnez une option" : "Select an option"}
+                {lang === "fr" ? "Sélectionnez une option" : "Select an option"}
               </option>
               <option value="asap" className="bg-slate-900">{lang === "fr" ? "Dès que possible" : "ASAP"}</option>
               <option value="this-month" className="bg-slate-900">{lang === "fr" ? "Ce mois-ci" : "This month"}</option>
@@ -336,7 +349,7 @@ const ContactForm = () => {
               className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-base text-white focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all appearance-none cursor-pointer"
             >
               <option value="" className="bg-slate-900">
-                {lang === "fr" ? "Selectionnez une option" : "Select an option"}
+                {lang === "fr" ? "Sélectionnez une option" : "Select an option"}
               </option>
               <option value="yes" className="bg-slate-900">{lang === "fr" ? "Oui" : "Yes"}</option>
               <option value="no" className="bg-slate-900">{lang === "fr" ? "Non" : "No"}</option>
@@ -347,7 +360,7 @@ const ContactForm = () => {
           <div>
             <label htmlFor="field-message" className="flex items-center gap-2 text-sm text-slate-300 mb-2 font-medium">
               <FileText size={14} className="text-violet-400" />
-              {lang === "fr" ? "Decrivez votre projet" : "Describe your project"} *
+              {lang === "fr" ? "Décrivez votre projet" : "Describe your project"} *
             </label>
             <textarea
               id="field-message"
@@ -380,7 +393,7 @@ const ContactForm = () => {
             ) : cooldown ? (
               <>
                 <CheckCircle2 size={18} />
-                {lang === "fr" ? "Message envoye!" : "Message sent!"}
+                {lang === "fr" ? "Message envoyé!" : "Message sent!"}
               </>
             ) : (
               <>
@@ -401,7 +414,7 @@ const ContactForm = () => {
                 <CheckCircle2 size={20} className="text-emerald-400 flex-shrink-0" />
                 <p className="text-sm text-emerald-300">
                   {lang === "fr"
-                    ? "Message envoye avec succes! Nous vous repondons sous 24h."
+                    ? "Message envoyé avec succès! Nous vous répondons sous 24h."
                     : "Message sent successfully! We'll respond within 24h."}
                 </p>
               </div>

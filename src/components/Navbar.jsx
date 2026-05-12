@@ -152,9 +152,10 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
               <span className="uppercase">{lang === "fr" ? "FR" : "EN"}</span>
             </button>
             <button
+              type="button"
               className="text-white p-2.5 -mr-1"
               onClick={() => setIsOpen((p) => !p)}
-              aria-label={lang === "fr" ? "Ouvrir le menu" : "Toggle navigation"}
+              aria-label={lang === "fr" ? (isOpen ? "Fermer le menu" : "Ouvrir le menu") : (isOpen ? "Close menu" : "Open menu")}
               aria-expanded={isOpen}
             >
               {isOpen ? <X size={22} /> : <Menu size={22} />}
@@ -187,9 +188,10 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
                 return (
                   <button
                     key={link.id}
+                    type="button"
                     onClick={() => handleNavClick(link.id)}
-                    className="w-full flex items-center justify-between px-6 py-4 text-left transition-colors active:bg-slate-900/60 border-b border-slate-800/40"
-                    style={{ animationDelay: `${i * 40}ms` }}
+                    className="w-full flex items-center justify-between px-6 py-4 text-left transition-colors active:bg-slate-900/60 border-b border-slate-800/40 animate-fade-in-up"
+                    style={{ animationDelay: `${i * 40}ms`, animationFillMode: "both" }}
                   >
                     <span className={`text-lg font-semibold transition-colors ${
                       isActive ? "text-violet-400" : "text-slate-200"

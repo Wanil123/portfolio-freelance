@@ -6,5 +6,18 @@ export default defineConfig({
   server: {
     host: true,
     port: 5173
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "vendor-react": ["react", "react-dom"],
+          "vendor-motion": ["framer-motion"],
+          "vendor-icons": ["lucide-react"],
+          "vendor-i18n": ["i18next", "react-i18next"],
+        }
+      }
+    },
+    cssCodeSplit: true,
   }
 });
