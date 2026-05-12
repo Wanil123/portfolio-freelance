@@ -1,5 +1,5 @@
 // src/App.jsx
-import { useState, useEffect, useRef, lazy, Suspense } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { useLanguage } from "./hooks/useLanguage";
 import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
@@ -78,10 +78,8 @@ function App() {
 
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleResize, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
       if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);
