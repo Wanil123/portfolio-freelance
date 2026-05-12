@@ -18,14 +18,14 @@
 
 @layer base {
   html {
-    overflow-x: hidden;
+    overflow-x: clip; /* clip ≠ hidden : ne crée pas de scroll container, préserve position:sticky */
     @media (prefers-reduced-motion: no-preference) {
       scroll-behavior: smooth;
     }
   }
 
   body {
-    overflow-x: hidden;
+    overflow-x: clip; /* idem — overflow:hidden casserait position:sticky du navbar */
     @apply bg-gradient-to-b from-slate-950 via-slate-900/50 to-slate-950 text-white;
   }
 
