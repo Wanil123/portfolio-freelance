@@ -14,7 +14,16 @@ const getSavedLang = () => {
   return null;
 };
 
-const savedLang = getSavedLang() || "en";
+const getBrowserLang = () => {
+  try {
+    if (typeof window !== "undefined" && navigator?.language) {
+      return navigator.language.startsWith("fr") ? "fr" : "en";
+    }
+  } catch (e) {}
+  return "en";
+};
+
+const savedLang = getSavedLang() || getBrowserLang();
 
 i18n
   .use(initReactI18next)

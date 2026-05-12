@@ -10,7 +10,7 @@ const AIStatsSection = ({ lang }) => {
 
   return (
     <Reveal delay={0.15}>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-3">
         {stats.map((item, idx) => {
           const Icon = iconMap[item.icon];
           return (
@@ -33,6 +33,11 @@ const AIStatsSection = ({ lang }) => {
           );
         })}
       </div>
+      <p className="text-[11px] text-slate-600 text-right mb-10">
+        {lang === "fr"
+          ? "* Benchmarks observés en industrie — Retell AI, n8n, HubSpot (2024)"
+          : "* Industry benchmarks — Retell AI, n8n, HubSpot (2024)"}
+      </p>
     </Reveal>
   );
 };
