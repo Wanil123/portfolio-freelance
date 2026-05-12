@@ -7,6 +7,7 @@ import {
   Phone,
   MessageSquare,
   ArrowRight,
+  Search,
 } from "lucide-react";
 import { Reveal } from "../ui/Reveal";
 
@@ -152,11 +153,36 @@ const ContactMethods = () => {
               />
             </a>
 
-            <div className="mt-4 pt-4 border-t border-violet-500/20">
+            {/* Divider */}
+            <div className="relative my-1">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-violet-500/20" />
+              </div>
+              <div className="relative flex justify-center">
+                <span className="px-2 text-[10px] uppercase tracking-wider text-slate-500 bg-slate-900/80">
+                  {lang === "fr" ? "ou" : "or"}
+                </span>
+              </div>
+            </div>
+
+            {/* Audit CTA */}
+            <a
+              href={CONTACT.calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-violet-500/40 hover:border-violet-400/70 bg-transparent hover:bg-violet-500/5 text-violet-300 hover:text-white text-sm font-medium transition-all active:scale-95"
+            >
+              <Search size={15} />
+              {lang === "fr"
+                ? "Audit gratuit de votre site (10 min)"
+                : "Free website audit (10 min)"}
+            </a>
+
+            <div className="mt-3 pt-3 border-t border-violet-500/20">
               <ul className="space-y-1.5">
                 {[
                   lang === "fr" ? "Vos objectifs et besoins" : "Your goals and needs",
-                  lang === "fr" ? "Technologies recommandées" : "Recommended technologies",
+                  lang === "fr" ? "Ce qui vous coûte des leads" : "What's costing you leads",
                   lang === "fr" ? "Délais et budget — sans engagement" : "Timeline and budget — no commitment",
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-2 text-xs text-slate-300">

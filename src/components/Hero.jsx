@@ -134,6 +134,21 @@ const Hero = ({ scrollToSection }) => {
               <span>{lang === "fr" ? "Appel" : "Call"}</span>
             </a>
           </div>
+
+          {/* Audit CTA — lower-commitment entry for cold prospects */}
+          <p className="text-xs text-slate-500 text-center">
+            {lang === "fr" ? "Pas encore prêt ?" : "Not ready to commit?"}{" "}
+            <a
+              href={CALENDLY}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-violet-400 hover:text-violet-300 underline underline-offset-2 transition-colors"
+            >
+              {lang === "fr"
+                ? "Audit gratuit de votre site en 10 min →"
+                : "Free 10-min website audit →"}
+            </a>
+          </p>
         </div>
 
         {/* Trust signals bar */}
