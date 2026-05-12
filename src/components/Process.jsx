@@ -8,6 +8,7 @@ import {
   Palette,
   Code,
   Bot,
+  PackageOpen,
 } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
 
@@ -102,6 +103,25 @@ const included = {
     "Deployment (Netlify, VPS, client hosting)",
     "Admin training included",
     "30-day post-launch support",
+  ],
+};
+
+const clientNeeds = {
+  fr: [
+    "Logo & identité visuelle (couleurs, polices)",
+    "Textes et contenu à afficher",
+    "Photos ou images de votre activité",
+    "Accès domaine / hébergement si existant",
+    "Informations clés sur votre entreprise",
+    "Exemples de sites que vous aimez",
+  ],
+  en: [
+    "Logo & brand assets (colors, fonts)",
+    "Texts and content to display",
+    "Photos or images of your business",
+    "Domain / hosting access if existing",
+    "Key information about your business",
+    "Examples of websites you like",
   ],
 };
 
@@ -245,6 +265,34 @@ const Process = ({ id = "process", scrollToSection }) => {
                         </span>
                       </div>
                     ))}
+                  </div>
+
+                  {/* What I need from you */}
+                  <div className="pt-4 border-t border-slate-800/50">
+                    <div className="flex items-center gap-2 mb-4">
+                      <PackageOpen size={22} className="text-amber-400" />
+                      <h3 className="text-lg md:text-xl font-bold text-white">
+                        {lang === "fr"
+                          ? "Ce dont j'ai besoin de votre côté"
+                          : "What I need from you"}
+                      </h3>
+                    </div>
+                    <p className="text-sm text-slate-400 mb-4">
+                      {lang === "fr"
+                        ? "Pour tenir les délais convenus, voici ce que vous devez préparer avant le lancement du projet :"
+                        : "To meet the agreed timeline, here's what you should have ready before we start:"}
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {clientNeeds[lang].map((item, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-start gap-3 p-3 rounded-lg bg-amber-500/5 border border-amber-500/20 hover:border-amber-500/40 transition-all"
+                        >
+                          <span className="text-amber-400 font-bold text-sm flex-shrink-0 mt-0.5">→</span>
+                          <span className="text-sm text-slate-200">{item}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
 

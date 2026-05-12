@@ -75,8 +75,8 @@ const Testimonials = () => {
         en: "Satisfaction guaranteed",
       },
       description: {
-        fr: "Si le résultat ne correspond pas au cahier des charges, corrections illimitées jusqu'à votre satisfaction complète.",
-        en: "If the result doesn't match the specs, unlimited revisions until you're completely satisfied.",
+        fr: "Si le résultat ne correspond pas au cahier des charges convenu, corrections illimitées dans la portée définie jusqu'à votre satisfaction complète.",
+        en: "If the result doesn't match the agreed specs, unlimited revisions within the defined project scope until you're completely satisfied.",
       },
     },
     {

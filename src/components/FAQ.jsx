@@ -68,8 +68,8 @@ const FAQ = () => {
         en: "Why choose a freelancer over an agency?",
       },
       answer: {
-        fr: "Avec une agence, vous payez pour un chef de projet qui délègue à un junior que vous ne verrez jamais. Avec moi, vous parlez directement avec le développeur qui code votre site — pas d'intermédiaire, pas de mauvaises communications, pas de marges gonflées. Résultat : moins cher, plus rapide, et vous savez exactement qui est responsable.",
-        en: "With an agency, you pay for a project manager who delegates to a junior you'll never meet. With me, you talk directly to the developer writing your code — no middlemen, no miscommunications, no inflated margins. The result: cheaper, faster, and you always know who's accountable.",
+        fr: "Avec les grandes agences, vous communiquez souvent via des chefs de projet et plusieurs intermédiaires. Avec moi, vous travaillez directement avec la personne qui conçoit, développe et lance votre projet — pas d'intermédiaire, pas de pertes d'information, pas de marges gonflées. Résultat : plus rapide, moins cher, et vous savez toujours exactement qui est responsable.",
+        en: "With larger agencies, you often communicate through account managers and multiple layers. With me, you work directly with the person designing, coding and launching your project — no middlemen, no miscommunications, no inflated margins. The result: faster, more affordable, and you always know exactly who's accountable.",
       },
     },
     {
