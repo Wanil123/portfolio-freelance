@@ -1,7 +1,7 @@
 // src/components/Navbar.jsx
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { Menu, X, Globe2, Phone, Calendar, MessageSquare } from "lucide-react";
+import { Menu, X, Globe2, Phone, Calendar, MessageSquare, ArrowRight } from "lucide-react";
 import { useLanguage } from "../hooks/useLanguage";
 import { COMPANY, CONTACT } from "../constants/config";
 
@@ -16,6 +16,15 @@ const links = [
 const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { lang, i18n } = useLanguage();
+  const navRef = useRef(null);
+  const [navHeight, setNavHeight] = useState(68);
+
+  // Measure actual navbar height to avoid any gap
+  useEffect(() => {
+    if (navRef.current) {
+      setNavHeight(navRef.current.offsetHeight);
+    }
+  }, []);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -45,10 +54,12 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
 
   return (
     <>
+      {/* ── NAVBAR ─────────────────────────────────────────────────── */}
       <nav
-        className={`sticky top-0 left-0 right-0 z-[10000] transition-colors duration-300 ${
-          isScrolled
-            ? "bg-slate-950/95 backdrop-blur-md border-b border-slate-800"
+        ref={navRef}
+        className={`sticky top-0 z-[10000] w-full transition-colors duration-300 ${
+          isScrolled || isOpen
+            ? "bg-slate-950 border-b border-slate-800"
             : "bg-slate-950/80 backdrop-blur-sm border-b border-transparent"
         }`}
       >
@@ -102,7 +113,6 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
               <Phone size={12} />
               <span>{CONTACT.phone}</span>
             </a>
-
             <button
               onClick={toggleLang}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/40 border border-slate-700/60 text-slate-100 text-xs hover:border-slate-600 transition-colors"
@@ -110,7 +120,6 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
               <Globe2 size={13} />
               <span className="uppercase font-medium">{lang === "fr" ? "FR" : "EN"}</span>
             </button>
-
             <a
               href={CONTACT.calendlyUrl}
               target="_blank"
@@ -131,7 +140,6 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
               <Globe2 size={12} />
               <span className="uppercase">{lang === "fr" ? "FR" : "EN"}</span>
             </button>
-            {/* Larger tap target: p-2.5 = 44px touch area */}
             <button
               className="text-white p-2.5 -mr-1"
               onClick={() => setIsOpen((p) => !p)}
@@ -144,64 +152,89 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
         </div>
       </nav>
 
+      {/* ── MOBILE MENU — full-screen portal, rendered in document.body ── */}
+      {/* fixed inset-0: covers the ENTIRE viewport (no gap possible).      */}
+      {/* Navbar (z-10000) sits on top because it's higher z-index.         */}
       {isOpen && createPortal(
         <div
-          className="fixed left-0 right-0 bottom-0 bg-slate-950 overflow-y-auto flex flex-col md:hidden"
-          style={{ top: "68px", zIndex: 9999 }}
+          className="fixed inset-0 flex flex-col md:hidden"
+          style={{ zIndex: 9999, paddingTop: navHeight }}
         >
-          {/* Nav links */}
-          <div className="flex-1">
-            {links.map((link) => {
-              const isActive = activeSection === link.id;
-              return (
-                <button
-                  key={link.id}
-                  onClick={() => handleNavClick(link.id)}
-                  className={`block w-full text-left px-6 py-4 text-base border-b border-slate-800/60 font-medium transition-colors ${
-                    isActive
-                      ? "text-white bg-slate-900/60 border-l-4 border-l-violet-500"
-                      : "text-slate-300 hover:text-white hover:bg-slate-900/30"
-                  }`}
-                >
-                  {lang === "fr" ? link.fr : link.en}
-                </button>
-              );
-            })}
-          </div>
+          {/* Dark overlay background */}
+          <div className="absolute inset-0 bg-slate-950" />
 
-          {/* Mobile CTAs — padding-bottom accounts for iOS home indicator */}
-          <div className="p-5 space-y-3 border-t border-slate-800" style={{ paddingBottom: 'calc(1.25rem + env(safe-area-inset-bottom))' }}>
-            <a
-              href={CONTACT.calendlyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full py-4 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 text-white font-bold text-base shadow-lg shadow-violet-500/25"
-              onClick={() => setIsOpen(false)}
+          {/* Subtle top gradient accent */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/40 to-transparent" style={{ top: navHeight }} />
+
+          {/* Scrollable content */}
+          <div className="relative flex flex-col flex-1 overflow-y-auto">
+
+            {/* Nav links */}
+            <nav className="flex-1 py-2">
+              {links.map((link, i) => {
+                const isActive = activeSection === link.id;
+                return (
+                  <button
+                    key={link.id}
+                    onClick={() => handleNavClick(link.id)}
+                    className="w-full flex items-center justify-between px-6 py-4 text-left transition-colors active:bg-slate-900/60 border-b border-slate-800/40"
+                    style={{ animationDelay: `${i * 40}ms` }}
+                  >
+                    <span className={`text-lg font-semibold transition-colors ${
+                      isActive ? "text-violet-400" : "text-slate-200"
+                    }`}>
+                      {lang === "fr" ? link.fr : link.en}
+                    </span>
+                    <ArrowRight
+                      size={16}
+                      className={`flex-shrink-0 transition-colors ${
+                        isActive ? "text-violet-400" : "text-slate-600"
+                      }`}
+                    />
+                  </button>
+                );
+              })}
+            </nav>
+
+            {/* CTAs */}
+            <div
+              className="px-5 py-6 space-y-3 border-t border-slate-800 bg-slate-950"
+              style={{ paddingBottom: "calc(1.5rem + env(safe-area-inset-bottom))" }}
             >
-              <Calendar size={18} />
-              {lang === "fr" ? "Réserver un appel gratuit" : "Book a free call"}
-            </a>
-            <div className="flex gap-3">
               <a
-                href={SMS}
-                className="flex items-center justify-center gap-2 flex-1 py-3.5 rounded-xl border border-slate-700 bg-slate-900/50 text-slate-200 font-semibold text-sm"
+                href={CONTACT.calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
+                className="flex items-center justify-center gap-2 w-full py-4 rounded-2xl bg-gradient-to-r from-violet-500 to-purple-500 active:from-violet-600 active:to-purple-600 text-white font-bold text-base shadow-lg shadow-violet-500/30"
               >
-                <MessageSquare size={16} />
-                SMS
+                <Calendar size={18} />
+                {lang === "fr" ? "Réserver un appel gratuit" : "Book a free call"}
               </a>
-              <a
-                href={TEL}
-                className="flex items-center justify-center gap-2 flex-1 py-3.5 rounded-xl border border-slate-700 bg-slate-900/50 text-slate-200 font-semibold text-sm"
-                onClick={() => setIsOpen(false)}
-              >
-                <Phone size={16} />
-                {lang === "fr" ? "Appel" : "Call"}
-              </a>
+
+              <div className="grid grid-cols-2 gap-3">
+                <a
+                  href={SMS}
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center justify-center gap-2 py-3.5 rounded-2xl border border-slate-700 bg-slate-900 active:bg-slate-800 text-slate-200 font-semibold text-sm"
+                >
+                  <MessageSquare size={16} className="text-violet-400" />
+                  SMS
+                </a>
+                <a
+                  href={TEL}
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center justify-center gap-2 py-3.5 rounded-2xl border border-slate-700 bg-slate-900 active:bg-slate-800 text-slate-200 font-semibold text-sm"
+                >
+                  <Phone size={16} className="text-violet-400" />
+                  {lang === "fr" ? "Appel" : "Call"}
+                </a>
+              </div>
+
+              <p className="text-center text-xs text-slate-500">
+                {lang === "fr" ? "Je réponds en moins de 2h" : "I reply within 2h"}
+              </p>
             </div>
-            <p className="text-center text-xs text-slate-500 pb-2">
-              {lang === "fr" ? "Je réponds en moins de 2h" : "I reply within 2h"}
-            </p>
           </div>
         </div>,
         document.body
