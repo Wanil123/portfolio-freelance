@@ -93,8 +93,8 @@ const Services = ({ scrollToSection }) => {
                     {/* Header */}
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center gap-3">
-                        <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 border border-violet-500/30 text-3xl group-hover:scale-110 transition-transform">
-                          {service.icon}
+                        <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 border border-violet-500/30 group-hover:scale-110 transition-transform">
+                          {(() => { const Icon = service.icon; return <Icon size={26} className="text-violet-300" />; })()}
                         </div>
                         <div>
                           <h3 className="text-xl font-bold text-white leading-tight mb-1">

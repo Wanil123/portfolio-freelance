@@ -26,6 +26,7 @@ const ContactForm = () => {
     timeline: "",
     hasWebsite: "",
     message: "",
+    consent: false,
   });
   const [formStatus, setFormStatus] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -88,6 +89,12 @@ const ContactForm = () => {
       newErrors.message = validationMessages.messageMax;
     }
 
+    if (!formData.consent) {
+      newErrors.consent = lang === "fr"
+        ? "Vous devez accepter la politique de confidentialité pour envoyer votre message."
+        : "You must accept the privacy policy to send your message.";
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -111,8 +118,8 @@ const ContactForm = () => {
   ];
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
     if (errors[name]) {
       setErrors((prev) => {
         const next = { ...prev };
@@ -172,7 +179,7 @@ const ContactForm = () => {
 
       if (response.ok) {
         setFormStatus("success");
-        setFormData({ name: "", email: "", projectType: "", budget: "", timeline: "", hasWebsite: "", message: "" });
+        setFormData({ name: "", email: "", projectType: "", budget: "", timeline: "", hasWebsite: "", message: "", consent: false });
         setErrors({});
         setCooldown(true);
         cooldownTimerRef.current = setTimeout(() => setCooldown(false), 5000);
@@ -383,6 +390,36 @@ const ContactForm = () => {
               className={`w-full px-4 py-3 rounded-xl bg-slate-800/50 border ${errors.message ? "border-red-500/50" : "border-slate-700/50"} text-base text-white placeholder-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all resize-none`}
             />
             {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message}</p>}
+          </div>
+
+          {/* Loi 25 — Consentement */}
+          <div>
+            <label className={`flex items-start gap-3 cursor-pointer group ${errors.consent ? "text-red-400" : "text-slate-400"}`}>
+              <input
+                type="checkbox"
+                name="consent"
+                id="field-consent"
+                checked={formData.consent}
+                onChange={handleInputChange}
+                className="mt-1 h-4 w-4 rounded border-slate-600 bg-slate-800 accent-violet-500 cursor-pointer flex-shrink-0"
+              />
+              <span className="text-xs leading-relaxed">
+                {lang === "fr" ? (
+                  <>J'accepte que mes informations soient utilisées pour me contacter au sujet de mon projet, conformément à la{" "}
+                  <button type="button" onClick={() => document.dispatchEvent(new CustomEvent("open-privacy"))} className="underline underline-offset-2 hover:text-violet-400 transition-colors">
+                    Politique de confidentialité
+                  </button>
+                  {" "}(Loi 25). *</>
+                ) : (
+                  <>I agree that my information will be used to contact me about my project, in accordance with the{" "}
+                  <button type="button" onClick={() => document.dispatchEvent(new CustomEvent("open-privacy"))} className="underline underline-offset-2 hover:text-violet-400 transition-colors">
+                    Privacy Policy
+                  </button>
+                  {" "}(Bill 64). *</>
+                )}
+              </span>
+            </label>
+            {errors.consent && <p className="text-red-400 text-xs mt-1.5 ml-7">{errors.consent}</p>}
           </div>
 
           {/* Submit Button */}

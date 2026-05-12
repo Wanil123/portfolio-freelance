@@ -1,8 +1,10 @@
 // src/data/services.js
+import { Monitor, RefreshCw, ShoppingCart, MessageSquare, Bot, Zap } from "lucide-react";
+
 export const services = [
   {
     id: "site-vitrine",
-    icon: "🖥️",
+    icon: Monitor,
     featured: true,
     title: {
       fr: "Site vitrine",
@@ -41,7 +43,7 @@ export const services = [
   },
   {
     id: "refonte-de-site",
-    icon: "🔄",
+    icon: RefreshCw,
     featured: false,
     title: {
       fr: "Refonte de site",
@@ -80,7 +82,7 @@ export const services = [
   },
   {
     id: "boutique-en-ligne",
-    icon: "🛒",
+    icon: ShoppingCart,
     featured: false,
     title: {
       fr: "Boutique en ligne",
@@ -119,7 +121,7 @@ export const services = [
   },
   {
     id: "chatbot-ai",
-    icon: "💬",
+    icon: MessageSquare,
     featured: false,
     title: {
       fr: "Chatbot IA intelligent",
@@ -158,7 +160,7 @@ export const services = [
   },
   {
     id: "agent-ai-receptionniste",
-    icon: "🤖",
+    icon: Bot,
     featured: true,
     title: {
       fr: "Agent IA réceptionniste",
@@ -197,7 +199,7 @@ export const services = [
   },
   {
     id: "automatisation-ventes",
-    icon: "⚡",
+    icon: Zap,
     featured: false,
     title: {
       fr: "Automatisation des ventes",

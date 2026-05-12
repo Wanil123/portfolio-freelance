@@ -1,5 +1,5 @@
 // src/components/Footer.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLanguage } from "../hooks/useLanguage";
 import { CONTACT, SOCIAL, COMPANY } from "../constants/config";
 import {
@@ -20,6 +20,12 @@ const Footer = () => {
   const { lang } = useLanguage();
   const year = new Date().getFullYear();
   const [showPrivacy, setShowPrivacy] = useState(false);
+
+  useEffect(() => {
+    const handler = () => setShowPrivacy(true);
+    document.addEventListener("open-privacy", handler);
+    return () => document.removeEventListener("open-privacy", handler);
+  }, []);
 
   const scrollTo = (id) => {
     const el = document.getElementById(id);
@@ -260,14 +266,14 @@ const Footer = () => {
           <div className="pt-8 border-t border-slate-800/50">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               {/* Copyright */}
-              <div className="flex items-center gap-4 text-[11px] text-slate-500">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-slate-500">
                 <span>© {year} {COMPANY.name}</span>
                 <span className="hidden md:inline">·</span>
                 <span className="hidden md:inline">
-                  {lang === "fr"
-                    ? "Tous droits réservés"
-                    : "All rights reserved"}
+                  {lang === "fr" ? "Tous droits réservés" : "All rights reserved"}
                 </span>
+                <span>·</span>
+                <span className="text-slate-600">NEQ {COMPANY.neq}</span>
                 <span>·</span>
                 <button
                   type="button"

@@ -14,4 +14,5 @@ export const COMPANY = {
   name: "PrimeDev Studios",
   location: "Montréal, QC",
   website: "https://www.prime-dev-studios.com",
+  neq: "2281463465",
 };

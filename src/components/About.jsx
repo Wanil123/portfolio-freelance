@@ -161,8 +161,8 @@ const About = () => {
                 <div className="space-y-4 text-slate-300 text-sm md:text-base leading-relaxed">
                   <p>
                     {lang === "fr"
-                      ? "Je suis développeur full-stack avec plus de 5 ans d'expérience — dont 3 ans en entreprise à construire des APIs qui traitent 10 000+ requêtes par jour. J'ai fondé PrimeDev Studios pour offrir aux PME québécoises ce que les grandes agences ne peuvent pas : un accès direct au développeur, sans intermédiaire."
-                      : "I'm a full-stack developer with 5+ years of experience — including 3 years building enterprise APIs handling 10,000+ requests per day. I founded PrimeDev Studios to give SMBs what big agencies can't: direct access to the developer, no middlemen."}
+                      ? "Je suis développeur full-stack avec plus de 5 ans d'expérience — dont 3 ans en entreprise à construire des APIs de production pour des secteurs critiques (aérospatiale et industrie manufacturière). J'ai fondé PrimeDev Studios pour offrir aux PME québécoises ce que les grandes agences ne peuvent pas : un accès direct au développeur, sans intermédiaire."
+                      : "I'm a full-stack developer with 5+ years of experience — including 3 years building production APIs for critical industries (aerospace and manufacturing). I founded PrimeDev Studios to give SMBs what big agencies can't: direct access to the developer, no middlemen."}
                   </p>
 
                   <p>
@@ -199,7 +199,7 @@ const About = () => {
                     {
                       icon: CheckCircle2,
                       text: lang === "fr" ? "5+ ans d'expérience" : "5+ years experience",
-                      detail: lang === "fr" ? "APIs 10K+ requêtes/jour" : "APIs 10K+ req/day",
+                      detail: lang === "fr" ? "APIs production — secteur critique" : "Production APIs — critical sector",
                     },
                   ].map((fact, idx) => {
                     const Icon = fact.icon;

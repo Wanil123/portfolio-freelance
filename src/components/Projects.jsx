@@ -6,8 +6,8 @@ import { Check, ExternalLink, Code2, X, ChevronRight, Rocket, Play, Star, ArrowR
 import { Reveal } from "./ui/Reveal";
 
 const heroProjects = projects.filter((p) => p.isClientProject);
-const featuredProjects = projects.filter((p) => p.featured && !p.isClientProject);
-const otherProjects = projects.filter((p) => !p.featured);
+const aiDemoProjects = projects.filter((p) => p.isAIDemo);
+const personalProjects = projects.filter((p) => !p.isClientProject && !p.isAIDemo);
 
 const Projects = () => {
   const { lang, getField: getFieldFromHook } = useLanguage();
@@ -267,33 +267,45 @@ const Projects = () => {
 
           <p className="text-slate-300 max-w-2xl mx-auto text-sm md:text-lg leading-relaxed px-2">
             {lang === "fr"
-              ? "Des applications déployées en production, accessibles et performantes."
-              : "Production-deployed applications, accessible and performant."}
+              ? "2 sites clients livrés — et des démos en ligne pour montrer ce que je peux construire pour vous."
+              : "2 delivered client sites — plus live demos showing what I can build for you."}
           </p>
         </Reveal>
 
-        {/* Hero Projects — Clients */}
+        {/* Section 1 — Projets clients livrés */}
+        <Reveal>
+          <div className="flex items-center gap-3 mb-6 md:mb-8">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-emerald-700/40 to-transparent" />
+            <span className="text-xs md:text-sm text-emerald-400 font-semibold uppercase tracking-wider flex items-center gap-2">
+              <Star size={12} />
+              {lang === "fr" ? "2 projets clients livrés" : "2 delivered client projects"}
+            </span>
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-emerald-700/40 to-transparent" />
+          </div>
+        </Reveal>
+
         {heroProjects.map((hp) => (
           <Reveal key={hp.id} className="mb-8 md:mb-12">
             {renderCard(hp, true)}
           </Reveal>
         ))}
 
-        {/* Featured Projects */}
-        {featuredProjects.length > 0 && (
+        {/* Section 2 — Démos IA */}
+        {aiDemoProjects.length > 0 && (
           <>
             <Reveal>
               <div className="flex items-center gap-3 mb-6 md:mb-8">
-                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-slate-700/50 to-transparent" />
-                <span className="text-xs md:text-sm text-slate-500 font-medium uppercase tracking-wider">
-                  {lang === "fr" ? "Autres réalisations" : "More work"}
+                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-violet-700/40 to-transparent" />
+                <span className="text-xs md:text-sm text-violet-400 font-semibold uppercase tracking-wider flex items-center gap-2">
+                  <Bot size={12} />
+                  {lang === "fr" ? "Démos IA — ce que je peux construire pour vous" : "AI Demos — what I can build for you"}
                 </span>
-                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-slate-700/50 to-transparent" />
+                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-violet-700/40 to-transparent" />
               </div>
             </Reveal>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-6 mb-8 md:mb-12">
-              {featuredProjects.map((p, index) => (
+              {aiDemoProjects.map((p, index) => (
                 <Reveal key={p.id} delay={index * 0.1}>
                   {renderCard(p)}
                 </Reveal>
@@ -302,21 +314,22 @@ const Projects = () => {
           </>
         )}
 
-        {/* Other Projects */}
-        {otherProjects.length > 0 && (
+        {/* Section 3 — Lab & expérimentations */}
+        {personalProjects.length > 0 && (
           <>
             <Reveal>
               <div className="flex items-center gap-3 mb-6 md:mb-8">
                 <div className="h-px flex-1 bg-gradient-to-r from-transparent via-slate-700/50 to-transparent" />
-                <span className="text-xs md:text-sm text-slate-500 font-medium uppercase tracking-wider">
-                  {lang === "fr" ? "Projets techniques" : "Technical projects"}
+                <span className="text-xs md:text-sm text-slate-500 font-medium uppercase tracking-wider flex items-center gap-2">
+                  <Code2 size={12} />
+                  {lang === "fr" ? "Lab & expérimentations techniques" : "Lab & technical experiments"}
                 </span>
                 <div className="h-px flex-1 bg-gradient-to-r from-transparent via-slate-700/50 to-transparent" />
               </div>
             </Reveal>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-6">
-              {otherProjects.map((p, index) => (
+              {personalProjects.map((p, index) => (
                 <Reveal key={p.id} delay={index * 0.1}>
                   {renderCard(p)}
                 </Reveal>
