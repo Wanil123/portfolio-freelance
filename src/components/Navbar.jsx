@@ -1,5 +1,5 @@
 // src/components/Navbar.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, Globe2, Phone, Calendar, MessageSquare } from "lucide-react";
 import { useLanguage } from "../hooks/useLanguage";
 import { COMPANY, CONTACT } from "../constants/config";
@@ -15,6 +15,12 @@ const links = [
 const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { lang, i18n } = useLanguage();
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [isOpen]);
 
   const handleNavClick = (id) => {
     scrollToSection(id);
