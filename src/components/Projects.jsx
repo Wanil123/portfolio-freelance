@@ -211,7 +211,15 @@ const Projects = () => {
         <div className="absolute -top-2 -right-2 md:-top-3 md:-right-3 z-10">
           <div className="flex items-center gap-1 px-2 py-0.5 md:px-3 md:py-1 rounded-full bg-gradient-to-r from-violet-500 to-purple-500 text-white text-[10px] md:text-xs font-medium shadow-lg">
             <Bot size={10} />
-            <span>Demo</span>
+            <span>Demo IA</span>
+          </div>
+        </div>
+      )}
+      {!p.isClientProject && !p.isAIDemo && (
+        <div className="absolute -top-2 -right-2 md:-top-3 md:-right-3 z-10">
+          <div className="flex items-center gap-1 px-2 py-0.5 md:px-3 md:py-1 rounded-full bg-slate-700 border border-slate-600 text-slate-200 text-[10px] md:text-xs font-medium shadow-lg">
+            <Code2 size={10} />
+            <span>{lang === "fr" ? "Projet perso" : "Personal"}</span>
           </div>
         </div>
       )}

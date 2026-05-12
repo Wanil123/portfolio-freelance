@@ -69,10 +69,6 @@ const PricingCard = ({ offer, index, lang, activeTab, onContactClick }) => {
                   >
                     {offer.price}
                   </span>
-                  {offer.price !== "Sur mesure" &&
-                    offer.price !== "Custom" && (
-                      <span className="text-sm text-slate-400">CAD</span>
-                    )}
                 </div>
               </div>
 

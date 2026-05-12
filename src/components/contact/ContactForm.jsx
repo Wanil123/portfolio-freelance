@@ -10,6 +10,8 @@ import {
   FileText,
   CheckCircle2,
   AlertCircle,
+  Clock,
+  Globe,
 } from "lucide-react";
 
 const ContactForm = () => {
@@ -21,6 +23,8 @@ const ContactForm = () => {
     email: "",
     projectType: "",
     budget: "",
+    timeline: "",
+    hasWebsite: "",
     message: "",
   });
   const [formStatus, setFormStatus] = useState(null);
@@ -123,6 +127,8 @@ const ContactForm = () => {
       email: formData.email.trim(),
       projectType: formData.projectType.trim(),
       budget: formData.budget.trim(),
+      timeline: formData.timeline.trim(),
+      hasWebsite: formData.hasWebsite.trim(),
       message: formData.message.trim(),
     };
 
@@ -138,6 +144,8 @@ const ContactForm = () => {
           email: trimmedData.email,
           projectType: trimmedData.projectType || (lang === "fr" ? "Non specifie" : "Not specified"),
           budget: trimmedData.budget || (lang === "fr" ? "Non specifie" : "Not specified"),
+          timeline: trimmedData.timeline || (lang === "fr" ? "Non specifie" : "Not specified"),
+          hasWebsite: trimmedData.hasWebsite || (lang === "fr" ? "Non specifie" : "Not specified"),
           message: trimmedData.message,
           _subject: lang === "fr"
             ? `Nouveau message de ${trimmedData.name} — ${COMPANY.name}`
@@ -150,7 +158,7 @@ const ContactForm = () => {
 
       if (response.ok) {
         setFormStatus("success");
-        setFormData({ name: "", email: "", projectType: "", budget: "", message: "" });
+        setFormData({ name: "", email: "", projectType: "", budget: "", timeline: "", hasWebsite: "", message: "" });
         setErrors({});
         setCooldown(true);
         setTimeout(() => setCooldown(false), 5000);
@@ -286,6 +294,52 @@ const ContactForm = () => {
                   {option.label}
                 </option>
               ))}
+            </select>
+          </div>
+
+          {/* Timeline */}
+          <div>
+            <label htmlFor="timeline-select" className="flex items-center gap-2 text-sm text-slate-300 mb-2 font-medium">
+              <Clock size={14} className="text-violet-400" />
+              {lang === "fr" ? "Quand souhaitez-vous démarrer?" : "When would you like to start?"}
+            </label>
+            <select
+              id="timeline-select"
+              name="timeline"
+              value={formData.timeline}
+              onChange={handleInputChange}
+              aria-label={lang === "fr" ? "Quand souhaitez-vous démarrer?" : "When would you like to start?"}
+              className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-base text-white focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all appearance-none cursor-pointer"
+            >
+              <option value="" className="bg-slate-900">
+                {lang === "fr" ? "Selectionnez une option" : "Select an option"}
+              </option>
+              <option value="asap" className="bg-slate-900">{lang === "fr" ? "Dès que possible" : "ASAP"}</option>
+              <option value="this-month" className="bg-slate-900">{lang === "fr" ? "Ce mois-ci" : "This month"}</option>
+              <option value="1-3-months" className="bg-slate-900">{lang === "fr" ? "Dans 1 à 3 mois" : "In 1-3 months"}</option>
+              <option value="exploring" className="bg-slate-900">{lang === "fr" ? "Je me renseigne" : "Just exploring"}</option>
+            </select>
+          </div>
+
+          {/* Has Website */}
+          <div>
+            <label htmlFor="has-website-select" className="flex items-center gap-2 text-sm text-slate-300 mb-2 font-medium">
+              <Globe size={14} className="text-violet-400" />
+              {lang === "fr" ? "Avez-vous déjà un site web?" : "Do you already have a website?"}
+            </label>
+            <select
+              id="has-website-select"
+              name="hasWebsite"
+              value={formData.hasWebsite}
+              onChange={handleInputChange}
+              aria-label={lang === "fr" ? "Avez-vous déjà un site web?" : "Do you already have a website?"}
+              className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-base text-white focus:outline-none focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20 transition-all appearance-none cursor-pointer"
+            >
+              <option value="" className="bg-slate-900">
+                {lang === "fr" ? "Selectionnez une option" : "Select an option"}
+              </option>
+              <option value="yes" className="bg-slate-900">{lang === "fr" ? "Oui" : "Yes"}</option>
+              <option value="no" className="bg-slate-900">{lang === "fr" ? "Non" : "No"}</option>
             </select>
           </div>
 

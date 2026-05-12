@@ -11,7 +11,7 @@ import AIStatsSection from "./offers/AIStatsSection";
 
 const OffersSection = () => {
   const { lang } = useLanguage();
-  const [activeTab, setActiveTab] = useState("ai");
+  const [activeTab, setActiveTab] = useState("vitrine");
 
   const handleContactClick = () => {
     window.open(CONTACT.calendlyUrl, "_blank", "noopener,noreferrer");

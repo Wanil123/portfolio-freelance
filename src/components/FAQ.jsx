@@ -56,8 +56,8 @@ const FAQ = () => {
         en: "What if I'm not satisfied with the result?",
       },
       answer: {
-        fr: "Corrections illimitées jusqu'à votre satisfaction complète — c'est dans le contrat. Je ne considère pas un projet comme terminé tant que vous n'êtes pas content. Et si le délai n'est pas respecté de mon côté, 10% de remise automatique.",
-        en: "Unlimited revisions until you're fully satisfied — it's in the contract. I don't consider a project done until you're happy with the result. And if I miss the deadline, you automatically get 10% back.",
+        fr: "Corrections illimitées dans la portée convenue du projet jusqu'à votre satisfaction complète — c'est dans le contrat. Je ne considère pas un projet comme terminé tant que vous n'êtes pas content. Et si le délai n'est pas respecté de mon côté, 10% de remise automatique.",
+        en: "Unlimited revisions within the agreed project scope until you're fully satisfied — it's in the contract. I don't consider a project done until you're happy with it. And if I miss the deadline, you automatically get 10% back.",
       },
     },
     {

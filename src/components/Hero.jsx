@@ -88,8 +88,8 @@ const Hero = ({ scrollToSection }) => {
         {/* Subtitle — outcome-focused */}
         <p className="text-lg md:text-xl lg:text-2xl text-slate-300 max-w-2xl mx-auto mb-4 leading-relaxed animate-fade-in-up animation-delay-200">
           {lang === "fr"
-            ? "Site web professionnel + IA qui répond à vos leads 24h/7j. Livré en 2 à 4 semaines. Résultat garanti ou remboursé."
-            : "Professional website + AI that answers your leads 24/7. Delivered in 2-4 weeks. Results guaranteed or refunded."}
+            ? "Site web professionnel + IA qui répond à vos leads 24h/7j. Livré en 2 à 4 semaines dans le périmètre convenu, sinon 10% de remise automatique."
+            : "Professional website + AI that answers your leads 24/7. Delivered in 2-4 weeks within the agreed scope — miss the deadline, get 10% back automatically."}
         </p>
 
         {/* Social proof line */}
