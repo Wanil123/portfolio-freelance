@@ -32,9 +32,6 @@ function App() {
   const { lang, i18n } = useLanguage();
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isNavVisible, setIsNavVisible] = useState(true);
-  const lastScrollY = useRef(0);
-  const scrollDownTotal = useRef(0);
 
   // Dynamic lang attribute on <html> element
   useEffect(() => {
@@ -50,31 +47,8 @@ function App() {
 
       rafId = requestAnimationFrame(() => {
         rafId = null;
-        // Clamp to 0: iOS elastic scroll can give negative scrollY values
         const currentY = Math.max(0, window.scrollY);
         setIsScrolled(currentY > 50);
-
-        const delta = currentY - lastScrollY.current;
-        lastScrollY.current = currentY;
-
-        // Desktop: always visible.
-        // Mobile: show instantly on ANY upward pixel, hide after 100px cumulative down.
-        const isMobile = window.innerWidth < 768;
-        if (!isMobile || currentY <= 80) {
-          setIsNavVisible(true);
-          scrollDownTotal.current = 0;
-        } else if (delta < 0) {
-          // Any upward movement → show immediately, reset counter
-          setIsNavVisible(true);
-          scrollDownTotal.current = 0;
-        } else if (delta > 0) {
-          // Downward movement → accumulate, hide after 100px total
-          scrollDownTotal.current += delta;
-          if (scrollDownTotal.current >= 100) {
-            setIsNavVisible(false);
-            scrollDownTotal.current = 0;
-          }
-        }
 
         const sections = [
           "home",
@@ -102,12 +76,6 @@ function App() {
       });
     };
 
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setIsNavVisible(true);
-        scrollDownTotal.current = 0;
-      }
-    };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize, { passive: true });
@@ -124,8 +92,6 @@ function App() {
       const top = el.getBoundingClientRect().top + window.scrollY - 72;
       window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
     }
-    setIsNavVisible(true);
-    scrollDownTotal.current = 0;
   };
 
   return (
@@ -138,7 +104,6 @@ function App() {
           activeSection={activeSection}
           scrollToSection={scrollToSection}
           isScrolled={isScrolled}
-          isNavVisible={isNavVisible}
         />
 
         <main>

@@ -29,7 +29,7 @@ const Hero = ({ scrollToSection }) => {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f08_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f08_1px,transparent_1px)] bg-[size:4rem_4rem] -z-10" />
 
       {/* Main Content */}
-      <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center pt-24 pb-16">
+      <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center pt-16 pb-16">
 
         {/* Scarcity Badge */}
         <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-amber-500/10 border border-amber-400/40 backdrop-blur-sm mb-6 animate-fade-in max-w-[95vw]">

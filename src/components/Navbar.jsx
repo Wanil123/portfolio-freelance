@@ -12,7 +12,7 @@ const links = [
   { id: "contact", en: "Contact", fr: "Contact" },
 ];
 
-const Navbar = ({ activeSection, scrollToSection, isScrolled, isNavVisible }) => {
+const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { lang, i18n } = useLanguage();
 
@@ -36,22 +36,14 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled, isNavVisible }) =>
       : "Hello Wanil, I want to discuss my project."
   )}`;
 
-  // Nav bar height: py-2.5 (10px*2) + logo h-12 (48px) = 68px on mobile
-  const NAV_H = "68px";
-
   return (
     <>
-      {/* ─── TOP BAR ──────────────────────────────────────────────── */}
-      {/* NOTE: no position:fixed children inside this nav — CSS transform
-          on a parent breaks fixed positioning (spec §9.6.1). Mobile menu
-          is a sibling below. */}
       <nav
-        style={{ willChange: "transform" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-out ${
+        className={`sticky top-0 left-0 right-0 z-50 transition-colors duration-300 ${
           isScrolled
             ? "bg-slate-950/95 backdrop-blur-md border-b border-slate-800"
-            : "bg-transparent border-b border-transparent"
-        } ${isNavVisible || isOpen ? "translate-y-0" : "-translate-y-full"}`}
+            : "bg-slate-950/80 backdrop-blur-sm border-b border-transparent"
+        }`}
       >
         <div className="max-w-7xl mx-auto px-4 py-2.5 md:py-3 flex items-center justify-between gap-4">
           {/* LOGO */}
@@ -145,13 +137,10 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled, isNavVisible }) =>
         </div>
       </nav>
 
-      {/* ─── MOBILE MENU — sibling of <nav>, NOT a child ─────────── */}
-      {/* Positioned as a sibling so CSS transforms on the nav bar above
-          do NOT affect this element's fixed positioning. */}
       {isOpen && (
         <div
           className="fixed left-0 right-0 bottom-0 z-[49] bg-slate-950 overflow-y-auto md:hidden flex flex-col"
-          style={{ top: NAV_H }}
+          style={{ top: "68px" }}
         >
           {/* Nav links */}
           <div className="flex-1">
