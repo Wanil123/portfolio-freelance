@@ -38,45 +38,53 @@ function App() {
     document.documentElement.lang = lang;
   }, [lang]);
 
+  // IntersectionObserver for active section — no scroll reflow, runs off main thread
   useEffect(() => {
-    let rafId = null;
+    const sectionIds = [
+      "home", "services", "projects", "testimonials",
+      "offers", "process", "skills", "about", "faq", "contact",
+    ];
 
-    const handleScroll = () => {
-      // Throttle with requestAnimationFrame
-      if (rafId) return;
+    const visible = new Set();
 
-      rafId = requestAnimationFrame(() => {
-        rafId = null;
-        const currentY = Math.max(0, window.scrollY);
-        setIsScrolled(currentY > 50);
-
-        const sections = [
-          "home",
-          "services",
-          "projects",
-          "testimonials",
-          "offers",
-          "process",
-          "skills",
-          "about",
-          "faq",
-          "contact",
-        ];
-
-        for (const section of sections) {
-          const el = document.getElementById(section);
-          if (!el) continue;
-
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 110 && rect.bottom >= 110) {
-            setActiveSection(section);
-            break;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            visible.add(entry.target.id);
+          } else {
+            visible.delete(entry.target.id);
+          }
+        });
+        // Always pick the topmost visible section
+        for (const id of sectionIds) {
+          if (visible.has(id)) {
+            setActiveSection(id);
+            return;
           }
         }
+      },
+      { rootMargin: "-110px 0px -40% 0px", threshold: 0 }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Scroll listener — only isScrolled (single cheap comparison, no DOM queries)
+  useEffect(() => {
+    let rafId = null;
+    const handleScroll = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        setIsScrolled(window.scrollY > 50);
       });
     };
-
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
