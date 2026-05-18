@@ -82,13 +82,12 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
             className="group flex items-center gap-2.5 flex-shrink-0"
           >
             <div className="relative flex-shrink-0">
-              <div className="absolute -inset-2 bg-gradient-to-r from-violet-500/50 to-purple-500/50 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <img
                 src="/logo1.JPG"
                 alt={COMPANY.name}
-                width={96}
-                height={96}
-                className="relative w-20 h-20 md:w-24 md:h-24 object-contain rounded-xl shadow-xl border-2 border-violet-500/50 group-hover:border-violet-400/80 transition-all duration-300"
+                width={48}
+                height={48}
+                className="relative w-10 h-10 md:w-12 md:h-12 object-contain rounded-lg transition-all duration-300"
               />
             </div>
           </button>
