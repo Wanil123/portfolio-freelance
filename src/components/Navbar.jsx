@@ -88,9 +88,6 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
               height={52}
               className="w-12 h-12 md:w-14 md:h-14 object-contain rounded-xl"
             />
-            <span className="font-bold text-sm md:text-base bg-gradient-to-r from-white via-violet-100 to-white bg-clip-text text-transparent whitespace-nowrap">
-              {COMPANY.name}
-            </span>
           </button>
 
           {/* DESKTOP — nav links */}
