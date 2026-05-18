@@ -74,20 +74,23 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
             : "bg-slate-950/80 backdrop-blur-sm border-b border-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between gap-4 overflow-visible">
-          {/* LOGO */}
+        <div className="relative max-w-7xl mx-auto px-4 h-12 flex items-center justify-between gap-4">
+          {/* Spacer — réserve la place horizontale du badge logo */}
+          <div className="w-20 md:w-24 flex-shrink-0" />
+
+          {/* LOGO BADGE — absolu, accroche sous le nav strip */}
           <button
             type="button"
             onClick={() => handleNavClick("home")}
-            className="group flex items-center gap-2.5 flex-shrink-0"
+            className="group absolute left-4 top-full z-10"
           >
-            <div className="relative flex-shrink-0">
+            <div className="bg-slate-950 border-l border-b border-r border-slate-800/80 rounded-b-2xl p-2 shadow-2xl group-hover:border-violet-500/30 transition-colors">
               <img
                 src="/logo1.JPG"
                 alt={COMPANY.name}
-                width={88}
-                height={88}
-                className="w-20 h-20 md:w-24 md:h-24 object-contain rounded-xl"
+                width={80}
+                height={80}
+                className="w-16 h-16 md:w-20 md:h-20 object-contain rounded-xl"
               />
             </div>
           </button>
