@@ -105,7 +105,7 @@ const Hero = ({ scrollToSection }) => {
             href={CALENDLY}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative w-full max-w-xs sm:max-w-none sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 bg-gradient-to-r from-violet-500 to-purple-500 text-white font-bold text-base sm:text-lg rounded-2xl shadow-xl shadow-violet-500/40 hover:shadow-violet-500/60 transition-all duration-300 sm:hover:scale-105 active:scale-95 overflow-hidden"
+            className="group relative w-full sm:w-auto px-5 py-3.5 sm:px-8 sm:py-4 bg-gradient-to-r from-violet-500 to-purple-500 text-white font-bold text-base sm:text-lg rounded-2xl shadow-xl shadow-violet-500/40 hover:shadow-violet-500/60 transition-all duration-300 sm:hover:scale-105 active:scale-95 overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
             <span className="relative flex items-center justify-center gap-2">
