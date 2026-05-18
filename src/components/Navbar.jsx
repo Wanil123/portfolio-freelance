@@ -86,9 +86,9 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
               <img
                 src="/logo1.JPG"
                 alt={COMPANY.name}
-                width={56}
-                height={56}
-                className="relative w-12 h-12 md:w-14 md:h-14 object-contain rounded-xl shadow-xl border-2 border-violet-500/50 group-hover:border-violet-400/80 transition-all duration-300"
+                width={80}
+                height={80}
+                className="relative w-16 h-16 md:w-20 md:h-20 object-contain rounded-xl shadow-xl border-2 border-violet-500/50 group-hover:border-violet-400/80 transition-all duration-300"
               />
             </div>
             <span className="font-bold text-sm md:text-base bg-gradient-to-r from-white via-violet-100 to-white bg-clip-text text-transparent whitespace-nowrap">

@@ -91,11 +91,11 @@ const Footer = () => {
             >
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-violet-500/30 to-purple-500/30 rounded-xl blur-lg opacity-80 group-hover:opacity-100 transition-opacity" />
-                <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-700/50 overflow-hidden shadow-xl">
+                <div className="relative flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-700/50 overflow-hidden shadow-xl">
                   <img
                     src={logoSrc}
                     alt={COMPANY.name}
-                    className="h-10 w-10 object-contain"
+                    className="h-14 w-14 object-contain"
                     onError={(e) => {
                       e.currentTarget.style.display = "none";
                       e.currentTarget.parentElement.innerHTML = `<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500/20 to-purple-500/20"><span style="color:#a78bfa;font-size:20px;">⚡</span></div>`;
