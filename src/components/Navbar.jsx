@@ -168,8 +168,8 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
           className="fixed inset-0 flex flex-col md:hidden animate-fadeIn"
           style={{ zIndex: 9999, paddingTop: navHeight, touchAction: "none" }}
         >
-          {/* Blurred backdrop */}
-          <div className="absolute inset-0 bg-slate-950/95 backdrop-blur-xl" />
+          {/* Backdrop — fully opaque, no bleed-through */}
+          <div className="absolute inset-0 bg-slate-950" />
 
           {/* Violet separator */}
           <div
