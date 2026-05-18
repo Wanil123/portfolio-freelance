@@ -26,20 +26,34 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
     }
   }, []);
 
-  // Lock scroll on html + body (body alone doesn't block iOS Safari)
+  // Lock scroll — iOS Safari ignore overflow:hidden sur body, besoin de position:fixed
   useEffect(() => {
     const html = document.documentElement;
     const body = document.body;
     if (isOpen) {
-      html.style.overflowY = "hidden";
-      body.style.overflowY = "hidden";
+      const scrollY = window.scrollY;
+      html.style.overflow = "hidden";
+      body.style.overflow = "hidden";
+      body.style.position = "fixed";
+      body.style.top = `-${scrollY}px`;
+      body.style.width = "100%";
     } else {
-      html.style.overflowY = "";
-      body.style.overflowY = "";
+      const top = body.style.top;
+      html.style.overflow = "";
+      body.style.overflow = "";
+      body.style.position = "";
+      body.style.top = "";
+      body.style.width = "";
+      if (top) window.scrollTo(0, parseInt(top) * -1);
     }
     return () => {
-      html.style.overflowY = "";
-      body.style.overflowY = "";
+      const top = body.style.top;
+      html.style.overflow = "";
+      body.style.overflow = "";
+      body.style.position = "";
+      body.style.top = "";
+      body.style.width = "";
+      if (top) window.scrollTo(0, parseInt(top) * -1);
     };
   }, [isOpen]);
 
