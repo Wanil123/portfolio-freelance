@@ -146,9 +146,9 @@ const TrustedBy = () => {
                       <div className="flex items-center justify-center gap-1.5 md:gap-2 mb-2">
                         <Icon size={20} className="text-violet-400 hidden md:block" />
                         <Icon size={16} className="text-violet-400 md:hidden" />
-                        <p className="text-2xl md:text-3xl font-bold text-white">
+                        <p className="text-xl md:text-3xl font-bold text-white">
                           {stat.value}
-                          {stat.unit && <span className="text-lg md:text-xl text-violet-400">{stat.unit}</span>}
+                          {stat.unit && <span className="text-base md:text-xl text-violet-400">{stat.unit}</span>}
                         </p>
                       </div>
                       <p className="text-xs md:text-sm text-slate-400">{stat.label}</p>

@@ -381,7 +381,7 @@ const ContactForm = () => {
               onChange={handleInputChange}
               required
               aria-required="true"
-              rows={4}
+              rows={3}
               placeholder={
                 lang === "fr"
                   ? "J'ai besoin d'un site e-commerce pour vendre mes produits..."
@@ -401,7 +401,7 @@ const ContactForm = () => {
                 id="field-consent"
                 checked={formData.consent}
                 onChange={handleInputChange}
-                className="mt-1 h-4 w-4 rounded border-slate-600 bg-slate-800 accent-violet-500 cursor-pointer flex-shrink-0"
+                className="mt-0.5 h-5 w-5 rounded border-slate-600 bg-slate-800 accent-violet-500 cursor-pointer flex-shrink-0"
               />
               <span className="text-xs leading-relaxed">
                 {lang === "fr" ? (

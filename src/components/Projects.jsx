@@ -142,14 +142,14 @@ const Projects = () => {
             <span
               key={idx}
               className={`bg-slate-800/50 border border-slate-700/50 text-slate-300 rounded ${
-                isHero ? "px-2 py-1 md:px-3 md:py-1.5 text-xs md:text-sm" : "px-1.5 py-0.5 md:px-2 md:py-1 text-[10px] md:text-xs"
+                isHero ? "px-2 py-1 md:px-3 md:py-1.5 text-xs md:text-sm" : "px-1.5 py-0.5 md:px-2 md:py-1 text-xs"
               }`}
             >
               {t}
             </span>
           ))}
           {tech.length > maxTech && (
-            <span className={`text-slate-500 ${isHero ? "px-2 py-1 text-xs md:text-sm" : "px-1.5 py-0.5 text-[10px] md:text-xs"}`}>
+            <span className={`text-slate-500 ${isHero ? "px-2 py-1 text-xs md:text-sm" : "px-1.5 py-0.5 text-xs"}`}>
               +{tech.length - maxTech}
             </span>
           )}
@@ -186,7 +186,7 @@ const Projects = () => {
           <button
             onClick={() => openModal(p)}
             className={`flex items-center justify-center rounded-lg md:rounded-xl bg-slate-800/50 border border-slate-700/50 hover:border-violet-500/50 hover:bg-slate-800 text-slate-400 hover:text-white transition-all active:scale-95 ${
-              isHero ? "w-10 h-10 md:w-12 md:h-12" : "w-9 h-9 md:w-10 md:h-10"
+              isHero ? "w-10 h-10 md:w-12 md:h-12" : "w-11 h-11 md:w-10 md:h-10"
             }`}
             aria-label={lang === "fr" ? "Voir détails" : "View details"}
           >
@@ -372,7 +372,7 @@ const Projects = () => {
             <button
               ref={closeButtonRef}
               onClick={closeModal}
-              className="absolute top-3 right-3 md:top-4 md:right-4 z-10 w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
+              className="absolute top-3 right-3 md:top-4 md:right-4 z-10 w-11 h-11 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
             >
               <X size={18} className="md:hidden" />
               <X size={20} className="hidden md:block" />

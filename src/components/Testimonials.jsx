@@ -216,7 +216,7 @@ const Testimonials = () => {
                 </div>
 
                 {/* Quote text */}
-                <blockquote className="text-base md:text-lg text-slate-200 leading-relaxed mb-6 italic">
+                <blockquote className="text-sm md:text-base lg:text-lg text-slate-200 leading-relaxed mb-6 italic">
                   &ldquo;{testimonial.quote[lang]}&rdquo;
                 </blockquote>
 

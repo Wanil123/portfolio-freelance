@@ -121,16 +121,16 @@ const Hero = ({ scrollToSection }) => {
             </span>
             <a
               href={SMS}
-              className="flex items-center gap-1.5 px-5 py-2.5 rounded-full border border-slate-700/60 bg-slate-900/40 hover:border-violet-500/50 hover:bg-slate-800/50 text-slate-300 hover:text-white text-sm font-medium transition-all active:scale-95"
+              className="flex items-center gap-1.5 px-5 py-3 min-h-[44px] rounded-full border border-slate-700/60 bg-slate-900/40 hover:border-violet-500/50 hover:bg-slate-800/50 text-slate-300 hover:text-white text-sm font-medium transition-all active:scale-95"
             >
-              <MessageSquare size={14} />
+              <MessageSquare size={15} />
               <span>SMS</span>
             </a>
             <a
               href={TEL}
-              className="flex items-center gap-1.5 px-5 py-2.5 rounded-full border border-slate-700/60 bg-slate-900/40 hover:border-violet-500/50 hover:bg-slate-800/50 text-slate-300 hover:text-white text-sm font-medium transition-all active:scale-95"
+              className="flex items-center gap-1.5 px-5 py-3 min-h-[44px] rounded-full border border-slate-700/60 bg-slate-900/40 hover:border-violet-500/50 hover:bg-slate-800/50 text-slate-300 hover:text-white text-sm font-medium transition-all active:scale-95"
             >
-              <Phone size={14} />
+              <Phone size={15} />
               <span>{lang === "fr" ? "Appel" : "Call"}</span>
             </a>
           </div>

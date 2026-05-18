@@ -250,8 +250,8 @@ const FAQ = () => {
                         }`}
                       >
                         <div className="overflow-hidden">
-                          <div className="px-5 md:px-6 pb-5 md:pb-6 pt-0 pl-[3.5rem] md:pl-[5rem]">
-                            <p className="text-slate-400 text-sm leading-relaxed">
+                          <div className="px-5 md:px-6 pb-5 md:pb-6 pt-0 pl-5 md:pl-20">
+                            <p className="text-slate-400 text-sm md:text-base leading-relaxed">
                               {faq.answer[lang]}
                             </p>
                           </div>

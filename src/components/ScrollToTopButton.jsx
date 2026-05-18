@@ -63,7 +63,11 @@ const ScrollToTopButton = () => {
           window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
         )
       }
-      className="group fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 animate-fadeIn"
+      className="group fixed z-50 animate-fadeIn"
+      style={{
+        bottom: 'calc(1rem + env(safe-area-inset-bottom))',
+        right: 'calc(1rem + env(safe-area-inset-right))',
+      }}
       aria-label={label}
       title={`${label} (Alt+↑)`}
     >

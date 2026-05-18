@@ -278,7 +278,7 @@ const Footer = () => {
                 <button
                   type="button"
                   onClick={() => setShowPrivacy(true)}
-                  className="hover:text-violet-400 transition-colors underline underline-offset-2"
+                  className="hover:text-violet-400 transition-colors underline underline-offset-2 px-2 py-1 -mx-2 -my-1 min-h-[44px] inline-flex items-center"
                 >
                   {lang === "fr" ? "Mentions légales" : "Privacy Policy"}
                 </button>

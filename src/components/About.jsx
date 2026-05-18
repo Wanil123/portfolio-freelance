@@ -128,7 +128,7 @@ const About = () => {
                     <img
                       src="/wanil.jpeg"
                       alt="Wanil Parfait"
-                      className="relative w-36 h-36 md:w-44 md:h-44 rounded-2xl object-cover border-2 border-violet-500/40 shadow-xl shadow-violet-500/20"
+                      className="relative w-24 h-24 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-2xl object-cover border-2 border-violet-500/40 shadow-xl shadow-violet-500/20"
                     />
                   </div>
                   <div className="text-center sm:text-left">
@@ -179,7 +179,7 @@ const About = () => {
                 </div>
 
                 {/* Key facts */}
-                <div className="mt-5 grid grid-cols-2 gap-3">
+                <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {[
                     {
                       icon: MapPin,

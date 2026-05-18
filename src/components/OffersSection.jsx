@@ -67,7 +67,7 @@ const OffersSection = () => {
             <div
               role="tablist"
               aria-label={lang === "fr" ? "Catégories de forfaits" : "Pricing categories"}
-              className="inline-flex gap-1 p-1.5 rounded-xl bg-slate-900/80 border border-slate-800/60 backdrop-blur-sm w-full sm:w-auto"
+              className="grid grid-cols-2 sm:inline-flex gap-1 p-1.5 rounded-xl bg-slate-900/80 border border-slate-800/60 backdrop-blur-sm w-full sm:w-auto"
             >
               {tabs.map((tab) => (
                 <PricingTab

@@ -158,9 +158,9 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
             <button
               type="button"
               onClick={toggleLang}
-              className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-slate-900/40 border border-slate-700/60 text-slate-100 text-xs"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-slate-900/40 border border-slate-700/60 text-slate-100 text-xs min-h-[44px]"
             >
-              <Globe2 size={12} />
+              <Globe2 size={13} />
               <span className="uppercase">{lang === "fr" ? "FR" : "EN"}</span>
             </button>
             <button
@@ -168,7 +168,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
               onClick={() => setIsOpen((p) => !p)}
               aria-label={lang === "fr" ? (isOpen ? "Fermer le menu" : "Ouvrir le menu") : (isOpen ? "Close menu" : "Open menu")}
               aria-expanded={isOpen}
-              className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-800/70 border border-slate-700/60 text-white active:bg-slate-700/80 transition-colors"
+              className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-800/70 border border-slate-700/60 text-white active:bg-slate-700/80 transition-colors"
             >
               {isOpen ? <X size={18} /> : <Menu size={18} />}
             </button>
@@ -203,7 +203,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
                     key={link.id}
                     type="button"
                     onClick={() => handleNavClick(link.id)}
-                    className="w-full flex items-center gap-5 py-5 text-left border-b border-slate-800/40 last:border-0 group active:opacity-70"
+                    className="w-full flex items-center gap-5 py-4 text-left border-b border-slate-800/40 last:border-0 group active:opacity-70"
                     style={{
                       opacity: 0,
                       animation: "fade-in-up 0.4s ease forwards",

@@ -19,11 +19,15 @@ const WhatsAppButton = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-4 left-4 md:bottom-6 md:left-6 z-50">
+    <div className="fixed z-50"
+      style={{
+        bottom: 'calc(1rem + env(safe-area-inset-bottom))',
+        left: 'calc(1rem + env(safe-area-inset-left))',
+      }}>
       {/* Tooltip */}
       {showTooltip && (
         <div className="absolute bottom-full left-0 mb-3 animate-fadeIn">
-          <div className="relative bg-white text-slate-800 rounded-xl shadow-xl p-4 max-w-[220px]">
+          <div className="relative bg-white text-slate-800 rounded-xl shadow-xl p-4 w-[200px] max-w-[calc(100vw-5rem)]">
             <button
               onClick={() => setShowTooltip(false)}
               className="absolute -top-2 -right-2 w-6 h-6 bg-slate-200 hover:bg-slate-300 rounded-full flex items-center justify-center transition-colors"
