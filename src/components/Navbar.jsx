@@ -68,13 +68,13 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
       {/* ── NAVBAR ─────────────────────────────────────────────────── */}
       <nav
         ref={navRef}
-        className={`sticky top-0 z-[10000] w-full transition-colors duration-300 ${
+        className={`sticky top-0 z-[10000] w-full overflow-visible transition-colors duration-300 ${
           isScrolled || isOpen
             ? "bg-slate-950 border-b border-slate-800"
             : "bg-slate-950/80 backdrop-blur-sm border-b border-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 py-2.5 md:py-3 flex items-center justify-between gap-4 overflow-visible">
+        <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between gap-4 overflow-visible">
           {/* LOGO */}
           <button
             type="button"
@@ -85,13 +85,9 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
               <img
                 src="/logo1.JPG"
                 alt={COMPANY.name}
-                width={96}
-                height={96}
-                className={`object-contain rounded-xl transition-all duration-500 ${
-                  isScrolled
-                    ? "w-10 h-10 md:w-12 md:h-12"
-                    : "w-20 h-20 md:w-24 md:h-24"
-                }`}
+                width={88}
+                height={88}
+                className="w-20 h-20 md:w-24 md:h-24 object-contain rounded-xl"
               />
             </div>
           </button>
