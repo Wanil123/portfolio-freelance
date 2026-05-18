@@ -1,7 +1,7 @@
 // src/components/Navbar.jsx
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { Menu, X, Globe2, Phone, Calendar, MessageSquare, ArrowRight } from "lucide-react";
+import { Menu, X, Globe2, Phone, Calendar, MessageSquare } from "lucide-react";
 import { useLanguage } from "../hooks/useLanguage";
 import { COMPANY, CONTACT } from "../constants/config";
 
@@ -151,36 +151,37 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
             </button>
             <button
               type="button"
-              className="text-white p-2.5 -mr-1"
               onClick={() => setIsOpen((p) => !p)}
               aria-label={lang === "fr" ? (isOpen ? "Fermer le menu" : "Ouvrir le menu") : (isOpen ? "Close menu" : "Open menu")}
               aria-expanded={isOpen}
+              className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-800/70 border border-slate-700/60 text-white active:bg-slate-700/80 transition-colors"
             >
-              {isOpen ? <X size={22} /> : <Menu size={22} />}
+              {isOpen ? <X size={18} /> : <Menu size={18} />}
             </button>
           </div>
         </div>
       </nav>
 
-      {/* ── MOBILE MENU — full-screen portal, rendered in document.body ── */}
-      {/* fixed inset-0: covers the ENTIRE viewport (no gap possible).      */}
-      {/* Navbar (z-10000) sits on top because it's higher z-index.         */}
+      {/* ── MOBILE MENU ── */}
       {isOpen && createPortal(
         <div
-          className="fixed inset-0 flex flex-col md:hidden"
+          className="fixed inset-0 flex flex-col md:hidden animate-fadeIn"
           style={{ zIndex: 9999, paddingTop: navHeight, touchAction: "none" }}
         >
-          {/* Dark overlay background */}
-          <div className="absolute inset-0 bg-slate-950" />
+          {/* Blurred backdrop */}
+          <div className="absolute inset-0 bg-slate-950/95 backdrop-blur-xl" />
 
-          {/* Subtle top gradient accent */}
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/40 to-transparent" style={{ top: navHeight }} />
+          {/* Violet separator */}
+          <div
+            className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/40 to-transparent"
+            style={{ top: navHeight }}
+          />
 
-          {/* Scrollable content — touch-action:pan-y re-enabled for internal scroll */}
+          {/* Scrollable content */}
           <div className="relative flex flex-col flex-1 overflow-y-auto" style={{ touchAction: "pan-y" }}>
 
             {/* Nav links */}
-            <nav className="flex-1 py-2">
+            <nav className="flex-1 px-8 pt-8 pb-4">
               {links.map((link, i) => {
                 const isActive = activeSection === link.id;
                 return (
@@ -188,20 +189,24 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
                     key={link.id}
                     type="button"
                     onClick={() => handleNavClick(link.id)}
-                    className="w-full flex items-center justify-between px-6 py-4 text-left transition-colors active:bg-slate-900/60 border-b border-slate-800/40 animate-fade-in-up"
-                    style={{ animationDelay: `${i * 40}ms`, animationFillMode: "both" }}
+                    className="w-full flex items-center gap-5 py-5 text-left border-b border-slate-800/40 last:border-0 group active:opacity-70"
+                    style={{
+                      opacity: 0,
+                      animation: "fade-in-up 0.4s ease forwards",
+                      animationDelay: `${i * 55}ms`,
+                    }}
                   >
-                    <span className={`text-lg font-semibold transition-colors ${
-                      isActive ? "text-violet-400" : "text-slate-200"
+                    <span className="text-xs font-mono text-violet-500/50 w-5 tabular-nums flex-shrink-0 group-hover:text-violet-400 transition-colors">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className={`text-2xl font-bold tracking-tight transition-colors ${
+                      isActive ? "text-violet-400" : "text-white group-hover:text-violet-300"
                     }`}>
                       {lang === "fr" ? link.fr : link.en}
                     </span>
-                    <ArrowRight
-                      size={16}
-                      className={`flex-shrink-0 transition-colors ${
-                        isActive ? "text-violet-400" : "text-slate-600"
-                      }`}
-                    />
+                    {isActive && (
+                      <div className="ml-auto w-2 h-2 rounded-full bg-violet-400 flex-shrink-0" />
+                    )}
                   </button>
                 );
               })}
@@ -209,7 +214,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
 
             {/* CTAs */}
             <div
-              className="px-5 py-6 space-y-3 border-t border-slate-800 bg-slate-950"
+              className="px-6 py-6 space-y-3 border-t border-slate-800/60"
               style={{ paddingBottom: "calc(1.5rem + env(safe-area-inset-bottom))" }}
             >
               <a
@@ -217,7 +222,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center justify-center gap-2 w-full py-4 rounded-2xl bg-gradient-to-r from-violet-500 to-purple-500 active:from-violet-600 active:to-purple-600 text-white font-bold text-base shadow-lg shadow-violet-500/30"
+                className="flex items-center justify-center gap-2.5 w-full py-4 rounded-2xl bg-gradient-to-r from-violet-500 to-purple-600 text-white font-bold text-base shadow-lg shadow-violet-500/30 active:opacity-90"
               >
                 <Calendar size={18} />
                 {lang === "fr" ? "Réserver un appel gratuit" : "Book a free call"}
@@ -227,7 +232,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
                 <a
                   href={SMS}
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-center gap-2 py-3.5 rounded-2xl border border-slate-700 bg-slate-900 active:bg-slate-800 text-slate-200 font-semibold text-sm"
+                  className="flex items-center justify-center gap-2 py-3.5 rounded-xl border border-slate-700/60 bg-slate-900/80 text-slate-200 font-semibold text-sm active:bg-slate-800"
                 >
                   <MessageSquare size={16} className="text-violet-400" />
                   SMS
@@ -235,15 +240,15 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
                 <a
                   href={TEL}
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-center gap-2 py-3.5 rounded-2xl border border-slate-700 bg-slate-900 active:bg-slate-800 text-slate-200 font-semibold text-sm"
+                  className="flex items-center justify-center gap-2 py-3.5 rounded-xl border border-slate-700/60 bg-slate-900/80 text-slate-200 font-semibold text-sm active:bg-slate-800"
                 >
                   <Phone size={16} className="text-violet-400" />
                   {lang === "fr" ? "Appel" : "Call"}
                 </a>
               </div>
 
-              <p className="text-center text-xs text-slate-500">
-                {lang === "fr" ? "Je réponds en moins de 2h" : "I reply within 2h"}
+              <p className="text-center text-xs text-slate-500 pt-1">
+                {lang === "fr" ? "Réponse en moins de 2h" : "Reply within 2h"}
               </p>
             </div>
           </div>
