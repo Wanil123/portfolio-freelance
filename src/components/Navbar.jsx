@@ -84,7 +84,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
             <div className="relative flex-shrink-0">
               <div className="absolute -inset-2 bg-gradient-to-r from-violet-500/50 to-purple-500/50 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <img
-                src="/logo.png"
+                src="/logo1.JPG"
                 alt={COMPANY.name}
                 width={56}
                 height={56}

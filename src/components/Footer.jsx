@@ -73,7 +73,7 @@ const Footer = () => {
     { name: "n8n / AI", gradient: "from-purple-400 to-violet-500" },
   ];
 
-  const logoSrc = `/logo.png`;
+  const logoSrc = `/logo1.JPG`;
 
   return (
     <footer className="relative mt-20 border-t border-slate-800/50 bg-gradient-to-b from-slate-950/60 via-slate-950/80 to-slate-950 overflow-hidden">
