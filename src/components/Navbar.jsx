@@ -85,9 +85,9 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
               <img
                 src="/logo1.JPG"
                 alt={COMPANY.name}
-                width={48}
-                height={48}
-                className="relative w-10 h-10 md:w-12 md:h-12 object-contain rounded-lg transition-all duration-300"
+                width={64}
+                height={64}
+                className="relative w-14 h-14 md:w-16 md:h-16 object-contain rounded-lg transition-all duration-300"
               />
             </div>
           </button>
