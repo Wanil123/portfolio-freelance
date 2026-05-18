@@ -194,19 +194,8 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
           {/* Scrollable content */}
           <div className="relative flex flex-col flex-1 overflow-y-auto" style={{ touchAction: "pan-y" }}>
 
-            {/* Logo dans le menu */}
-            <div className="px-8 pt-8 pb-2">
-              <img
-                src="/logo1.JPG"
-                alt={COMPANY.name}
-                width={64}
-                height={64}
-                className="w-16 h-16 object-contain rounded-xl"
-              />
-            </div>
-
             {/* Nav links */}
-            <nav className="flex-1 px-8 pt-4 pb-4">
+            <nav className="flex-1 px-8 pt-8 pb-4">
               {links.map((link, i) => {
                 const isActive = activeSection === link.id;
                 return (
