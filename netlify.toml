@@ -44,10 +44,17 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Vite-built CSS lives under /assets/ with content hashes → safe to cache 1 yr.
+# The blog uses a hand-written /blog/blog.css that may be edited → don't cache.
 [[headers]]
-  for = "/*.css"
+  for = "/assets/*.css"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/blog/blog.css"
+  [headers.values]
+    Cache-Control = "public, max-age=300, must-revalidate"
 
 # Headers pour images (cache long)
 [[headers]]

@@ -435,7 +435,7 @@ img {
 }
 
 .blog-list {
-  max-width: 1200px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 0 24px 64px;
   display: grid;
@@ -444,11 +444,9 @@ img {
 }
 
 @media (min-width: 640px) {
+  /* 2 columns of 3 articles each — keeps cards readable on desktop instead
+     of squeezing them into 3 columns which made each card too narrow. */
   .blog-list { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-}
-
-@media (min-width: 1024px) {
-  .blog-list { grid-template-columns: repeat(3, 1fr); gap: 28px; }
 }
 
 .blog-card {
