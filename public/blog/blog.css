@@ -74,31 +74,41 @@ img {
   gap: 16px;
 }
 
+/* Match the React Navbar exactly: logo image only (no brand text), 6 links
+   centered, language toggle + phone + CTA on the right. */
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-weight: 700;
-  font-size: 16px;
-  color: rgb(255 255 255);
+  flex-shrink: 0;
 }
 
 .nav-logo img {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+@media (min-width: 768px) {
+  .nav-logo img { width: 56px; height: 56px; }
 }
 
 .nav-links {
-  display: flex;
-  gap: 8px;
+  display: none;
+  gap: 4px;
+}
+
+@media (min-width: 1024px) {
+  .nav-links { display: flex; align-items: center; }
 }
 
 .nav-link {
-  padding: 8px 14px;
-  border-radius: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
   font-size: 14px;
   color: rgb(203 213 225);
+  border: 1px solid transparent;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
 }
 
 .nav-link:hover {
@@ -106,9 +116,69 @@ img {
   color: white;
 }
 
+.nav-link-active {
+  background: rgb(15 23 42 / 0.7);
+  border-color: rgb(139 92 246 / 0.4);
+  color: white;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.nav-phone {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgb(30 41 59 / 0.5);
+  border: 1px solid rgb(51 65 85 / 0.5);
+  color: rgb(203 213 225);
+  font-size: 12px;
+  font-weight: 500;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+@media (min-width: 1024px) {
+  .nav-phone { display: inline-flex; }
+}
+
+.nav-phone:hover {
+  color: white;
+  border-color: rgb(139 92 246 / 0.4);
+}
+
+.nav-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgb(15 23 42 / 0.4);
+  border: 1px solid rgb(51 65 85 / 0.6);
+  color: rgb(226 232 240);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: border-color 0.15s;
+}
+
+.nav-lang:hover {
+  border-color: rgb(100 116 139);
+  color: white;
+}
+
 .nav-cta {
-  padding: 10px 18px;
-  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 12px;
   background: linear-gradient(135deg, rgb(139 92 246), rgb(168 85 247));
   color: white !important;
   font-weight: 600;
@@ -119,11 +189,10 @@ img {
 
 .nav-cta:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 25px -8px rgb(139 92 246 / 0.7);
+  box-shadow: 0 14px 25px -8px rgb(139 92 246 / 0.7);
 }
 
-@media (max-width: 768px) {
-  .nav-links { display: none; }
+@media (max-width: 1023px) {
   .nav-inner { padding: 12px 16px; }
 }
 
@@ -435,7 +504,7 @@ img {
 }
 
 .blog-list {
-  max-width: 1080px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 24px 64px;
   display: grid;
@@ -444,9 +513,12 @@ img {
 }
 
 @media (min-width: 640px) {
-  /* 2 columns of 3 articles each — keeps cards readable on desktop instead
-     of squeezing them into 3 columns which made each card too narrow. */
-  .blog-list { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .blog-list { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+}
+
+@media (min-width: 1024px) {
+  /* 3 columns on desktop (2 rows × 3 articles) */
+  .blog-list { grid-template-columns: repeat(3, 1fr); gap: 24px; }
 }
 
 .blog-card {

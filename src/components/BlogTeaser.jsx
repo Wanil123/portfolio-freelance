@@ -204,9 +204,8 @@ const BlogTeaser = () => {
           </p>
         </Reveal>
 
-        {/* 6 articles in 2 columns × 3 rows on desktop (cards stay readable),
-            2 cols on tablet, 1 col mobile. */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6 lg:gap-7 max-w-5xl mx-auto mb-10 md:mb-12">
+        {/* 6 articles in 3 columns × 2 rows on desktop, 2 cols tablet, 1 col mobile. */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-7 mb-10 md:mb-12">
           {list.map((article, idx) => (
             <Reveal key={article.slug} delay={Math.min(idx * 0.05, 0.2)}>
               <BlogCard article={article} blogRoot={blogRoot} />
