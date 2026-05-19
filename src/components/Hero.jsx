@@ -1,7 +1,7 @@
 // src/components/Hero.jsx
 import { Phone, Calendar, Zap, Shield, Clock, MessageSquare } from "lucide-react";
 import { useLanguage } from "../hooks/useLanguage";
-import { CONTACT } from "../constants/config";
+import { CONTACT, formatScarcityLabel } from "../constants/config";
 
 const Hero = ({ scrollToSection }) => {
   const { lang } = useLanguage();
@@ -37,9 +37,7 @@ const Hero = ({ scrollToSection }) => {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
           </div>
           <span className="text-amber-200 text-xs sm:text-sm font-semibold text-center">
-            {lang === "fr"
-              ? "2 spots disponibles — jusqu'au 30 juin"
-              : "2 spots available — through June 30"}
+            {formatScarcityLabel(lang)}
           </span>
         </div>
 

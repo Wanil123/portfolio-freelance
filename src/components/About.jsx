@@ -1,6 +1,6 @@
 // src/components/About.jsx
 import { useLanguage } from "../hooks/useLanguage";
-import { COMPANY, CONTACT } from "../constants/config";
+import { COMPANY, CONTACT, formatScarcityDate, SCARCITY_SPOTS } from "../constants/config";
 import {
   Globe2,
   Code2,
@@ -146,7 +146,9 @@ const About = () => {
                         <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
                       </div>
                       <span className="text-xs text-emerald-400 font-medium">
-                        {lang === "fr" ? "Disponible — 2 spots jusqu'au 30 juin" : "Available — 2 spots through June 30"}
+                        {lang === "fr"
+                          ? `Disponible — ${SCARCITY_SPOTS} spots ${formatScarcityDate("fr")}`
+                          : `Available — ${SCARCITY_SPOTS} spots ${formatScarcityDate("en")}`}
                       </span>
                     </div>
                     <p className="text-xs text-slate-500 leading-relaxed max-w-xs">

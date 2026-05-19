@@ -1,6 +1,6 @@
 // src/components/ProgrammeVitrine.jsx
 import { useLanguage } from "../hooks/useLanguage";
-import { CONTACT } from "../constants/config";
+import { CONTACT, SCARCITY_SPOTS } from "../constants/config";
 import {
   Star,
   CheckCircle2,
@@ -64,8 +64,8 @@ const ProgrammeVitrine = () => {
               <Flame size={14} className="text-amber-400 flex-shrink-0" />
               <span className="text-amber-200 text-xs sm:text-sm font-semibold text-center">
                 {lang === "fr"
-                  ? "Programme Vitrine — 2 places ce trimestre"
-                  : "Showcase Program — 2 spots this quarter"}
+                  ? `Programme Vitrine — ${SCARCITY_SPOTS} places ce trimestre`
+                  : `Showcase Program — ${SCARCITY_SPOTS} spots this quarter`}
               </span>
             </div>
           </div>
@@ -161,16 +161,17 @@ const ProgrammeVitrine = () => {
                       <span className="text-sm font-semibold text-amber-200">
                         {lang === "fr" ? "Places disponibles ce trimestre" : "Spots available this quarter"}
                       </span>
-                      <span className="text-2xl font-bold text-amber-400">2</span>
+                      <span className="text-2xl font-bold text-amber-400">{SCARCITY_SPOTS}</span>
                     </div>
                     <div className="flex gap-2">
-                      <div className="flex-1 h-2 rounded-full bg-amber-400/30" />
-                      <div className="flex-1 h-2 rounded-full bg-amber-400/30" />
+                      {Array.from({ length: SCARCITY_SPOTS }).map((_, i) => (
+                        <div key={i} className="flex-1 h-2 rounded-full bg-amber-400/30" />
+                      ))}
                     </div>
                     <p className="text-xs text-amber-300/70 mt-2">
                       {lang === "fr"
-                        ? "2 places ouvertes — première arrivée, première servie"
-                        : "2 open spots — first come, first served"}
+                        ? `${SCARCITY_SPOTS} places ouvertes — première arrivée, première servie`
+                        : `${SCARCITY_SPOTS} open spots — first come, first served`}
                     </p>
                   </div>
 
