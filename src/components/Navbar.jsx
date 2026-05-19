@@ -138,13 +138,19 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
                   className={
                     isActive
                       ? "text-white text-sm px-3 py-1.5 rounded-full bg-slate-900/70 border border-violet-500/40"
-                      : "text-slate-300 hover:text-white text-sm px-3 py-1.5 rounded-full hover:bg-slate-900/30 transition-colors"
+                      : "text-slate-300 hover:text-white text-sm px-3 py-1.5 rounded-full border border-transparent hover:bg-slate-900/30 transition-colors"
                   }
                 >
                   {lang === "fr" ? link.fr : link.en}
                 </button>
               );
             })}
+            <a
+              href={lang === "fr" ? "/blog/" : "/blog/en/"}
+              className="text-slate-300 hover:text-white text-sm px-3 py-1.5 rounded-full border border-transparent hover:bg-slate-900/30 transition-colors"
+            >
+              Blog
+            </a>
           </div>
 
           {/* DESKTOP — right side */}
@@ -250,6 +256,22 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
                   </button>
                 );
               })}
+              <a
+                href={lang === "fr" ? "/blog/" : "/blog/en/"}
+                className="w-full flex items-center gap-5 py-4 text-left border-b border-slate-800/40 group active:opacity-70"
+                style={{
+                  opacity: 0,
+                  animation: "fade-in-up 0.4s ease forwards",
+                  animationDelay: `${links.length * 55}ms`,
+                }}
+              >
+                <span className="text-xs font-mono text-violet-500/50 w-5 tabular-nums flex-shrink-0">
+                  {String(links.length + 1).padStart(2, "0")}
+                </span>
+                <span className="text-2xl font-bold tracking-tight text-white group-hover:text-violet-300 transition-colors">
+                  Blog
+                </span>
+              </a>
             </nav>
 
             {/* CTAs */}

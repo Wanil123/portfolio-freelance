@@ -17,6 +17,7 @@ const Skills = lazy(() => import("./components/Skills.jsx"));
 const About = lazy(() => import("./components/About.jsx"));
 const ProgrammeVitrine = lazy(() => import("./components/ProgrammeVitrine.jsx"));
 const FAQ = lazy(() => import("./components/FAQ.jsx"));
+const BlogTeaser = lazy(() => import("./components/BlogTeaser.jsx"));
 const Contact = lazy(() => import("./components/Contact.jsx"));
 const Footer = lazy(() => import("./components/Footer.jsx"));
 const ScrollToTopButton = lazy(() => import("./components/ScrollToTopButton.jsx"));
@@ -145,6 +146,7 @@ function App() {
             <About />
             <ProgrammeVitrine />
             <FAQ />
+            <BlogTeaser />
             <Contact />
             <Footer />
             <ScrollToTopButton />
