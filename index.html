@@ -121,12 +121,13 @@
       }
     </script>
 
-    <!-- Plausible Analytics — privacy-first, no cookie banner needed (Loi 25 compliant)
-         Sign up at https://plausible.io with domain prime-dev-studios.com to start receiving data.
-         The stub MUST be defined BEFORE the deferred script loads, otherwise early
-         track() calls during page load are lost. -->
-    <script>window.plausible = window.plausible || function(){(window.plausible.q = window.plausible.q || []).push(arguments)}</script>
-    <script defer data-domain="prime-dev-studios.com" src="https://plausible.io/js/script.tagged-events.js"></script>
+    <!-- Privacy-friendly analytics by Plausible (Loi 25 / GDPR compliant, no cookie banner) -->
+    <script async src="https://plausible.io/js/pa-dW6UCSyLSeSysDKbhNz2b.js"></script>
+    <script>
+      window.plausible = window.plausible || function(){(plausible.q=plausible.q||[]).push(arguments)};
+      plausible.init = plausible.init || function(i){plausible.o=i||{}};
+      plausible.init();
+    </script>
 
     <!-- JSON-LD FAQPage Schema -->
     <script type="application/ld+json">
