@@ -11,6 +11,10 @@ import {
 import { Reveal } from "../ui/Reveal";
 
 const PricingCard = ({ offer, index, lang, activeTab, onContactClick }) => {
+  const isAI = activeTab === "ai";
+  const isMonthly = /\/(mois|mo)\b/i.test(offer.price);
+  const isCustomPrice = offer.price === "Sur mesure" || offer.price === "Custom";
+  const showStartingAt = /^(à partir|starting|from)/i.test(offer.price) || offer.price.endsWith("+");
   return (
     <div
       key={`${activeTab}-${offer.name}`}
@@ -58,14 +62,16 @@ const PricingCard = ({ offer, index, lang, activeTab, onContactClick }) => {
 
               {/* Price */}
               <div className="mb-1">
-                <div className="flex items-baseline gap-1">
-                  <span className="text-xs text-slate-500 uppercase tracking-wider">
-                    {lang === "fr" ? "À partir de" : "Starting at"}
-                  </span>
-                </div>
+                {showStartingAt && !isCustomPrice && (
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-xs text-slate-400 uppercase tracking-wider">
+                      {lang === "fr" ? "À partir de" : "Starting at"}
+                    </span>
+                  </div>
+                )}
                 <div className="flex items-baseline gap-2 mb-2">
                   <span
-                    className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${offer.color} bg-clip-text text-transparent`}
+                    className={`text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r ${offer.color} bg-clip-text text-transparent`}
                   >
                     {offer.price}
                   </span>
@@ -85,17 +91,18 @@ const PricingCard = ({ offer, index, lang, activeTab, onContactClick }) => {
                     {offer.timeline}
                   </span>
                 </div>
-                {offer.price !== "Sur mesure" &&
-                  offer.price !== "Custom" && (
-                    <div className="flex items-center gap-2 text-xs text-emerald-400 font-medium">
-                      <Shield size={12} />
-                      <span>
-                        {lang === "fr"
-                          ? "Paiement en 3 fois sans frais"
-                          : "Pay in 3 installments, no fees"}
-                      </span>
-                    </div>
-                  )}
+                {/* Only show installment promise on one-shot project pricing,
+                    not on monthly AI subscriptions (regulatory + nonsensical). */}
+                {!isCustomPrice && !isMonthly && !isAI && (
+                  <div className="flex items-center gap-2 text-xs text-emerald-400 font-medium">
+                    <Shield size={12} />
+                    <span>
+                      {lang === "fr"
+                        ? "Paiement en 3 fois sans frais"
+                        : "Pay in 3 installments, no fees"}
+                    </span>
+                  </div>
+                )}
               </div>
 
               {/* Features */}
@@ -113,7 +120,7 @@ const PricingCard = ({ offer, index, lang, activeTab, onContactClick }) => {
 
               {/* Ideal for */}
               <div className="mb-5 p-3 rounded-lg bg-slate-800/30 border border-slate-700/30">
-                <p className="text-xs text-slate-500 mb-0.5 font-medium uppercase tracking-wider">
+                <p className="text-xs text-slate-400 mb-0.5 font-medium uppercase tracking-wider">
                   {lang === "fr" ? "Idéal pour" : "Ideal for"}
                 </p>
                 <p className="text-sm text-slate-200">{offer.ideal}</p>

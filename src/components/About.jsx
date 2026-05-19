@@ -1,6 +1,6 @@
 // src/components/About.jsx
 import { useLanguage } from "../hooks/useLanguage";
-import { COMPANY, CONTACT, formatScarcityDate, SCARCITY_SPOTS } from "../constants/config";
+import { COMPANY } from "../constants/config";
 import {
   Globe2,
   Code2,
@@ -113,14 +113,13 @@ const About = () => {
           </p>
         </Reveal>
 
-        {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 mb-12">
-          {/* Left Column - Story + Photo */}
+        {/* Main Content — full-width bio first, then strengths grid below */}
+        <div className="mb-10 md:mb-12">
           <Reveal delay={0.1}>
-            <div className="relative h-full">
+            <div className="relative">
               <div className="absolute -inset-1 bg-gradient-to-r from-violet-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-50" />
 
-              <div className="relative h-full bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
+              <div className="relative bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
                 {/* Photo + Name */}
                 <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 mb-6">
                   <div className="relative flex-shrink-0">
@@ -128,7 +127,11 @@ const About = () => {
                     <img
                       src="/wanil.jpeg"
                       alt="Wanil Parfait"
-                      className="relative w-24 h-24 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-2xl object-cover border-2 border-violet-500/40 shadow-xl shadow-violet-500/20"
+                      width="144"
+                      height="144"
+                      loading="lazy"
+                      decoding="async"
+                      className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-2xl object-cover border-2 border-violet-500/40 shadow-xl shadow-violet-500/20"
                     />
                   </div>
                   <div className="text-center sm:text-left">
@@ -146,15 +149,13 @@ const About = () => {
                         <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
                       </div>
                       <span className="text-xs text-emerald-400 font-medium">
-                        {lang === "fr"
-                          ? `Disponible — ${SCARCITY_SPOTS} spots ${formatScarcityDate("fr")}`
-                          : `Available — ${SCARCITY_SPOTS} spots ${formatScarcityDate("en")}`}
+                        {lang === "fr" ? "Disponible pour nouveaux projets" : "Available for new projects"}
                       </span>
                     </div>
-                    <p className="text-xs text-slate-500 leading-relaxed max-w-xs">
+                    <p className="text-xs text-slate-400 leading-relaxed max-w-xs">
                       {lang === "fr"
-                        ? "Développeur full-stack solo · Montréal, QC · 5+ ans d'expérience"
-                        : "Solo full-stack developer · Montréal, QC · 5+ years experience"}
+                        ? "Développeur full-stack indépendant · Montréal, QC · 5+ ans d'expérience"
+                        : "Independent full-stack developer · Montréal, QC · 5+ years experience"}
                     </p>
                   </div>
                 </div>
@@ -207,10 +208,10 @@ const About = () => {
                     const Icon = fact.icon;
                     return (
                       <div key={idx} className="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-800/30">
-                        <Icon size={14} className="text-violet-400 flex-shrink-0 mt-0.5" />
+                        <Icon size={14} aria-hidden="true" className="text-violet-400 flex-shrink-0 mt-0.5" />
                         <div>
                           <p className="text-xs text-white font-medium">{fact.text}</p>
-                          <p className="text-[10px] text-slate-500">{fact.detail}</p>
+                          <p className="text-[11px] text-slate-400">{fact.detail}</p>
                         </div>
                       </div>
                     );
@@ -220,38 +221,31 @@ const About = () => {
             </div>
           </Reveal>
 
-          {/* Right Column - Why work with me */}
-          <div className="space-y-4 md:space-y-5">
-            <Reveal>
-              <p className="text-xs md:text-sm text-slate-500 font-medium uppercase tracking-wider mb-2">
-                {lang === "fr" ? "Pourquoi travailler avec moi" : "Why work with me"}
-              </p>
-            </Reveal>
+        </div>
+
+        {/* Strengths grid — 2 cols on tablet, 3 cols desktop, sits well below bio */}
+        <div className="mb-12">
+          <Reveal>
+            <p className="text-xs md:text-sm text-slate-400 font-medium uppercase tracking-wider mb-5 text-center">
+              {lang === "fr" ? "Pourquoi travailler avec moi" : "Why work with me"}
+            </p>
+          </Reveal>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
             {strengths.map((strength, idx) => {
               const Icon = strength.icon;
               return (
-                <Reveal key={idx} delay={0.1 + idx * 0.05}>
-                  <div className="group relative">
-                    <div
-                      className={`pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 bg-gradient-to-br ${strength.color} rounded-xl blur-xl transition-opacity duration-500`}
-                    />
-
-                    <div className="relative bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-xl p-5 md:p-6 hover:border-violet-400/50 transition-all">
-                      <div className="flex items-start gap-4">
-                        <div
-                          className={`flex h-12 w-12 items-center justify-center rounded-xl ${strength.bgColor} border border-white/10 flex-shrink-0 group-hover:scale-110 transition-transform`}
-                        >
-                          <Icon size={22} className={strength.iconColor} />
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="text-lg font-bold text-white mb-1.5">
-                            {strength.title}
-                          </h4>
-                          <p className="text-sm text-slate-400 leading-relaxed">
-                            {strength.description}
-                          </p>
-                        </div>
+                <Reveal key={idx} delay={Math.min(idx * 0.05, 0.2)}>
+                  <div className="group relative h-full">
+                    <div className="relative h-full bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-800/50 rounded-xl p-5 md:p-6 hover:border-violet-400/50 transition-all">
+                      <div className={`flex h-11 w-11 items-center justify-center rounded-xl ${strength.bgColor} border border-white/10 mb-3 group-hover:scale-105 transition-transform`}>
+                        <Icon size={20} aria-hidden="true" className={strength.iconColor} />
                       </div>
+                      <h4 className="text-base md:text-lg font-bold text-white mb-1.5">
+                        {strength.title}
+                      </h4>
+                      <p className="text-sm text-slate-400 leading-relaxed">
+                        {strength.description}
+                      </p>
                     </div>
                   </div>
                 </Reveal>

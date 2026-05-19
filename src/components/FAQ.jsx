@@ -21,7 +21,8 @@ import { Reveal } from "./ui/Reveal";
 
 const FAQ = () => {
   const { lang } = useLanguage();
-  const [openIndex, setOpenIndex] = useState(0);
+  // All FAQs closed by default — opening one feels intentional, not pre-baked.
+  const [openIndex, setOpenIndex] = useState(null);
 
   const faqs = [
     {
@@ -188,81 +189,68 @@ const FAQ = () => {
           </p>
         </Reveal>
 
-        {/* FAQ - Two independent columns */}
-        <div className="flex flex-col md:flex-row gap-4 md:gap-5">
-          {[faqs.slice(0, Math.ceil(faqs.length / 2)), faqs.slice(Math.ceil(faqs.length / 2))].map((column, colIndex) => (
-            <div key={colIndex} className="flex-1 space-y-4 md:space-y-5">
-              {column.map((faq, i) => {
-                const index = colIndex * Math.ceil(faqs.length / 2) + i;
-                const Icon = faq.icon;
-                const isOpen = openIndex === index;
+        {/* FAQ — single column, max-w-3xl, Stripe/Linear/Vercel pattern */}
+        <div className="max-w-3xl mx-auto space-y-3 md:space-y-4">
+          {faqs.map((faq, index) => {
+            const Icon = faq.icon;
+            const isOpen = openIndex === index;
+            const panelId = `faq-panel-${index}`;
+            const buttonId = `faq-question-${index}`;
 
-                return (
-                  <Reveal key={index} delay={index * 0.05}>
+            return (
+              <Reveal key={index} delay={Math.min(index * 0.03, 0.2)}>
+                <div
+                  className={`group relative bg-gradient-to-br from-slate-900/90 to-slate-950/90 border rounded-2xl transition-all duration-300 overflow-hidden ${
+                    isOpen
+                      ? "border-violet-500/50 shadow-lg shadow-violet-500/10"
+                      : "border-slate-800/50 hover:border-slate-700/60"
+                  }`}
+                >
+                  <button
+                    type="button"
+                    id={buttonId}
+                    onClick={() => toggleFAQ(index)}
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    className="relative w-full flex items-center gap-4 p-5 md:p-6 text-left select-none"
+                  >
+                    <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-violet-500/15 border border-violet-500/30 flex items-center justify-center">
+                      <Icon size={18} className="text-violet-300" aria-hidden="true" />
+                    </div>
+
+                    <div className="flex-1 min-w-0">
+                      <span className={`block font-semibold text-base md:text-lg leading-snug transition-colors ${isOpen ? 'text-white' : 'text-slate-200 group-hover:text-white'}`}>
+                        {faq.question[lang]}
+                      </span>
+                    </div>
+
                     <div
-                      className={`group relative bg-gradient-to-br from-slate-900/90 to-slate-950/90 border rounded-2xl transition-all duration-300 overflow-hidden ${
-                        isOpen
-                          ? "border-violet-500/50 shadow-lg shadow-violet-500/10"
-                          : "border-slate-800/50 hover:border-slate-700/50"
+                      className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 ${
+                        isOpen ? "bg-violet-500 rotate-180" : "bg-slate-800/80 group-hover:bg-slate-700"
                       }`}
                     >
-                      <div className={`absolute inset-0 bg-gradient-to-br ${faq.color} opacity-0 ${isOpen ? 'opacity-[0.03]' : 'group-hover:opacity-[0.02]'} transition-opacity duration-300`} />
-
-                      <button
-                        id={`faq-question-${index}`}
-                        onClick={() => toggleFAQ(index)}
-                        className="relative w-full flex items-start gap-4 p-5 md:p-6 text-left"
-                        aria-expanded={isOpen}
-                      >
-                        <div
-                          className={`flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br ${faq.color} flex items-center justify-center shadow-lg ${isOpen ? 'shadow-violet-500/20' : ''}`}
-                        >
-                          <Icon size={18} className="text-white" />
-                        </div>
-
-                        <div className="flex-1 min-w-0 pt-1">
-                          <span className={`block font-semibold text-sm md:text-base leading-snug transition-colors ${isOpen ? 'text-white' : 'text-slate-200 group-hover:text-white'}`}>
-                            {faq.question[lang]}
-                          </span>
-                        </div>
-
-                        <div
-                          className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 mt-1 ${
-                            isOpen
-                              ? "bg-violet-500 rotate-180"
-                              : "bg-slate-800/80 group-hover:bg-slate-700"
-                          }`}
-                        >
-                          <ChevronDown
-                            size={16}
-                            className={`transition-colors ${
-                              isOpen ? "text-white" : "text-slate-400"
-                            }`}
-                          />
-                        </div>
-                      </button>
-
-                      <div
-                        role="region"
-                        aria-labelledby={`faq-question-${index}`}
-                        className={`grid transition-all duration-300 ease-in-out ${
-                          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                        }`}
-                      >
-                        <div className="overflow-hidden">
-                          <div className="px-5 md:px-6 pb-5 md:pb-6 pt-0 pl-5 md:pl-20">
-                            <p className="text-slate-400 text-sm md:text-base leading-relaxed">
-                              {faq.answer[lang]}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
+                      <ChevronDown size={16} className={isOpen ? "text-white" : "text-slate-400"} />
                     </div>
-                  </Reveal>
-                );
-              })}
-            </div>
-          ))}
+                  </button>
+
+                  {/* Use max-height instead of grid-rows trick — universal browser support */}
+                  <div
+                    id={panelId}
+                    role="region"
+                    aria-labelledby={buttonId}
+                    className="overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out"
+                    style={{ maxHeight: isOpen ? "500px" : "0px", opacity: isOpen ? 1 : 0 }}
+                  >
+                    <div className="px-5 md:px-6 pb-5 md:pb-6 pt-0 pl-[4.5rem] md:pl-[5rem]">
+                      <p className="text-slate-300 text-sm md:text-base leading-relaxed">
+                        {faq.answer[lang]}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
 
         {/* Bottom CTA */}

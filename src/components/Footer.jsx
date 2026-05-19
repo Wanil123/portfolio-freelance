@@ -20,6 +20,7 @@ const Footer = () => {
   const { lang } = useLanguage();
   const year = new Date().getFullYear();
   const [showPrivacy, setShowPrivacy] = useState(false);
+  const [logoFailed, setLogoFailed] = useState(false);
 
   useEffect(() => {
     const handler = () => setShowPrivacy(true);
@@ -92,25 +93,28 @@ const Footer = () => {
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-violet-500/30 to-purple-500/30 rounded-xl blur-lg opacity-80 group-hover:opacity-100 transition-opacity" />
                 <div className="relative flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-700/50 overflow-hidden shadow-xl">
-                  <img
-                    src={logoSrc}
-                    alt={COMPANY.name}
-                    className="h-14 w-14 object-contain"
-                    onError={(e) => {
-                      e.currentTarget.style.display = "none";
-                      e.currentTarget.parentElement.innerHTML = `<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500/20 to-purple-500/20"><span style="color:#a78bfa;font-size:20px;">⚡</span></div>`;
-                    }}
-                  />
+                  {logoFailed ? (
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500/20 to-purple-500/20">
+                      <Sparkles size={20} className="text-violet-400" />
+                    </div>
+                  ) : (
+                    <img
+                      src={logoSrc}
+                      alt={COMPANY.name}
+                      className="h-14 w-14 object-contain"
+                      onError={() => setLogoFailed(true)}
+                    />
+                  )}
                 </div>
               </div>
               <div className="text-left">
                 <h3 className="text-xl font-bold bg-gradient-to-r from-violet-400 via-purple-400 to-violet-400 bg-clip-text text-transparent">
                   {COMPANY.name}
                 </h3>
-                <p className="text-[10px] text-slate-500 uppercase tracking-wider">
+                <p className="text-xs text-slate-400 uppercase tracking-wider">
                   {lang === "fr"
-                    ? "Développeur full-stack solo · Montréal"
-                    : "Solo full-stack developer · Montréal"}
+                    ? "Développeur full-stack indépendant · Montréal"
+                    : "Independent full-stack developer · Montréal"}
                 </p>
               </div>
             </button>
@@ -265,21 +269,21 @@ const Footer = () => {
           <div className="pt-8 border-t border-slate-800/50">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               {/* Copyright */}
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-slate-500">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-400">
                 <span>© {year} {COMPANY.name}</span>
                 <span className="hidden md:inline">·</span>
                 <span className="hidden md:inline">
                   {lang === "fr" ? "Tous droits réservés" : "All rights reserved"}
                 </span>
                 <span>·</span>
-                <span className="text-slate-600">NEQ {COMPANY.neq}</span>
+                <span className="text-slate-500">NEQ {COMPANY.neq}</span>
                 <span>·</span>
                 <button
                   type="button"
                   onClick={() => setShowPrivacy(true)}
-                  className="hover:text-violet-400 transition-colors underline underline-offset-2 px-2 py-1 -mx-2 -my-1 min-h-[44px] inline-flex items-center"
+                  className="hover:text-violet-400 transition-colors underline underline-offset-2 py-1"
                 >
-                  {lang === "fr" ? "Mentions légales" : "Privacy Policy"}
+                  {lang === "fr" ? "Politique de confidentialité" : "Privacy Policy"}
                 </button>
               </div>
 

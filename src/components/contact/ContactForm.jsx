@@ -33,10 +33,15 @@ const ContactForm = () => {
   const [errors, setErrors] = useState({});
   const [cooldown, setCooldown] = useState(false);
   const cooldownTimerRef = useRef(null);
+  const statusTimerRef = useRef(null);
+  const abortControllerRef = useRef(null);
+  const honeypotRef = useRef(null);
 
   useEffect(() => {
     return () => {
       if (cooldownTimerRef.current) clearTimeout(cooldownTimerRef.current);
+      if (statusTimerRef.current) clearTimeout(statusTimerRef.current);
+      if (abortControllerRef.current) abortControllerRef.current.abort();
     };
   }, []);
 
@@ -132,6 +137,9 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Honeypot — if a bot filled the hidden field, silently drop the submission.
+    if (honeypotRef.current && honeypotRef.current.value) return;
+
     if (!validateForm()) return;
 
     setIsSubmitting(true);
@@ -147,10 +155,11 @@ const ContactForm = () => {
       message: formData.message.trim(),
     };
 
-    try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 10000);
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
 
+    try {
       const response = await fetch(CONTACT.formEndpoint, {
         method: "POST",
         signal: controller.signal,
@@ -171,18 +180,19 @@ const ContactForm = () => {
             : `New message from ${trimmedData.name} — ${COMPANY.name}`,
           _replyto: trimmedData.email,
           _template: "table",
-          _honeypot: "",
         }),
       });
-
-      clearTimeout(timeoutId);
 
       if (response.ok) {
         setFormStatus("success");
         setFormData({ name: "", email: "", projectType: "", budget: "", timeline: "", hasWebsite: "", message: "", consent: false });
         setErrors({});
         setCooldown(true);
+        if (cooldownTimerRef.current) clearTimeout(cooldownTimerRef.current);
         cooldownTimerRef.current = setTimeout(() => setCooldown(false), 5000);
+        // Clear the success banner after 8s so it doesn't stick on screen forever
+        if (statusTimerRef.current) clearTimeout(statusTimerRef.current);
+        statusTimerRef.current = setTimeout(() => setFormStatus(null), 8000);
       } else {
         setFormStatus("error");
       }
@@ -193,9 +203,11 @@ const ContactForm = () => {
       } else {
         setFormStatus("error");
       }
+    } finally {
+      clearTimeout(timeoutId);
+      abortControllerRef.current = null;
+      setIsSubmitting(false);
     }
-
-    setIsSubmitting(false);
   };
 
   return (
@@ -220,13 +232,15 @@ const ContactForm = () => {
           onSubmit={handleSubmit}
           className="space-y-5"
         >
-          {/* Honeypot anti-spam (hidden from users) */}
+          {/* Honeypot anti-spam — hidden via positioning (display:none is bot-detectable) */}
           <input
+            ref={honeypotRef}
             type="text"
-            name="_honeypot"
-            style={{ display: "none" }}
+            name="_honey"
             tabIndex={-1}
             autoComplete="off"
+            aria-hidden="true"
+            style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none", height: 0 }}
           />
 
           {/* Name */}

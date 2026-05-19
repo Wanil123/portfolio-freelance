@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useLanguage } from "../hooks/useLanguage";
 import { Check, Sparkles, Calendar } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
-import { CONTACT } from "../constants/config";
 import { getTabs, pricingData } from "./offers/OffersData";
 import PricingTab from "./offers/PricingTab";
 import PricingCard from "./offers/PricingCard";
@@ -11,14 +10,16 @@ import AIStatsSection from "./offers/AIStatsSection";
 
 const OffersSection = () => {
   const { lang } = useLanguage();
-  const [activeTab, setActiveTab] = useState("vitrine");
+  // Default tab must match the first tab in getTabs() — "ai" — otherwise the
+  // visual order suggests AI but the panel underneath shows Vitrine.
+  const [activeTab, setActiveTab] = useState("ai");
 
   const handleContactClick = () => {
     document.dispatchEvent(new Event("open-qualification"));
   };
 
   const tabs = getTabs(lang);
-  const offers = pricingData[activeTab]?.[lang] || pricingData.vitrine.fr;
+  const offers = pricingData[activeTab]?.[lang] || pricingData.ai.fr;
 
   return (
     <section id="offers" className="py-20 md:py-24 relative overflow-hidden">

@@ -50,7 +50,6 @@ const ProgrammeVitrine = () => {
   return (
     <section id="vitrine" className="py-20 md:py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900/30 to-slate-950 -z-10" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-violet-500/5 rounded-full blur-[100px] -z-10" />
 
       <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
         <Reveal>
@@ -75,17 +74,10 @@ const ProgrammeVitrine = () => {
             <div className="absolute -inset-1 bg-gradient-to-r from-violet-500/30 via-purple-500/30 to-amber-500/20 rounded-3xl blur-2xl opacity-60" />
 
             <div className="relative bg-gradient-to-br from-slate-900/95 to-slate-950/95 border border-violet-500/30 rounded-3xl p-8 md:p-12 overflow-hidden">
-              {/* Background pattern */}
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f06_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f06_1px,transparent_1px)] bg-[size:3rem_3rem]" />
 
               <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12">
                 {/* Left: What is it */}
                 <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-violet-500/10 border border-violet-400/30 text-violet-300 text-xs font-medium mb-5">
-                    <Star size={12} fill="currentColor" />
-                    {lang === "fr" ? "Offre exclusive" : "Exclusive offer"}
-                  </div>
-
                   <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
                     {lang === "fr" ? (
                       <>
@@ -104,16 +96,10 @@ const ProgrammeVitrine = () => {
                     )}
                   </h2>
 
-                  <p className="text-slate-300 text-base leading-relaxed mb-6">
+                  <p className="text-slate-300 text-base leading-relaxed mb-8">
                     {lang === "fr"
-                      ? "Chaque trimestre, je sélectionne 2 entreprises pour devenir des projets vitrine de PrimeDev Studios. En échange d'un droit de présentation de votre projet dans mon portfolio, vous bénéficiez d'une réduction significative et d'une priorité de traitement."
-                      : "Each quarter, I select 2 businesses to become showcase projects for PrimeDev Studios. In exchange for the right to present your project in my portfolio, you get a significant discount and priority handling."}
-                  </p>
-
-                  <p className="text-slate-400 text-sm leading-relaxed mb-8">
-                    {lang === "fr"
-                      ? "Ce n'est pas une offre promotionnelle générique — je sélectionne les projets qui me permettent de démontrer ma valeur auprès de futurs clients dans votre industrie. Votre succès est mon meilleur argument de vente."
-                      : "This isn't a generic promotion — I select projects that let me demonstrate my value to future clients in your industry. Your success is my best sales argument."}
+                      ? "Chaque trimestre, je sélectionne 2 entreprises pour devenir des projets vitrine. En échange du droit de présenter votre projet dans mon portfolio, vous bénéficiez d'une réduction et d'une priorité de traitement."
+                      : "Each quarter, I select 2 businesses to become showcase projects. In exchange for the right to feature your project in my portfolio, you get a discount and priority handling."}
                   </p>
 
                   {/* Criteria */}
@@ -183,8 +169,8 @@ const ProgrammeVitrine = () => {
                   >
                     <Calendar size={18} />
                     {lang === "fr"
-                      ? "Postuler — Appel gratuit 30 min"
-                      : "Apply — Free 30 min call"}
+                      ? "Postuler au Programme Vitrine"
+                      : "Apply to the Showcase Program"}
                   </button>
                   <p className="text-center text-xs text-slate-500 mt-3">
                     {lang === "fr"
