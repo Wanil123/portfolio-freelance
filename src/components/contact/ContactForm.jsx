@@ -286,6 +286,17 @@ const ContactForm = () => {
             {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
           </div>
 
+          {/* Optional context fields — collapsed by default so the form feels
+              short on mobile. Users who want to pre-qualify themselves open it. */}
+          <details className="group">
+            <summary className="cursor-pointer list-none flex items-center justify-between gap-2 px-4 py-3 rounded-xl bg-slate-800/30 border border-slate-700/30 hover:border-violet-500/40 transition-colors">
+              <span className="text-sm font-medium text-slate-300">
+                {lang === "fr" ? "Ajouter du contexte (optionnel)" : "Add context (optional)"}
+              </span>
+              <span className="text-xs text-slate-500 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div className="mt-4 space-y-5">
+
           {/* Project Type */}
           <div>
             <label htmlFor="project-type-select" className="flex items-center gap-2 text-sm text-slate-300 mb-2 font-medium">
@@ -382,6 +393,9 @@ const ContactForm = () => {
             </select>
           </div>
 
+            </div>
+          </details>
+
           {/* Message */}
           <div>
             <label htmlFor="field-message" className="flex items-center gap-2 text-sm text-slate-300 mb-2 font-medium">
@@ -395,7 +409,7 @@ const ContactForm = () => {
               onChange={handleInputChange}
               required
               aria-required="true"
-              rows={3}
+              rows={5}
               placeholder={
                 lang === "fr"
                   ? "J'ai besoin d'un site e-commerce pour vendre mes produits..."

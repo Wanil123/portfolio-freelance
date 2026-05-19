@@ -63,7 +63,7 @@ const Services = ({ scrollToSection }) => {
           </div>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {services.slice(0, 3).map((service, index) => {
             const title = lang === "fr" ? service.title.fr : service.title.en;
             const price = lang === "fr" ? service.price.fr : service.price.en;

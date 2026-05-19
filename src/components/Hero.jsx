@@ -148,24 +148,28 @@ const Hero = ({ scrollToSection }) => {
           </p>
         </div>
 
-        {/* Trust signals bar */}
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3 animate-fade-in-up animation-delay-600 w-full max-w-xl mx-auto sm:max-w-none">
-          <div className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-slate-900/60 border border-slate-800/50 backdrop-blur-sm">
-            <Zap size={15} className="text-violet-400 flex-shrink-0" />
-            <span className="text-sm text-slate-300 font-medium">
-              {lang === "fr" ? "5+ ans d'expérience" : "5+ years experience"}
+        {/* Trust signals bar — 3 cols even on mobile (with shorter labels) so the
+            section stays compact and doesn't shove the scroll indicator off screen
+            on short viewports like iPhone SE. */}
+        <div className="mt-10 grid grid-cols-3 gap-2 sm:gap-3 animate-fade-in-up animation-delay-600 w-full max-w-xl mx-auto sm:max-w-none">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-2 py-3 sm:px-4 rounded-xl bg-slate-900/60 border border-slate-800/50 backdrop-blur-sm">
+            <Zap size={16} className="text-violet-400 flex-shrink-0" />
+            <span className="text-[11px] sm:text-sm text-slate-300 font-medium text-center leading-tight">
+              {lang === "fr" ? "5+ ans" : "5+ years"}
+              <span className="hidden sm:inline">{lang === "fr" ? " d'expérience" : " experience"}</span>
             </span>
           </div>
-          <div className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-slate-900/60 border border-slate-800/50 backdrop-blur-sm">
-            <Clock size={15} className="text-violet-400 flex-shrink-0" />
-            <span className="text-sm text-slate-300 font-medium">
-              {lang === "fr" ? "Livraison 2-4 sem." : "2-4 week delivery"}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-2 py-3 sm:px-4 rounded-xl bg-slate-900/60 border border-slate-800/50 backdrop-blur-sm">
+            <Clock size={16} className="text-violet-400 flex-shrink-0" />
+            <span className="text-[11px] sm:text-sm text-slate-300 font-medium text-center leading-tight">
+              {lang === "fr" ? "2-4 sem." : "2-4 wks"}
+              <span className="hidden sm:inline">{lang === "fr" ? " livraison" : " delivery"}</span>
             </span>
           </div>
-          <div className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-slate-900/60 border border-slate-800/50 backdrop-blur-sm">
-            <Shield size={15} className="text-violet-400 flex-shrink-0" />
-            <span className="text-sm text-slate-300 font-medium">
-              {lang === "fr" ? "Paiement en 3x" : "Pay in 3x"}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-2 py-3 sm:px-4 rounded-xl bg-slate-900/60 border border-slate-800/50 backdrop-blur-sm">
+            <Shield size={16} className="text-violet-400 flex-shrink-0" />
+            <span className="text-[11px] sm:text-sm text-slate-300 font-medium text-center leading-tight">
+              {lang === "fr" ? "Paiement 3x" : "Pay in 3x"}
             </span>
           </div>
         </div>

@@ -35,11 +35,14 @@ const TrustedBy = () => {
     },
   ];
 
+  // These are *commitments*, not retrospective averages — labels reflect that
+  // so visitors don't read "Livraison: 2-4 sem" as a measured stat (only 2
+  // projects livrés so the sample is too small to claim an average).
   const stats = [
     {
       value: "2-4",
       unit: lang === "fr" ? "sem." : "wks",
-      label: lang === "fr" ? "Livraison" : "Delivery",
+      label: lang === "fr" ? "Délai ciblé" : "Target delivery",
       icon: Clock,
     },
     {

@@ -176,6 +176,15 @@ const Footer = () => {
                   </span>
                 </button>
               ))}
+              <a
+                href={lang === "fr" ? "/blog/" : "/blog/en/"}
+                className="group text-left text-sm text-slate-400 hover:text-white transition-colors flex items-center gap-2.5 py-1.5"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-slate-700 group-hover:bg-violet-400 transition-all group-hover:shadow-[0_0_8px_rgba(167,139,250,0.6)]" />
+                <span className="group-hover:translate-x-1 transition-transform">
+                  Blog
+                </span>
+              </a>
             </nav>
           </Reveal>
 
@@ -276,7 +285,9 @@ const Footer = () => {
                   {lang === "fr" ? "Tous droits réservés" : "All rights reserved"}
                 </span>
                 <span>·</span>
-                <span className="text-slate-500">NEQ {COMPANY.neq}</span>
+                <span className="text-slate-500">
+                  NEQ {COMPANY.neq.replace(/(\d{4})(\d{4})(\d{2})/, "$1 $2 $3")}
+                </span>
                 <span>·</span>
                 <button
                   type="button"

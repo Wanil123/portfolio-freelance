@@ -10,6 +10,7 @@ import {
   CheckCircle2,
   Star,
   Quote,
+  Building2,
 } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
 import { CONTACT } from "../constants/config";
@@ -223,8 +224,10 @@ const Testimonials = () => {
                 {/* Author info */}
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-6 border-t border-slate-800/50">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-violet-500 to-purple-500 text-white font-bold text-lg">
-                      {testimonial.initials}
+                    {/* Generic company icon — no fake personal avatar. Swap to
+                        a real logo once each client provides one. */}
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-800 border border-slate-700">
+                      <Building2 size={22} className="text-violet-300" aria-hidden="true" />
                     </div>
                     <div>
                       <p className="text-white font-semibold">

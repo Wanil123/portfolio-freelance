@@ -142,22 +142,22 @@ const ProgrammeVitrine = () => {
                   </div>
 
                   {/* Spots counter — 2 spots available = 2 bars empty */}
-                  <div className="mb-6 p-4 rounded-xl bg-amber-500/5 border border-amber-500/20">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-semibold text-amber-200">
-                        {lang === "fr" ? "Places disponibles ce trimestre" : "Spots available this quarter"}
+                  <div className="mb-6 p-5 rounded-xl bg-amber-500/5 border border-amber-500/20">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-amber-300/80 mb-3">
+                      {lang === "fr" ? "Places disponibles ce trimestre" : "Spots available this quarter"}
+                    </p>
+                    <div className="flex items-baseline gap-2.5 mb-2">
+                      <span className="text-5xl font-bold text-amber-400 leading-none tabular-nums">{SCARCITY_SPOTS}</span>
+                      <span className="text-sm text-amber-200/80">
+                        {lang === "fr"
+                          ? (SCARCITY_SPOTS > 1 ? "places ouvertes" : "place ouverte")
+                          : (SCARCITY_SPOTS > 1 ? "spots open" : "spot open")}
                       </span>
-                      <span className="text-2xl font-bold text-amber-400">{SCARCITY_SPOTS}</span>
                     </div>
-                    <div className="flex gap-2">
-                      {Array.from({ length: SCARCITY_SPOTS }).map((_, i) => (
-                        <div key={i} className="flex-1 h-2 rounded-full bg-amber-400/30" />
-                      ))}
-                    </div>
-                    <p className="text-xs text-amber-300/70 mt-2">
+                    <p className="text-xs text-amber-300/70">
                       {lang === "fr"
-                        ? `${SCARCITY_SPOTS} places ouvertes — première arrivée, première servie`
-                        : `${SCARCITY_SPOTS} open spots — first come, first served`}
+                        ? "Première arrivée, première servie."
+                        : "First come, first served."}
                     </p>
                   </div>
 
