@@ -51,7 +51,8 @@ export const openQualificationModal = () =>
 
 // Defined at module scope so React keeps the same component identity across
 // parent re-renders — otherwise the input loses focus on every keystroke.
-function FieldInput({ name, type = "text", icon: Icon, placeholder, autoComplete, required, value, error, onChange }) {
+function FieldInput({ name, type = "text", icon: Icon, placeholder, autoComplete, required, value, error, showError, onChange, onBlur }) {
+  const visibleError = showError ? error : null;
   return (
     <div>
       <div className="relative">
@@ -61,17 +62,18 @@ function FieldInput({ name, type = "text", icon: Icon, placeholder, autoComplete
           name={name}
           value={value}
           onChange={(e) => onChange(name, e.target.value)}
-          placeholder={placeholder}
+          onBlur={() => onBlur && onBlur(name)}
+          placeholder={placeholder + (required ? " *" : "")}
           autoComplete={autoComplete}
           aria-required={required}
-          aria-invalid={!!error}
+          aria-invalid={!!visibleError}
           className={`w-full pl-9 pr-3 py-3 rounded-lg bg-slate-800/60 border ${
-            error ? "border-rose-500/60" : "border-slate-700/60"
+            visibleError ? "border-rose-500/60" : "border-slate-700/60"
           } text-white text-sm placeholder:text-slate-500 focus:outline-none focus:border-violet-500/60 transition-colors`}
         />
       </div>
-      {error && (
-        <p className="text-[11px] text-rose-400 mt-1">{error}</p>
+      {visibleError && (
+        <p className="text-[11px] text-rose-400 mt-1">{visibleError}</p>
       )}
     </div>
   );
@@ -84,16 +86,22 @@ const QualificationModal = () => {
   const [answers, setAnswers]   = useState({ type: null, budget: null, timeline: null });
   const [form, setForm]         = useState({ name: "", email: "", phone: "", siteUrl: "" });
   const [errors, setErrors]     = useState({});
+  const [touched, setTouched]   = useState({});
+  const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted]   = useState(false);
   const [submitError, setSubmitError] = useState(null);
-  const honeypotRef = useRef(null);
+  const honeypotBookRef = useRef(null);
+  const honeypotAuditRef = useRef(null);
+  const triggerRef = useRef(null);
 
   const resetAll = useCallback(() => {
     setStep(0);
     setAnswers({ type: null, budget: null, timeline: null });
     setForm({ name: "", email: "", phone: "", siteUrl: "" });
     setErrors({});
+    setTouched({});
+    setHasAttemptedSubmit(false);
     setSubmitting(false);
     setSubmitted(false);
     setSubmitError(null);
@@ -101,6 +109,7 @@ const QualificationModal = () => {
 
   useEffect(() => {
     const handler = () => {
+      triggerRef.current = document.activeElement;
       resetAll();
       setIsOpen(true);
       track("Modal Opened");
@@ -114,6 +123,10 @@ const QualificationModal = () => {
     if (!submitted && step > 0) {
       track("Modal Abandoned", { atStep: stepTitles.en[Math.min(step, 3)] });
     }
+    // Restore focus to the element that opened the modal
+    if (triggerRef.current && document.contains(triggerRef.current)) {
+      triggerRef.current.focus();
+    }
   }, [submitted, step]);
 
   useEffect(() => {
@@ -122,6 +135,33 @@ const QualificationModal = () => {
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [isOpen, close]);
+
+  // Lock body scroll while modal is open — iOS Safari ignores overflow:hidden alone,
+  // but combining it with position:fixed on body works across browsers.
+  useEffect(() => {
+    if (!isOpen) return;
+    const scrollY = window.scrollY;
+    const html = document.documentElement;
+    const body = document.body;
+    const prevHtmlOverflow = html.style.overflow;
+    const prevBodyOverflow = body.style.overflow;
+    const prevBodyPosition = body.style.position;
+    const prevBodyTop = body.style.top;
+    const prevBodyWidth = body.style.width;
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.width = "100%";
+    return () => {
+      html.style.overflow = prevHtmlOverflow;
+      body.style.overflow = prevBodyOverflow;
+      body.style.position = prevBodyPosition;
+      body.style.top = prevBodyTop;
+      body.style.width = prevBodyWidth;
+      window.scrollTo(0, scrollY);
+    };
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -148,11 +188,34 @@ const QualificationModal = () => {
     return Object.keys(next).length === 0;
   };
 
+  const handleBlur = (name) => {
+    setTouched((prev) => ({ ...prev, [name]: true }));
+    // Validate this field only on blur, but don't surface errors for empty
+    // pristine fields — only for fields the user has typed in.
+    if (!form[name]) return;
+    if (name === "name" && form.name.trim().length < 2) {
+      setErrors((prev) => ({ ...prev, name: lang === "fr" ? "Nom requis (2 caractères min)" : "Name required (2 chars min)" }));
+    }
+    if (name === "email") {
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim());
+      if (!emailOk) {
+        setErrors((prev) => ({ ...prev, email: lang === "fr" ? "Email valide requis" : "Valid email required" }));
+      }
+    }
+  };
+
   const submitLead = async (action) => {
-    if (honeypotRef.current && honeypotRef.current.value) return;
+    const honeypot = action === "book" ? honeypotBookRef.current : honeypotAuditRef.current;
+    if (honeypot && honeypot.value) return;
+    setHasAttemptedSubmit(true);
     if (!validateForm()) return;
     setSubmitting(true);
     setSubmitError(null);
+
+    // Normalize URL: prepend https:// if missing
+    const normalizedUrl = form.siteUrl.trim()
+      ? (form.siteUrl.trim().match(/^https?:\/\//i) ? form.siteUrl.trim() : `https://${form.siteUrl.trim()}`)
+      : "—";
 
     const payload = {
       _subject: `[${action === "book" ? "QUALIFIÉ" : "AUDIT"}] ${form.name.trim()} — ${labelForId(projectTypes, answers.type, "fr")}`,
@@ -161,7 +224,7 @@ const QualificationModal = () => {
       name: form.name.trim(),
       email: form.email.trim(),
       phone: form.phone.trim() || "—",
-      siteUrl: form.siteUrl.trim() || "—",
+      siteUrl: normalizedUrl,
       projectType: labelForId(projectTypes, answers.type, "fr"),
       budget: labelForId(budgets, answers.budget, "fr"),
       timeline: labelForId(timelines, answers.timeline, "fr"),
@@ -379,8 +442,9 @@ const QualificationModal = () => {
                   noValidate
                 >
                   {/* Honeypot */}
-                  <input ref={honeypotRef} type="text" name="_honey" tabIndex={-1} autoComplete="off"
-                         style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none" }} />
+                  <input ref={honeypotBookRef} type="text" name="_honey" tabIndex={-1} autoComplete="off"
+                         aria-hidden="true"
+                         style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none", height: 0 }} />
 
                   <FieldInput
                     name="name"
@@ -390,7 +454,9 @@ const QualificationModal = () => {
                     required
                     value={form.name}
                     error={errors.name}
+                    showError={hasAttemptedSubmit || touched.name}
                     onChange={handleFieldChange}
+                    onBlur={handleBlur}
                   />
                   <FieldInput
                     name="email"
@@ -401,7 +467,9 @@ const QualificationModal = () => {
                     required
                     value={form.email}
                     error={errors.email}
+                    showError={hasAttemptedSubmit || touched.email}
                     onChange={handleFieldChange}
+                    onBlur={handleBlur}
                   />
                   <FieldInput
                     name="phone"
@@ -467,8 +535,9 @@ const QualificationModal = () => {
                   className="space-y-3"
                   noValidate
                 >
-                  <input ref={honeypotRef} type="text" name="_honey" tabIndex={-1} autoComplete="off"
-                         style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none" }} />
+                  <input ref={honeypotAuditRef} type="text" name="_honey" tabIndex={-1} autoComplete="off"
+                         aria-hidden="true"
+                         style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none", height: 0 }} />
 
                   <FieldInput
                     name="name"
@@ -478,7 +547,9 @@ const QualificationModal = () => {
                     required
                     value={form.name}
                     error={errors.name}
+                    showError={hasAttemptedSubmit || touched.name}
                     onChange={handleFieldChange}
+                    onBlur={handleBlur}
                   />
                   <FieldInput
                     name="email"
@@ -489,7 +560,9 @@ const QualificationModal = () => {
                     required
                     value={form.email}
                     error={errors.email}
+                    showError={hasAttemptedSubmit || touched.email}
                     onChange={handleFieldChange}
+                    onBlur={handleBlur}
                   />
                   <FieldInput
                     name="siteUrl"

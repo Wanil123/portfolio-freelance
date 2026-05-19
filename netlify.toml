@@ -3,7 +3,7 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
 
 # SPA React/Vite : toutes les routes -> index.html
 [[redirects]]
@@ -18,16 +18,15 @@
   status = 301
   force = true
 
-# Headers pour HTML (pas de cache long)
+# Headers de sécurité pour TOUTES les routes (pas seulement /)
 [[headers]]
-  for = "/"
+  for = "/*"
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' https://assets.calendly.com; style-src 'self' 'unsafe-inline' https://assets.calendly.com; img-src 'self' https: data: https://assets.calendly.com; font-src 'self' https: https://assets.calendly.com; frame-src https://calendly.com https://assets.calendly.com; connect-src 'self' https://formsubmit.co https://calendly.com https://assets.calendly.com"
-    Cache-Control = "public, max-age=0, must-revalidate"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' https://assets.calendly.com https://plausible.io; style-src 'self' 'unsafe-inline' https://assets.calendly.com; img-src 'self' https: data: https://assets.calendly.com; font-src 'self' https: data:; frame-src https://calendly.com https://assets.calendly.com; connect-src 'self' https://formsubmit.co https://calendly.com https://assets.calendly.com https://plausible.io"
 
 [[headers]]
   for = "/index.html"

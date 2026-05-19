@@ -19,12 +19,32 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
   const navRef = useRef(null);
   const [navHeight, setNavHeight] = useState(68);
 
-  // Measure actual navbar height to avoid any gap
+  // Measure actual navbar height — re-measure on resize/rotation/lang change
   useEffect(() => {
-    if (navRef.current) {
-      setNavHeight(navRef.current.offsetHeight);
+    const measure = () => {
+      if (navRef.current) setNavHeight(navRef.current.offsetHeight);
+    };
+    measure();
+    let resizeObserver;
+    if (typeof ResizeObserver !== "undefined" && navRef.current) {
+      resizeObserver = new ResizeObserver(measure);
+      resizeObserver.observe(navRef.current);
+    } else {
+      window.addEventListener("resize", measure);
     }
-  }, []);
+    return () => {
+      if (resizeObserver) resizeObserver.disconnect();
+      else window.removeEventListener("resize", measure);
+    };
+  }, [lang]);
+
+  // Close mobile menu on Escape
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e) => { if (e.key === "Escape") setIsOpen(false); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [isOpen]);
 
   // Lock scroll — iOS Safari ignore overflow:hidden sur body, besoin de position:fixed
   useEffect(() => {
@@ -70,8 +90,9 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
 
   const phoneRaw = CONTACT.phone.replace(/[\s\-]/g, "");
   const TEL = `tel:${phoneRaw}`;
-  const isIOS = typeof navigator !== "undefined" && /iPhone|iPad|iPod/i.test(navigator.userAgent);
-  const SMS = `sms:${phoneRaw}${isIOS ? "&" : "?"}body=${encodeURIComponent(
+  // `?body=` works on iOS 14+ and Android — the earlier iOS `&body=` was
+  // malformed without a preceding query separator and dropped silently.
+  const SMS = `sms:${phoneRaw}?body=${encodeURIComponent(
     lang === "fr"
       ? "Bonjour Wanil, je veux discuter de mon projet."
       : "Hello Wanil, I want to discuss my project."
@@ -88,11 +109,12 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
             : "bg-slate-950/80 backdrop-blur-sm border-b border-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-4 py-3 md:py-3 flex items-center justify-between gap-4">
           {/* LOGO */}
           <button
             type="button"
             onClick={() => handleNavClick("home")}
+            aria-label={lang === "fr" ? "PrimeDev Studios — retour en haut" : "PrimeDev Studios — back to top"}
             className="group flex items-center gap-3 flex-shrink-0"
           >
             <img
@@ -167,6 +189,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
               onClick={() => setIsOpen((p) => !p)}
               aria-label={lang === "fr" ? (isOpen ? "Fermer le menu" : "Ouvrir le menu") : (isOpen ? "Close menu" : "Open menu")}
               aria-expanded={isOpen}
+              aria-controls="mobile-menu"
               className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-800/70 border border-slate-700/60 text-white active:bg-slate-700/80 transition-colors"
             >
               {isOpen ? <X size={18} /> : <Menu size={18} />}
@@ -178,6 +201,10 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
       {/* ── MOBILE MENU ── */}
       {isOpen && createPortal(
         <div
+          id="mobile-menu"
+          role="dialog"
+          aria-modal="true"
+          aria-label={lang === "fr" ? "Menu principal" : "Main menu"}
           className="fixed inset-0 flex flex-col md:hidden animate-fadeIn"
           style={{ zIndex: 9999, paddingTop: navHeight, touchAction: "none" }}
         >
@@ -258,8 +285,8 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
                 </a>
               </div>
 
-              <p className="text-center text-xs text-slate-500 pt-1">
-                {lang === "fr" ? "Réponse en moins de 2h" : "Reply within 2h"}
+              <p className="text-center text-xs text-slate-400 pt-1">
+                {lang === "fr" ? "Réponse sous 24h" : "Reply within 24h"}
               </p>
             </div>
           </div>

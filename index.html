@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -8,8 +8,14 @@
     />
 
     <!-- FAVICONS -->
-    <link rel="icon" type="image/png" href="/logo.png" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
+
+    <!-- Preconnect to third-party services we will hit early -->
+    <link rel="preconnect" href="https://plausible.io" />
+    <link rel="preconnect" href="https://assets.calendly.com" crossorigin />
+    <link rel="preconnect" href="https://formsubmit.co" />
 
     <!-- MOBILE PWA -->
     <meta name="theme-color" content="#0f172a" />
@@ -117,9 +123,10 @@
 
     <!-- Plausible Analytics — privacy-first, no cookie banner needed (Loi 25 compliant)
          Sign up at https://plausible.io with domain prime-dev-studios.com to start receiving data.
-         Self-hostable alternative: change the src to your own Plausible instance. -->
-    <script defer data-domain="prime-dev-studios.com" src="https://plausible.io/js/script.tagged-events.js"></script>
+         The stub MUST be defined BEFORE the deferred script loads, otherwise early
+         track() calls during page load are lost. -->
     <script>window.plausible = window.plausible || function(){(window.plausible.q = window.plausible.q || []).push(arguments)}</script>
+    <script defer data-domain="prime-dev-studios.com" src="https://plausible.io/js/script.tagged-events.js"></script>
 
     <!-- JSON-LD FAQPage Schema -->
     <script type="application/ld+json">

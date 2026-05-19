@@ -39,7 +39,9 @@ function App() {
     document.documentElement.lang = lang;
   }, [lang]);
 
-  // IntersectionObserver for active section — no scroll reflow, runs off main thread
+  // IntersectionObserver for active section. Sections below the fold are
+  // lazy-loaded behind a Suspense boundary, so the observer must wait for them
+  // to mount. We re-observe whenever new section IDs appear in the DOM.
   useEffect(() => {
     const sectionIds = [
       "home", "services", "projects", "testimonials",
@@ -47,6 +49,7 @@ function App() {
     ];
 
     const visible = new Set();
+    const observed = new Set();
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -57,7 +60,6 @@ function App() {
             visible.delete(entry.target.id);
           }
         });
-        // Always pick the topmost visible section
         for (const id of sectionIds) {
           if (visible.has(id)) {
             setActiveSection(id);
@@ -68,12 +70,27 @@ function App() {
       { rootMargin: "-110px 0px -40% 0px", threshold: 0 }
     );
 
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
+    const tryObserve = () => {
+      sectionIds.forEach((id) => {
+        if (observed.has(id)) return;
+        const el = document.getElementById(id);
+        if (el) {
+          observer.observe(el);
+          observed.add(id);
+        }
+      });
+    };
 
-    return () => observer.disconnect();
+    tryObserve();
+
+    // Re-check as lazy chunks resolve and inject their sections into the DOM.
+    const mutationObserver = new MutationObserver(tryObserve);
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+      mutationObserver.disconnect();
+    };
   }, []);
 
   // Scroll listener — only isScrolled (single cheap comparison, no DOM queries)

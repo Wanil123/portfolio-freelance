@@ -16,7 +16,7 @@ import { Reveal } from "./ui/Reveal";
 // Composant Badge pour les technologies
 const TechBadge = ({ name, color }) => (
   <span
-    className={`inline-flex px-2 md:px-3 py-1 md:py-1.5 rounded-lg bg-gradient-to-r ${color} bg-opacity-10 border border-white/10 text-white text-[10px] md:text-xs font-medium hover:scale-105 transition-transform cursor-default`}
+    className={`inline-flex px-2.5 md:px-3 py-1 md:py-1.5 rounded-lg bg-slate-800/60 border border-slate-700/60 text-slate-200 text-xs font-medium cursor-default`}
   >
     {name}
   </span>
@@ -188,8 +188,8 @@ export default function Skills() {
 
           <p className="text-slate-300 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             {lang === "fr"
-              ? "Technologies front-end et back-end que nous utilisons au quotidien pour créer des solutions web performantes, livrées en bilingue."
-              : "Front-end and back-end technologies we use daily to create high-performance web solutions, delivered bilingually."}
+              ? "Technologies front-end et back-end que j'utilise au quotidien pour créer des solutions web performantes, livrées en bilingue."
+              : "Front-end and back-end technologies I use daily to create high-performance web solutions, delivered bilingually."}
           </p>
         </Reveal>
 
@@ -275,8 +275,8 @@ export default function Skills() {
                       key={idx}
                       className="group relative p-6 rounded-xl bg-slate-800/30 border border-slate-700/30 hover:border-violet-500/30 hover:bg-slate-800/50 transition-all"
                     >
-                      <div className={`inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${guarantee.color} bg-opacity-10 border border-white/10 mb-4 group-hover:scale-110 transition-transform`}>
-                        <Icon size={22} className={`bg-gradient-to-br ${guarantee.color} bg-clip-text text-transparent`} />
+                      <div className={`inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${guarantee.color} opacity-90 border border-white/10 mb-4 group-hover:scale-105 transition-transform`}>
+                        <Icon size={22} className="text-white" />
                       </div>
                       <h4 className="text-lg font-bold text-white mb-2">
                         {guarantee.title}

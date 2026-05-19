@@ -8,8 +8,10 @@ const Hero = ({ scrollToSection }) => {
 
   const phoneRaw = CONTACT.phone.replace(/[\s\-]/g, "");
   const TEL = `tel:${phoneRaw}`;
-  const isIOS = typeof navigator !== "undefined" && /iPhone|iPad|iPod/i.test(navigator.userAgent);
-  const SMS = `sms:${phoneRaw}${isIOS ? "&" : "?"}body=${encodeURIComponent(
+  // `?body=` works on iOS 14+ and Android. The previous `&body=` (without a
+  // preceding query separator) was malformed and silently dropped the message
+  // on iPhones.
+  const SMS = `sms:${phoneRaw}?body=${encodeURIComponent(
     lang === "fr"
       ? "Bonjour Wanil, je veux discuter de mon projet web."
       : "Hello Wanil, I'd like to discuss my web project."
@@ -90,7 +92,7 @@ const Hero = ({ scrollToSection }) => {
         </p>
 
         {/* Social proof line */}
-        <p className="text-sm text-slate-500 mb-10 animate-fade-in-up animation-delay-300">
+        <p className="text-sm text-slate-400 mb-10 animate-fade-in-up animation-delay-300">
           {lang === "fr"
             ? "Wanil Parfait · Développeur full-stack · 5+ ans d'expérience · Montréal, QC"
             : "Wanil Parfait · Full-stack developer · 5+ years experience · Montréal, QC"}
@@ -111,8 +113,8 @@ const Hero = ({ scrollToSection }) => {
           </button>
 
           {/* Secondary contact options */}
-          <div className="flex items-center justify-center gap-2 flex-wrap">
-            <span className="text-xs text-slate-500 w-full text-center sm:w-auto">
+          <div className="flex items-center justify-center gap-2 gap-y-2 flex-wrap">
+            <span className="text-xs text-slate-400 w-full text-center sm:w-auto">
               {lang === "fr" ? "ou contactez-moi directement :" : "or reach me directly:"}
             </span>
             <a
@@ -132,7 +134,7 @@ const Hero = ({ scrollToSection }) => {
           </div>
 
           {/* Audit CTA — lower-commitment entry for cold prospects */}
-          <p className="text-xs text-slate-500 text-center">
+          <p className="text-xs text-slate-400 text-center">
             {lang === "fr" ? "Pas encore prêt ?" : "Not ready to commit?"}{" "}
             <button
               type="button"
@@ -168,11 +170,12 @@ const Hero = ({ scrollToSection }) => {
           </div>
         </div>
 
-        {/* Scroll indicator */}
+        {/* Scroll indicator — hidden on mobile to avoid overlap with trust signals on short viewports */}
         <button
           type="button"
           onClick={() => scrollToSection("services")}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer"
+          className="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer"
+          style={{ bottom: "max(2rem, env(safe-area-inset-bottom))" }}
           aria-label={lang === "fr" ? "Défiler vers le bas" : "Scroll down"}
         >
           <div className="w-6 h-10 rounded-full border-2 border-slate-600 flex items-start justify-center p-1">

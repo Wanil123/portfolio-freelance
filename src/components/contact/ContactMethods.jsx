@@ -7,7 +7,6 @@ import {
   Phone,
   MessageSquare,
   ArrowRight,
-  Search,
 } from "lucide-react";
 import { Reveal } from "../ui/Reveal";
 
@@ -16,8 +15,8 @@ const ContactMethods = () => {
 
   const phoneRaw = CONTACT.phone.replace(/[\s\-]/g, "");
   const TEL = `tel:${phoneRaw}`;
-  const isIOS = typeof navigator !== "undefined" && /iPhone|iPad|iPod/i.test(navigator.userAgent);
-  const SMS = `sms:${phoneRaw}${isIOS ? "&" : "?"}body=${encodeURIComponent(
+  // `?body=` is the cross-platform form that works on iOS 14+ and Android.
+  const SMS = `sms:${phoneRaw}?body=${encodeURIComponent(
     lang === "fr"
       ? "Bonjour Wanil, je veux discuter de mon projet web."
       : "Hello Wanil, I'd like to discuss my web project."
@@ -39,7 +38,7 @@ const ContactMethods = () => {
     },
     {
       icon: MessageSquare,
-      label: "SMS / Texto",
+      label: lang === "fr" ? "SMS / Texto" : "Text message",
       value: CONTACT.phone,
       href: SMS,
       bgColor: "bg-emerald-500/10",
@@ -47,7 +46,7 @@ const ContactMethods = () => {
       hoverBorder: "hover:border-emerald-400/50",
       hoverBg: "hover:bg-emerald-500/5",
       iconColor: "text-emerald-300",
-      description: lang === "fr" ? "Réponse rapide — moins de 2h" : "Fast reply — within 2h",
+      description: lang === "fr" ? "Réponse sous 24h" : "Reply within 24h",
       badge: null,
     },
     {
@@ -81,8 +80,6 @@ const ContactMethods = () => {
                   <a
                     key={idx}
                     href={method.href}
-                    target={method.href.startsWith("http") ? "_blank" : undefined}
-                    rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
                     className={`group flex items-center gap-3 p-3 rounded-xl bg-slate-800/30 border ${method.borderColor} ${method.hoverBorder} ${method.hoverBg} transition-all`}
                   >
                     <div
@@ -101,7 +98,7 @@ const ContactMethods = () => {
                           </span>
                         )}
                       </div>
-                      <p className="text-xs text-slate-500">
+                      <p className="text-xs text-slate-400">
                         {method.description}
                       </p>
                     </div>
@@ -139,10 +136,9 @@ const ContactMethods = () => {
                 : "Budget, timeline, feasibility — I answer everything on the call."}
             </p>
 
-            <a
-              href={CONTACT.calendlyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => document.dispatchEvent(new Event("open-qualification"))}
               className="group w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all hover:scale-105 active:scale-95"
             >
               <Calendar size={18} />
@@ -151,32 +147,7 @@ const ContactMethods = () => {
                 size={16}
                 className="group-hover:translate-x-1 transition-transform"
               />
-            </a>
-
-            {/* Divider */}
-            <div className="relative my-1">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-violet-500/20" />
-              </div>
-              <div className="relative flex justify-center">
-                <span className="px-2 text-[10px] uppercase tracking-wider text-slate-500 bg-slate-900/80">
-                  {lang === "fr" ? "ou" : "or"}
-                </span>
-              </div>
-            </div>
-
-            {/* Audit CTA */}
-            <a
-              href={CONTACT.calendlyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-violet-500/40 hover:border-violet-400/70 bg-transparent hover:bg-violet-500/5 text-violet-300 hover:text-white text-sm font-medium transition-all active:scale-95"
-            >
-              <Search size={15} />
-              {lang === "fr"
-                ? "Audit gratuit de votre site (10 min)"
-                : "Free website audit (10 min)"}
-            </a>
+            </button>
 
             <div className="mt-3 pt-3 border-t border-violet-500/20">
               <ul className="space-y-1.5">

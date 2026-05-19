@@ -12,8 +12,7 @@ const personalProjects = projects.filter((p) => !p.isClientProject && !p.isAIDem
 const Projects = () => {
   const { lang, getField: getFieldFromHook } = useLanguage();
   const [selectedProject, setSelectedProject] = useState(null);
-  const imageLoadedRef = useRef(new Set());
-  const [, forceRender] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(() => new Set());
   const modalRef = useRef(null);
   const closeButtonRef = useRef(null);
   const triggerRef = useRef(null);
@@ -26,8 +25,12 @@ const Projects = () => {
 
   const closeModal = useCallback(() => {
     setSelectedProject(null);
-    document.body.style.overflow = "auto";
-    triggerRef.current?.focus();
+    // Restore to empty string so CSS-defined overflow takes back over,
+    // preserving overflow-x: clip on body (sticky navbar relies on it).
+    document.body.style.overflow = "";
+    if (triggerRef.current && document.contains(triggerRef.current)) {
+      triggerRef.current.focus();
+    }
     triggerRef.current = null;
   }, []);
 
@@ -38,9 +41,10 @@ const Projects = () => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") { closeModal(); return; }
       if (e.key === "Tab" && modalRef.current) {
-        const focusable = modalRef.current.querySelectorAll(
+        const focusable = [...modalRef.current.querySelectorAll(
           'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        );
+        )].filter((el) => !el.disabled && el.offsetParent !== null);
+        if (!focusable.length) return;
         const first = focusable[0];
         const last = focusable[focusable.length - 1];
         if (e.shiftKey) {
@@ -56,8 +60,12 @@ const Projects = () => {
   }, [selectedProject, closeModal]);
 
   const handleImageLoad = useCallback((id) => {
-    imageLoadedRef.current.add(id);
-    forceRender((n) => n + 1);
+    setImageLoaded((prev) => {
+      if (prev.has(id)) return prev;
+      const next = new Set(prev);
+      next.add(id);
+      return next;
+    });
   }, []);
 
   const getField = useCallback((field) => getFieldFromHook(field), [getFieldFromHook]);
@@ -68,7 +76,7 @@ const Projects = () => {
     <div className={`relative overflow-hidden bg-slate-800/50 ${
       isHero ? "h-48 sm:h-56 lg:min-h-[320px] lg:w-1/2" : "h-40 sm:h-44 md:h-48"
     }`}>
-      {!imageLoadedRef.current.has(p.id) && (
+      {!imageLoaded.has(p.id) && (
         <div className="absolute inset-0 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 animate-pulse" />
       )}
       <img
@@ -77,7 +85,7 @@ const Projects = () => {
         loading="lazy"
         onLoad={() => handleImageLoad(p.id)}
         className={`w-full h-full object-cover transition-all duration-500 ${
-          imageLoadedRef.current.has(p.id) ? "opacity-100" : "opacity-0"
+          imageLoaded.has(p.id) ? "opacity-100" : "opacity-0"
         } group-hover:scale-105`}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
@@ -111,7 +119,7 @@ const Projects = () => {
         </a>
       )}
     </div>
-  ), [lang, handleImageLoad, getField]);
+  ), [lang, handleImageLoad, getField, imageLoaded]);
 
   const renderContent = useCallback((p, isHero) => {
     const tech = p.tech || [];
@@ -209,9 +217,9 @@ const Projects = () => {
       )}
       {p.isAIDemo && (
         <div className="absolute -top-2 -right-2 md:-top-3 md:-right-3 z-10">
-          <div className="flex items-center gap-1 px-2 py-0.5 md:px-3 md:py-1 rounded-full bg-gradient-to-r from-violet-500 to-purple-500 text-white text-[10px] md:text-xs font-medium shadow-lg">
+          <div className="flex items-center gap-1 px-2 py-0.5 md:px-3 md:py-1 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-[10px] md:text-xs font-medium shadow-lg">
             <Bot size={10} />
-            <span>Demo IA</span>
+            <span>{lang === "fr" ? "Démo concept IA" : "AI concept demo"}</span>
           </div>
         </div>
       )}
@@ -370,12 +378,13 @@ const Projects = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <button
+              type="button"
               ref={closeButtonRef}
               onClick={closeModal}
-              className="absolute top-3 right-3 md:top-4 md:right-4 z-10 w-11 h-11 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
+              aria-label={lang === "fr" ? "Fermer" : "Close"}
+              className="absolute top-3 right-3 md:top-4 md:right-4 z-10 w-11 h-11 flex items-center justify-center rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
             >
-              <X size={18} className="md:hidden" />
-              <X size={20} className="hidden md:block" />
+              <X size={18} />
             </button>
 
             {selectedProject.image && (

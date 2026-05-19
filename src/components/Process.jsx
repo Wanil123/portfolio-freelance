@@ -7,7 +7,7 @@ import {
   Lightbulb,
   Palette,
   Code,
-  Bot,
+  Rocket,
   PackageOpen,
 } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
@@ -20,11 +20,11 @@ const steps = [
     color: "from-cyan-400 to-blue-500",
     fr: {
       title: "Découverte & objectifs",
-      desc: "Nous clarifions votre activité, votre marché, votre public (FR/EN) et surtout ce que le site doit accomplir : vendre, présenter ou générer des contacts.",
+      desc: "Je clarifie votre activité, votre marché, votre public (FR/EN) et surtout ce que le site doit accomplir : vendre, présenter ou générer des contacts.",
     },
     en: {
       title: "Discovery & goals",
-      desc: "We clarify your business, target audience (FR/EN) and what the site must do: sell, present or generate leads.",
+      desc: "I clarify your business, target audience (FR/EN) and what the site must do: sell, present or generate leads.",
     },
   },
   {
@@ -72,7 +72,7 @@ const steps = [
   {
     id: "05",
     key: "launch",
-    icon: Bot,
+    icon: Rocket,
     color: "from-orange-400 to-amber-500",
     fr: {
       title: "Déploiement & lancement",
@@ -307,10 +307,11 @@ const Process = ({ id = "process", scrollToSection }) => {
                       </h4>
                       <p className="text-sm text-slate-300 mb-4">
                         {lang === "fr"
-                          ? "Parlez-nous de votre projet et recevez une estimation détaillée sous 48h."
-                          : "Tell us about your project and receive a detailed estimate within 48 hours."}
+                          ? "Parlez-moi de votre projet et recevez une estimation détaillée sous 48h."
+                          : "Tell me about your project and receive a detailed estimate within 48 hours."}
                       </p>
                       <button
+                        type="button"
                         onClick={handleQuoteClick}
                         className="group w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white text-sm font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all"
                       >
@@ -324,31 +325,14 @@ const Process = ({ id = "process", scrollToSection }) => {
                       </button>
                     </div>
 
-                    {/* Trust badge */}
+                    {/* Stack badge */}
                     <div className="p-4 rounded-xl bg-slate-800/30 border border-slate-700/30">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="flex -space-x-2">
-                          <div className="h-8 w-8 rounded-full bg-gradient-to-br from-violet-400 to-purple-500 flex items-center justify-center text-xs font-bold text-white border-2 border-slate-950">
-                            R
-                          </div>
-                          <div className="h-8 w-8 rounded-full bg-gradient-to-br from-sky-400 to-cyan-500 flex items-center justify-center text-xs font-bold text-white border-2 border-slate-950">
-                            T
-                          </div>
-                          <div className="h-8 w-8 rounded-full bg-gradient-to-br from-orange-400 to-amber-500 flex items-center justify-center text-xs font-bold text-white border-2 border-slate-950">
-                            L
-                          </div>
-                        </div>
-                        <div>
-                          <p className="text-xs font-semibold text-white">
-                            {lang === "fr"
-                              ? "Stack moderne"
-                              : "Modern stack"}
-                          </p>
-                          <p className="text-xs text-slate-400">
-                            React · Vue.js · Laravel · Tailwind
-                          </p>
-                        </div>
-                      </div>
+                      <p className="text-xs font-semibold text-white mb-1.5">
+                        {lang === "fr" ? "Stack moderne" : "Modern stack"}
+                      </p>
+                      <p className="text-xs text-slate-400 leading-relaxed">
+                        React · Vue.js · Laravel · Tailwind · n8n · OpenAI
+                      </p>
                     </div>
                   </div>
                 </div>
