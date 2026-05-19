@@ -142,15 +142,14 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
               <Globe2 size={13} />
               <span className="uppercase font-medium">{lang === "fr" ? "FR" : "EN"}</span>
             </button>
-            <a
-              href={CONTACT.calendlyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => document.dispatchEvent(new Event("open-qualification"))}
               className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white text-sm font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all sm:hover:scale-105 active:scale-95"
             >
               <Calendar size={14} />
               <span>{lang === "fr" ? "Appel gratuit" : "Free call"}</span>
-            </a>
+            </button>
           </div>
 
           {/* MOBILE — lang + hamburger */}
@@ -231,16 +230,14 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
               className="px-6 py-6 space-y-3 border-t border-slate-800/60"
               style={{ paddingBottom: "calc(1.5rem + env(safe-area-inset-bottom))" }}
             >
-              <a
-                href={CONTACT.calendlyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsOpen(false)}
+              <button
+                type="button"
+                onClick={() => { setIsOpen(false); document.dispatchEvent(new Event("open-qualification")); }}
                 className="flex items-center justify-center gap-2.5 w-full py-4 rounded-2xl bg-gradient-to-r from-violet-500 to-purple-600 text-white font-bold text-base shadow-lg shadow-violet-500/30 active:opacity-90"
               >
                 <Calendar size={18} />
                 {lang === "fr" ? "Réserver un appel gratuit" : "Book a free call"}
-              </a>
+              </button>
 
               <div className="grid grid-cols-2 gap-3">
                 <a

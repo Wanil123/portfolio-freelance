@@ -28,8 +28,8 @@ const Testimonials = () => {
       company: "LamIPict.com",
       rating: 5,
       quote: {
-        fr: "J'ai engagé Wanil pour bâtir LamiPict.com — un e-commerce pour nos services de laminage photo. On avait besoin d'un système qui gère les commandes en ligne et les fichiers uploadés par les clients. Simple sur papier, mais en pratique y'avait bien plus à régler : l'espace admin, les taxes par province, 76+ formats de produits. Y'a des moments où je me demandais si c'était faisable. Il revenait toujours avec une solution. Le projet a pris plus de temps qu'on pensait, mais la boutique est en ligne et ça tourne.",
-        en: "I hired Wanil to build LamiPict.com — an e-commerce site for our photo lamination services. We needed a system that handles online orders and customer-uploaded files. Simple on paper, but there was a lot more to sort out: the admin panel, province-by-province taxes, 76+ product formats. There were moments I wasn't sure it was all doable. He always came back with a solution. The project took longer than we planned, but the store is live and running.",
+        fr: "J'ai engagé Wanil pour bâtir LamiPict.com — un e-commerce pour nos services de laminage photo. On avait besoin d'un système qui gère les commandes en ligne et les fichiers uploadés par les clients. Simple sur papier, mais en pratique y'avait bien plus à régler : l'espace admin, les taxes par province, 76+ formats de produits. Y'a des moments où je me demandais si c'était faisable. Il revenait toujours avec une solution. La boutique est en ligne et ça tourne.",
+        en: "I hired Wanil to build LamiPict.com — an e-commerce site for our photo lamination services. We needed a system that handles online orders and customer-uploaded files. Simple on paper, but there was a lot more to sort out: the admin panel, province-by-province taxes, 76+ product formats. There were moments I wasn't sure it was all doable. He always came back with a solution. The store is live and running.",
       },
       project: {
         fr: "Site e-commerce",
@@ -372,10 +372,9 @@ const Testimonials = () => {
                 ? "Devenez mon prochain client satisfait"
                 : "Become my next satisfied client"}
             </p>
-            <a
-              href={CONTACT.calendlyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => document.dispatchEvent(new Event("open-qualification"))}
               className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all sm:hover:scale-105 active:scale-95"
             >
               {lang === "fr"
@@ -385,7 +384,7 @@ const Testimonials = () => {
                 size={18}
                 className="group-hover:translate-x-1 transition-transform"
               />
-            </a>
+            </button>
           </div>
         </Reveal>
       </div>

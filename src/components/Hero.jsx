@@ -6,7 +6,6 @@ import { CONTACT } from "../constants/config";
 const Hero = ({ scrollToSection }) => {
   const { lang } = useLanguage();
 
-  const CALENDLY = CONTACT.calendlyUrl;
   const phoneRaw = CONTACT.phone.replace(/[\s\-]/g, "");
   const TEL = `tel:${phoneRaw}`;
   const isIOS = typeof navigator !== "undefined" && /iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -39,8 +38,8 @@ const Hero = ({ scrollToSection }) => {
           </div>
           <span className="text-amber-200 text-xs sm:text-sm font-semibold text-center">
             {lang === "fr"
-              ? "2 spots disponibles ce trimestre"
-              : "2 spots available this quarter"}
+              ? "2 spots disponibles — jusqu'au 30 juin"
+              : "2 spots available — through June 30"}
           </span>
         </div>
 
@@ -101,10 +100,9 @@ const Hero = ({ scrollToSection }) => {
 
         {/* PRIMARY CTA — one dominant action */}
         <div className="flex flex-col items-center justify-center gap-4 animate-fade-in-up animation-delay-400">
-          <a
-            href={CALENDLY}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => document.dispatchEvent(new Event("open-qualification"))}
             className="group relative w-full sm:w-auto px-5 py-3.5 sm:px-8 sm:py-4 bg-gradient-to-r from-violet-500 to-purple-500 text-white font-bold text-base sm:text-lg rounded-2xl shadow-xl shadow-violet-500/40 hover:shadow-violet-500/60 transition-all duration-300 sm:hover:scale-105 active:scale-95 overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
@@ -112,7 +110,7 @@ const Hero = ({ scrollToSection }) => {
               <Calendar size={20} />
               {lang === "fr" ? "Réserver mon appel gratuit (30 min)" : "Book my free call (30 min)"}
             </span>
-          </a>
+          </button>
 
           {/* Secondary contact options */}
           <div className="flex items-center justify-center gap-2 flex-wrap">
@@ -138,16 +136,15 @@ const Hero = ({ scrollToSection }) => {
           {/* Audit CTA — lower-commitment entry for cold prospects */}
           <p className="text-xs text-slate-500 text-center">
             {lang === "fr" ? "Pas encore prêt ?" : "Not ready to commit?"}{" "}
-            <a
-              href={CALENDLY}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => document.dispatchEvent(new Event("open-qualification"))}
               className="text-violet-400 hover:text-violet-300 underline underline-offset-2 transition-colors"
             >
               {lang === "fr"
                 ? "Audit gratuit de votre site en 10 min →"
                 : "Free 10-min website audit →"}
-            </a>
+            </button>
           </p>
         </div>
 

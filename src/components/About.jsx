@@ -146,7 +146,7 @@ const About = () => {
                         <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
                       </div>
                       <span className="text-xs text-emerald-400 font-medium">
-                        {lang === "fr" ? "Disponible — 2 spots ce trimestre" : "Available — 2 spots this quarter"}
+                        {lang === "fr" ? "Disponible — 2 spots jusqu'au 30 juin" : "Available — 2 spots through June 30"}
                       </span>
                     </div>
                     <p className="text-xs text-slate-500 leading-relaxed max-w-xs">
@@ -267,17 +267,16 @@ const About = () => {
                 : "30-minute free call — I'll tell you honestly if I can help and what it costs."}
             </p>
 
-            <a
-              href={CONTACT.calendlyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => document.dispatchEvent(new Event("open-qualification"))}
               className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all hover:scale-105 active:scale-95 text-base"
             >
               <Calendar size={18} />
               {lang === "fr"
                 ? "Réserver mon appel gratuit (30 min)"
                 : "Book my free call (30 min)"}
-            </a>
+            </button>
           </div>
         </Reveal>
       </div>

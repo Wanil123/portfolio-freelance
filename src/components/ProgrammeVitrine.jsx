@@ -175,17 +175,16 @@ const ProgrammeVitrine = () => {
                   </div>
 
                   {/* CTA */}
-                  <a
-                    href={CONTACT.calendlyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    type="button"
+                    onClick={() => document.dispatchEvent(new Event("open-qualification"))}
                     className="group w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-slate-900 font-bold text-base shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 transition-all sm:hover:scale-105 active:scale-95"
                   >
                     <Calendar size={18} />
                     {lang === "fr"
                       ? "Postuler — Appel gratuit 30 min"
                       : "Apply — Free 30 min call"}
-                  </a>
+                  </button>
                   <p className="text-center text-xs text-slate-500 mt-3">
                     {lang === "fr"
                       ? "Je vous confirme votre éligibilité lors de l'appel de 30 min"

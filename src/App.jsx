@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
 import CustomCursor from "./components/CustomCursor.jsx";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
+import QualificationModal from "./components/ui/QualificationModal.jsx";
 
 // Lazy load components that are below the fold for better initial load performance
 const Services = lazy(() => import("./components/Services.jsx"));
@@ -111,6 +112,8 @@ function App() {
           scrollToSection={scrollToSection}
           isScrolled={isScrolled}
         />
+
+        <QualificationModal />
 
         <main>
           <Hero scrollToSection={scrollToSection} />

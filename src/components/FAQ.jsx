@@ -285,14 +285,13 @@ const FAQ = () => {
                   </p>
                 </div>
               </div>
-              <a
-                href={CONTACT.calendlyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={() => document.dispatchEvent(new Event("open-qualification"))}
                 className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all hover:scale-105 active:scale-95 whitespace-nowrap text-sm md:text-base text-center"
               >
                 {lang === "fr" ? "Réserver un appel gratuit" : "Book a free call"}
-              </a>
+              </button>
             </div>
           </div>
         </Reveal>

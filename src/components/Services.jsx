@@ -1,7 +1,7 @@
 // src/components/Services.jsx
 import { useLanguage } from "../hooks/useLanguage";
 import { services } from "../data/services.js";
-import { Check, ArrowRight, Zap, Clock, Star, Calendar } from "lucide-react";
+import { Check, ArrowRight, Zap, Clock, Star, Calendar, Globe2, Bot } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
 import { CONTACT } from "../constants/config";
 
@@ -9,7 +9,7 @@ const Services = ({ scrollToSection }) => {
   const { lang } = useLanguage();
 
   const handleContactClick = () => {
-    window.open(CONTACT.calendlyUrl, "_blank", "noopener,noreferrer");
+    document.dispatchEvent(new Event("open-qualification"));
   };
 
   return (
@@ -51,9 +51,20 @@ const Services = ({ scrollToSection }) => {
           </p>
         </Reveal>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-          {services.map((service, index) => {
+        {/* Pillar 1 — Web */}
+        <Reveal delay={0.05} className="mb-6">
+          <div className="flex items-center gap-3">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-violet-700/40 to-transparent" />
+            <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-violet-400">
+              <Globe2 size={13} />
+              {lang === "fr" ? "Web — Sites, e-commerce & refontes" : "Web — Websites, e-commerce & redesigns"}
+            </span>
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-violet-700/40 to-transparent" />
+          </div>
+        </Reveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+          {services.slice(0, 3).map((service, index) => {
             const title = lang === "fr" ? service.title.fr : service.title.en;
             const price = lang === "fr" ? service.price.fr : service.price.en;
             const timeline =
@@ -148,6 +159,102 @@ const Services = ({ scrollToSection }) => {
                         service.featured
                           ? "bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white shadow-lg shadow-violet-500/20 hover:shadow-violet-500/40"
                           : "bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-violet-500/50 text-white"
+                      } text-sm font-semibold transition-all sm:hover:scale-105 active:scale-95`}
+                    >
+                      <Calendar size={14} />
+                      {lang === "fr" ? "Réserver un appel gratuit" : "Book a free call"}
+                    </button>
+                  </div>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+
+        {/* Pillar 2 — AI */}
+        <Reveal delay={0.05} className="mb-6">
+          <div className="flex items-center gap-3">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-cyan-700/40 to-transparent" />
+            <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-cyan-400">
+              <Bot size={13} />
+              {lang === "fr" ? "IA — Automatisation & agents intelligents" : "AI — Automation & intelligent agents"}
+            </span>
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-cyan-700/40 to-transparent" />
+          </div>
+        </Reveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          {services.slice(3).map((service, index) => {
+            const title = lang === "fr" ? service.title.fr : service.title.en;
+            const price = lang === "fr" ? service.price.fr : service.price.en;
+            const timeline =
+              lang === "fr" ? service.timeline.fr : service.timeline.en;
+            const features =
+              lang === "fr" ? service.features.fr : service.features.en;
+            const idealFor =
+              lang === "fr" ? service.idealFor.fr : service.idealFor.en;
+
+            return (
+              <Reveal key={service.id} delay={index * 0.1}>
+                <div className="group relative h-full">
+                  {service.featured && (
+                    <div className="absolute -top-3 right-4 z-10">
+                      <div className="flex items-center gap-1 px-3 py-1 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-xs font-medium shadow-lg">
+                        <Star size={10} fill="currentColor" />
+                        <span>{lang === "fr" ? "Populaire" : "Popular"}</span>
+                      </div>
+                    </div>
+                  )}
+                  <div className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 bg-gradient-to-br from-cyan-500/20 via-blue-500/10 to-transparent rounded-2xl blur-xl transition-opacity duration-500" />
+                  <div
+                    className={`relative h-full bg-gradient-to-br from-slate-900/90 to-slate-950/90 border ${
+                      service.featured ? "border-cyan-500/40" : "border-slate-800/50"
+                    } rounded-2xl p-6 flex flex-col hover:border-cyan-400/50 transition-all duration-300 overflow-hidden`}
+                  >
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 group-hover:scale-110 transition-transform">
+                          {(() => { const Icon = service.icon; return <Icon size={26} className="text-cyan-300" />; })()}
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-white leading-tight mb-1">{title}</h3>
+                          <button
+                            type="button"
+                            onClick={(e) => { e.stopPropagation(); scrollToSection("offers"); }}
+                            className="text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors underline underline-offset-2 decoration-cyan-400/30 hover:decoration-cyan-300/50 py-2 px-1 -mx-1 -my-2"
+                          >
+                            {price} →
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-slate-400 mb-4 pb-4 border-b border-slate-800/50">
+                      <Clock size={14} className="text-cyan-400/70" />
+                      <span>{timeline}</span>
+                    </div>
+                    <ul className="space-y-2.5 text-sm text-slate-300 flex-1 mb-4">
+                      {features.map((feat, idx) => (
+                        <li key={idx} className="flex items-start gap-2">
+                          <Check size={16} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                          <span className="leading-relaxed">{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    {idealFor && (
+                      <div className="mb-4 p-3 rounded-lg bg-slate-800/30 border border-slate-700/30">
+                        <p className="text-xs text-slate-400 mb-1 font-medium uppercase tracking-wider">
+                          {lang === "fr" ? "Idéal pour" : "Ideal for"}
+                        </p>
+                        <p className="text-sm text-slate-200">{idealFor}</p>
+                      </div>
+                    )}
+                    <button
+                      type="button"
+                      onClick={handleContactClick}
+                      className={`group/btn w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl ${
+                        service.featured
+                          ? "bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40"
+                          : "bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-cyan-500/50 text-white"
                       } text-sm font-semibold transition-all sm:hover:scale-105 active:scale-95`}
                     >
                       <Calendar size={14} />

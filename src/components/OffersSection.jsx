@@ -14,7 +14,7 @@ const OffersSection = () => {
   const [activeTab, setActiveTab] = useState("vitrine");
 
   const handleContactClick = () => {
-    window.open(CONTACT.calendlyUrl, "_blank", "noopener,noreferrer");
+    document.dispatchEvent(new Event("open-qualification"));
   };
 
   const tabs = getTabs(lang);

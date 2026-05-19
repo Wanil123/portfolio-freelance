@@ -144,15 +144,14 @@ const Footer = () => {
             </div>
 
             {/* CTA Button */}
-            <a
-              href={CONTACT.calendlyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => document.dispatchEvent(new Event("open-qualification"))}
               className="group inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white text-sm font-semibold rounded-xl transition-all shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 hover:scale-105 active:scale-95"
             >
               <Calendar size={15} />
               {lang === "fr" ? "Réserver un appel gratuit" : "Book a free call"}
-            </a>
+            </button>
           </Reveal>
 
           {/* Quick Links */}
