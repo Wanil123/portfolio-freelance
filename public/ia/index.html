@@ -352,10 +352,12 @@
 
         <!-- FORM -->
         <div class="form-card" id="form-anchor">
-          <form id="lp-form" novalidate>
+          <form id="lp-form" name="ia-lead" method="POST" data-netlify="true" netlify-honeypot="_gotcha" novalidate>
             <h2>Parlons-en — 30 min, gratuit</h2>
             <p class="sub">Je regarde votre cas et je vous dis honnêtement si un agent IA vous ferait gagner de l'argent. Sans engagement, sans pression.</p>
 
+            <input type="hidden" name="form-name" value="ia-lead" />
+            <input type="hidden" name="source" value="Landing page /ia/ (publicite)" />
             <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
             <div class="field" id="f-name">

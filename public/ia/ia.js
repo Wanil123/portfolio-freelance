@@ -159,26 +159,25 @@
       submit.disabled = true;
       submit.textContent = "Envoi en cours…";
 
-      var payload = {
-        _subject: "[LANDING IA] " + name + " — " + (document.getElementById("lp-type").value || "Type non précisé"),
-        _replyto: email,
-        _template: "table",
-        nom: name,
-        telephone: phone,
-        courriel: email,
-        type_entreprise: document.getElementById("lp-type").value || "—",
-        message: document.getElementById("lp-msg").value.trim() || "—",
-        source: "Landing page /ia/ (publicité)",
-        soumis_le: new Date().toISOString()
-      };
+      /* Soumission via Netlify Forms (natif à l'hébergeur — pas de service tiers).
+         Le formulaire est détecté grâce à data-netlify="true" + le champ caché
+         form-name dans le HTML. On POST en urlencoded vers la racine du site. */
+      var body = new URLSearchParams();
+      body.append("form-name", "ia-lead");
+      body.append("nom", name);
+      body.append("telephone", phone);
+      body.append("courriel", email);
+      body.append("type_entreprise", document.getElementById("lp-type").value || "—");
+      body.append("message", document.getElementById("lp-msg").value.trim() || "—");
+      body.append("source", "Landing page /ia/ (publicite)");
 
       var controller = new AbortController();
       var timeout = setTimeout(function () { controller.abort(); }, 10000);
 
-      fetch("https://formsubmit.co/ajax/info@prime-dev-studios.com", {
+      fetch("/", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: body.toString(),
         signal: controller.signal
       })
         .then(function (res) {
