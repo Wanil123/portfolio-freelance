@@ -26,7 +26,7 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'sha256-Ebt84R/xi8miDnxS/0/bkTjVgDRKQpWS1eI09TLbNkg=' https://assets.calendly.com https://plausible.io; style-src 'self' 'unsafe-inline' https://assets.calendly.com; img-src 'self' https: data: https://assets.calendly.com; font-src 'self' https: data:; frame-src https://calendly.com https://assets.calendly.com; connect-src 'self' https://formsubmit.co https://calendly.com https://assets.calendly.com https://plausible.io"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'sha256-Ebt84R/xi8miDnxS/0/bkTjVgDRKQpWS1eI09TLbNkg=' https://assets.calendly.com https://plausible.io https://www.googletagmanager.com https://www.googleadservices.com; style-src 'self' 'unsafe-inline' https://assets.calendly.com; img-src 'self' https: data: https://assets.calendly.com; font-src 'self' https: data:; frame-src https://calendly.com https://assets.calendly.com https://td.doubleclick.net; connect-src 'self' https://formsubmit.co https://calendly.com https://assets.calendly.com https://plausible.io https://www.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://region1.google-analytics.com"
 
 [[headers]]
   for = "/index.html"
