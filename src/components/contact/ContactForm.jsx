@@ -159,28 +159,26 @@ const ContactForm = () => {
     abortControllerRef.current = controller;
     const timeoutId = setTimeout(() => controller.abort(), 10000);
 
+    /* Soumission via Netlify Forms — le formulaire "contact" est déclaré dans
+       public/__forms.html pour que Netlify le détecte au déploiement. On POST
+       en url-encodé vers la racine du site (même origine, pas de service tiers). */
+    const formBody = new URLSearchParams();
+    formBody.append("form-name", "contact");
+    formBody.append("name", trimmedData.name);
+    formBody.append("email", trimmedData.email);
+    formBody.append("projectType", trimmedData.projectType || (lang === "fr" ? "Non spécifié" : "Not specified"));
+    formBody.append("budget", trimmedData.budget || (lang === "fr" ? "Non spécifié" : "Not specified"));
+    formBody.append("timeline", trimmedData.timeline || (lang === "fr" ? "Non spécifié" : "Not specified"));
+    formBody.append("hasWebsite", trimmedData.hasWebsite || (lang === "fr" ? "Non spécifié" : "Not specified"));
+    formBody.append("message", trimmedData.message);
+    formBody.append("source", "Formulaire de contact (site principal)");
+
     try {
-      const response = await fetch(CONTACT.formEndpoint, {
+      const response = await fetch("/", {
         method: "POST",
         signal: controller.signal,
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          name: trimmedData.name,
-          email: trimmedData.email,
-          projectType: trimmedData.projectType || (lang === "fr" ? "Non spécifié" : "Not specified"),
-          budget: trimmedData.budget || (lang === "fr" ? "Non spécifié" : "Not specified"),
-          timeline: trimmedData.timeline || (lang === "fr" ? "Non spécifié" : "Not specified"),
-          hasWebsite: trimmedData.hasWebsite || (lang === "fr" ? "Non spécifié" : "Not specified"),
-          message: trimmedData.message,
-          _subject: lang === "fr"
-            ? `Nouveau message de ${trimmedData.name} — ${COMPANY.name}`
-            : `New message from ${trimmedData.name} — ${COMPANY.name}`,
-          _replyto: trimmedData.email,
-          _template: "table",
-        }),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formBody.toString(),
       });
 
       if (response.ok) {

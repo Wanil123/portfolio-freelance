@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Netlify form detection</title>
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+    <!--
+      Ce fichier existe UNIQUEMENT pour que Netlify détecte les formulaires
+      du site au moment du déploiement. Il n'est jamais montré aux visiteurs.
+      L'app React soumet les leads en POSTant des données url-encodées vers "/"
+      avec le bon "form-name". Chaque champ déclaré ici doit correspondre à un
+      champ envoyé par le formulaire React, sinon Netlify ne l'enregistre pas.
+    -->
+
+    <!-- Formulaire de contact (section Contact du site principal) -->
+    <form name="contact" data-netlify="true" netlify-honeypot="_honey" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="projectType" />
+      <input type="text" name="budget" />
+      <input type="text" name="timeline" />
+      <input type="text" name="hasWebsite" />
+      <textarea name="message"></textarea>
+      <input type="text" name="source" />
+      <input type="text" name="_honey" />
+    </form>
+
+    <!-- Modal de qualification (CTA "Réserver un appel" partout sur le site) -->
+    <form name="qualification" data-netlify="true" netlify-honeypot="_honey" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="url" name="siteUrl" />
+      <input type="text" name="projectType" />
+      <input type="text" name="budget" />
+      <input type="text" name="timeline" />
+      <input type="text" name="qualified" />
+      <input type="text" name="intent" />
+      <input type="text" name="lang" />
+      <input type="text" name="source" />
+      <input type="text" name="_honey" />
+    </form>
+  </body>
+</html>

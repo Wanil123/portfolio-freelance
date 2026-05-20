@@ -217,31 +217,31 @@ const QualificationModal = () => {
       ? (form.siteUrl.trim().match(/^https?:\/\//i) ? form.siteUrl.trim() : `https://${form.siteUrl.trim()}`)
       : "—";
 
-    const payload = {
-      _subject: `[${action === "book" ? "QUALIFIÉ" : "AUDIT"}] ${form.name.trim()} — ${labelForId(projectTypes, answers.type, "fr")}`,
-      _replyto: form.email.trim(),
-      _template: "table",
-      name: form.name.trim(),
-      email: form.email.trim(),
-      phone: form.phone.trim() || "—",
-      siteUrl: normalizedUrl,
-      projectType: labelForId(projectTypes, answers.type, "fr"),
-      budget: labelForId(budgets, answers.budget, "fr"),
-      timeline: labelForId(timelines, answers.timeline, "fr"),
-      qualified: isQualified ? "OUI" : "NON",
-      intent: action === "book" ? "Demande d'appel 30 min" : "Demande d'audit gratuit",
-      lang: lang.toUpperCase(),
-      submittedAt: new Date().toISOString(),
-    };
+    /* Soumission via Netlify Forms — le formulaire "qualification" est déclaré
+       dans public/__forms.html pour que Netlify le détecte au déploiement.
+       POST url-encodé vers la racine du site, pas de service tiers. */
+    const body = new URLSearchParams();
+    body.append("form-name", "qualification");
+    body.append("name", form.name.trim());
+    body.append("email", form.email.trim());
+    body.append("phone", form.phone.trim() || "—");
+    body.append("siteUrl", normalizedUrl);
+    body.append("projectType", labelForId(projectTypes, answers.type, "fr"));
+    body.append("budget", labelForId(budgets, answers.budget, "fr"));
+    body.append("timeline", labelForId(timelines, answers.timeline, "fr"));
+    body.append("qualified", isQualified ? "OUI" : "NON");
+    body.append("intent", action === "book" ? "Demande d'appel 30 min" : "Demande d'audit gratuit");
+    body.append("lang", lang.toUpperCase());
+    body.append("source", action === "book" ? "Modal qualification — appel" : "Modal qualification — audit");
 
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 10000);
 
-      const res = await fetch(CONTACT.formEndpoint, {
+      const res = await fetch("/", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: body.toString(),
         signal: controller.signal,
       });
       clearTimeout(timeoutId);
