@@ -24,7 +24,7 @@
   "use strict";
 
   /* ----- À REMPLACER ----- */
-  var META_PIXEL_ID    = "XXXXXXXXXXXXXXX";      // ⚠️  Facebook/Instagram — à remplacer
+  var META_PIXEL_ID    = "331337119865936";      // Facebook/Instagram — dataset « wanil »
   var GOOGLE_ADS_ID    = "AW-XXXXXXXXXX";        // (optionnel — Google Ads, pour plus tard)
   var CONVERSION_LABEL = "XXXXXXXXXXXXXXXXXX";   // (optionnel — Google Ads, pour plus tard)
   /* ----------------------- */
