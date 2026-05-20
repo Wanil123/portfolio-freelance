@@ -25,6 +25,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
   -webkit-tap-highlight-color: transparent;
+  overflow-x: clip; /* no horizontal scroll on narrow phones */
 }
 
 body {
@@ -83,14 +84,14 @@ img {
 }
 
 .nav-logo img {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   border-radius: 12px;
   object-fit: contain;
 }
 
 @media (min-width: 768px) {
-  .nav-logo img { width: 56px; height: 56px; }
+  .nav-logo img { width: 60px; height: 60px; }
 }
 
 .nav-links {
@@ -192,8 +193,97 @@ img {
   box-shadow: 0 14px 25px -8px rgb(139 92 246 / 0.7);
 }
 
+/* ---- MOBILE MENU — pure CSS <details>, no JavaScript ---- */
+.nav-mobile {
+  display: block;
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  /* On desktop the inline .nav-links are shown instead */
+  .nav-mobile { display: none; }
+}
+
+.nav-burger {
+  list-style: none;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgb(30 41 59 / 0.7);
+  border: 1px solid rgb(51 65 85 / 0.6);
+  color: white;
+  transition: background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-burger::-webkit-details-marker { display: none; }
+.nav-burger:hover { background: rgb(51 65 85 / 0.9); }
+
+/* Swap hamburger ↔ close icon depending on open state */
+.nav-burger .icon-close { display: none; }
+.nav-mobile[open] .nav-burger .icon-open { display: none; }
+.nav-mobile[open] .nav-burger .icon-close { display: block; }
+
+.nav-mobile-panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 260px;
+  max-width: calc(100vw - 32px);
+  background: rgb(15 23 42);
+  border: 1px solid rgb(51 65 85 / 0.7);
+  border-radius: 16px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.7);
+  z-index: 200;
+}
+
+.nav-mobile-panel a {
+  padding: 12px 14px;
+  border-radius: 10px;
+  color: rgb(203 213 225);
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s;
+}
+
+.nav-mobile-panel a:hover,
+.nav-mobile-panel a:active {
+  background: rgb(30 41 59 / 0.8);
+  color: white;
+}
+
+.panel-divider {
+  height: 1px;
+  background: rgb(51 65 85 / 0.5);
+  margin: 6px 4px;
+}
+
+.panel-phone {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  color: rgb(148 163 184) !important;
+  font-size: 14px !important;
+}
+
 @media (max-width: 1023px) {
   .nav-inner { padding: 12px 16px; }
+}
+
+/* Very small phones — tighten the navbar so logo + lang + CTA + burger
+   all fit without clipping. */
+@media (max-width: 400px) {
+  .nav-cta { padding: 8px 12px; font-size: 13px; }
+  .nav-lang { padding: 6px 9px; }
+  .nav-right { gap: 6px; }
 }
 
 /* ---- ARTICLE ---- */
