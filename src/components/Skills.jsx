@@ -198,8 +198,16 @@ export default function Skills() {
           {skillCategories.map((category, index) => {
             const Icon = category.icon;
 
+            // Odd number of cards → last one spans both columns so the final
+            // row is full-width instead of leaving an orphan card with a gap.
+            const isLastOdd =
+              skillCategories.length % 2 === 1 && index === skillCategories.length - 1;
             return (
-              <Reveal key={index} delay={index * 0.1}>
+              <Reveal
+                key={index}
+                delay={index * 0.1}
+                className={isLastOdd ? "lg:col-span-2" : undefined}
+              >
                 <div className="group relative h-full">
                   {/* Glow effect */}
                   <div className={`pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 bg-gradient-to-br ${category.color} rounded-2xl blur-xl transition-opacity duration-500`} />

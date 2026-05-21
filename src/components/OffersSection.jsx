@@ -85,10 +85,11 @@ const OffersSection = () => {
         {/* AI ROI Stats */}
         {activeTab === "ai" && <AIStatsSection lang={lang} />}
 
-        {/* Pricing Cards */}
+        {/* Pricing Cards — 1 col mobile/tablet, 3 cols desktop (every category
+            has exactly 3 offers → rows always full, no orphan card). */}
         <div
           key={activeTab}
-          className="flex flex-wrap gap-4 md:gap-6 lg:gap-8 mb-12"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mb-12 items-start"
         >
           {offers.map((offer, index) => (
             <PricingCard

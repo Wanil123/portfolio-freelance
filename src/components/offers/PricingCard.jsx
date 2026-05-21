@@ -18,7 +18,7 @@ const PricingCard = ({ offer, index, lang, activeTab, onContactClick }) => {
   return (
     <div
       key={`${activeTab}-${offer.name}`}
-      className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-22px)]"
+      className="h-full"
     >
       <Reveal delay={index * 0.1}>
         <div
