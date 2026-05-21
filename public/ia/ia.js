@@ -164,12 +164,15 @@
          form-name dans le HTML. On POST en urlencoded vers la racine du site. */
       var body = new URLSearchParams();
       body.append("form-name", "ia-lead");
+      // Netlify honeypot: the form declares netlify-honeypot="_gotcha", so the
+      // field must be in the POST body for Netlify's spam filter to work.
+      body.append("_gotcha", honey ? honey.value : "");
       body.append("nom", name);
       body.append("telephone", phone);
       body.append("courriel", email);
       body.append("type_entreprise", document.getElementById("lp-type").value || "—");
       body.append("message", document.getElementById("lp-msg").value.trim() || "—");
-      body.append("source", "Landing page /ia/ (publicite)");
+      body.append("source", "Landing page /ia/ (publicité)");
 
       var controller = new AbortController();
       var timeout = setTimeout(function () { controller.abort(); }, 10000);
