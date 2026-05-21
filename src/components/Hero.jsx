@@ -1,7 +1,7 @@
 // src/components/Hero.jsx
 import { Phone, Calendar, Zap, Shield, Clock, MessageSquare } from "lucide-react";
 import { useLanguage } from "../hooks/useLanguage";
-import { CONTACT, formatScarcityLabel } from "../constants/config";
+import { CONTACT, availabilityLabel } from "../constants/config";
 
 const Hero = ({ scrollToSection }) => {
   const { lang } = useLanguage();
@@ -32,14 +32,14 @@ const Hero = ({ scrollToSection }) => {
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center pt-16 pb-16">
 
-        {/* Scarcity Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-amber-500/10 border border-amber-400/40 backdrop-blur-sm mb-6 animate-fade-in max-w-[95vw]">
+        {/* Availability badge — honest, verifiable (24h reply), not fake scarcity */}
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-emerald-500/10 border border-emerald-400/40 backdrop-blur-sm mb-6 animate-fade-in max-w-[95vw]">
           <div className="relative flex h-2 w-2 flex-shrink-0">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </div>
-          <span className="text-amber-200 text-xs sm:text-sm font-semibold text-center">
-            {formatScarcityLabel(lang)}
+          <span className="text-emerald-200 text-xs sm:text-sm font-semibold text-center">
+            {availabilityLabel(lang)}
           </span>
         </div>
 

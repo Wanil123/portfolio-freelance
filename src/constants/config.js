@@ -16,34 +16,15 @@ export const COMPANY = {
   neq: "2281463465",
 };
 
-// Number of open spots — keep in one place so it can't drift between sections
+// Number of showcase-program spots — used by the Programme Vitrine section,
+// which is a genuinely defined offer with a fixed number of slots.
 export const SCARCITY_SPOTS = 2;
 
-const MONTHS_FR = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
-const MONTHS_EN_LONG = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-
-// End of the current calendar quarter — rolls forward automatically
-function getQuarterEnd(date = new Date()) {
-  const q = Math.floor(date.getMonth() / 3);
-  const endMonth = q * 3 + 2;
-  return new Date(date.getFullYear(), endMonth + 1, 0);
-}
-
-// Returns "jusqu'au 30 juin" / "through June 30" — always current quarter
-export function formatScarcityDate(lang) {
-  const end = getQuarterEnd();
-  const day = end.getDate();
-  if (lang === "fr") {
-    return `jusqu'au ${day} ${MONTHS_FR[end.getMonth()]}`;
-  }
-  return `through ${MONTHS_EN_LONG[end.getMonth()]} ${day}`;
-}
-
-// Returns the full label "2 spots disponibles — jusqu'au 30 juin" / "2 spots available — through June 30"
-export function formatScarcityLabel(lang) {
-  const datePart = formatScarcityDate(lang);
-  if (lang === "fr") {
-    return `${SCARCITY_SPOTS} spots disponibles — ${datePart}`;
-  }
-  return `${SCARCITY_SPOTS} spots available — ${datePart}`;
+// Honest availability badge for the Hero / About sections. A real, verifiable
+// promise (24h response) instead of invented countdown scarcity — consistent
+// with the brand's "I tell you the truth" positioning.
+export function availabilityLabel(lang) {
+  return lang === "fr"
+    ? "Disponible — réponse sous 24 h"
+    : "Available now — reply within 24h";
 }
