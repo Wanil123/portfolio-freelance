@@ -128,7 +128,7 @@ const articles = {
 // Stable fallback image (logo/brand cover) if an Unsplash URL ever fails to load.
 const FALLBACK_IMG = "/og-cover.png";
 
-const BlogCard = ({ article, blogRoot }) => {
+const BlogCard = ({ article, blogRoot, lang }) => {
   const [imgFailed, setImgFailed] = useState(false);
   return (
     <a
@@ -165,8 +165,7 @@ const BlogCard = ({ article, blogRoot }) => {
             {article.readTime}
           </span>
           <span className="inline-flex items-center gap-1 text-sm text-violet-400 font-medium group-hover:gap-2 transition-all">
-            <span className="sr-only">{article.title} — </span>
-            <span aria-hidden="true">Lire</span>
+            {lang === "fr" ? "Lire" : "Read"}
             <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
           </span>
         </div>
@@ -208,7 +207,7 @@ const BlogTeaser = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-7 mb-10 md:mb-12">
           {list.map((article, idx) => (
             <Reveal key={article.slug} delay={Math.min(idx * 0.05, 0.2)}>
-              <BlogCard article={article} blogRoot={blogRoot} />
+              <BlogCard article={article} blogRoot={blogRoot} lang={lang} />
             </Reveal>
           ))}
         </div>

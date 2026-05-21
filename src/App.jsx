@@ -71,6 +71,8 @@ function App() {
       { rootMargin: "-110px 0px -40% 0px", threshold: 0 }
     );
 
+    let mutationObserver = null;
+
     const tryObserve = () => {
       sectionIds.forEach((id) => {
         if (observed.has(id)) return;
@@ -80,17 +82,25 @@ function App() {
           observed.add(id);
         }
       });
+      // Once every section is found, stop watching DOM mutations — otherwise
+      // the observer keeps firing on every animation/modal for the page's life.
+      if (observed.size === sectionIds.length && mutationObserver) {
+        mutationObserver.disconnect();
+        mutationObserver = null;
+      }
     };
 
     tryObserve();
 
     // Re-check as lazy chunks resolve and inject their sections into the DOM.
-    const mutationObserver = new MutationObserver(tryObserve);
-    mutationObserver.observe(document.body, { childList: true, subtree: true });
+    if (observed.size < sectionIds.length) {
+      mutationObserver = new MutationObserver(tryObserve);
+      mutationObserver.observe(document.body, { childList: true, subtree: true });
+    }
 
     return () => {
       observer.disconnect();
-      mutationObserver.disconnect();
+      if (mutationObserver) mutationObserver.disconnect();
     };
   }, []);
 

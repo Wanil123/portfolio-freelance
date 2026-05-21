@@ -153,8 +153,9 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
             </a>
           </div>
 
-          {/* DESKTOP — right side */}
-          <div className="hidden md:flex items-center gap-2 flex-shrink-0">
+          {/* DESKTOP — right side (lg+ : aligned with the nav links breakpoint
+              so 768–1024px shows the hamburger instead of an orphaned bar) */}
+          <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
             <a
               href={TEL}
               className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800/50 border border-slate-700/50 text-slate-300 text-xs font-medium hover:border-violet-500/40 hover:text-white transition-colors"
@@ -180,8 +181,8 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
             </button>
           </div>
 
-          {/* MOBILE — lang + hamburger */}
-          <div className="md:hidden flex items-center gap-2">
+          {/* MOBILE / TABLET — lang + hamburger (shown below lg) */}
+          <div className="lg:hidden flex items-center gap-2">
             <button
               type="button"
               onClick={toggleLang}
@@ -211,7 +212,7 @@ const Navbar = ({ activeSection, scrollToSection, isScrolled }) => {
           role="dialog"
           aria-modal="true"
           aria-label={lang === "fr" ? "Menu principal" : "Main menu"}
-          className="fixed inset-0 flex flex-col md:hidden animate-fadeIn"
+          className="fixed inset-0 flex flex-col lg:hidden animate-fadeIn"
           style={{ zIndex: 9999, paddingTop: navHeight, touchAction: "none" }}
         >
           {/* Backdrop — fully opaque, no bleed-through */}

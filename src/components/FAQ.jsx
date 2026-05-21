@@ -1,7 +1,6 @@
 // src/components/FAQ.jsx
 import { useState } from "react";
 import { useLanguage } from "../hooks/useLanguage";
-import { CONTACT } from "../constants/config";
 import {
   ChevronDown,
   HelpCircle,
@@ -233,18 +232,23 @@ const FAQ = () => {
                     </div>
                   </button>
 
-                  {/* Use max-height instead of grid-rows trick — universal browser support */}
+                  {/* grid-rows 1fr/0fr collapse — never truncates content,
+                      unlike a fixed max-height. Universal modern-browser support. */}
                   <div
                     id={panelId}
                     role="region"
                     aria-labelledby={buttonId}
-                    className="overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out"
-                    style={{ maxHeight: isOpen ? "500px" : "0px", opacity: isOpen ? 1 : 0 }}
+                    className="grid transition-[grid-template-rows,opacity] duration-300 ease-in-out"
+                    style={{ gridTemplateRows: isOpen ? "1fr" : "0fr", opacity: isOpen ? 1 : 0 }}
                   >
-                    <div className="px-5 md:px-6 pb-5 md:pb-6 pt-0 pl-[4.5rem] md:pl-[5rem]">
-                      <p className="text-slate-300 text-sm md:text-base leading-relaxed">
-                        {faq.answer[lang]}
-                      </p>
+                    {/* grid-rows collapse requires the direct child to clip;
+                        padding lives on an inner wrapper so 0fr fully hides it. */}
+                    <div className="overflow-hidden min-h-0">
+                      <div className="px-5 md:px-6 pb-5 md:pb-6 pt-0 pl-[4.5rem] md:pl-[5rem]">
+                        <p className="text-slate-300 text-sm md:text-base leading-relaxed">
+                          {faq.answer[lang]}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -13,7 +13,6 @@ import {
   Building2,
 } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
-import { CONTACT } from "../constants/config";
 
 const Testimonials = () => {
   const { lang } = useLanguage();
@@ -29,8 +28,8 @@ const Testimonials = () => {
       company: "LamIPict.com",
       rating: 5,
       quote: {
-        fr: "J'ai engagé Wanil pour bâtir LamiPict.com — un e-commerce pour nos services de laminage photo. On avait besoin d'un système qui gère les commandes en ligne et les fichiers uploadés par les clients. Simple sur papier, mais en pratique y'avait bien plus à régler : l'espace admin, les taxes par province, 76+ formats de produits. Y'a des moments où je me demandais si c'était faisable. Il revenait toujours avec une solution. La boutique est en ligne et ça tourne.",
-        en: "I hired Wanil to build LamiPict.com — an e-commerce site for our photo lamination services. We needed a system that handles online orders and customer-uploaded files. Simple on paper, but there was a lot more to sort out: the admin panel, province-by-province taxes, 76+ product formats. There were moments I wasn't sure it was all doable. He always came back with a solution. The store is live and running.",
+        fr: "J'ai engagé Wanil pour bâtir LamIPict.com — un e-commerce pour nos services de laminage photo. On avait besoin d'un système qui gère les commandes en ligne et les fichiers uploadés par les clients. Simple sur papier, mais en pratique y'avait bien plus à régler : l'espace admin, les taxes par province, 76+ formats de produits. Y'a des moments où je me demandais si c'était faisable. Il revenait toujours avec une solution. La boutique est en ligne et ça tourne.",
+        en: "I hired Wanil to build LamIPict.com — an e-commerce site for our photo lamination services. We needed a system that handles online orders and customer-uploaded files. Simple on paper, but there was a lot more to sort out: the admin panel, province-by-province taxes, 76+ product formats. There were moments I wasn't sure it was all doable. He always came back with a solution. The store is live and running.",
       },
       project: {
         fr: "Site e-commerce",
@@ -138,8 +137,6 @@ const Testimonials = () => {
       color: "from-violet-400 to-purple-500",
     },
   ];
-
-  const currentProjects = [];
 
   return (
     <section
@@ -336,26 +333,6 @@ const Testimonials = () => {
                           {project.type}
                         </p>
                         <p className="text-xs text-emerald-400">
-                          {project.industry}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                  {currentProjects.map((project, idx) => (
-                    <div
-                      key={`current-${idx}`}
-                      className="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-800/30 border border-slate-700/30"
-                    >
-                      <div
-                        className={`flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br ${project.color} border border-white/10`}
-                      >
-                        <Clock size={18} className="text-white" />
-                      </div>
-                      <div>
-                        <p className="text-white text-sm font-medium">
-                          {project.type}
-                        </p>
-                        <p className="text-xs text-slate-500">
                           {project.industry}
                         </p>
                       </div>

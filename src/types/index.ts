@@ -51,7 +51,6 @@ export interface ContactInfo {
   phone: string;
   whatsappNumber: string;
   calendlyUrl: string;
-  formEndpoint: string;
 }
 
 export interface SocialLinks {

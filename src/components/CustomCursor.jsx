@@ -6,76 +6,62 @@ const CustomCursor = () => {
   const outlineRef = useRef(null);
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(true); // Default to true to prevent flash
+  const [isTouchDevice, setIsTouchDevice] = useState(true); // default true to avoid flash
 
   useEffect(() => {
-    // Check if device has fine pointer (mouse) - runs once on mount
-    const hasFingerPointer = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    setIsTouchDevice(hasFingerPointer || isMobile);
+    const coarse = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+    const mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    setIsTouchDevice(coarse || mobile);
   }, []);
 
   useEffect(() => {
-    // Don't run cursor logic on touch devices
     if (isTouchDevice) return;
 
     const dot = dotRef.current;
     const outline = outlineRef.current;
     if (!dot || !outline) return;
 
-    let mouseX = 0;
-    let mouseY = 0;
-    let outlineX = 0;
-    let outlineY = 0;
+    let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
+    let hovering = false;
+
+    // The dot's transform (translate + scale) is written ENTIRELY here, never
+    // via React's style prop — otherwise a re-render would overwrite the
+    // translate with scale-only and snap the cursor to (0,0).
+    const applyDot = () => {
+      dot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px) scale(${hovering ? 1.6 : 1})`;
+    };
 
     const handleMouseMove = (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-
-      // Dot follows instantly
-      dot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
-
+      applyDot();
       setIsVisible(true);
     };
-
     const handleMouseEnter = () => setIsVisible(true);
     const handleMouseLeave = () => setIsVisible(false);
 
-    // Smooth outline follow — use a ref-guarded loop to avoid memory leaks on remount
     let rafId = null;
     const animateOutline = () => {
       outlineX += (mouseX - outlineX) * 0.15;
       outlineY += (mouseY - outlineY) * 0.15;
-
       outline.style.transform = `translate(${outlineX - 20}px, ${outlineY - 20}px)`;
       rafId = requestAnimationFrame(animateOutline);
     };
 
-    // Detect hoverable elements
+    const isInteractive = (t) =>
+      !!(t && t.closest && t.closest("a, button, .cursor-pointer, [role='button'], input, select, textarea"));
+
     const handleMouseOver = (e) => {
-      const target = e.target;
-      if (
-        target.tagName === "BUTTON" ||
-        target.tagName === "A" ||
-        target.closest("button") ||
-        target.closest("a") ||
-        target.classList.contains("cursor-pointer") ||
-        target.closest(".cursor-pointer")
-      ) {
+      if (isInteractive(e.target)) {
+        hovering = true;
+        applyDot();
         setIsHovering(true);
       }
     };
-
     const handleMouseOut = (e) => {
-      const target = e.target;
-      if (
-        target.tagName === "BUTTON" ||
-        target.tagName === "A" ||
-        target.closest("button") ||
-        target.closest("a") ||
-        target.classList.contains("cursor-pointer") ||
-        target.closest(".cursor-pointer")
-      ) {
+      if (isInteractive(e.target)) {
+        hovering = false;
+        applyDot();
         setIsHovering(false);
       }
     };
@@ -98,23 +84,17 @@ const CustomCursor = () => {
     };
   }, [isTouchDevice]);
 
-  // Don't render on touch devices
   if (isTouchDevice) return null;
 
   return (
     <>
-      <div
-        ref={dotRef}
-        className="cursor-dot"
-        style={{
-          opacity: isVisible ? 1 : 0,
-          transform: isHovering ? "scale(1.5)" : "scale(1)",
-        }}
-      />
+      {/* dot: transform is fully imperative — only opacity is React-managed */}
+      <div ref={dotRef} className="cursor-dot" style={{ opacity: isVisible ? 1 : 0 }} aria-hidden="true" />
       <div
         ref={outlineRef}
         className={`cursor-outline ${isHovering ? "hover" : ""}`}
         style={{ opacity: isVisible ? 1 : 0 }}
+        aria-hidden="true"
       />
     </>
   );

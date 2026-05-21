@@ -164,6 +164,9 @@ const ContactForm = () => {
        en url-encodé vers la racine du site (même origine, pas de service tiers). */
     const formBody = new URLSearchParams();
     formBody.append("form-name", "contact");
+    // Netlify honeypot: __forms.html declares netlify-honeypot="_honey", so the
+    // field must be present in the POST body for Netlify's spam filter to work.
+    formBody.append("_honey", honeypotRef.current?.value || "");
     formBody.append("name", trimmedData.name);
     formBody.append("email", trimmedData.email);
     formBody.append("projectType", trimmedData.projectType || (lang === "fr" ? "Non spécifié" : "Not specified"));

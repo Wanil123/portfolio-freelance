@@ -1,7 +1,7 @@
 // src/components/Contact.jsx
 import { useLanguage } from "../hooks/useLanguage";
 import { COMPANY } from "../constants/config";
-import { Sparkles, Zap, ArrowRight } from "lucide-react";
+import { Sparkles, Zap } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
 import ContactForm from "./contact/ContactForm";
 import ContactMethods from "./contact/ContactMethods";

@@ -3,7 +3,6 @@ import { useLanguage } from "../hooks/useLanguage";
 import { services } from "../data/services.js";
 import { Check, ArrowRight, Zap, Clock, Star, Calendar, Globe2, Bot } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
-import { CONTACT } from "../constants/config";
 
 const Services = ({ scrollToSection }) => {
   const { lang } = useLanguage();

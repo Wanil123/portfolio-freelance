@@ -1,6 +1,6 @@
 // src/components/ProgrammeVitrine.jsx
 import { useLanguage } from "../hooks/useLanguage";
-import { CONTACT, SCARCITY_SPOTS } from "../constants/config";
+import { SCARCITY_SPOTS } from "../constants/config";
 import {
   Star,
   CheckCircle2,
@@ -98,8 +98,8 @@ const ProgrammeVitrine = () => {
 
                   <p className="text-slate-300 text-base leading-relaxed mb-8">
                     {lang === "fr"
-                      ? "Chaque trimestre, je sélectionne 2 entreprises pour devenir des projets vitrine. En échange du droit de présenter votre projet dans mon portfolio, vous bénéficiez d'une réduction et d'une priorité de traitement."
-                      : "Each quarter, I select 2 businesses to become showcase projects. In exchange for the right to feature your project in my portfolio, you get a discount and priority handling."}
+                      ? `Chaque trimestre, je sélectionne ${SCARCITY_SPOTS} entreprises pour devenir des projets vitrine. En échange du droit de présenter votre projet dans mon portfolio, vous bénéficiez d'une réduction et d'une priorité de traitement.`
+                      : `Each quarter, I select ${SCARCITY_SPOTS} businesses to become showcase projects. In exchange for the right to feature your project in my portfolio, you get a discount and priority handling.`}
                   </p>
 
                   {/* Criteria */}

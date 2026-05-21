@@ -222,6 +222,8 @@ const QualificationModal = () => {
        POST url-encodé vers la racine du site, pas de service tiers. */
     const body = new URLSearchParams();
     body.append("form-name", "qualification");
+    // Netlify honeypot field — must be in the body for Netlify's spam filter.
+    body.append("_honey", honeypot?.value || "");
     body.append("name", form.name.trim());
     body.append("email", form.email.trim());
     body.append("phone", form.phone.trim() || "—");

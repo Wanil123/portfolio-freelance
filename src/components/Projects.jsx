@@ -20,19 +20,23 @@ const Projects = () => {
   const openModal = useCallback((project) => {
     triggerRef.current = document.activeElement;
     setSelectedProject(project);
-    document.body.style.overflow = "hidden";
   }, []);
 
   const closeModal = useCallback(() => {
     setSelectedProject(null);
-    // Restore to empty string so CSS-defined overflow takes back over,
-    // preserving overflow-x: clip on body (sticky navbar relies on it).
-    document.body.style.overflow = "";
     if (triggerRef.current && document.contains(triggerRef.current)) {
       triggerRef.current.focus();
     }
     triggerRef.current = null;
   }, []);
+
+  // Body scroll lock tied to modal state, with a guaranteed cleanup — so the
+  // body is always unlocked even if Projects unmounts while the modal is open.
+  useEffect(() => {
+    if (!selectedProject) return;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = ""; };
+  }, [selectedProject]);
 
   useEffect(() => {
     if (!selectedProject) return;
