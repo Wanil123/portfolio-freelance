@@ -10,6 +10,7 @@ import {
   Sparkles,
   TrendingUp,
   Bot,
+  ShoppingBag,
 } from "lucide-react";
 import { Reveal } from "./ui/Reveal";
 
@@ -103,6 +104,24 @@ export default function Skills() {
         { name: "Voiceflow", color: "from-purple-400 to-violet-500" },
         { name: lang === "fr" ? "Agents vocaux" : "Voice Agents", color: "from-cyan-400 to-blue-500" },
         { name: lang === "fr" ? "Automatisation CRM" : "CRM Automation", color: "from-pink-400 to-rose-500" },
+      ],
+    },
+    {
+      icon: ShoppingBag,
+      color: "from-amber-400 to-yellow-500",
+      bgColor: "bg-amber-500/10",
+      borderColor: "border-amber-500/30",
+      iconColor: "text-amber-300",
+      title: lang === "fr" ? "E-commerce & CMS" : "E-commerce & CMS",
+      subtitle: lang === "fr" ? "Boutiques en ligne & sites gérables" : "Online stores & manageable sites",
+      description: lang === "fr"
+        ? "Boutiques Shopify, sites WordPress et e-commerce sur mesure — paiement, produits, livraison."
+        : "Shopify stores, WordPress sites and custom e-commerce — payments, products, shipping.",
+      skills: [
+        { name: "Shopify", color: "from-green-400 to-emerald-500" },
+        { name: "WordPress", color: "from-blue-400 to-indigo-500" },
+        { name: "Stripe", color: "from-violet-400 to-purple-500" },
+        { name: lang === "fr" ? "E-commerce sur mesure" : "Custom e-commerce", color: "from-pink-400 to-rose-500" },
       ],
     },
     {
