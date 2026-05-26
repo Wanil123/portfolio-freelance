@@ -341,11 +341,20 @@ const Projects = () => {
             </Reveal>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-6">
-              {personalProjects.map((p, index) => (
-                <Reveal key={p.id} delay={index * 0.1}>
-                  {renderCard(p)}
-                </Reveal>
-              ))}
+              {personalProjects.map((p, index) => {
+                const isLastOdd =
+                  index === personalProjects.length - 1 &&
+                  personalProjects.length % 2 === 1;
+                return (
+                  <Reveal
+                    key={p.id}
+                    delay={index * 0.1}
+                    className={isLastOdd ? "sm:col-span-2" : ""}
+                  >
+                    {renderCard(p)}
+                  </Reveal>
+                );
+              })}
             </div>
           </>
         )}
