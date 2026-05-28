@@ -11,3 +11,37 @@ activate-form.js
 # Fichiers confidentiels — ne jamais committer
 Operations.zip
 operations_extracted/
+
+# ============================================================
+# CLIENTS PRIVÉS — Documents confidentiels (devis, factures, etc.)
+# ============================================================
+# Ces fichiers contiennent des prix, infos clients, communications privées.
+# Ils sont sauvegardés sur le repo PRIVÉ tabar-cafe-private uniquement.
+# Ne JAMAIS pousser ces fichiers sur ce repo public portfolio-freelance.
+
+# Devis et factures (tout pattern)
+devis-*.html
+facture-*.html
+*-devis-*.html
+*-facture-*.html
+
+# Mails et préparations client
+mail-bertin.html
+mail-*.html
+prep-bertin.html
+prep-*.html
+
+# Documents reçus de clients
+*Tabar*.docx
+*Tabar*.pdf
+Devis_*.docx
+Devis_*.pdf
+
+# Dossiers projets clients
+tabar-cafe-projet/
+*-cafe-projet/
+*-projet-client/
+client-*/
+
+# Logo brand (utilisé par les devis privés)
+public/logo-brand.jpg
