@@ -72,14 +72,33 @@
     loadGoogleAds();
   }
 
-  /* ---- Déclenche les conversions (selon ce qui est configuré + consenti) ---- */
-  function fireConversion() {
+  /* ---- ID d'événement unique (dédup Pixel <-> Conversions API, fenêtre 48 h) ---- */
+  function genEventId() {
+    try {
+      if (window.crypto && crypto.randomUUID) return "lead_" + crypto.randomUUID();
+    } catch (e) {}
+    return "lead_" + Date.now() + "_" + Math.random().toString(36).slice(2, 10);
+  }
+
+  /* ---- Déclenche les conversions (selon ce qui est configuré + consenti) ----
+     On envoie une "value" représentative pour que Meta optimise vers les leads de
+     QUALITÉ (pas les moins chers), + un eventID pour la déduplication serveur (CAPI). */
+  function fireConversion(eventId, user) {
     if (metaReady && typeof window.fbq === "function") {
-      window.fbq("track", "Lead");
+      // Advanced Matching : on re-déclare le Pixel avec les coordonnées du lead.
+      // Le Pixel normalise et HACHE ces données côté navigateur (jamais en clair).
+      // -> meilleure qualité d'appariement (EMQ) = meilleure attribution / coût par lead.
+      if (user && (user.em || user.ph)) {
+        try { window.fbq("init", META_PIXEL_ID, user); } catch (e) {}
+      }
+      window.fbq("track", "Lead",
+        { value: 1500, currency: "CAD", content_name: "Appel gratuit — Agent IA" },
+        { eventID: eventId });
     }
     if (googleReady && typeof window.gtag === "function") {
       window.gtag("event", "conversion", {
-        send_to: GOOGLE_ADS_ID + "/" + CONVERSION_LABEL
+        send_to: GOOGLE_ADS_ID + "/" + CONVERSION_LABEL,
+        value: 1500, currency: "CAD", transaction_id: eventId
       });
     }
   }
@@ -123,11 +142,35 @@
 
   function setInvalid(fieldId, invalid) {
     var f = document.getElementById(fieldId);
-    if (f) f.classList.toggle("invalid", invalid);
+    if (!f) return;
+    f.classList.toggle("invalid", invalid);
+    var input = f.querySelector("input, select, textarea");
+    if (input) input.setAttribute("aria-invalid", invalid ? "true" : "false");
   }
 
   function validEmail(v) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  }
+
+  /* Validation au fur et à mesure : on signale l'erreur quand l'utilisateur QUITTE
+     le champ (blur), et on l'efface dès qu'il recommence à taper. UX moins frustrante. */
+  function liveValidate() {
+    var checks = [
+      { wrap: "f-name", id: "lp-name", bad: function (v) { return v.trim().length < 2; } },
+      { wrap: "f-phone", id: "lp-phone", bad: function (v) { return v.replace(/[^0-9+]/g, "").length < 10; } },
+      { wrap: "f-email", id: "lp-email", bad: function (v) { return !validEmail(v.trim()); } }
+    ];
+    checks.forEach(function (c) {
+      var el = document.getElementById(c.id);
+      if (!el) return;
+      el.addEventListener("blur", function () {
+        if (el.value) setInvalid(c.wrap, c.bad(el.value));
+      });
+      el.addEventListener("input", function () {
+        var wrap = document.getElementById(c.wrap);
+        if (wrap && wrap.classList.contains("invalid")) setInvalid(c.wrap, false);
+      });
+    });
   }
 
   /* ---- Formulaire ---- */
@@ -136,6 +179,8 @@
     var success = document.getElementById("lp-success");
     var submit  = document.getElementById("lp-submit");
     if (!form || !success || !submit) return;
+
+    liveValidate();
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -159,6 +204,10 @@
       submit.disabled = true;
       submit.textContent = "Envoi en cours…";
 
+      /* Même eventID côté navigateur (Pixel) et dans le lead (pour la CAPI serveur
+         plus tard) -> Meta dédupliquera les 2 sources au lieu de compter en double. */
+      var eventId = genEventId();
+
       /* Soumission via Netlify Forms (natif à l'hébergeur — pas de service tiers).
          Le formulaire est détecté grâce à data-netlify="true" + le champ caché
          form-name dans le HTML. On POST en urlencoded vers la racine du site. */
@@ -173,6 +222,7 @@
       body.append("type_entreprise", document.getElementById("lp-type").value || "—");
       body.append("message", document.getElementById("lp-msg").value.trim() || "—");
       body.append("source", "Landing page /ia/ (publicité)");
+      body.append("event_id", eventId);
 
       var controller = new AbortController();
       var timeout = setTimeout(function () { controller.abort(); }, 10000);
@@ -188,8 +238,13 @@
           if (!res.ok) throw new Error("HTTP " + res.status);
           form.style.display = "none";
           success.style.display = "block";
+          try { success.scrollIntoView({ behavior: "smooth", block: "center" }); } catch (e) {}
           trackPlausible("LP IA - Lead");
-          fireConversion();
+          fireConversion(eventId, {
+            em: email,
+            ph: phone.replace(/[^0-9]/g, ""),
+            fn: name.split(" ")[0]
+          });
         })
         .catch(function () {
           clearTimeout(timeout);
