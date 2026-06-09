@@ -49,6 +49,11 @@
     Cache-Control = "public, max-age=300, must-revalidate"
 
 [[headers]]
+  for = "/web/web.js"
+  [headers.values]
+    Cache-Control = "public, max-age=300, must-revalidate"
+
+[[headers]]
   for = "/blog/blog.css"
   [headers.values]
     Cache-Control = "public, max-age=300, must-revalidate"

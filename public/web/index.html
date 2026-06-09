@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="fr-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Un site web qui vous amène des clients — PrimeDev Studios</title>
+    <meta name="description" content="Sites vitrines et boutiques en ligne sur mesure pour les PME du Québec. Rapide, bilingue, optimisé pour convertir vos visiteurs en clients. Soumission gratuite." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Wanil Parfait — PrimeDev Studios" />
+    <link rel="canonical" href="https://www.prime-dev-studios.com/web/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PrimeDev Studios" />
+    <meta property="og:url" content="https://www.prime-dev-studios.com/web/" />
+    <meta property="og:title" content="Un site web qui vous amène des clients" />
+    <meta property="og:description" content="Sites vitrines et boutiques en ligne sur mesure pour les PME du Québec. Conçus pour convertir, pas juste pour être beaux." />
+    <meta property="og:image" content="https://www.prime-dev-studios.com/og-cover.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="fr_CA" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Un site web qui vous amène des clients" />
+    <meta name="twitter:description" content="Sites vitrines et boutiques en ligne sur mesure. PME du Québec. Soumission gratuite." />
+    <meta name="twitter:image" content="https://www.prime-dev-studios.com/og-cover.png" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <meta name="theme-color" content="#0f172a" />
+
+    <link rel="preconnect" href="https://plausible.io" crossorigin />
+    <link rel="preconnect" href="https://connect.facebook.net" crossorigin />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "PrimeDev Studios",
+      "description": "Conception de sites vitrines et de boutiques en ligne sur mesure pour PME du Québec : design moderne, rapide, bilingue, optimisé pour la conversion.",
+      "url": "https://www.prime-dev-studios.com/web/",
+      "telephone": "+1-579-368-5230",
+      "email": "info@prime-dev-studios.com",
+      "areaServed": { "@type": "AdministrativeArea", "name": "Québec, Canada" },
+      "address": { "@type": "PostalAddress", "addressLocality": "Montréal", "addressRegion": "QC", "addressCountry": "CA" },
+      "founder": { "@type": "Person", "name": "Wanil Parfait" },
+      "priceRange": "$$",
+      "makesOffer": {
+        "@type": "Offer",
+        "itemOffered": { "@type": "Service", "name": "Conception de site web et boutique en ligne sur mesure" },
+        "priceCurrency": "CAD"
+      }
+    }
+    </script>
+
+    <script async src="https://plausible.io/js/pa-dW6UCSyLSeSysDKbhNz2b.js"></script>
+    <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+
+    <style>
+      :root {
+        --violet: 139 92 246; --purple: 168 85 247;
+        --slate-950: 15 23 42; --slate-900: 30 41 59; --slate-800: 30 41 59;
+        --slate-700: 51 65 85; --slate-400: 148 163 184; --slate-300: 203 213 225;
+        --emerald: 16 185 129; --amber: 245 158 11;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; overflow-x: clip; -webkit-tap-highlight-color: transparent; }
+      body {
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+        background: rgb(15 23 42); color: rgb(226 232 240); line-height: 1.6;
+      }
+      a { color: rgb(167 139 250); text-decoration: none; }
+      img { max-width: 100%; display: block; }
+      .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+      .nav { position: sticky; top: 0; z-index: 100; background: rgba(15,23,42,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid rgb(30 41 59 / 0.6); }
+      .nav-in { max-width: 1120px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+      .nav-logo img { width: 56px; height: 56px; border-radius: 12px; object-fit: contain; }
+      .nav-phone { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: linear-gradient(135deg, rgb(139 92 246), rgb(168 85 247)); color: white; font-weight: 600; font-size: 14px; box-shadow: 0 8px 20px -8px rgb(139 92 246 / 0.5); }
+
+      .hero { padding: 56px 0 64px; position: relative; overflow: hidden; }
+      .hero::before { content: ''; position: absolute; top: -120px; left: 50%; transform: translateX(-50%); width: 700px; height: 500px; background: radial-gradient(ellipse, rgb(139 92 246 / 0.18), transparent 70%); pointer-events: none; }
+      .hero-grid { position: relative; display: grid; grid-template-columns: 1fr; gap: 40px; align-items: start; }
+      @media (min-width: 960px) { .hero-grid { grid-template-columns: 1.05fr 0.95fr; gap: 48px; } }
+      .badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: rgb(139 92 246 / 0.1); border: 1px solid rgb(139 92 246 / 0.3); color: rgb(196 181 253); font-size: 13px; font-weight: 600; margin-bottom: 20px; }
+      .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: rgb(16 185 129); flex-shrink: 0; }
+      h1 { font-size: 38px; line-height: 1.12; font-weight: 800; color: white; letter-spacing: -0.02em; margin-bottom: 20px; }
+      @media (min-width: 700px) { h1 { font-size: 46px; } }
+      h1 .accent { background: linear-gradient(135deg, rgb(167 139 250), rgb(216 180 254)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      .hero-sub { font-size: 18px; color: rgb(203 213 225); margin-bottom: 28px; max-width: 540px; }
+      .hero-points { list-style: none; margin-bottom: 8px; }
+      .hero-points li { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 12px; color: rgb(203 213 225); font-size: 15px; }
+      .hero-points .check { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: rgb(16 185 129 / 0.15); border: 1px solid rgb(16 185 129 / 0.4); display: flex; align-items: center; justify-content: center; color: rgb(52 211 153); margin-top: 2px; }
+
+      .form-card { background: linear-gradient(160deg, rgb(30 41 59 / 0.95), rgb(15 23 42 / 0.95)); border: 1px solid rgb(139 92 246 / 0.3); border-radius: 20px; padding: 28px 24px; box-shadow: 0 30px 60px -24px rgba(0,0,0,0.6); }
+      .form-card h2 { font-size: 22px; color: white; margin-bottom: 6px; }
+      .form-card .sub { font-size: 14px; color: rgb(148 163 184); margin-bottom: 20px; }
+      .field { margin-bottom: 14px; }
+      .field label { display: block; font-size: 13px; font-weight: 600; color: rgb(203 213 225); margin-bottom: 6px; }
+      .field input, .field select, .field textarea { width: 100%; padding: 12px 14px; border-radius: 10px; background: rgb(15 23 42 / 0.8); border: 1px solid rgb(51 65 85 / 0.7); color: white; font-size: 15px; font-family: inherit; }
+      .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: rgb(139 92 246 / 0.7); }
+      .field textarea { resize: vertical; min-height: 70px; }
+      .field .err { color: rgb(251 113 133); font-size: 12px; margin-top: 4px; display: none; }
+      .field.invalid .err { display: block; }
+      .field.invalid input, .field.invalid select { border-color: rgb(244 63 94 / 0.6); }
+      .btn-submit { width: 100%; padding: 15px; border: none; border-radius: 12px; background: linear-gradient(135deg, rgb(139 92 246), rgb(168 85 247)); color: white; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 12px 28px -10px rgb(139 92 246 / 0.6); transition: transform 0.15s; font-family: inherit; }
+      .btn-submit:hover { transform: translateY(-2px); }
+      .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+      .form-note { font-size: 12px; color: rgb(100 116 139); text-align: center; margin-top: 12px; }
+      .form-success { display: none; text-align: center; padding: 24px 8px; }
+      .form-success .ok { width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 16px; background: rgb(16 185 129 / 0.15); border: 1px solid rgb(16 185 129 / 0.4); display: flex; align-items: center; justify-content: center; color: rgb(52 211 153); }
+      .form-success h3 { color: white; font-size: 20px; margin-bottom: 8px; }
+      .form-success p { color: rgb(203 213 225); font-size: 15px; }
+      .honeypot { position: absolute; left: -9999px; opacity: 0; height: 0; }
+
+      section.block { padding: 56px 0; border-top: 1px solid rgb(30 41 59 / 0.5); }
+      .eyebrow { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgb(167 139 250); margin-bottom: 10px; }
+      h2.section-title { font-size: 28px; color: white; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 28px; line-height: 1.2; }
+      @media (min-width: 700px) { h2.section-title { font-size: 34px; } }
+      .sub-head { color: rgb(148 163 184); font-size: 15px; margin: -18px 0 28px; }
+
+      .cards-3 { display: grid; grid-template-columns: 1fr; gap: 18px; }
+      @media (min-width: 760px) { .cards-3 { grid-template-columns: repeat(3, 1fr); } }
+      .card { background: rgb(30 41 59 / 0.5); border: 1px solid rgb(51 65 85 / 0.5); border-radius: 16px; padding: 24px; }
+      .card .ic { width: 44px; height: 44px; border-radius: 12px; margin-bottom: 14px; background: rgb(139 92 246 / 0.12); border: 1px solid rgb(139 92 246 / 0.3); display: flex; align-items: center; justify-content: center; color: rgb(196 181 253); }
+      .card h3 { color: white; font-size: 17px; margin-bottom: 8px; }
+      .card p { color: rgb(203 213 225); font-size: 14px; }
+
+      .steps { display: grid; grid-template-columns: 1fr; gap: 16px; }
+      @media (min-width: 760px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+      .step { background: rgb(30 41 59 / 0.4); border: 1px solid rgb(51 65 85 / 0.5); border-radius: 16px; padding: 24px; position: relative; }
+      .step .num { font-size: 13px; font-weight: 700; color: rgb(167 139 250); background: rgb(139 92 246 / 0.12); border: 1px solid rgb(139 92 246 / 0.3); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+      .step h3 { color: white; font-size: 16px; margin-bottom: 8px; }
+      .step p { color: rgb(203 213 225); font-size: 14px; }
+
+      .pricing { display: grid; grid-template-columns: 1fr; gap: 18px; margin-bottom: 14px; }
+      @media (min-width: 760px) { .pricing { grid-template-columns: repeat(3, 1fr); } }
+      .plan { background: rgb(30 41 59 / 0.5); border: 1px solid rgb(51 65 85 / 0.5); border-radius: 16px; padding: 24px; }
+      .plan.featured { border-color: rgb(139 92 246 / 0.5); }
+      .plan .tag { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: rgb(196 181 253); background: rgb(139 92 246 / 0.12); border: 1px solid rgb(139 92 246 / 0.3); padding: 3px 9px; border-radius: 999px; margin-bottom: 12px; }
+      .plan .name { color: white; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+      .plan .price { font-size: 28px; font-weight: 800; color: white; margin-bottom: 2px; }
+      .plan .price span { font-size: 14px; font-weight: 500; color: rgb(148 163 184); }
+      .plan .meta { color: rgb(148 163 184); font-size: 13px; margin-top: 6px; }
+      .plan ul { list-style: none; margin-top: 14px; }
+      .plan ul li { display: flex; gap: 8px; align-items: flex-start; color: rgb(203 213 225); font-size: 13.5px; padding: 5px 0; }
+      .plan ul li svg { color: rgb(52 211 153); flex-shrink: 0; margin-top: 3px; }
+      .price-note { margin-top: 18px; font-size: 13px; color: rgb(148 163 184); background: rgb(245 158 11 / 0.06); border: 1px solid rgb(245 158 11 / 0.2); border-radius: 12px; padding: 14px 16px; }
+
+      /* SHOWCASE OFFER */
+      .showcase { display: flex; gap: 18px; align-items: flex-start; background: linear-gradient(160deg, rgb(139 92 246 / 0.12), rgb(168 85 247 / 0.06)); border: 1px solid rgb(139 92 246 / 0.35); border-radius: 18px; padding: 24px; margin-top: 8px; }
+      .showcase .ic { flex-shrink: 0; width: 46px; height: 46px; border-radius: 12px; background: rgb(139 92 246 / 0.18); border: 1px solid rgb(139 92 246 / 0.4); display: flex; align-items: center; justify-content: center; color: rgb(196 181 253); }
+      .showcase strong { color: white; display: block; font-size: 16px; margin-bottom: 5px; }
+      .showcase p { color: rgb(203 213 225); font-size: 14px; margin: 0; }
+
+      .why-list { list-style: none; }
+      .why-list li { display: flex; gap: 12px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid rgb(30 41 59 / 0.6); }
+      .why-list li:last-child { border-bottom: none; }
+      .why-list .ic { flex-shrink: 0; width: 24px; height: 24px; border-radius: 7px; background: rgb(139 92 246 / 0.12); color: rgb(196 181 253); display: flex; align-items: center; justify-content: center; }
+      .why-list strong { color: white; display: block; font-size: 15px; margin-bottom: 4px; }
+      .why-list span { color: rgb(203 213 225); font-size: 14px; line-height: 1.55; }
+
+      .final { text-align: center; padding: 56px 24px; background: linear-gradient(160deg, rgb(30 41 59 / 0.6), rgb(15 23 42 / 0.6)); border: 1px solid rgb(139 92 246 / 0.25); border-radius: 20px; margin: 24px 0; }
+      .final h2 { color: white; font-size: 26px; font-weight: 800; margin-bottom: 10px; }
+      .final p { color: rgb(203 213 225); margin-bottom: 20px; }
+      .btn-scroll { display: inline-flex; align-items: center; gap: 8px; padding: 15px 28px; border-radius: 12px; background: linear-gradient(135deg, rgb(139 92 246), rgb(168 85 247)); color: white; font-weight: 700; font-size: 16px; box-shadow: 0 12px 28px -10px rgb(139 92 246 / 0.6); }
+
+      .footer { border-top: 1px solid rgb(30 41 59 / 0.6); padding: 28px 24px; text-align: center; color: rgb(100 116 139); font-size: 13px; }
+      .footer a { color: rgb(148 163 184); }
+
+      .trustbar { display: flex; flex-wrap: wrap; gap: 10px 22px; justify-content: center; padding: 18px 24px; border-top: 1px solid rgb(30 41 59 / 0.5); border-bottom: 1px solid rgb(30 41 59 / 0.5); background: rgb(30 41 59 / 0.25); }
+      .trustbar .ti { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: rgb(203 213 225); font-weight: 500; }
+      .trustbar .ti svg { color: rgb(52 211 153); flex-shrink: 0; }
+
+      .faq { display: grid; gap: 12px; max-width: 820px; }
+      .faq details { background: rgb(30 41 59 / 0.45); border: 1px solid rgb(51 65 85 / 0.5); border-radius: 14px; padding: 4px 20px; }
+      .faq summary { cursor: pointer; list-style: none; padding: 16px 0; color: white; font-weight: 600; font-size: 15.5px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+      .faq summary::-webkit-details-marker { display: none; }
+      .faq summary::after { content: '+'; color: rgb(167 139 250); font-size: 22px; font-weight: 400; transition: transform 0.2s; flex-shrink: 0; }
+      .faq details[open] summary::after { transform: rotate(45deg); }
+      .faq details p { color: rgb(203 213 225); font-size: 14.5px; line-height: 1.65; padding: 0 0 18px; margin: 0; }
+
+      .guarantee { display: flex; gap: 16px; align-items: flex-start; background: rgb(16 185 129 / 0.06); border: 1px solid rgb(16 185 129 / 0.25); border-radius: 16px; padding: 22px 24px; }
+      .guarantee .ic { flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px; background: rgb(16 185 129 / 0.12); border: 1px solid rgb(16 185 129 / 0.35); display: flex; align-items: center; justify-content: center; color: rgb(52 211 153); }
+      .guarantee strong { color: white; display: block; font-size: 16px; margin-bottom: 5px; }
+      .guarantee p { color: rgb(203 213 225); font-size: 14px; line-height: 1.6; margin: 0; }
+
+      .sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; z-index: 90; display: none; gap: 10px; padding: 10px 14px; background: rgba(15,23,42,0.96); backdrop-filter: blur(8px); border-top: 1px solid rgb(139 92 246 / 0.3); }
+      .sticky-cta a { flex: 1; text-align: center; padding: 13px; border-radius: 11px; font-weight: 700; font-size: 15px; }
+      .sticky-cta .s-call { background: rgb(30 41 59 / 0.8); color: white; border: 1px solid rgb(51 65 85 / 0.8); flex: 0 0 52px; display: flex; align-items: center; justify-content: center; }
+      .sticky-cta .s-book { background: linear-gradient(135deg, rgb(139 92 246), rgb(168 85 247)); color: white; }
+      @media (max-width: 759px) { .sticky-cta { display: flex; } body { padding-bottom: 72px; } }
+
+      .consent { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; background: rgb(15 23 42); border-top: 1px solid rgb(139 92 246 / 0.3); padding: 16px; display: none; box-shadow: 0 -10px 30px rgba(0,0,0,0.4); }
+      .consent.show { display: block; }
+      .consent-in { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+      @media (min-width: 720px) { .consent-in { flex-direction: row; justify-content: space-between; } }
+      .consent p { font-size: 13px; color: rgb(203 213 225); }
+      .consent-btns { display: flex; gap: 8px; flex-shrink: 0; }
+      .consent-btns button { padding: 9px 18px; border-radius: 9px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; border: 1px solid rgb(51 65 85 / 0.8); }
+      .consent-refuse { background: transparent; color: rgb(203 213 225); }
+      .consent-accept { background: linear-gradient(135deg, rgb(139 92 246), rgb(168 85 247)); color: white; border-color: transparent !important; }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-in">
+        <a href="/" class="nav-logo" aria-label="PrimeDev Studios"><img src="/logo1.JPG" alt="PrimeDev Studios" width="56" height="56" /></a>
+        <a href="tel:+15793685230" class="nav-phone">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +1 579-368-5230
+        </a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="badge"><span class="dot"></span>Sites web & boutiques · PME du Québec</div>
+          <h1>Votre site web devrait vous amener des clients. <span class="accent">Pas juste exister.</span></h1>
+          <p class="hero-sub">
+            Un client vous cherche sur Google. S'il tombe sur un site vieux, lent — ou sur rien du tout — il clique sur votre concurrent. Je conçois des sites pensés pour transformer vos visiteurs en clients.
+          </p>
+          <ul class="hero-points">
+            <li><span class="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Design sur mesure, rapide, parfait sur mobile</span></li>
+            <li><span class="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Optimisé pour Google et pour convertir</span></li>
+            <li><span class="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Bilingue FR/EN · livré en 2 à 6 semaines</span></li>
+          </ul>
+        </div>
+
+        <div class="form-card" id="form-anchor">
+          <form id="lp-form" name="web-lead" method="POST" data-netlify="true" netlify-honeypot="_gotcha" novalidate>
+            <h2>Recevez votre soumission gratuite</h2>
+            <p class="sub">Dites-moi votre projet en 1 minute. Je vous reviens avec une estimation claire et des idées concrètes — sans engagement.</p>
+
+            <input type="hidden" name="form-name" value="web-lead" />
+            <input type="hidden" name="source" value="Landing page /web/ (publicite)" />
+            <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+            <div class="field" id="f-name">
+              <label for="lp-name">Votre nom *</label>
+              <input type="text" id="lp-name" name="nom" autocomplete="name" required aria-required="true" aria-describedby="err-name" />
+              <div class="err" id="err-name">Indiquez votre nom</div>
+            </div>
+            <div class="field" id="f-phone">
+              <label for="lp-phone">Téléphone *</label>
+              <input type="tel" id="lp-phone" name="telephone" autocomplete="tel" inputmode="tel" required aria-required="true" aria-describedby="err-phone" />
+              <div class="err" id="err-phone">Indiquez un numéro où vous joindre</div>
+            </div>
+            <div class="field" id="f-email">
+              <label for="lp-email">Courriel *</label>
+              <input type="email" id="lp-email" name="courriel" autocomplete="email" inputmode="email" required aria-required="true" aria-describedby="err-email" />
+              <div class="err" id="err-email">Indiquez un courriel valide</div>
+            </div>
+            <div class="field">
+              <label for="lp-type">Votre projet</label>
+              <select id="lp-type" name="type_projet">
+                <option value="">— Sélectionnez —</option>
+                <option>Nouveau site vitrine</option>
+                <option>Refonte de mon site actuel</option>
+                <option>Boutique en ligne (e-commerce)</option>
+                <option>Application / projet sur mesure</option>
+                <option>Je ne sais pas encore</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="lp-site">Adresse de votre site actuel (si vous en avez un)</label>
+              <input type="text" id="lp-site" name="site_actuel" inputmode="url" placeholder="exemple.com — laissez vide si aucun" />
+            </div>
+            <div class="field">
+              <label for="lp-msg">Votre projet en quelques mots (optionnel)</label>
+              <textarea id="lp-msg" name="message" placeholder="Ex : j'ai un commerce et je veux vendre en ligne..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit" id="lp-submit">Recevoir ma soumission gratuite</button>
+            <p class="form-note">Réponse sous 24 h ouvrables · Vos infos ne sont jamais partagées</p>
+          </form>
+
+          <div class="form-success" id="lp-success" role="status" aria-live="polite">
+            <div class="ok"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <h3>C'est noté — merci !</h3>
+            <p>Je vous reviens sous 24 h ouvrables avec une estimation et des idées pour votre projet. Si c'est urgent, appelez-moi directement au +1 579-368-5230.</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- TRUST BAR -->
+    <div class="trustbar" aria-label="Garanties">
+      <span class="ti"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Soumission gratuite, sans engagement</span>
+      <span class="ti"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Entreprise enregistrée au Québec (NEQ)</span>
+      <span class="ti"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Site bilingue FR/EN inclus</span>
+      <span class="ti"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Vous parlez au développeur, pas à un commercial</span>
+    </div>
+
+    <!-- PROBLEM -->
+    <section class="block">
+      <div class="wrap">
+        <p class="eyebrow">Le vrai problème</p>
+        <h2 class="section-title">Un site faible vous coûte des clients chaque jour</h2>
+        <div class="cards-3">
+          <div class="card">
+            <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+            <h3>Invisible sur Google</h3>
+            <p>Pas de site, ou un site mal construit ? Vous n'apparaissez pas quand un client cherche vos services. Vos concurrents, eux, sont là.</p>
+          </div>
+          <div class="card">
+            <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg></div>
+            <h3>Un site « maison » fait fuir</h3>
+            <p>Les gens jugent votre sérieux en quelques secondes. Un site lent, daté ou bricolé sur un template gratuit envoie le mauvais message — et coûte des contrats.</p>
+          </div>
+          <div class="card">
+            <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg></div>
+            <h3>Illisible sur téléphone</h3>
+            <p>La majorité de vos visiteurs sont sur mobile. Si votre site est difficile à lire ou à utiliser sur un téléphone, ils repartent — et ne reviennent pas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUTION -->
+    <section class="block">
+      <div class="wrap">
+        <p class="eyebrow">La solution</p>
+        <h2 class="section-title">Un site conçu pour convertir, pas juste pour être joli</h2>
+        <div class="cards-3">
+          <div class="card">
+            <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+            <h3>Site vitrine sur mesure</h3>
+            <p>Un design unique à votre image, rapide et impeccable sur mobile. Pensé pour qu'un visiteur comprenne vite ce que vous faites — et vous contacte.</p>
+          </div>
+          <div class="card">
+            <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
+            <h3>Boutique en ligne complète</h3>
+            <p>Vendez 24/7 : catalogue, panier, paiement sécurisé (Stripe, PayPal), gestion des stocks. Vous gérez tout depuis un tableau de bord simple.</p>
+          </div>
+          <div class="card">
+            <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <h3>Trouvé sur Google, en 2 langues</h3>
+            <p>SEO de base inclus pour être visible quand on vous cherche, et interface bilingue FR/EN — essentielle au Québec pour parler à tous vos clients.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="block">
+      <div class="wrap">
+        <p class="eyebrow">Comment on travaille</p>
+        <h2 class="section-title">Simple, et en 3 étapes</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="num">1</div>
+            <h3>On se parle 30 minutes</h3>
+            <p>Je comprends votre activité, vos clients et vos objectifs. Vous repartez avec une estimation claire et une recommandation honnête — gratuitement.</p>
+          </div>
+          <div class="step">
+            <div class="num">2</div>
+            <h3>Je conçois et je code</h3>
+            <p>Je crée le design sur mesure, vous le validez, puis je le développe. Vous suivez l'avancement à chaque étape — pas de surprise, pas de boîte noire.</p>
+          </div>
+          <div class="step">
+            <div class="num">3</div>
+            <h3>En ligne, et accompagné</h3>
+            <p>On met le site en ligne ensemble. Je vous montre comment le gérer, et je reste joignable pour le support post-lancement. Vous parlez toujours à moi.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="block">
+      <div class="wrap">
+        <p class="eyebrow">Tarifs — transparents</p>
+        <h2 class="section-title">Des forfaits clairs, sans frais cachés</h2>
+
+        <p class="sub-head">Sites vitrines &amp; refonte</p>
+        <div class="pricing">
+          <div class="plan">
+            <span class="tag">Essentiel</span>
+            <div class="name">Site vitrine 5 pages</div>
+            <div class="price">4 500 $ <span>CAD</span></div>
+            <div class="meta">2-3 semaines · idéal indépendants &amp; pros</div>
+            <ul>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Design responsive sur mesure</li>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Formulaire de contact + SEO de base</li>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Bilingue FR/EN + Google Analytics</li>
+            </ul>
+          </div>
+          <div class="plan featured">
+            <span class="tag">Professionnel · populaire</span>
+            <div class="name">Site 7-10 pages</div>
+            <div class="price">6 500 $ <span>CAD</span></div>
+            <div class="meta">3-4 semaines · idéal PME &amp; cabinets</div>
+            <ul>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Tout l'Essentiel + blog intégré</li>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Animations &amp; SEO avancé</li>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Support post-lancement 60 jours</li>
+            </ul>
+          </div>
+          <div class="plan">
+            <span class="tag">Premium</span>
+            <div class="name">Site 10+ pages</div>
+            <div class="price">9 000 $ <span>CAD+</span></div>
+            <div class="meta">4-6 semaines · idéal marques établies</div>
+            <ul>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>UI/UX complet sur mesure</li>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Intégrations API + dashboard admin</li>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Support prioritaire 90 jours</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="sub-head" style="margin-top:32px;">Boutiques en ligne</p>
+        <div class="pricing">
+          <div class="plan">
+            <span class="tag">Starter</span>
+            <div class="name">Jusqu'à 50 produits</div>
+            <div class="price">7 500 $ <span>CAD</span></div>
+            <div class="meta">3-4 semaines · artisans &amp; commerçants</div>
+            <ul>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Catalogue, panier &amp; paiement</li>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Stripe / PayPal + gestion des stocks</li>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Formation admin incluse</li>
+            </ul>
+          </div>
+          <div class="plan featured">
+            <span class="tag">Business · populaire</span>
+            <div class="name">Jusqu'à 200 produits</div>
+            <div class="price">12 000 $ <span>CAD</span></div>
+            <div class="meta">4-6 semaines · marques &amp; retailers</div>
+            <ul>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Filtres avancés &amp; recherche</li>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Suivi de commandes + codes promo</li>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Tableau de bord analytics</li>
+            </ul>
+          </div>
+          <div class="plan">
+            <span class="tag">Entreprise</span>
+            <div class="name">Produits illimités</div>
+            <div class="price">Sur mesure</div>
+            <div class="meta">6-12 semaines · marques en croissance</div>
+            <ul>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Multi-devises &amp; multi-langues</li>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Intégration ERP (Odoo) + API</li>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Support prioritaire 12 mois</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="showcase">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+          <div>
+            <strong>Programme Vitrine — 2 places ce trimestre</strong>
+            <p>Chaque trimestre, je sélectionne 2 entreprises comme projets vitrine. En échange du droit de présenter votre site dans mon portfolio, vous obtenez un rabais et une priorité de traitement. Mentionnez-le pendant l'appel pour voir si vous êtes éligible.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section class="block">
+      <div class="wrap">
+        <p class="eyebrow">Pourquoi moi</p>
+        <h2 class="section-title">Vous parlez directement au développeur</h2>
+        <ul class="why-list">
+          <li><span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span><strong>Pas d'intermédiaire</strong>Je m'appelle Wanil Parfait. C'est moi qui conçois et code votre site, et c'est à moi que vous parlez — jamais à un service client ni à un sous-traitant à l'autre bout du monde.</span></li>
+          <li><span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span><strong>Basé à Montréal, pour les PME du Québec</strong>Je connais le marché d'ici. Sites bilingues, conformes, et pensés pour vos vrais clients.</span></li>
+          <li><span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span><strong>5+ ans d'expérience en développement</strong>Du code propre, des sites rapides, sur mesure. Pas un template revendu : du vrai travail d'artisan.</span></li>
+          <li><span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span><strong>Je vous dis la vérité</strong>Si un site simple suffit pour vos besoins, je ne vous vendrai pas le forfait Premium. Je préfère un client content qui revient et qui me réfère.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="block">
+      <div class="wrap">
+        <p class="eyebrow">Vos questions</p>
+        <h2 class="section-title">Ce que les gens me demandent avant de se lancer</h2>
+        <div class="faq">
+          <details>
+            <summary>Pourquoi pas juste un Wix ou un Squarespace moi-même ?</summary>
+            <p>Vous pouvez — et pour un usage très simple, c'est parfois suffisant. Mais ces sites se ressemblent tous, sont souvent lents, et vous bricolez au lieu de travailler sur votre business. Un site sur mesure est plus rapide, unique, mieux référencé, et c'est moi qui m'en occupe. Pendant l'appel, je vous dis honnêtement si vous avez vraiment besoin de moi.</p>
+          </details>
+          <details>
+            <summary>Combien de temps ça prend ?</summary>
+            <p>Un site vitrine : 2 à 4 semaines en général. Une boutique en ligne : 3 à 6 semaines, selon le nombre de produits. Je vous donne un échéancier clair dès le début, et vous suivez l'avancement à chaque étape.</p>
+          </details>
+          <details>
+            <summary>Est-ce que je pourrai modifier mon site moi-même après ?</summary>
+            <p>Oui. Je le construis pour que vous puissiez gérer le contenu facilement (textes, photos, produits), et je vous forme à la livraison. Et si vous préférez que je m'en occupe, je reste disponible.</p>
+          </details>
+          <details>
+            <summary>Et le référencement Google (SEO) ?</summary>
+            <p>Le SEO de base est inclus dans tous les forfaits : structure propre, vitesse, balises, mobile. Pour les forfaits supérieurs, on pousse une stratégie SEO plus avancée pour mieux ressortir sur vos services.</p>
+          </details>
+          <details>
+            <summary>J'ai déjà un site. Vous faites les refontes ?</summary>
+            <p>Absolument — c'est même fréquent. Je modernise le design, j'améliore la vitesse et le mobile, je migre votre contenu et je préserve votre référencement existant. Mettez l'adresse de votre site actuel dans le formulaire, je regarderai avant notre appel.</p>
+          </details>
+          <details>
+            <summary>Y a-t-il des frais récurrents ?</summary>
+            <p>Le site est un projet à prix fixe, payé une fois. Il reste l'hébergement et le nom de domaine (faibles coûts, souvent moins de 30 $/mois selon votre cas) — je vous explique tout clairement, sans surprise. La maintenance est optionnelle.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- GUARANTEE + FINAL CTA -->
+    <section class="block" style="border-top:none;">
+      <div class="wrap">
+        <div class="guarantee" style="margin-bottom:24px;">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <div>
+            <strong>Mon engagement, clairement</strong>
+            <p>La soumission est gratuite et sans pression. Prix fixe convenu d'avance — vous savez exactement ce que vous payez avant de commencer. Et si je pense qu'une solution plus simple vous suffit, je vous le dis : je préfère un client satisfait qui me réfère.</p>
+          </div>
+        </div>
+        <div class="final">
+          <h2>Prêt à avoir un site qui travaille pour vous ?</h2>
+          <p>Soumission gratuite, sans engagement. Vous repartez avec une estimation claire et des idées concrètes.</p>
+          <a href="#form-anchor" class="btn-scroll">Recevoir ma soumission gratuite →</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>© 2026 PrimeDev Studios · Montréal, QC · NEQ 2281 4634 65</p>
+      <p style="margin-top:6px;"><a href="/">Site principal</a> · <a href="tel:+15793685230">+1 579-368-5230</a> · <a href="mailto:info@prime-dev-studios.com">info@prime-dev-studios.com</a></p>
+    </footer>
+
+    <!-- STICKY MOBILE CTA -->
+    <div class="sticky-cta">
+      <a href="tel:+15793685230" class="s-call" aria-label="Appeler maintenant">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </a>
+      <a href="#form-anchor" class="s-book">Recevoir ma soumission gratuite</a>
+    </div>
+
+    <!-- CONSENT BANNER (Loi 25) — controlled by web.js -->
+    <div class="consent" id="consent">
+      <div class="consent-in">
+        <p>On utilise des outils de mesure publicitaire (Meta, Google) pour savoir quelles annonces fonctionnent. Ils déposent un témoin (cookie). Vous pouvez refuser — le site fonctionne pareil.</p>
+        <div class="consent-btns">
+          <button class="consent-refuse" id="consent-refuse">Refuser</button>
+          <button class="consent-accept" id="consent-accept">Accepter</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/web/web.js"></script>
+  </body>
+</html>
